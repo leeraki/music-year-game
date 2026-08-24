@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<!-- 제목은 중립적으로 유지한다. 잠금화면/알림에 페이지 제목이 노출될 수 있어 곡 정보를 넣지 않는다. -->
+<title>노래 맞히기</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#0d0b1a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="노래 맞히기">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="app" data-screen="loading">
+
+  <header class="topbar">
+    <h1 class="brand">노래 맞히기</h1>
+    <button id="btn-settings" class="icon-btn" aria-label="설정" title="설정">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+        <path fill="currentColor" d="M19.4 13a7.6 7.6 0 0 0 0-2l2-1.6-2-3.4-2.4 1a7.6 7.6 0 0 0-1.7-1L15 3.4h-4l-.3 2.6a7.6 7.6 0 0 0-1.7 1l-2.4-1-2 3.4L4.6 11a7.6 7.6 0 0 0 0 2l-2 1.6 2 3.4 2.4-1a7.6 7.6 0 0 0 1.7 1l.3 2.6h4l.3-2.6a7.6 7.6 0 0 0 1.7-1l2.4 1 2-3.4Zm-6.4 2.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4Z"/>
+      </svg>
+    </button>
+  </header>
+
+  <main class="stage">
+
+    <!-- 로딩 -->
+    <section class="screen screen-loading">
+      <div class="spinner" aria-hidden="true"></div>
+      <p class="muted">곡 목록을 불러오는 중…</p>
+    </section>
+
+    <!-- 오류 -->
+    <section class="screen screen-error">
+      <p class="error-icon" aria-hidden="true">!</p>
+      <p id="error-message" class="error-text"></p>
+      <button id="btn-retry" class="btn btn-secondary">다시 시도</button>
+    </section>
+
+    <!-- 대기: 시작 버튼 -->
+    <section class="screen screen-idle">
+      <div class="deck-info">
+        <span id="deck-remaining" class="deck-remaining">0</span>
+        <span class="deck-label">곡 남음</span>
+        <span id="deck-range" class="deck-range"></span>
+      </div>
+      <button id="btn-start" class="dial dial-start">
+        <span class="dial-label">시작</span>
+      </button>
+      <p class="hint">버튼을 누르면 무작위로 한 곡이 재생됩니다</p>
+    </section>
+
+    <!-- 재생 중: 곡 정보를 일절 노출하지 않는다 -->
+    <section class="screen screen-playing">
+      <div class="viz" id="viz" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress" id="progress"><div class="progress-fill" id="progress-fill"></div></div>
+        <div class="times">
+          <span id="time-current">0:00</span>
+          <span id="time-total">0:30</span>
+        </div>
+      </div>
+
+      <button id="btn-toggle" class="dial dial-toggle" aria-label="재생 또는 일시정지">
+        <svg class="ico-pause" viewBox="0 0 24 24" width="40" height="40" aria-hidden="true">
+          <path fill="currentColor" d="M8 5h3v14H8zM13 5h3v14h-3z"/>
+        </svg>
+        <svg class="ico-play" viewBox="0 0 24 24" width="40" height="40" aria-hidden="true">
+          <path fill="currentColor" d="M8 5.5v13l11-6.5z"/>
+        </svg>
+      </button>
+      <p class="toggle-caption" id="toggle-caption">일시정지</p>
+      <p class="flip-prompt" id="flip-prompt" hidden>폰을 뒤집어 테이블에 엎어 주세요</p>
+
+      <div class="actions">
+        <button id="btn-reveal" class="btn btn-primary">결과 확인</button>
+        <button id="btn-replay" class="btn btn-ghost">처음부터 다시</button>
+      </div>
+    </section>
+
+    <!-- 결과 공개 -->
+    <section class="screen screen-reveal">
+      <div class="reveal-card">
+        <img id="reveal-art" class="reveal-art" alt="" width="140" height="140">
+        <div class="reveal-year" id="reveal-year">----</div>
+        <div class="reveal-artist" id="reveal-artist"></div>
+        <div class="reveal-title" id="reveal-title"></div>
+        <div class="reveal-album" id="reveal-album"></div>
+      </div>
+      <div class="actions">
+        <button id="btn-next" class="btn btn-primary">다음 곡</button>
+        <button id="btn-replay-2" class="btn btn-ghost">한 번 더 듣기</button>
+      </div>
+    </section>
+
+    <!-- 덱 소진 -->
+    <section class="screen screen-done">
+      <p class="done-emoji" aria-hidden="true">🎉</p>
+      <h2 class="done-title">모든 곡을 다 들었습니다</h2>
+      <p class="muted" id="done-count"></p>
+      <button id="btn-reset" class="btn btn-primary">덱 새로 섞기</button>
+    </section>
+
+  </main>
+</div>
+
+<!-- 설정 시트 -->
+<div id="sheet" class="sheet" hidden>
+  <div class="sheet-backdrop" data-close></div>
+  <div class="sheet-panel" role="dialog" aria-modal="true" aria-label="설정">
+    <div class="sheet-handle" aria-hidden="true"></div>
+    <h2 class="sheet-title">설정</h2>
+
+    <section class="field">
+      <label class="field-label">연대 범위</label>
+      <div class="chips" id="decade-chips"></div>
+      <p class="field-note" id="filter-count"></p>
+    </section>
+
+    <section class="field">
+      <label class="field-label" for="volume">음량</label>
+      <input type="range" id="volume" min="0" max="100" value="85">
+    </section>
+
+    <section class="field">
+      <label class="field-label" for="startat">
+        재생 시작 위치 <span id="startat-value" class="field-value">0초</span>
+      </label>
+      <input type="range" id="startat" min="0" max="15" step="1" value="0">
+      <p class="field-note">
+        미리듣기는 애플이 잘라둔 30초 구간입니다. 그 안에서 몇 초 뒤부터 틀지 정할 수 있습니다.
+        뒤에서 시작할수록 힌트가 줄어 어려워집니다.
+      </p>
+    </section>
+
+    <section class="field">
+      <label class="switch">
+        <input type="checkbox" id="opt-autoplay" checked>
+        <span>시작 버튼을 누르면 바로 재생</span>
+      </label>
+      <label class="switch">
+        <input type="checkbox" id="opt-keepawake" checked>
+        <span>게임 중 화면 꺼짐 방지</span>
+      </label>
+      <label class="switch">
+        <input type="checkbox" id="opt-gyro">
+        <span>폰을 엎으면 재생 시작</span>
+      </label>
+      <p class="field-note" id="gyro-note"></p>
+    </section>
+
+    <div class="sheet-actions">
+      <button class="btn btn-ghost" id="btn-reshuffle">덱 새로 섞기</button>
+      <button class="btn btn-primary" data-close>닫기</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/audio.js"></script>
+<script src="js/gyro.js"></script>
+<script src="js/deck.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

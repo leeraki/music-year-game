@@ -1,0 +1,8 @@
+node_modules/
+.DS_Store
+tools/__pycache__/
+tools/*.log
+tools/.itunes_cache.json
+tools/fetch.log
+tools/review_report.txt
+.claude/
