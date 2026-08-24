@@ -5,17 +5,39 @@
 
 폰 한 대만 있으면 됩니다. 설치 없이 주소만 열면 동작합니다.
 
+## 두 가지 모드
+
+설정에서 오갈 수 있고, 모드마다 곡 목록과 진행 상태를 따로 관리합니다.
+
+| | **K-POP** | **영화·드라마 OST** |
+|---|---|---|
+| 맞히는 것 | 노래의 **발매 연도** | 작품의 **출시 연도** (영화=개봉, 드라마=첫 방영) |
+| 추가 정답 | 가수 · 곡 제목 | 작품 제목 · **주연 배역 이름** |
+| 수록 | 304곡 (1980~2026) | 191개 (1939~2025) |
+
+```
+[K-POP]                     [OST]
+   2016                        2018
+  에일리                       영화
+  첫눈처럼 너에게 가겠다          보헤미안 랩소디
+                              프레디 머큐리 (라미 말렉)
+                              메리 오스틴 (루시 보인턴)
+                              ─────────────────────
+                              OST · Queen — Bohemian Rhapsody
+```
+
 ## 게임 방법
 
 앱은 **음악 재생과 정답 공개**만 담당합니다. 타임라인·토큰 같은 보드게임 요소는 실물로 진행합니다.
 
 1. **시작** 버튼을 누르면 무작위로 한 곡이 재생됩니다. 이때 곡 정보는 화면에 전혀 나오지 않습니다.
 2. 참가자는 이 곡이 자기 타임라인의 어느 시점에 들어갈지 추측해 카드를 놓습니다.
-3. **결과 확인** 버튼을 누르면 발매 연도·가수·제목이 공개됩니다.
+3. **결과 확인** 버튼을 누르면 연도와 정답이 공개됩니다.
 4. **다음 곡** 으로 넘어갑니다. 한 판 안에서 같은 곡은 다시 나오지 않습니다.
 
 ## 기능
 
+- **두 가지 모드** — K-POP / 영화·드라마 OST, 진행 상태는 각각 따로 보존
 - **무작위 재생 / 재생 / 일시정지** — 30초 미리듣기, 중복 없는 덱 소진 방식
 - **정답 노출 차단** — 재생 화면에 곡 정보가 없고, 잠금화면·알림에도 `???` 로 고정됩니다
 - **연대 필터** — 1980·1990·2000·2010·2020년대별로 덱을 좁힐 수 있습니다
@@ -24,13 +46,14 @@
 - **오프라인 재생** — 한 번 들은 곡은 캐시되어 인터넷 없이도 재생됩니다
 - **진행 상태 보존** — 앱을 껐다 켜도 이어서 진행됩니다
 - **홈 화면 설치** — PWA 로 주소창 없이 앱처럼 실행됩니다
+- **QR 로 설정 전송** — Spotify Client ID 32자리를 다른 기기로 옮길 때 씁니다
 
 ## 음원
 
 [iTunes Search API](https://performance-partners.apple.com/search-api) 의 **30초 미리듣기**를 사용합니다.
 로그인·구독·API 키가 필요 없고, 오디오를 앱이 직접 재생하므로 정답 노출을 완전히 통제할 수 있습니다.
 
-곡 목록은 `data/songs.json` 에 고정되어 있습니다. **발매 연도는 직접 검증해 확정한 값**을 씁니다 —
+곡 목록은 `data/kpop.json` · `data/ost.json` 에 고정되어 있습니다. **발매 연도는 직접 검증해 확정한 값**을 씁니다 —
 iTunes 의 `releaseDate` 는 편집앨범·리마스터 수록분에 걸리면 원곡 연도와 달라지기 때문입니다.
 (예: 김완선 「삐에로는 우릴 보고 웃지」는 원곡 1990년이지만 편집앨범 기준 2002년으로 조회됨)
 
@@ -66,10 +89,12 @@ python -m http.server 8123
 곡 목록을 다시 만들 때:
 
 ```bash
-python tools/build_songs.py
+python tools/build_songs.py     # K-POP  : seed_kpop.csv → data/kpop.json
+python tools/build_ost.py       # OST    : seed_ost.csv  → data/ost.json
+python tools/discover_ost.py    # 작품의 대표 OST 후보를 iTunes 에서 찾아 보여준다
 ```
 
-`tools/seed_songs.csv` 의 큐레이션 목록을 iTunes 와 대조해 `data/songs.json` 을 만듭니다.
+시드의 큐레이션 목록을 iTunes 와 대조해 곡 데이터를 만듭니다.
 연도가 어긋나거나 매칭이 의심스러운 곡은 `tools/review_report.txt` 로 따로 뽑아 확인할 수 있습니다.
 
 > iTunes Search API 는 분당 20회 수준의 제한이 있습니다. 넘기면 `/search` 가 403 으로 막히므로
@@ -82,8 +107,10 @@ python tools/build_songs.py
 조용필 「창밖의 여자」가 2009년 라이브로 매칭). 그래서 검증을 두 겹으로 둡니다.
 
 ```bash
-python tools/audit_songs.py        # 가수·제목·연도·중복 자동 점검
-python tools/make_review_page.py   # tools/review.html — 전곡을 들어보며 눈으로 확인
+python tools/audit_songs.py --mode kpop    # 가수·제목·연도·중복 자동 점검
+python tools/audit_songs.py --mode ost
+python tools/make_review_page.py           # tools/review_kpop.html — 들어보며 눈으로 확인
+python tools/make_review_page.py --ost     # tools/review_ost.html
 ```
 
 수집 단계의 매칭 규칙은 이렇습니다.
@@ -94,9 +121,17 @@ python tools/make_review_page.py   # tools/review.html — 전곡을 들어보�
 - **발매 연도에 가까운 앨범 가산** — 원반이어야 그때 그 소리가 납니다
 
 iTunes 가 영문 표기를 쓰는 곡(「위아래」→ *Up & Down*)은 한글과 글자가 겹치지 않아 유사도가 0 이 됩니다.
-이런 곡은 `seed_songs.csv` 의 **`alt` 열**에 iTunes 표기를 적어 주면 됩니다.
+이런 곡은 시드 CSV 의 **`alt` 열**에 iTunes 표기를 적어 주면 됩니다.
 
 역주행곡은 **차트 연도가 아니라 발매 연도**를 씁니다 (브레이브걸스 「롤린」 → 2021 아닌 2017).
+
+OST 는 규칙이 조금 다릅니다.
+
+- **연도 가산점을 주지 않습니다.** `year` 가 작품의 연도라 곡 발매일과 무관합니다
+- **가수 불일치를 바로 탈락시키지 않습니다.** iTunes 한국은 외국 아티스트를 한글로 옮겨
+  적는 일이 많아(`John Williams` → `존 윌리엄스`) 표기만으로는 판단할 수 없습니다.
+  대신 제목이 확실히 맞을 때만 통과시키고 점수를 깎습니다
+- 일본 애니 OST 는 한국어 제목으로 올라와 있는 경우가 많습니다 (`となりのトトロ` → `이웃집 토토로`)
 
 ## 구조
 
@@ -104,10 +139,13 @@ iTunes 가 영문 표기를 쓰는 곡(「위아래」→ *Up & Down*)은 한글
 index.html          화면 구성
 css/style.css       스타일
 js/audio.js         재생 엔진 추상화 + iTunes 미리듣기 구현
-js/deck.js          덱 관리 (필터·셔플·중복 방지·진행 상태)
+js/spotify.js       Spotify 엔진 (PKCE 인증 + Web Playback SDK)
+js/deck.js          덱 관리 (모드·필터·셔플·중복 방지·진행 상태)
 js/gyro.js          폰 엎기 감지
+js/qr.js            QR 인코더 (설정 전송용, 외부 의존 없음)
 js/app.js           화면 흐름과 게임 진행
-data/songs.json     곡 목록
+data/kpop.json      K-POP 곡 목록
+data/ost.json       영화·드라마 OST 목록
 sw.js               오프라인 캐싱
 tools/              곡 목록 생성 도구
 ```

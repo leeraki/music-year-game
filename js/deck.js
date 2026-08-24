@@ -7,8 +7,16 @@
 
 const STORAGE_KEY = 'music-game/deck-state/v1';
 
+// 모드별로 곡 목록과 진행 상태를 따로 둔다.
+// 한 모드에서 덱을 소진해도 다른 모드는 그대로 이어갈 수 있어야 하기 때문이다.
+const MODES = {
+  kpop: { file: 'data/kpop.json', label: 'K-POP' },
+  ost:  { file: 'data/ost.json',  label: '영화·드라마 OST' },
+};
+
 class Deck {
-  constructor() {
+  constructor(mode = 'kpop') {
+    this.mode = MODES[mode] ? mode : 'kpop';
     this.all = [];        // 원본 전체
     this.pool = [];       // 필터 적용 후 대상
     this.order = [];      // 셔플된 인덱스 순서
@@ -17,8 +25,11 @@ class Deck {
     this.filter = { from: null, to: null };
   }
 
-  async load(url = 'data/songs.json') {
-    const res = await fetch(url, { cache: 'no-cache' });
+  static get MODES() { return MODES; }
+
+  async load(mode = this.mode) {
+    this.mode = MODES[mode] ? mode : 'kpop';
+    const res = await fetch(MODES[this.mode].file, { cache: 'no-cache' });
     if (!res.ok) throw new Error(`곡 목록을 불러오지 못했습니다 (${res.status})`);
     const data = await res.json();
     // 데이터에 같은 트랙이 두 번 들어가면 한 판에 같은 곡이 두 번 나온다.
@@ -28,7 +39,7 @@ class Deck {
       if (!s.previewUrl || !s.year) return false;
       const key = s.itunesTrackId ?? s.id;
       if (seen.has(key)) {
-        console.warn('중복 곡을 건너뜁니다:', s.artist, '-', s.title);
+        console.warn('중복 곡을 건너뜁니다:', s.artist, '-', s.title || s.work);
         return false;
       }
       seen.add(key);
@@ -114,7 +125,7 @@ class Deck {
 
   save() {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      localStorage.setItem(`${STORAGE_KEY}/${this.mode}`, JSON.stringify({
         filter: this.filter,
         order: this.order,
         cursor: this.cursor,
@@ -126,7 +137,7 @@ class Deck {
   /** 저장된 진행 상태를 복원한다. 곡 목록이 바뀌었으면 조용히 포기하고 새로 시작. */
   restore() {
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
+      const raw = localStorage.getItem(`${STORAGE_KEY}/${this.mode}`);
       if (!raw) return false;
       const st = JSON.parse(raw);
       this.applyFilter(st.filter || {}, { keepProgress: true });
@@ -142,7 +153,7 @@ class Deck {
   }
 
   clearSaved() {
-    try { localStorage.removeItem(STORAGE_KEY); } catch (_) {}
+    try { localStorage.removeItem(`${STORAGE_KEY}/${this.mode}`); } catch (_) {}
   }
 }
 

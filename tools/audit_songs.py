@@ -17,7 +17,7 @@ import sys
 import unicodedata
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SONGS = os.path.join(os.path.dirname(HERE), "data", "songs.json")
+DATA_DIR = os.path.join(os.path.dirname(HERE), "data")
 
 # 같은 가수를 다르게 표기하는 경우가 많아 대조표를 둔다
 ALIASES = {
@@ -195,7 +195,7 @@ def artist_matches(seed, matched):
 def load_alt_map():
     """시드에 적어 둔 iTunes 표기. 수집과 같은 기준으로 봐야 헛경고가 없다."""
     import csv
-    path = os.path.join(HERE, "seed_songs.csv")
+    path = os.path.join(HERE, "seed_kpop.csv")
     if not os.path.exists(path):
         return {}
     out = {}
@@ -206,6 +206,9 @@ def load_alt_map():
     return out
 
 
+IS_OST = False
+
+
 def main(strict=False):
     data = json.load(open(SONGS, encoding="utf-8"))
     songs = data["songs"]
@@ -214,8 +217,11 @@ def main(strict=False):
     bad, warn, seen_track = [], [], {}
 
     for s in songs:
+        # OST 레코드는 title 대신 song/work 를 쓴다
         seed_artist, matched_artist = s["artist"], s.get("itunesArtist", "")
-        seed_title, matched_title = s["title"], s.get("itunesTitle", "")
+        seed_title = s.get("title") or s.get("song") or ""
+        matched_title = s.get("itunesTitle", "")
+        label = s.get("work") or seed_artist
 
         a_score = artist_matches(seed_artist, matched_artist)
         alt = alt_map.get((seed_artist.strip(), seed_title.strip()))
@@ -226,18 +232,22 @@ def main(strict=False):
 
         reasons = []
         if a_score < 0.34:
-            reasons.append(f"가수 불일치 (기대 '{seed_artist}' / 실제 '{matched_artist}')")
+            # OST 는 'John Williams' 가 '존 윌리엄스' 로 올라와 있는 식이라 표기만으로는
+            # 다른 사람인지 알 수 없다. 수집 때 제목이 확실한 경우만 통과시켰으므로 참고로만 둔다.
+            reasons.append(("가수 표기 다름" if IS_OST else "가수 불일치")
+                           + f" (기대 '{seed_artist}' / 실제 '{matched_artist}')")
         if not t_ok:
             reasons.append(f"제목 불일치 (기대 '{seed_title}' / 실제 '{matched_title}')")
 
-        gap = abs(s.get("itunesYear", s["year"]) - s["year"])
+        # OST 의 year 는 작품 연도라 곡 발매일과 달라도 정상이다
+        gap = abs(s.get("itunesYear", s["year"]) - s["year"]) if "itunesYear" in s else 0
         if gap > 3:
             reasons.append(f"연도 {gap}년 차 (시드 {s['year']} / iTunes {s.get('itunesYear')})")
 
         tid = s.get("itunesTrackId")
         if tid in seen_track:
             reasons.append(f"트랙 중복 ({seen_track[tid]} 과 같은 트랙)")
-        seen_track[tid] = f"{seed_artist} - {seed_title}"
+        seen_track[tid] = f"{label} - {seed_title}"
 
         if reasons:
             entry = (s, reasons)
@@ -250,7 +260,9 @@ def main(strict=False):
             return
         print(f"\n{'=' * 68}\n{title} — {len(items)}건\n{'=' * 68}")
         for s, reasons in items:
-            print(f"\n  {s['year']}  {s['artist']} - {s['title']}")
+            head = s.get("work") or s["artist"]
+            name = s.get("title") or s.get("song") or ""
+            print(f"\n  {s['year']}  {head} - {name}")
             print(f"     매칭: {s.get('itunesArtist')} - {s.get('itunesTitle')}")
             print(f"     앨범: {s.get('album')} ({s.get('itunesYear')})")
             for r in reasons:
@@ -282,6 +294,10 @@ def main(strict=False):
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
     p.add_argument("--strict", action="store_true")
+    p.add_argument("--mode", default="kpop", choices=["kpop", "ost"],
+                   help="점검할 모드 (기본 kpop)")
     args = p.parse_args()
     sys.stdout.reconfigure(encoding="utf-8")
+    globals()["SONGS"] = os.path.join(DATA_DIR, f"{args.mode}.json")
+    globals()["IS_OST"] = args.mode == "ost"
     main(args.strict)

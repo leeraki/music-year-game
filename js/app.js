@@ -37,17 +37,21 @@
     spotifyStatus: $('spotify-status'), spotifyClient: $('spotify-client'),
     redirectUri: $('redirect-uri'), copyRedirect: $('btn-copy-redirect'),
     spotifyLogin: $('btn-spotify-login'), spotifyLogout: $('btn-spotify-logout'),
+    qrBtn: $('btn-qr'), qrBox: $('qr-box'), qrCanvas: $('qr-canvas'),
+    modeChips: $('mode-chips'), modeNote: $('mode-note'),
+    work: $('reveal-work'), workType: $('reveal-worktype'),
+    characters: $('reveal-characters'), ostSong: $('reveal-ost-song'),
   };
 
   const PREFS_KEY = 'music-game/prefs/v1';
   const DEFAULTS = {
     volume: 85, autoplay: true, keepAwake: true,
-    from: null, to: null, startAt: 0, gyro: false, engine: 'itunes',
+    from: null, to: null, startAt: 0, gyro: false, engine: 'itunes', mode: 'kpop',
   };
   // iTunes 는 30초 클립이라 시작 위치를 길게 줄 수 없다. Spotify 는 풀 트랙이라 여유가 있다.
   const START_MAX = { itunes: 15, spotify: 90 };
 
-  const deck = new Deck();
+  const deck = new Deck(loadPrefs().mode);
   const flip = new FlipDetector();
   const prefetcher = new Prefetcher();
 
@@ -189,7 +193,7 @@
         await player.playFrom(prefs.startAt);
       }
     } catch (err) {
-      console.warn('재생 실패:', song.artist, '-', song.title, err);
+      console.warn('재생 실패:', song.artist, '-', song.title || song.work, err);
       // 그 곡만의 문제면 넘어가되, 연달아 실패하면 엔진 쪽 문제이므로 멈추고 알린다.
       if (depth < 3 && deck.remaining > 0) { startRound(depth + 1); return; }
       fail(err.message || '곡을 재생할 수 없습니다. 네트워크와 재생 엔진 설정을 확인해 주세요.');
@@ -210,19 +214,49 @@
     } catch (err) { console.warn('재생 토글 실패:', err); }
   }
 
+  /** 제목 길이에 따라 글자 크기를 낮춰 카드 밖으로 넘치지 않게 한다. */
+  function sizedTitle(node, text) {
+    node.textContent = text;
+    node.className = 'reveal-title' +
+      (text.length > 22 ? ' is-very-long' : text.length > 13 ? ' is-long' : '');
+  }
+
   function revealAnswer() {
     if (!currentSong) return;
     player.pause();
     const s = currentSong;
     el.year.textContent = s.year;
-    el.artist.textContent = s.artist;
-    el.title.textContent = s.title;
-    el.title.className = 'reveal-title' +
-      (s.title.length > 22 ? ' is-very-long' : s.title.length > 13 ? ' is-long' : '');
     el.album.textContent = s.album || '';
-    if (s.artwork) { el.art.src = s.artwork; el.art.alt = `${s.artist} - ${s.title} 앨범 이미지`; }
-    else { el.art.removeAttribute('src'); el.art.alt = ''; }
+
+    if (prefs.mode === 'ost') {
+      // OST 모드의 정답은 작품 제목과 주연 배역 이름이다. 곡은 참고로만 보여준다.
+      el.workType.textContent = s.workType === 'drama' ? '드라마' : '영화';
+      sizedTitle(el.work, s.work);
+      el.characters.innerHTML = '';
+      (s.characters || []).forEach((c) => {
+        const li = document.createElement('li');
+        li.textContent = c.name;
+        if (c.actor) {
+          const span = document.createElement('span');
+          span.className = 'actor';
+          span.textContent = ` (${c.actor})`;
+          li.appendChild(span);
+        }
+        el.characters.appendChild(li);
+      });
+      el.ostSong.textContent = s.artist ? `OST · ${s.artist} — ${s.song}` : `OST · ${s.song}`;
+      setArt(s, `${s.work} 포스터 이미지`);
+    } else {
+      el.artist.textContent = s.artist;
+      sizedTitle(el.title, s.title);
+      setArt(s, `${s.artist} - ${s.title} 앨범 이미지`);
+    }
     show('reveal');
+  }
+
+  function setArt(s, alt) {
+    if (s.artwork) { el.art.src = s.artwork; el.art.alt = alt; }
+    else { el.art.removeAttribute('src'); el.art.alt = ''; }
   }
 
   function nextRound() {
@@ -245,7 +279,17 @@
   });
 
   // ---------- 설정: 연대 ----------
-  const DECADES = [1980, 1990, 2000, 2010, 2020];
+  /**
+   * 연대 목록은 데이터에서 뽑는다.
+   * OST 모드에는 1939년 작품까지 있어 고정 목록(1980~2020)으로는 그 이전이 빠진다.
+   */
+  function decadeList() {
+    if (!deck.all.length) return [];
+    const { min, max } = deck.yearBounds;
+    const out = [];
+    for (let d = Math.floor(min / 10) * 10; d <= Math.floor(max / 10) * 10; d += 10) out.push(d);
+    return out;
+  }
 
   function buildChips() {
     el.chips.innerHTML = '';
@@ -270,7 +314,16 @@
       el.chips.appendChild(b);
     };
     mk('전체', null, null, deck.all.length);
-    DECADES.forEach((d) => mk(`${d}년대`, d, d + 9, deck.countInRange(d, d + 9)));
+    // 곡이 아주 적은 연대는 따로 두면 게임이 안 되므로 인접 연대와 묶어 보여준다
+    const decades = decadeList();
+    const shown = decades.filter((d) => deck.countInRange(d, d + 9) > 0);
+    if (shown.length && shown[0] < 1980) {
+      const early = shown.filter((d) => d < 1980);
+      const from = early[0], to = 1979;
+      mk(`${from}~70년대`, from, to, deck.countInRange(from, to));
+    }
+    decades.filter((d) => d >= 1980)
+           .forEach((d) => mk(`${d}년대`, d, d + 9, deck.countInRange(d, d + 9)));
     const { from, to } = deck.filter;
     el.filterCount.textContent = `선택된 범위에 ${deck.countInRange(from, to)}곡이 있습니다`;
   }
@@ -332,6 +385,44 @@
     prefs.gyro = el.optGyro.checked; savePrefs(); syncGyroNote();
   });
 
+  // ---------- 설정: 게임 모드 ----------
+  function applyModeUi() {
+    app.dataset.mode = prefs.mode;
+    [...el.modeChips.querySelectorAll('.chip')].forEach((c) =>
+      c.setAttribute('aria-pressed', String(c.dataset.mode === prefs.mode))
+    );
+    el.modeNote.textContent = prefs.mode === 'ost'
+      ? '영화·드라마의 대표 OST 를 듣고 작품의 출시 연도를 맞힙니다. 작품 제목과 주연 배역 이름도 함께 공개됩니다.'
+      : '노래를 듣고 발매 연도를 맞힙니다. 가수와 곡 제목이 함께 공개됩니다.';
+  }
+
+  async function setMode(mode) {
+    if (mode === prefs.mode) return;
+    prefs.mode = mode;
+    prefs.from = null; prefs.to = null;   // 모드마다 연대 분포가 달라 필터는 초기화한다
+    savePrefs();
+    player?.stop();
+    currentSong = null;
+    await deck.load(mode);
+    deck.applyFilter({ from: null, to: null });
+    deck.restore();
+    applyModeUi();
+    buildChips();
+    refreshIdle();
+    show(deck.isEmpty ? 'done' : 'idle');
+  }
+
+  el.modeChips.addEventListener('click', async (e) => {
+    const chip = e.target.closest('.chip');
+    if (!chip) return;
+    try {
+      await setMode(chip.dataset.mode);
+    } catch (err) {
+      console.error(err);
+      fail(`${Deck.MODES[chip.dataset.mode]?.label ?? chip.dataset.mode} 목록을 불러오지 못했습니다. ${err.message}`);
+    }
+  });
+
   // ---------- 설정: 재생 엔진 ----------
   el.engineChips.addEventListener('click', async (e) => {
     const chip = e.target.closest('.chip');
@@ -369,6 +460,21 @@
     }
   });
 
+  // Client ID 32자를 다른 기기에서 손으로 치기 번거로워 QR 로 옮긴다.
+  el.qrBtn.addEventListener('click', () => {
+    const id = (el.spotifyClient.value || SpotifyAuth.clientId).trim();
+    if (!id) { setSpotifyStatus('먼저 Client ID 를 입력해 주세요.', 'warn'); return; }
+    SpotifyAuth.clientId = id;
+    if (!el.qrBox.hidden) { el.qrBox.hidden = true; el.qrBtn.textContent = 'QR로 다른 기기에 옮기기'; return; }
+    try {
+      QR.render(el.qrCanvas, `${SpotifyAuth.redirectUri}#cid=${encodeURIComponent(id)}`, { scale: 5 });
+      el.qrBox.hidden = false;
+      el.qrBtn.textContent = 'QR 닫기';
+    } catch (err) {
+      setSpotifyStatus('QR 생성에 실패했습니다: ' + err.message, 'warn');
+    }
+  });
+
   el.spotifyLogin.addEventListener('click', async () => {
     SpotifyAuth.clientId = el.spotifyClient.value;
     try { await SpotifyAuth.beginLogin(); }
@@ -380,6 +486,28 @@
     await setEngine('itunes');
     syncSpotifyUi();
     setSpotifyStatus('로그아웃되었습니다.');
+  });
+
+  /**
+   * QR 로 넘어온 Client ID 를 주소에서 받아 저장한다.
+   * 앱을 이미 열어 둔 상태에서 QR 링크를 타면 해시만 바뀌고 페이지가 다시 뜨지 않으므로
+   * hashchange 에서도 같은 처리를 한다.
+   */
+  function takeClientIdFromHash() {
+    const cid = new URLSearchParams(location.hash.slice(1)).get('cid');
+    if (!cid) return false;
+    SpotifyAuth.clientId = cid;
+    history.replaceState({}, '', SpotifyAuth.redirectUri);
+    return true;
+  }
+
+  window.addEventListener('hashchange', () => {
+    if (!takeClientIdFromHash()) return;
+    syncSpotifyUi();
+    buildChips();
+    el.sheet.hidden = false;
+    el.spotifySetup.hidden = false;
+    setSpotifyStatus('QR 로 Client ID 를 받았습니다. Spotify 로그인만 해주세요.', 'ok');
   });
 
   function syncSpotifyUi() {
@@ -411,7 +539,12 @@
   // ---------- 시작 ----------
   (async function init() {
     setPlayingFlag(false);
+
+    const fromQr = takeClientIdFromHash();
     syncSpotifyUi();
+    if (fromQr) {
+      setSpotifyStatus('QR 로 Client ID 를 받았습니다. Spotify 로그인만 해주세요.', 'ok');
+    }
 
     // Spotify 로그인에서 돌아왔다면 먼저 인가 코드를 토큰으로 바꾼다
     let justLoggedIn = false;
@@ -424,7 +557,8 @@
     }
 
     try {
-      await deck.load();
+      await deck.load(prefs.mode);
+      applyModeUi();
       deck.applyFilter({ from: prefs.from, to: prefs.to });
       deck.restore();
 
@@ -447,7 +581,7 @@
       show(deck.isEmpty ? 'done' : 'idle');
 
       // 로그인 직후에는 결과를 바로 볼 수 있게 설정 시트를 열어 준다
-      if (justLoggedIn) { buildChips(); el.sheet.hidden = false; }
+      if (justLoggedIn || fromQr) { buildChips(); el.sheet.hidden = false; el.spotifySetup.hidden = false; }
     } catch (err) {
       console.error(err);
       fail(err.message || '앱을 시작하지 못했습니다');

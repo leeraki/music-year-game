@@ -93,8 +93,21 @@
       <div class="reveal-card">
         <img id="reveal-art" class="reveal-art" alt="" width="140" height="140">
         <div class="reveal-year" id="reveal-year">----</div>
-        <div class="reveal-artist" id="reveal-artist"></div>
-        <div class="reveal-title" id="reveal-title"></div>
+
+        <!-- K-POP 모드: 가수와 곡 제목이 정답 -->
+        <div class="only-kpop">
+          <div class="reveal-artist" id="reveal-artist"></div>
+          <div class="reveal-title" id="reveal-title"></div>
+        </div>
+
+        <!-- OST 모드: 작품 제목과 주연 배역 이름이 정답 -->
+        <div class="only-ost">
+          <div class="reveal-worktype" id="reveal-worktype"></div>
+          <div class="reveal-title" id="reveal-work"></div>
+          <ul class="reveal-characters" id="reveal-characters"></ul>
+          <div class="reveal-ost-song" id="reveal-ost-song"></div>
+        </div>
+
         <div class="reveal-album" id="reveal-album"></div>
       </div>
       <div class="actions">
@@ -122,6 +135,15 @@
     <h2 class="sheet-title">설정</h2>
 
     <section class="field">
+      <label class="field-label">게임 모드</label>
+      <div class="chips" id="mode-chips">
+        <button type="button" class="chip" data-mode="kpop" aria-pressed="true">K-POP</button>
+        <button type="button" class="chip" data-mode="ost" aria-pressed="false">영화·드라마 OST</button>
+      </div>
+      <p class="field-note" id="mode-note"></p>
+    </section>
+
+    <section class="field">
       <label class="field-label">재생 엔진</label>
       <div class="chips" id="engine-chips">
         <button type="button" class="chip" data-engine="itunes" aria-pressed="true">iTunes 30초</button>
@@ -144,6 +166,15 @@
         <div class="sheet-actions">
           <button type="button" class="btn btn-primary" id="btn-spotify-login">Spotify 로그인</button>
           <button type="button" class="btn btn-ghost" id="btn-spotify-logout" hidden>로그아웃</button>
+        </div>
+
+        <button type="button" class="btn btn-ghost" id="btn-qr">QR로 다른 기기에 옮기기</button>
+        <div class="qr-box" id="qr-box" hidden>
+          <canvas id="qr-canvas" aria-label="설정 전송용 QR 코드"></canvas>
+          <p class="field-note">
+            다른 기기의 카메라로 찍으면 이 앱이 열리면서 Client ID 가 자동으로 채워집니다.
+            그 기기에서 Spotify 로그인만 따로 해주세요.
+          </p>
         </div>
 
         <details class="howto">
@@ -207,6 +238,7 @@
 
 <script src="js/audio.js"></script>
 <script src="js/gyro.js"></script>
+<script src="js/qr.js"></script>
 <script src="js/spotify.js"></script>
 <script src="js/deck.js"></script>
 <script src="js/app.js"></script>

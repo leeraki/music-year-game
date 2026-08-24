@@ -26,12 +26,13 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+import unicodedata
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-SEED_CSV = os.path.join(HERE, "seed_songs.csv")
+SEED_CSV = os.path.join(HERE, "seed_kpop.csv")
 CACHE = os.path.join(HERE, ".itunes_cache.json")
-OUT_JSON = os.path.join(ROOT, "data", "songs.json")
+OUT_JSON = os.path.join(ROOT, "data", "kpop.json")
 REPORT = os.path.join(HERE, "review_report.txt")
 
 SEARCH_URL = "https://itunes.apple.com/search"
@@ -112,11 +113,22 @@ ARTIST_ALIASES = {
 
 
 def norm(s):
-    """비교용 정규화: 소문자 + 괄호/특수문자 제거."""
-    s = (s or "").lower()
+    """
+    비교용 정규화: 소문자 + 괄호/특수문자 제거.
+
+    악센트를 그냥 지우면 'Céline' 이 'cline' 이 되어 'Celine' 과 어긋난다.
+    분해 정규화로 악센트만 떼어내 기본 글자를 살린다.
+    """
+    # NFD 는 한글 음절도 자모로 쪼갠다('백' → ᄇ ᅢ ᆨ). 그대로 두면 아래 [가-힣]
+    # 필터가 자모를 전부 걸러 한글이 통째로 사라진다. 그래서 NFC 로 다시 합친다.
+    s = unicodedata.normalize("NFD", (s or "").lower())
+    s = "".join(ch for ch in s if unicodedata.category(ch) != "Mn")
+    s = unicodedata.normalize("NFC", s)
     s = re.sub(r"\([^)]*\)", "", s)
     s = re.sub(r"\[[^\]]*\]", "", s)
-    s = re.sub(r"[^0-9a-z가-힣]", "", s)
+    # 히라가나·가타카나·한자도 남긴다. 일본 애니 OST 는 원제가 일본어라
+    # 이 범위를 빼면 제목이 통째로 사라져 비교가 불가능해진다.
+    s = re.sub(r"[^0-9a-z가-힣ぁ-ゖァ-ヺ一-龯]", "", s)
     return s
 
 

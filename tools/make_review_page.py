@@ -15,8 +15,9 @@ import os
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SONGS = os.path.join(os.path.dirname(HERE), "data", "songs.json")
-OUT = os.path.join(HERE, "review.html")
+MODE = "ost" if "--ost" in sys.argv else "kpop"
+SONGS = os.path.join(os.path.dirname(HERE), "data", f"{MODE}.json")
+OUT = os.path.join(HERE, f"review_{MODE}.html")
 
 sys.path.insert(0, HERE)
 from audit_songs import artist_matches, norm, load_alt_map  # noqa: E402
@@ -30,21 +31,22 @@ VARIANT_HINTS = ["live", "remix", "acoustic", "inst", "ver.", "version",
 def classify(s):
     """검수 우선순위를 매긴다. bad 가 먼저 눈에 띄어야 한다."""
     reasons = []
-    if artist_matches(s["artist"], s.get("itunesArtist", "")) < 0.34:
+    if MODE == "kpop" and artist_matches(s["artist"], s.get("itunesArtist", "")) < 0.34:
         reasons.append(f"가수 불일치 → {s.get('itunesArtist')}")
 
     def same(x, y):
         a, b = norm(x), norm(y)
         return bool(a) and bool(b) and (a == b or a in b or b in a)
-    alt = ALT_MAP.get((s["artist"].strip(), s["title"].strip()))
-    if not (same(s["title"], s.get("itunesTitle", "")) or (alt and same(alt, s.get("itunesTitle", "")))):
+    seed_title = s.get("song") or s.get("title") or ""
+    alt = ALT_MAP.get((s["artist"].strip(), seed_title.strip()))
+    if not (same(seed_title, s.get("itunesTitle", "")) or (alt and same(alt, s.get("itunesTitle", "")))):
         reasons.append(f"제목 다름 → {s.get('itunesTitle')}")
 
     blob = f"{s.get('itunesTitle', '')} {s.get('album', '')}".lower()
     if any(h in blob for h in VARIANT_HINTS):
         reasons.append("라이브/리믹스 의심")
 
-    gap = abs(s.get("itunesYear", s["year"]) - s["year"])
+    gap = abs(s.get("itunesYear", s["year"]) - s["year"]) if MODE == "kpop" else 0
     if gap > 3:
         reasons.append(f"연도 {gap}년 차 (iTunes {s.get('itunesYear')})")
 
@@ -68,7 +70,7 @@ def build():
     <tr class="{level}" data-level="{level}">
       <td class="yr">{s['year']}</td>
       <td>
-        <div class="seed">{e(s['artist'])} — {e(s['title'])}</div>
+        <div class="seed">{e(s.get('work') or s['artist'])} — {e(s.get('song') or s['title'])}</div>
         <div class="matched">{e(s.get('itunesArtist'))} — {e(s.get('itunesTitle'))}</div>
         <div class="album">{e(s.get('album'))} ({s.get('itunesYear')})</div>
         {''.join(f'<div class="flag">{e(r)}</div>' for r in reasons)}

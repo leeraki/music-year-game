@@ -7,3 +7,6 @@ tools/fetch.log
 tools/review_report.txt
 .claude/
 tools/review.html
+tools/review_kpop.html
+tools/review_ost.html
+tools/*.log
