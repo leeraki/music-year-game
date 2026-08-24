@@ -122,6 +122,48 @@
     <h2 class="sheet-title">설정</h2>
 
     <section class="field">
+      <label class="field-label">재생 엔진</label>
+      <div class="chips" id="engine-chips">
+        <button type="button" class="chip" data-engine="itunes" aria-pressed="true">iTunes 30초</button>
+        <button type="button" class="chip" data-engine="spotify" aria-pressed="false">Spotify 풀트랙</button>
+      </div>
+
+      <div id="spotify-setup" hidden>
+        <p class="field-note" id="spotify-status"></p>
+
+        <label class="field-label sub" for="spotify-client">Client ID</label>
+        <input type="text" id="spotify-client" class="text-input" inputmode="latin"
+               autocomplete="off" spellcheck="false" placeholder="대시보드에서 발급받은 Client ID">
+
+        <div class="redirect-box">
+          <span class="redirect-label">대시보드에 등록할 Redirect URI</span>
+          <code id="redirect-uri"></code>
+          <button type="button" class="btn btn-ghost btn-sm" id="btn-copy-redirect">복사</button>
+        </div>
+
+        <div class="sheet-actions">
+          <button type="button" class="btn btn-primary" id="btn-spotify-login">Spotify 로그인</button>
+          <button type="button" class="btn btn-ghost" id="btn-spotify-logout" hidden>로그아웃</button>
+        </div>
+
+        <details class="howto">
+          <summary>설정 방법</summary>
+          <ol>
+            <li><a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">developer.spotify.com/dashboard</a> 에서 <b>Create app</b></li>
+            <li>App name 아무거나 입력, <b>Redirect URI</b> 에 위 주소를 그대로 붙여넣기</li>
+            <li>API 선택에서 <b>Web Playback SDK</b> 체크 후 저장</li>
+            <li>Settings 에서 <b>Client ID</b> 복사해 위 칸에 붙여넣기</li>
+            <li>Settings → <b>User Management</b> 에 본인 Spotify 계정 이메일 추가 (개발 모드는 5명까지)</li>
+            <li>위 <b>Spotify 로그인</b> 버튼 누르기</li>
+          </ol>
+          <p class="field-note">
+            Spotify Premium 이 필요합니다. 모바일 전용 요금제는 SDK 재생이 되지 않습니다.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <section class="field">
       <label class="field-label">연대 범위</label>
       <div class="chips" id="decade-chips"></div>
       <p class="field-note" id="filter-count"></p>
@@ -137,10 +179,7 @@
         재생 시작 위치 <span id="startat-value" class="field-value">0초</span>
       </label>
       <input type="range" id="startat" min="0" max="15" step="1" value="0">
-      <p class="field-note">
-        미리듣기는 애플이 잘라둔 30초 구간입니다. 그 안에서 몇 초 뒤부터 틀지 정할 수 있습니다.
-        뒤에서 시작할수록 힌트가 줄어 어려워집니다.
-      </p>
+      <p class="field-note" id="startat-note"></p>
     </section>
 
     <section class="field">
@@ -168,6 +207,7 @@
 
 <script src="js/audio.js"></script>
 <script src="js/gyro.js"></script>
+<script src="js/spotify.js"></script>
 <script src="js/deck.js"></script>
 <script src="js/app.js"></script>
 </body>

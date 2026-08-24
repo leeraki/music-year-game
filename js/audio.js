@@ -10,6 +10,14 @@
 class AudioProvider {
   /** @param {object} song songs.json 의 레코드 */
   async load(song) { throw new Error('구현 필요'); }
+  /**
+   * 지정한 지점부터 새로 재생을 시작한다.
+   * '이어서 재생'(play)과 구분해 둔 이유는 Spotify 쪽 동작이 다르기 때문이다.
+   * iTunes 는 seek 후 재생하면 되지만, Spotify 는 최초 재생만 play 엔드포인트로
+   * 시작 위치를 넘기고 그 뒤로는 resume 을 써야 한다.
+   */
+  async playFrom(seconds = 0) { throw new Error('구현 필요'); }
+  /** 현재 위치에서 이어서 재생 */
   async play() { throw new Error('구현 필요'); }
   pause() { throw new Error('구현 필요'); }
   stop() { throw new Error('구현 필요'); }
@@ -89,6 +97,13 @@ class ItunesPreviewProvider extends AudioProvider {
       this.el.addEventListener('canplay', ok, { once: true });
       this.el.addEventListener('error', ng, { once: true });
     });
+  }
+
+  async playFrom(seconds = 0) {
+    // 클립이 30초뿐이라 시작 위치가 끝에 붙으면 들을 게 없다. 최소 5초는 남긴다.
+    const limit = Number.isFinite(this.el.duration) ? Math.max(0, this.el.duration - 5) : seconds;
+    this.seek(Math.min(seconds, limit));
+    await this.play();
   }
 
   async play() {

@@ -17,6 +17,7 @@ iTunes Search API 는 분당 20회 수준의 제한이 있어 429/403 을 돌려
 
 import argparse
 import csv
+import difflib
 import json
 import os
 import re
@@ -34,16 +35,65 @@ OUT_JSON = os.path.join(ROOT, "data", "songs.json")
 REPORT = os.path.join(HERE, "review_report.txt")
 
 SEARCH_URL = "https://itunes.apple.com/search"
-DEFAULT_DELAY = 3.2      # 분당 ~19회. 실측상 이보다 빠르면 429 가 뜬다.
+DEFAULT_DELAY = 5.0      # 분당 12회. 3.2초 간격으로도 403 을 맞아서 더 낮췄다.
 MAX_RETRY = 8
-PROBE_INTERVAL = 60      # 차단 상태 재확인 간격(초)
-MAX_BLOCK_WAIT = 5400    # 차단 해제를 기다리는 최대 시간(초)
+PROBE_INTERVAL = 300     # 차단 상태 재확인 간격(초). 자주 찔러도 더 빨리 풀리지는 않았다.
+MAX_BLOCK_WAIT = 21600   # 차단 해제를 기다리는 최대 시간(초, 6시간)
 
 # 편집/베스트 앨범은 원곡 발매일을 덮어써 연도를 오염시키므로 매칭 점수를 깎는다
 COMPILATION_HINTS = [
     "best", "greatest", "collection", "golden", "original", "hits",
     "anthology", "remaster", "리마스터", "베스트", "골든", "모음", "전집",
 ]
+
+# 라이브·리믹스·재녹음은 사람들이 아는 원곡과 음원이 달라 게임에 쓸 수 없다.
+# 실제로 '조용필 창밖의 여자'가 2009년 라이브로, '김완선 오늘밤'이 2025년 리믹스로
+# 잡힌 적이 있어 강하게 배제한다.
+VARIANT_HINTS = [
+    "live", "remix", "acoustic", "inst", "instrumental", "karaoke", "mr",
+    "cover", "rearrange", "reissue", "ver.", "version", "edit", "radio edit",
+    "라이브", "리믹스", "어쿠스틱", "재녹음", "커버", "반주",
+]
+
+# 표기가 갈리는 가수를 이어 주는 대조표. 여기 걸리면 가수가 일치하는 것으로 본다.
+ARTIST_ALIASES = {
+    "젝스키스": ["sechskies", "sechs kies"],
+    "지오디": ["god"], "god": ["지오디"],
+    "동방신기": ["tvxq", "tohoshinki"],
+    "소녀시대": ["girls generation", "girls' generation", "snsd"],
+    "빅뱅": ["bigbang", "big bang"], "방탄소년단": ["bts"],
+    "블랙핑크": ["blackpink"], "아이유": ["iu"], "원더걸스": ["wonder girls"],
+    "슈퍼주니어": ["super junior"], "브라운아이즈": ["brown eyes"],
+    "서태지와 아이들": ["seotaiji and boys", "seo taiji and boys", "서태지"],
+    "무한궤도": ["신해철"], "에스파": ["aespa"], "아이브": ["ive"],
+    "뉴진스": ["newjeans"], "르세라핌": ["le sserafim"], "트와이스": ["twice"],
+    "엑소": ["exo"], "레드벨벳": ["red velvet"], "여자친구": ["gfriend"],
+    "에이핑크": ["apink"], "씨스타": ["sistar"], "인피니트": ["infinite"],
+    "비스트": ["beast"], "티아라": ["t-ara", "tara"], "카라": ["kara"],
+    "미쓰에이": ["miss a"], "악동뮤지션": ["akmu", "악뮤"], "악뮤": ["akmu", "악동뮤지션"],
+    "우즈": ["woodz"], "제니": ["jennie"], "텐": ["ten"], "화사": ["hwasa"],
+    "에이티즈": ["ateez"], "데이식스": ["day6"], "트레저": ["treasure"],
+    "키스오브라이프": ["kiss of life"], "엔하이픈": ["enhypen"],
+    "아이오아이": ["ioi", "i.o.i"], "싸이": ["psy"], "보아": ["boa"],
+    "비": ["rain"], "세븐": ["se7en"], "휘성": ["wheesung"],
+    "에픽하이": ["epik high"], "드렁큰타이거": ["drunken tiger"],
+    "클론": ["clon"], "룰라": ["roo'ra", "roora"], "핑클": ["fin.k.l", "finkl"],
+    "코요태": ["koyote"], "터보": ["turbo"], "투투": ["two two"],
+    "베이비복스": ["baby vox"], "신화": ["shinhwa"], "씨야": ["seeya"],
+    "다비치": ["davichi"], "브라운아이드걸스": ["brown eyed girls"],
+    "씨엔블루": ["cnblue"], "샤이니": ["shinee"], "아이콘": ["ikon"],
+    "워너원": ["wanna one"], "아이즈원": ["iz*one", "izone"], "지코": ["zico"],
+    "폴킴": ["paul kim"], "자이언티": ["zion.t"], "볼빨간사춘기": ["bol4"],
+    "태양": ["taeyang"], "들국화": ["deulgukhwa"], "015b": ["공일오비"],
+    "공일오비": ["015b"], "양파": ["yangpa"], "엔믹스": ["nmixx"],
+    "베이비몬스터": ["babymonster"], "아이들": ["(g)i-dle", "gidle", "여자아이들"],
+    "헌트릭스": ["huntrix", "huntr/x"], "h.o.t.": ["hot"], "s.e.s.": ["ses"],
+    "이상은": ["lee tzsche", "lee sang eun"], "아일릿": ["illit"], "투어스": ["tws"],
+    "피프티피프티": ["fifty fifty"], "오마이걸": ["oh my girl"],
+    "브레이브걸스": ["brave girls"], "모모랜드": ["momoland"],
+    "크레용팝": ["crayon pop"], "버스커버스커": ["busker busker"],
+    "잔나비": ["jannabi"], "유승준": ["steve yoo"], "전인권": ["jeon in kwon"],
+}
 
 
 def norm(s):
@@ -56,24 +106,84 @@ def norm(s):
 
 
 def similarity(a, b):
+    """
+    글자 '집합' 만 비교하면 짧은 영문 제목에서 엉뚱하게 높은 점수가 나온다.
+    'Mr. Chu' 와 'Remember' 가 공통 글자 m, r 때문에 0.40 을 받아 통과한 적이 있다.
+    순서까지 보는 SequenceMatcher 로 비교한다.
+    """
     a, b = norm(a), norm(b)
     if not a or not b:
         return 0.0
     if a == b:
         return 1.0
-    if a in b or b in a:
+    # 부제만 붙은 경우('Gee' vs 'Gee (Remix)')를 살리되, 너무 짧은 조각에는 주지 않는다
+    if (a in b or b in a) and min(len(a), len(b)) >= 3:
         return 0.85
-    return len(set(a) & set(b)) / max(len(set(a)), len(set(b)))
+    return difflib.SequenceMatcher(None, a, b).ratio()
 
 
-def score_candidate(cand, artist, title):
-    s = similarity(cand.get("trackName", ""), title) * 2.0
-    s += similarity(cand.get("artistName", ""), artist) * 1.5
+def artist_ok(seed_artist, candidate_artist):
+    """가수가 같다고 볼 수 있는가. 표기 차이는 대조표로 흡수한다."""
+    a, b = norm(seed_artist), norm(candidate_artist)
+    if not a or not b:
+        return False
+    if a == b or a in b or b in a:
+        return True
+    for alias in ARTIST_ALIASES.get(seed_artist.strip().lower(), []):
+        c = norm(alias)
+        if c and (c == b or c in b or b in c):
+            return True
+    return False
+
+
+def is_variant(cand):
+    """라이브·리믹스·재녹음 등 원곡과 음원이 다른 버전인가."""
+    blob = f"{cand.get('trackName', '')} {cand.get('collectionName', '')}".lower()
+    return any(h in blob for h in VARIANT_HINTS)
+
+
+def title_similarity(track_name, title, alt=None):
+    """
+    한글 제목과 영문 제목은 글자가 하나도 겹치지 않아 유사도가 0 이 된다.
+    (예: '위아래' vs 'Up & Down') 그래서 시드에 대체 표기를 적어 함께 비교한다.
+    """
+    best = similarity(track_name, title)
+    if alt:
+        best = max(best, similarity(track_name, alt))
+    return best
+
+
+def score_candidate(cand, artist, title, seed_year=None, alt=None):
+    if not cand.get("previewUrl"):
+        return -99.0
+
+    # 가수가 다르면 제목이 똑같아도 다른 곡이다.
+    # '젝스키스 폼생폼사'가 'UNEDUCATED KID 폼생폼사'로 잡힌 사고의 원인이 여기였다.
+    if not artist_ok(artist, cand.get("artistName", "")):
+        return -50.0
+
+    t = title_similarity(cand.get("trackName", ""), title, alt)
+
+    # 제목이 전혀 안 맞으면 같은 가수의 다른 곡이다. 연도만 맞아서 통과하면 안 된다.
+    # 'EXID 위아래'가 같은 해에 나온 'Ah Yeah'로 잡힌 사고의 원인이 여기였다.
+    if t < 0.34:
+        return -30.0
+
+    s = t * 3.0
+
     album = (cand.get("collectionName") or "").lower()
     if any(h in album for h in COMPILATION_HINTS):
-        s -= 0.4
-    if not cand.get("previewUrl"):
-        s -= 5.0
+        s -= 1.2
+    if is_variant(cand):
+        s -= 3.0
+
+    # 원반에 가까울수록 좋다. 발매 당시 음원이라야 사람들이 아는 그 소리가 난다.
+    if seed_year:
+        try:
+            gap = abs(int(cand["releaseDate"][:4]) - seed_year)
+            s += 2.0 if gap == 0 else 1.4 if gap <= 1 else 0.6 if gap <= 3 else -min(gap * 0.12, 2.5)
+        except (KeyError, ValueError, TypeError):
+            pass
     return s
 
 
@@ -145,7 +255,7 @@ def itunes_search(term, delay):
     return []
 
 
-def build(limit=None, delay=DEFAULT_DELAY):
+def build(limit=None, delay=DEFAULT_DELAY, cache_only=False):
     with open(SEED_CSV, encoding="utf-8") as f:
         seeds = list(csv.DictReader(f))
     if limit:
@@ -154,19 +264,35 @@ def build(limit=None, delay=DEFAULT_DELAY):
     cache = load_cache()
     songs, problems = [], []
     fetched = 0
+    skipped_uncached = 0
     # 서로 다른 시드가 같은 트랙에 매칭되면 한 판에 같은 곡이 두 번 나온다.
     # 실제로 검색어를 잘못 지정해 겪은 적이 있어 수집 단계에서 막는다.
     claimed = {}
+
+    # audit_songs.py 가 오매칭으로 지목한 트랙은 다시 뽑지 않는다
+    blocked = set()
+    blocked_path = os.path.join(HERE, "blocked_tracks.json")
+    if os.path.exists(blocked_path):
+        try:
+            blocked = set(json.load(open(blocked_path, encoding="utf-8")))
+            print(f"  (오매칭 트랙 {len(blocked)}개 제외)")
+        except Exception:
+            pass
 
     for i, row in enumerate(seeds, 1):
         year = int(row["year"])
         artist = row["artist"].strip()
         title = row["title"].strip()
+        alt = (row.get("alt") or "").strip() or None
         term = (row.get("search") or "").strip() or f"{artist} {title}"
 
         if term in cache:
             results = cache[term]
             tag = "캐시"
+        elif cache_only:
+            # 캐시에 없는 곡은 건너뛴다. 차단 중에도 받아둔 만큼은 덱에 반영하기 위한 경로다.
+            skipped_uncached += 1
+            continue
         else:
             try:
                 results = itunes_search(term, delay)
@@ -187,20 +313,30 @@ def build(limit=None, delay=DEFAULT_DELAY):
             print(f"  {i:3d}/{len(seeds)} [NONE] {artist} - {title}")
             continue
 
-        # 이미 다른 곡이 가져간 트랙은 후보에서 제외하고 차선을 고른다
-        ranked = sorted(usable, key=lambda c: score_candidate(c, artist, title), reverse=True)
-        best = next((c for c in ranked if c["trackId"] not in claimed), None)
+        # 이미 다른 곡이 가져간 트랙과, 감사에서 오매칭으로 걸러낸 트랙은 후보에서 뺀다
+        ranked = sorted(usable, key=lambda c: score_candidate(c, artist, title, year, alt), reverse=True)
+        best = next(
+            (c for c in ranked
+             if c["trackId"] not in claimed
+             and c["trackId"] not in blocked
+             and score_candidate(c, artist, title, year, alt) > 0),
+            None,
+        )
         if best is None:
-            owner = claimed.get(ranked[0]["trackId"], "?")
+            top = ranked[0] if ranked else None
+            why = "가수가 일치하는 후보가 없습니다" if top and not artist_ok(artist, top.get("artistName", "")) \
+                  else "쓸 만한 후보가 없습니다"
             problems.append(
-                f"[중복충돌] {year} {artist} - {title}\n"
-                f"           후보 트랙이 모두 '{owner}' 에 이미 배정되어 제외했습니다."
+                f"[매칭실패] {year} {artist} - {title}\n"
+                f"           최상위 후보: {top.get('artistName') if top else '없음'} - "
+                f"{top.get('trackName') if top else '없음'}\n"
+                f"           사유: {why}"
             )
-            print(f"  {i:3d}/{len(seeds)} [DUP ] {artist} - {title}")
+            print(f"  {i:3d}/{len(seeds)} [MISS] {artist} - {title}")
             continue
         claimed[best["trackId"]] = f"{artist} - {title}"
 
-        conf = score_candidate(best, artist, title)
+        conf = score_candidate(best, artist, title, year, alt)
         itunes_year = int(best["releaseDate"][:4])
 
         songs.append({
@@ -219,8 +355,10 @@ def build(limit=None, delay=DEFAULT_DELAY):
         })
 
         flags = []
-        if abs(itunes_year - year) > 1:
+        if abs(itunes_year - year) > 3:
             flags.append(f"연도차 iTunes {itunes_year} vs 시드 {year}")
+        if is_variant(best):
+            flags.append("라이브/리믹스 의심 — 원곡 음원이 아닐 수 있음")
         if conf < 2.0:
             flags.append(f"매칭 신뢰도 낮음 {conf:.2f}")
         if flags:
@@ -251,7 +389,8 @@ def build(limit=None, delay=DEFAULT_DELAY):
         f.write("\n".join(problems) if problems else "확인이 필요한 항목이 없습니다.\n")
 
     print("\n" + "=" * 60)
-    print(f"수집 성공 : {len(songs)} / {len(seeds)} 곡  (신규 요청 {fetched}건)")
+    print(f"수집 성공 : {len(songs)} / {len(seeds)} 곡  (신규 요청 {fetched}건"
+          + (f", 캐시없어 건너뜀 {skipped_uncached}곡" if skipped_uncached else "") + ")")
     print(f"확인 필요 : {len(problems)} 건  ->  tools/review_report.txt")
     if songs:
         dec = {}
@@ -264,6 +403,8 @@ if __name__ == "__main__":
     p = argparse.ArgumentParser()
     p.add_argument("--limit", type=int, default=None)
     p.add_argument("--delay", type=float, default=DEFAULT_DELAY)
+    p.add_argument("--cache-only", action="store_true",
+                   help="네트워크 요청 없이 캐시에 있는 곡만으로 songs.json 을 만든다")
     args = p.parse_args()
     sys.stdout.reconfigure(encoding="utf-8")
-    build(args.limit, args.delay)
+    build(args.limit, args.delay, args.cache_only)

@@ -18,6 +18,7 @@ const SHELL = [
   './css/style.css',
   './js/audio.js',
   './js/gyro.js',
+  './js/spotify.js',
   './js/deck.js',
   './js/app.js',
   './data/songs.json',
