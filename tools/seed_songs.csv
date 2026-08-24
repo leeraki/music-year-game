@@ -11,7 +11,7 @@ year,artist,title,search,alt
 1984,나미,빙글빙글,,
 1985,들국화,그것만이 내 세상,,
 1985,이문세,난 아직 모르잖아요,,
-1985,이문세,소녀,이문세 3집 소녀,
+1985,이문세,소녀,이문세 소녀,
 1985,조용필,킬리만자로의 표범,,
 1986,김완선,오늘밤,김완선 1집 오늘밤,
 1986,전인권,사랑한 후에,들국화 사랑한 후에,
@@ -21,14 +21,13 @@ year,artist,title,search,alt
 1987,이문세,깊은 밤을 날아서,,
 1988,이문세,광화문 연가,,
 1988,변진섭,홀로된다는 것,,
-1988,이상은,담다디,이상은 담다디 Lee Tzsche,
 1988,주현미,신사동 그 사람,,
 1988,무한궤도,그대에게,,
-1988,소방차,통화중,소방차 통화중 2집,
+1988,소방차,통화중,소방차 통화중,
 1989,변진섭,희망사항,,
 1989,푸른하늘,겨울바다,,
 1989,이승철,안녕이라고 말하지마,,
-1989,나미,인디언 인형처럼,나미 인디언 인형처럼 1989,
+1989,나미,인디언 인형처럼,나미 인디언 인형처럼,Like an Indian Doll
 1990,신승훈,미소 속에 비친 그대,,
 1990,김완선,삐에로는 우릴 보고 웃지,김완선 삐에로는 우릴 보고 웃지 1990,
 1990,윤상,이별의 그늘,,
@@ -37,7 +36,6 @@ year,artist,title,search,alt
 1991,강수지,보라빛 향기,,
 1992,서태지와 아이들,난 알아요,,I Know
 1992,신승훈,널 사랑하니까,,
-1992,015B,texas,015B 텍사스,
 1993,서태지와 아이들,하여가,,
 1993,김건모,핑계,,
 1994,신승훈,그 후로 오랫동안,신승훈 그 후로 오랫동안,
@@ -51,7 +49,7 @@ year,artist,title,search,alt
 1996,클론,꿍따리 샤바라,,Kkung Ttari Shabara
 1996,양파,애송이의 사랑,,
 1997,H.O.T.,캔디,H.O.T. Candy,Candy
-1997,젝스키스,폼생폼사,젝스키스 폼생폼사 SECHSKIES,
+1997,젝스키스,폼생폼사,젝스키스 폼생폼사 SECHSKIES,사나이 가는 길
 1997,S.E.S.,I'm Your Girl,,
 1997,god,어머님께,,
 1998,핑클,블루 레인,,
@@ -141,17 +139,17 @@ year,artist,title,search,alt
 2024,에스파,Supernova,,
 2024,투어스,첫 만남은 계획대로 되지 않아,,
 2025,헌트릭스,Golden,케이팝 데몬 헌터스 Golden,
-1981,산울림,회상,산울림 창문너머 어렴풋이,
+1980,산울림,창문 너머 어렴풋이,산울림 창문 너머 어렴풋이,창문 너머 어렴풋이 옛 생각이 나겠지요
 1983,조용필,친구여,,
 1984,이문세,나는 행복한 사람,,
-1985,김수철,정신차려,,
+1984,김수철,나도야 간다,김수철 나도야 간다,
 1986,이선희,알고 싶어요,,
 1987,양수경,사랑은 차가운 유혹,,
-1988,김완선,나 홀로 뜰 앞에서,,
+1987,김완선,나 홀로 뜰 앞에서,,Alone in Front of the Yard
 1989,동물원,혜화동,,
 1990,이승철,마지막 콘서트,,
 1991,푸른하늘,자아도취,,
-1991,윤상,너에게 배운 사랑,,
+1991,윤상,가려진 시간 사이로,윤상 가려진 시간 사이로,
 1992,서태지와 아이들,환상속의 그대,,You in the Fantasy
 1993,공일오비,어디선가 나의 노랠 듣고 있을 너,,
 1994,투투,일과 이분의 일,,
@@ -169,13 +167,12 @@ year,artist,title,search,alt
 2001,왁스,오빠,,Oppa
 2002,싸이,새,,Bird
 2002,비,나쁜 남자,,Bad Guy
-2003,이효리,Hey Mr. Big,,
+2008,이효리,Hey Mr. Big,,
 2004,신화,Brand New,,브랜드 뉴
 2004,휘성,With Me,,위드 미
 2005,김종국,한 남자,,One Man
 2005,에픽하이,Fly,,플라이
 2006,씨야,미친 사랑의 노래,,Crazy Love Song
-2006,이승기,내 여자라니까,,Because You're My Woman
 2007,FT아일랜드,사랑앓이,,Love Sick
 2008,이승철,서쪽하늘,,West Sky
 2008,다비치,8282,,8282
@@ -233,11 +230,11 @@ year,artist,title,search,alt
 2026,KiiiKiii,404 (New Era),KiiiKiii 404 New Era,
 2026,Hearts2Hearts,RUDE!,Hearts2Hearts RUDE,
 2026,CORTIS,RedRed,,
-2026,아이오아이,Suddenly,IOI Suddenly,
+2026,아이오아이,갑자기,아이오아이 갑자기,Suddenly
 2026,방탄소년단,Swim,BTS Swim,
-2026,엔하이픈,The Sin: Vanish,ENHYPEN The Sin Vanish,
-2026,엑소,Reverxe,EXO Reverxe,
-2026,블랙핑크,Deadline,BLACKPINK Deadline,
-2026,방탄소년단,Arirang,BTS Arirang,
+2026,엔하이픈,Lost Island,ENHYPEN Lost Island,
+2026,엑소,Crown,EXO Crown 2026,
+2026,블랙핑크,Champion,BLACKPINK Champion,
+2026,방탄소년단,Hooligan,방탄소년단 Hooligan,
 2026,에스파,Lemonade,aespa Lemonade,
-2026,악동뮤지션,Paradise of Rumors,AKMU Paradise of Rumors,
+2026,악동뮤지션,소문의 낙원,악뮤 소문의 낙원,

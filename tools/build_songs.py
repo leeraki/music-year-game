@@ -41,17 +41,20 @@ PROBE_INTERVAL = 300     # 차단 상태 재확인 간격(초). 자주 찔러도
 MAX_BLOCK_WAIT = 21600   # 차단 해제를 기다리는 최대 시간(초, 6시간)
 
 # 편집/베스트 앨범은 원곡 발매일을 덮어써 연도를 오염시키므로 매칭 점수를 깎는다
+# 'original' 은 뺐다. '김완선 - The Original' 처럼 원곡을 모아 재발매한 음반이라
+# 감점하면 오히려 2023년 재녹음판이 이겨 버린다.
 COMPILATION_HINTS = [
-    "best", "greatest", "collection", "golden", "original", "hits",
+    "best", "greatest", "collection", "golden", "hits",
     "anthology", "remaster", "리마스터", "베스트", "골든", "모음", "전집",
 ]
 
 # 라이브·리믹스·재녹음은 사람들이 아는 원곡과 음원이 달라 게임에 쓸 수 없다.
 # 실제로 '조용필 창밖의 여자'가 2009년 라이브로, '김완선 오늘밤'이 2025년 리믹스로
 # 잡힌 적이 있어 강하게 배제한다.
+# 'mr'(반주) 은 'Mr. Chu' 같은 제목에 걸려 빼고, instrumental/반주 로 대신 잡는다.
 VARIANT_HINTS = [
-    "live", "remix", "acoustic", "inst", "instrumental", "karaoke", "mr",
-    "cover", "rearrange", "reissue", "ver.", "version", "edit", "radio edit",
+    "live", "remix", "acoustic", "inst", "instrumental", "karaoke",
+    "cover", "rearrange", "reissue", "ver.", "version", "edit", "on stage",
     "라이브", "리믹스", "어쿠스틱", "재녹음", "커버", "반주",
 ]
 
@@ -93,6 +96,18 @@ ARTIST_ALIASES = {
     "브레이브걸스": ["brave girls"], "모모랜드": ["momoland"],
     "크레용팝": ["crayon pop"], "버스커버스커": ["busker busker"],
     "잔나비": ["jannabi"], "유승준": ["steve yoo"], "전인권": ["jeon in kwon"],
+    "sg워너비": ["sg wannabe"], "ft아일랜드": ["ftisland", "ft island", "f.t. island"],
+    "소유 정기고": ["soyou", "junggigo", "소유", "정기고"],
+    "산울림": ["sanulrim", "sanullim"], "김수철": ["kim soo chul"],
+    "윤상": ["yoon sang"], "이승기": ["lee seung gi"], "양수경": ["yang su kyung"],
+    "핑클": ["fin.k.l", "finkl", "fin k l"], "015b": ["공일오비", "015b"],
+    "다비치": ["davichi"], "2pm": ["투피엠"], "비스트": ["beast", "b2st"],
+    "씨엔블루": ["cnblue"], "브라운아이드걸스": ["brown eyed girls"],
+    "조성모": ["jo sung mo"], "서태지와 아이들": ["seotaiji and boys", "seo taiji and boys", "서태지"],
+    "kiiikiii": ["키키"], "cortis": ["코르티스"], "rescene": ["리센느"],
+    "hearts2hearts": ["하츠투하츠"], "nmixx": ["엔믹스"], "qwer": ["큐더블유이알"],
+    "악동뮤지션": ["akmu", "악뮤"], "아이오아이": ["ioi", "i.o.i", "아이오아이"],
+    "엑소": ["exo"], "엔하이픈": ["enhypen"],
 }
 
 
@@ -136,10 +151,29 @@ def artist_ok(seed_artist, candidate_artist):
     return False
 
 
+_VARIANT_RE = re.compile(
+    r"(?<![a-z])(" + "|".join(
+        re.escape(h) for h in VARIANT_HINTS if h.isascii()
+    ) + r")(?![a-z])",
+    re.IGNORECASE,
+)
+# 한글도 앞뒤가 한글이면 단어의 일부다. '버스커버스커' 안의 '커버'가 그런 경우다.
+_VARIANT_KO_RE = re.compile(
+    r"(?<![가-힣])(" + "|".join(
+        re.escape(h) for h in VARIANT_HINTS if not h.isascii()
+    ) + r")(?![가-힣])"
+)
+
+
 def is_variant(cand):
-    """라이브·리믹스·재녹음 등 원곡과 음원이 다른 버전인가."""
-    blob = f"{cand.get('trackName', '')} {cand.get('collectionName', '')}".lower()
-    return any(h in blob for h in VARIANT_HINTS)
+    """
+    라이브·리믹스·재녹음 등 원곡과 음원이 다른 버전인가.
+
+    단순 부분문자열로 보면 빅뱅 앨범 'Alive' 가 'live' 를, '버스커버스커' 가 '커버' 를
+    품어 전부 라이브로 오판된다. 그래서 앞뒤 글자를 함께 본다.
+    """
+    blob = f"{cand.get('trackName', '')} {cand.get('collectionName', '')}"
+    return bool(_VARIANT_RE.search(blob) or _VARIANT_KO_RE.search(blob))
 
 
 def title_similarity(track_name, title, alt=None):
