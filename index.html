@@ -158,7 +158,7 @@
                autocomplete="off" spellcheck="false" placeholder="대시보드에서 발급받은 Client ID">
 
         <div class="redirect-box">
-          <span class="redirect-label">대시보드에 등록할 Redirect URI</span>
+          <span class="redirect-label">대시보드에 등록할 Redirect URI (지금 이 주소 기준)</span>
           <code id="redirect-uri"></code>
           <button type="button" class="btn btn-ghost btn-sm" id="btn-copy-redirect">복사</button>
         </div>
@@ -184,7 +184,9 @@
           <summary>설정 방법</summary>
           <ol>
             <li><a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">developer.spotify.com/dashboard</a> 에서 <b>Create app</b></li>
-            <li>App name 아무거나 입력, <b>Redirect URI</b> 에 위 주소를 그대로 붙여넣기</li>
+            <li>App name 아무거나 입력, <b>Redirect URI</b> 에 위 주소를 그대로 붙여넣기.
+                주소 끝의 <code>/index.html</code> 유무에 따라 값이 달라지므로,
+                <b>두 형태를 모두 등록</b>해 두면 어느 쪽으로 열어도 로그인됩니다</li>
             <li>API 선택에서 <b>Web Playback SDK</b> 체크 후 저장</li>
             <li>Settings 에서 <b>Client ID</b> 복사해 위 칸에 붙여넣기</li>
             <li>Settings → <b>User Management</b> 에 본인 Spotify 계정 이메일 추가 (개발 모드는 5명까지)</li>

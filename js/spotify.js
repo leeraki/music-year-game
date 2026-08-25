@@ -470,8 +470,11 @@ class SpotifyProvider extends AudioProvider {
  * @param {object} sample 곡 하나 (검색까지 되는지 확인용)
  * @param {function} onStep 단계마다 호출: ({name, state, detail})
  *                          state: 'ok' | 'fail' | 'warn' | 'skip'
+ * @param {SpotifyProvider} [active] 이미 연결된 플레이어. 있으면 그대로 쓴다.
+ *   한 계정에 SDK 인스턴스를 둘 만들면 뒤엣것이 ready 를 받지 못해,
+ *   앱은 멀쩡한데 진단만 '기기 연결 실패'로 나온다.
  */
-async function diagnoseSpotify(sample, onStep) {
+async function diagnoseSpotify(sample, onStep, active = null) {
   const step = (name, state, detail) => onStep({ name, state, detail });
   const skipRest = (from, list) => list.slice(from).forEach((n) => step(n, 'skip', '앞 단계 실패로 건너뜀'));
   const NAMES = ['Client ID', '로그인 토큰', '계정 등급', '대시보드 사용자 등록',
@@ -516,7 +519,8 @@ async function diagnoseSpotify(sample, onStep) {
     return skipRest(3, NAMES);
   }
 
-  const player = new SpotifyProvider();
+  const reuse = active instanceof SpotifyProvider && active.deviceId;
+  const player = reuse ? active : new SpotifyProvider();
   try {
     await SpotifyProvider._loadSdk();
     step(NAMES[4], 'ok', '불러옴');
@@ -526,12 +530,13 @@ async function diagnoseSpotify(sample, onStep) {
   }
 
   try {
-    const id = await player.connect();
-    step(NAMES[5], 'ok', `기기 등록됨 (${String(id).slice(0, 8)}…)`);
+    const id = reuse ? player.deviceId : await player.connect();
+    step(NAMES[5], 'ok', `기기 등록됨 (${String(id).slice(0, 8)}…)`
+      + (reuse ? ' — 재생 중인 플레이어' : ''));
   } catch (err) {
     step(NAMES[5], 'fail', err.message);
     step(NAMES[6], 'skip', '앞 단계 실패로 건너뜀');
-    player.destroy();
+    if (!reuse) player.destroy();
     return;
   }
 
@@ -542,7 +547,7 @@ async function diagnoseSpotify(sample, onStep) {
   } catch (err) {
     step(NAMES[6], 'warn', err.message);
   }
-  player.destroy();
+  if (!reuse) player.destroy();   // 앱이 쓰는 플레이어는 끊지 않는다
 }
 
 window.diagnoseSpotify = diagnoseSpotify;

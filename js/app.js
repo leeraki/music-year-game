@@ -480,7 +480,8 @@
       el.diag.appendChild(li);
     };
     try {
-      await diagnoseSpotify(deck.peek(0) || deck.all[0], add);
+      // 앱이 이미 연결해 둔 플레이어를 그대로 넘긴다
+      await diagnoseSpotify(deck.peek(0) || deck.all[0], add, player);
     } catch (err) {
       add({ name: '진단', state: 'fail', detail: err.message });
     }
