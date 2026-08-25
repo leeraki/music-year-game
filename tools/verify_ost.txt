@@ -1,4 +1,4 @@
-한국 드라마 OST 검수 목록 — 211개
+한국 드라마 OST 검수 목록 — 230개
 ==============================================================================
 
 확인해야 할 것 세 가지
@@ -9,1057 +9,1152 @@
 틀린 항목만 '번호 | 항목 | 올바른 값' 형태로 알려주면 됩니다.
 ==============================================================================
 
-  1. 2001  아름다운 날들
+  1. 1992  질투
+     배역: 하영호(최수종) · 유하경(최진실)
+     OST : 유승범 — 질투
+     음원: 유승범 / 질투  [질투 (Original Sound Track)]
+
+  2. 2000  가을동화
+     배역: 윤준서(송승헌) · 윤은서(송혜교)
+     OST : Five Sense — 기도
+     음원: 정일영 / 기도  [가을동화 (Original Television Soundtrack)]
+
+  3. 2001  아름다운 날들
      배역: 이민철(이병헌) · 김연수(최지우)
      OST : 제로 — 약속
      음원: 제로 / 약속  [SBS 드라마 아름다운 날들 (Original Television Soundtrack)]
 
-  2. 2002  겨울연가
+  4. 2002  겨울연가
      배역: 강준상(배용준) · 정유진(최지우)
      OST : 류 — 처음부터 지금까지
      음원: 류 / 처음부터지금까지  [겨울연가 (Original Television Soundtrack)]
 
-  3. 2002  야인시대
+  5. 2002  로망스
+     배역: 김채원(김하늘) · 최관우(김재원)
+     OST : 이가은 — 이별이 오지 못하게
+     음원: 페이지 / 이별이 오지 못하게  [Unforgettable]
+
+  6. 2002  야인시대
      배역: 김두한(안재모) · 설향(허영란)
      OST : 강성 — 야인Ⅰ
      음원: 강성 / 야인Ⅰ  [야인시대 (Original Soundtrack)]
 
-  4. 2002  인어아가씨
+  7. 2002  인어아가씨
      배역: 은아리영(장서희) · 이주왕(김성택)
      OST : 한도환 — 인어 아가씨 타이틀
      음원: 한도환 / 인어 아가씨 타이틀  [인어아가씨 (Original Soundtrack)]
 
-  5. 2003  대장금
+  8. 2003  다모
+     배역: 장채옥(하지원) · 황보윤(이서진)
+     OST : 김범수 — 비가
+     음원: 김범수 / 비가  [다모 OST - Single]
+
+  9. 2003  대장금
      배역: 서장금(이영애) · 민정호(지진희)
      OST : 김지현 — 오나라
      음원: 김지현, 백보현 & 김슬기 / 오나라 I  [대장금 (Original Television Soundtrack)]
 
-  6. 2003  천국의 계단
+ 10. 2003  올인
+     배역: 이인하(이병헌) · 민수연(송혜교)
+     OST : 박용하 — 처음 그날처럼
+     음원: 박용하 / 처음 그 날처럼  [올인 (Original Soundtrack)]
+
+ 11. 2003  천국의 계단
      배역: 차송주(권상우) · 한정서(최지우)
      OST : 김범수 — 천국의 계단 (Original Soundtrack) - 보고 싶다
      음원: 김범수 / 천국의 계단 (Original Soundtrack) - 보고 싶다  [천국의 계단 (Original Soundtrack) - 보고 싶다 - Single]
 
-  7. 2004  미안하다 사랑한다
+ 12. 2004  미안하다 사랑한다
      배역: 차무혁(소지섭) · 송은채(임수정)
      OST : 박효신 — 눈의 꽃
      음원: 박효신 / 눈의 꽃  [미안하다 사랑한다 (Original Television Soundtrack)]
 
-  8. 2004  발리에서 생긴 일
+ 13. 2004  발리에서 생긴 일
      배역: 이수정(하지원) · 강인욱(소지섭)
      OST : 안젤로 — 그게 사랑이니까
      음원: 안젤로 / 그게 사랑이니까  [발리에서 생긴 일 (Original Television Soundtrack)]
 
-  9. 2004  파리의 연인
+ 14. 2004  아일랜드
+     배역: 강국(현빈) · 이중아(이나영)
+     OST : 김장훈 — 그대로 있어주면 돼
+     음원: 김장훈 / 그대로 있어주면 돼  [아일랜드 (Original Soundtrack)]
+
+ 15. 2004  파리의 연인
      배역: 한기주(박신양) · 강태영(김정은)
      OST : 조성모 — 너의 곁으로
      음원: 조성모 / 너의 곁으로  [파리의 연인 (Original Sound Track)]
 
- 10. 2004  해신
+ 16. 2004  해신
      배역: 장보고(최수종) · 정화(수애)
      OST : 김범수 — 니가 날 떠나
      음원: 김범수 / 니가 날 떠나  [해신 (Original Television Soundtrack)]
 
- 11. 2005  내 이름은 김삼순
+ 17. 2005  내 이름은 김삼순
      배역: 현진헌(현빈) · 김삼순(김선아)
      OST : 클래지콰이 — She Is
      음원: 클래지콰이 / She Is  [내 이름은 김삼순 (Original Television Soundtrack)]
 
- 12. 2005  봄의 왈츠
+ 18. 2005  마이걸
+     배역: 설공찬(이동욱) · 주유린(이다해)
+     OST : 조관우 — 상어를 사랑한 인어
+     음원: 조관우 / 상어를 사랑한 인어  [마이 걸 (Original Television Soundtrack)]
+
+ 19. 2005  봄의 왈츠
      배역: 윤재하(서도영) · 박은영(한효주)
      OST : 이루마 — 봄의 왈츠 (His String Version)
      음원: 이루마 / 봄의 왈츠 (Piano Version)  [봄의 왈츠 클래식 (Original Television Soundtrack)]
 
- 13. 2005  슬픈연가
+ 20. 2005  슬픈연가
      배역: 서준영(권상우) · 박혜인(김희선)
      OST : 윤건 — 사랑한다면
      음원: 윤건 / 사랑한다면  [슬픈 연가 - Yoongun's Sad Love Story]
 
- 14. 2005  프라하의 연인
+ 21. 2005  프라하의 연인
      배역: 최상현(김주혁) · 윤재희(전도연)
      OST : 최성욱 — 프라하성에서
      음원: 최성욱 / 프라하성에서  [프라하의 연인 OST]
 
- 15. 2006  궁
+ 22. 2006  궁
      배역: 이신(주지훈) · 신채경(윤은혜)
      OST : 하울 제이 — 사랑인가요
      음원: 하울 & 제이 / 사랑인가요  [궁 (Original Television Soundtrack)]
 
- 16. 2006  소문난 칠공주
+ 23. 2006  소문난 칠공주
      배역: 나설칠(이태란) · 연하남(박해진)
      OST : 고유진 — 단 한사람
      음원: 고유진 / 단 한사람  [소문난 칠공주 (Original Television Soundtrack)]
 
- 17. 2006  환상의 커플
+ 24. 2006  주몽
+     배역: 주몽(송일국) · 소서노(한혜진)
+     OST : 인순이 — 하늘이여 제발
+     음원: 인순이 / 하늘이여 제발 (From "주몽")  [Drama Original Soundtrack Collection : 뒷걸음]
+
+ 25. 2006  환상의 커플
      배역: 나상실(한예슬) · 장철수(오지호)
      OST : 베니 — 괜히 나만 미워해
      음원: 베니 / 괜히 나만 미워해  [환상의 커플 (Original Television Soundtrack)]
 
- 18. 2006  황진이
+ 26. 2006  황진이
      배역: 황진이(하지원) · 김은호(장근석)
      OST : 서웅석 — 꽃날
      음원: 서웅석 / 꽃날  [황진이 (Original Television Soundtrack)]
 
- 19. 2007  개와 늑대의 시간
+ 27. 2007  개와 늑대의 시간
      배역: 이수현(이준기) · 서지우(남상미)
      OST : 이수 — Foolish Heart
      음원: 이수 / Foolish Heart  [개와늑대의시간 TIME BETWEEN DOG AND WOLF]
 
- 20. 2007  뉴하트
+ 28. 2007  뉴하트
      배역: 이은성(지성) · 남혜석(김민정)
      OST : 타루 — 내겐 사랑하나…
      음원: 타루 / 내겐 사랑하나…  [뉴하트 (Original Soundtrack)]
 
- 21. 2007  메리대구 공방전
+ 29. 2007  메리대구 공방전
      배역: 강대구(지현우) · 황메리(이하나)
      OST : 지현우 — One & One
      음원: 지현우 / One & One  [메리 대구 공방전 (Original Television Soundtrack)]
 
- 22. 2007  쩐의 전쟁
+ 30. 2007  쩐의 전쟁
      배역: 금나라(박신양) · 서주희(박진희)
      OST : 바비킴 — 일년을 하루같이
      음원: 바비킴 / 일년을 하루같이  [쩐의전쟁 the Original (Original Television Soundtrack) - EP]
 
- 23. 2007  커피프린스 1호점
+ 31. 2007  커피프린스 1호점
      배역: 최한결(공유) · 고은찬(윤은혜)
      OST : 허밍어반스테레오 — 커피 한잔 어때? (feat. 요조)
      음원: 허밍어반스테레오 / 커피 한잔 어때? (feat. 요조)  [커피프린스 1호점 (Original Television Soundtrack)]
 
- 24. 2008  베토벤 바이러스
+ 32. 2008  베토벤 바이러스
      배역: 강마에(김명민) · 두루미(이지아)
      OST : 태연 — 들리나요...
      음원: 태연 / 들리나요...  [베토벤 바이러스 (Original Television Soundtrack)]
 
- 25. 2008  에덴의 동쪽
+ 33. 2008  에덴의 동쪽
      배역: 이동철(송승헌) · 국영란(이연희)
      OST : SG Wannabe — 운명을 거슬러
      음원: SG Wannabe / 운명을 거슬러  [에덴의 동쪽 (Original Soundtrack)]
 
- 26. 2008  이산
+ 34. 2008  온에어
+     배역: 이경민(박용하) · 서영은(김하늘)
+     OST : FT아일랜드 — 한가지 말
+     음원: FTISLAND / 한가지말  [Rock Prince]
+
+ 35. 2008  이산
      배역: 이산(이서진) · 성송연(한지민)
      OST : 임세현 — 소녀
      음원: 임세현 / 소녀  [이산 - 적주용명수 (Original Soundtrack)]
 
- 27. 2008  일지매
+ 36. 2008  일지매
      배역: 이겸(이준기) · 은채(한효주)
      OST : 박효신 — 화신
      음원: 박효신 / 화신  [일지매 (Original Television Soundtrack)]
 
- 28. 2008  타짜
+ 37. 2008  타짜
      배역: 고니(장혁) · 난숙(한예슬)
      OST : 바비킴 — Reason (Male ver.)
      음원: 바비킴 / Reason (Male ver.)  [타짜 (Original TV Soundtrack)]
 
- 29. 2009  꽃보다 남자
+ 38. 2009  꽃보다 남자
      배역: 구준표(이민호) · 금잔디(구혜선)
      OST : SHINee — Stand By Me
      음원: SHINee / Stand By Me  [꽃보다 남자 (Original Television Soundtrack)]
 
- 30. 2009  내조의 여왕
+ 39. 2009  내조의 여왕
      배역: 천지애(김남주) · 온달수(오지호)
      OST : 이수영 — 여우랍니다
      음원: 이수영 / 여우랍니다  [내조의 여왕 (Original Television Soundtrack) [Deluxe]]
 
- 31. 2009  미남이시네요
+ 40. 2009  미남이시네요
      배역: 황태경(장근석) · 고미남(박신혜)
      OST : 이홍기 — 여전히
      음원: 이홍기 / 여전히  [미남이시네요 (Original Television Soundtrack)]
 
- 32. 2009  선덕여왕
+ 41. 2009  선덕여왕
      배역: 덕만(이요원) · 미실(고현정)
      OST : 아이유 — 바람꽃
      음원: 아이유 / 바람꽃  [선덕여왕 (Original Television Soundtrack)]
 
- 33. 2009  시티홀
+ 42. 2009  스타일
+     배역: 박기자(김혜수) · 서우진(류시원)
+     OST : 바비킴 — 죽기 아니면 살기
+     음원: 바비킴 / 죽기 아니면 살기  [드림 Dream (SBS 월화드라마) [Original Television Soundtrack]]
+
+ 43. 2009  시티홀
      배역: 조국(차승원) · 신미래(김선아)
      OST : 호란 — 불안한 사랑
      음원: 호란 / 불안한 사랑  [시티홀 City Hall (SBS 수목드라마) [Original Television Soundtrack]]
 
- 34. 2009  아가씨를 부탁해
+ 44. 2009  아가씨를 부탁해
      배역: 강혜나(윤은혜) · 동찬(윤상현)
      OST : 정재욱 — 마음을 부탁해
      음원: 정재욱 / 마음을 부탁해  [아가씨를 부탁해 (Original Television Soundtrack) - EP]
 
- 35. 2009  찬란한 유산
+ 45. 2009  찬란한 유산
      배역: 선우환(이승기) · 고은성(한효주)
      OST : 이수 — 내 가슴에 사는 사람
      음원: 이수 / 내 가슴에 사는 사람  [SBS 드라마 찬란한 유산 (Original Television Soundtrack)]
 
- 36. 2010  검사 프린세스
+ 46. 2010  검사 프린세스
      배역: 마혜리(김소연) · 서인우(박시후)
      OST : 샤이니 — Fly High
      음원: SHINee / Fly High  [검사 프린세스 (Original Sound Track)]
 
- 37. 2010  동이
+ 47. 2010  동이
      배역: 동이(한효주) · 숙종(지진희)
      OST : 장나라 — 천애지아
      음원: 장나라 / 천애지아  [동이 (Original Television Soundtrack)]
 
- 38. 2010  성균관 스캔들
+ 48. 2010  성균관 스캔들
      배역: 이선준(박유천) · 김윤희(박민영)
      OST : JYJ — 찾았다
      음원: JYJ / 찾았다  [성균관 스캔들 (Original Soundtrack)]
 
- 39. 2010  시크릿 가든
+ 49. 2010  시크릿 가든
      배역: 김주원(현빈) · 길라임(하지원)
      OST : 백지영 — 그 여자
      음원: 백지영 / 그 여자  [시크릿가든 (Original Television Soundtrack), Pt. 1 - Single]
 
- 40. 2010  신데렐라 언니
+ 50. 2010  신데렐라 언니
      배역: 송은조(문근영) · 홍기훈(천정명)
      OST : 예성 — 너 아니면 안돼
      음원: 예성 / 너 아니면 안돼  [신데렐라 언니 (Original Television Soundtrack)]
 
- 41. 2010  자이언트
+ 51. 2010  자이언트
      배역: 이강모(이범수) · 황정연(박진희)
      OST : 이카 — 그대가
      음원: 이카 / 그대가  [자이언트 (Original Soundtrack)]
 
- 42. 2010  추노
+ 52. 2010  추노
      배역: 이대길(장혁) · 언년이(이다해)
      OST : 임재범 — 낙인
      음원: 임재범 / 낙인  [추노 (Original Television Soundtrack)]
 
- 43. 2010  파스타
+ 53. 2010  파스타
      배역: 최현욱(이선균) · 서유경(공효진)
      OST : 정아 — 귀여운 넌
      음원: 정아 / 귀여운 넌  [파스타 (Original Soundtrack) Part.2 - EP]
 
- 44. 2011  공주의 남자
+ 54. 2011  공주의 남자
      배역: 김승유(박시후) · 이세령(문채원)
      OST : 하동균 & 이정 — 기다릴게
      음원: 하동균 & 이정 / 기다릴게  [공주의남자 (Original Television Soundtrack)]
 
- 45. 2011  드림하이
+ 55. 2011  드림하이
      배역: 송삼동(김수현) · 고혜미(배수지)
      OST : 창민 & 정진운 — 사랑하면 안될까
      음원: 창민 & 정진운 / 사랑하면 안될까  [드림하이 (Original Television Soundtrack)]
 
- 46. 2011  마이 프린세스
+ 56. 2011  마이 프린세스
      배역: 박해영(송승헌) · 이설(김태희)
      OST : 양요섭 — 그 사람을 아껴요
      음원: 양요섭 / 그 사람을 아껴요  [마이 프린세스, Pt. 2 (Original Soundtrack)]
 
- 47. 2011  보스를 지켜라
+ 57. 2011  보스를 지켜라
      배역: 차지헌(지성) · 노은설(최강희)
      OST : Apink — 우리 그냥 사랑하게 해 주세요
      음원: Apink / 우리 그냥 사랑하게 해주세요  [보스를 지켜라 (Original Soundtrack) Part.1 - Single]
 
- 48. 2011  시티헌터
+ 58. 2011  시티헌터
      배역: 이윤성(이민호) · 김나나(박민영)
      OST : 종현 — So Goodbye
      음원: 종현 / So Goodbye  [시티헌터 (Original Television Soundtrack)]
 
- 49. 2011  최고의 사랑
+ 59. 2011  최고의 사랑
      배역: 독고진(차승원) · 구애정(공효진)
      OST : 써니힐 — 두근두근
      음원: 써니힐 / 두근두근  [최고의 사랑 (Original Television Soundtrack)]
 
- 50. 2012  각시탈
+ 60. 2012  각시탈
      배역: 이강토(주원) · 목단(진세연)
      OST : 주원 & 이정현 — 심판의 날
      음원: 주원 & 이정현 / 심판의 날  [KBS 특별기획드라마 각시탈 (Original Sound Track)]
 
- 51. 2012  넝쿨째 굴러온 당신
+ 61. 2012  넝쿨째 굴러온 당신
      배역: 방귀남(유준상) · 차윤희(김남주)
      OST : 걸스데이 — 넝쿨송
      음원: 걸스데이 / 넝쿨송  [KBS 주말드라마 넝쿨째 굴러온 당신 (Original Soundtrack) Pt. 5 - Single]
 
- 52. 2012  사랑비
+ 62. 2012  사랑비
      배역: 서준(장근석) · 정하나(윤아)
      OST : 장근석 — 사랑비
      음원: 장근석 / 사랑비  [사랑비 (Original Soundtrack)]
 
- 53. 2012  아랑사또전
+ 63. 2012  신의
+     배역: 최영(이민호) · 은수(김희선)
+     OST : 알리 — Carry On
+     음원: 알리 / Carry On  [신의 (Original Television Soundtrack)]
+
+ 64. 2012  아랑사또전
      배역: 아랑(신민아) · 은오(이준기)
      OST : 박요한 — 서털구털
      음원: 박요한 / 서털구털  [아랑사또전 (Original Television Soundtrack)]
 
- 54. 2012  옥탑방 왕세자
+ 65. 2012  옥탑방 왕세자
      배역: 이각(박유천) · 박하(한지민)
      OST : 알리 — 상처
      음원: 알리 / 상처  [옥탑방 왕세자 (Original Soundtrack) Part.1 - EP]
 
- 55. 2012  응답하라 1997
+ 66. 2012  응답하라 1997
      배역: 윤윤제(서인국) · 성시원(정은지)
      OST : 서인국 — All For You
      음원: 서인국 & 정은지 / All for You  [응답하라 1997 - Love Story, Pt. 1 (Original Television Soundtrack) - Single]
 
- 56. 2012  해를 품은 달
+ 67. 2012  해를 품은 달
      배역: 이훤(김수현) · 허연우(한가인)
      OST : 린 — 시간을 거슬러
      음원: 린 / 시간을 거슬러  [MBC 드라마 해를 품은 달 OST (Special Edition)]
 
- 57. 2012  해운대 연인들
+ 68. 2012  해운대 연인들
      배역: 이태성(김강우) · 소라(조여정)
      OST : Nam Gyu Ri — 해운대 연인들
      음원: Nam Gyu Ri / 해운대 연인들  [해운대 연인들 (Original Soundtrack)]
 
- 58. 2013  구가의 서
+ 69. 2013  구가의 서
      배역: 최강치(이승기) · 담여울(배수지)
      OST : 박세준 — 구가의 서
      음원: 박세준 / 구가의 서  [구가의 서 (Original Television Soundtrack)]
 
- 59. 2013  굿닥터
+ 70. 2013  굿닥터
      배역: 박시온(주원) · 차윤서(문채원)
      OST : 투빅 — 사랑하고 있습니다
      음원: 투빅 / 사랑하고 있습니다  [KBS2 월화드라마 굿 닥터 (Original Soundtrack)]
 
- 60. 2013  그 겨울 바람이 분다
+ 71. 2013  그 겨울 바람이 분다
      배역: 오수(조인성) · 오영(송혜교)
      OST : The One — 겨울사랑
      음원: The One / 겨울사랑  [그 겨울, 바람이 분다 (Original TV Series Soundtrack), Pt. 2 - Single]
 
- 61. 2013  나인
+ 72. 2013  나인
      배역: 박선우(이진욱) · 주민영(조윤희)
      OST : 이지혜 — 아홉 개의 향
      음원: 이지혜 / 아홉 개의 향  [나인: 아홉 번의 시간여행 (Original TV Series Soundtrack), Pt. 1 - Single]
 
- 62. 2013  너의 목소리가 들려
+ 73. 2013  너의 목소리가 들려
      배역: 박수하(이종석) · 장혜성(이보영)
      OST : 에브리 싱글 데이 — 에코
      음원: 에브리 싱글 데이 / 에코  [너의 목소리가 들려 (Original Television Soundtrack), Pt. 1 - EP]
 
- 63. 2013  별에서 온 그대
+ 74. 2013  별에서 온 그대
      배역: 도민준(김수현) · 천송이(전지현)
      OST : 린 — My Destiny
      음원: 린 / My Destiny  [별에서 온 그대 (Original Soundtrack) Part.1 - Single]
 
- 64. 2013  응답하라 1994
+ 75. 2013  상속자들
+     배역: 김탄(이민호) · 차은상(박신혜)
+     OST : 창민 — Moment
+     음원: 이창민 / Moment  [상속자들, Pt. 3 (Original Television Soundtrack) - Single]
+
+ 76. 2013  응답하라 1994
      배역: 쓰레기(정우) · 성나정(고아라)
      OST : 김성균 & 도희 — 운명
      음원: 김성균 & 도희 / 운명  [응답하라 1994 감독판 (Original Television Soundtrack)]
 
- 65. 2013  장옥정 사랑에 살다
+ 77. 2013  장옥정 사랑에 살다
      배역: 장옥정(김태희) · 이순(유아인)
      OST : 지아 — 꿈에서라도
      음원: 지아 / 꿈에서라도  [장옥정, 사랑에 살다 (Original Television Soundtrack), Pt. 2 - Single]
 
- 66. 2013  주군의 태양
+ 78. 2013  주군의 태양
      배역: 주중원(소지섭) · 태공실(공효진)
      OST : 효린 — 미치게 만들어
      음원: 효린 / 미치게 만들어  [주군의 태양 (Original Television Soundtrack)]
 
- 67. 2013  총리와 나
+ 79. 2013  총리와 나
      배역: 권율(이범수) · 남다정(임윤아)
      OST : 태민 — 발걸음
      음원: 태민 / 발걸음  [총리와 나 (Original Television Soundtrack)]
 
- 68. 2013  황금의 제국
+ 80. 2013  황금의 제국
      배역: 장태주(고수) · 최서윤(이요원)
      OST : 이념 — 피의 춤
      음원: 이념 / 피의 춤  [황금의 제국 (Original Soundtrack)]
 
- 69. 2014  골든크로스
+ 81. 2014  골든크로스
      배역: 강도윤(김강우) · 서이레(이시영)
      OST : 모세 — Island
      음원: 모세 / Island  [골든크로스 (Original Television Soundtrack), Pt.1 - Single]
 
- 70. 2014  괜찮아 사랑이야
+ 82. 2014  괜찮아 사랑이야
      배역: 장재열(조인성) · 지해수(공효진)
      OST : 다비치 — 괜찮아 사랑이야
      음원: 다비치 / 괜찮아 사랑이야  [괜찮아 사랑이야, Vol. 1 (Original Television Soundtrack)]
 
- 71. 2014  닥터 이방인
+ 83. 2014  닥터 이방인
      배역: 박훈(이종석) · 한승희(진세연)
      OST : 바비킴 — 이방인
      음원: 바비킴 / 이방인  [닥터 이방인 (Original Television Soundtrack)]
 
- 72. 2014  쓰리데이즈
+ 84. 2014  미생
+     배역: 장그래(임시완) · 안영이(강소라)
+     OST : 이승열 — 날아
+     음원: 이승열 / 날아  [미생 (Original Television Soundtrack)]
+
+ 85. 2014  쓰리데이즈
      배역: 한태경(박유천) · 이차영(박하선)
      OST : 신용재 — 널 사랑한다, 지운다, 또 운다
      음원: 신용재 / 널 사랑한다, 지운다, 또 운다  [쓰리 데이즈 (Original Soundtrack) Pt. 3 - Single]
 
- 73. 2014  왕의 얼굴
+ 86. 2014  왕의 얼굴
      배역: 광해(서인국) · 김가희(조윤희)
      OST : Seung Yeon Son — 그대라서
      음원: Seung Yeon Son / 그대라서  [왕의 얼굴 (Original Soundtrack)]
 
- 74. 2014  운명처럼 널 사랑해
+ 87. 2014  운명처럼 널 사랑해
      배역: 이건(장혁) · 김미영(장나라)
      OST : 에일리 — 잠시 안녕처럼
      음원: 에일리 / 잠시 안녕처럼  [운명처럼 널 사랑해 (Original Sound Track) Pt. 6 - Single]
 
- 75. 2014  조선총잡이
+ 88. 2014  조선총잡이
      배역: 박윤강(이준기) · 정수인(남상미)
      OST : Five Sense — 連 - 다홍치마
      음원: Five Sense / 連 - 다홍치마  [조선총잡이 (Original Television Soundtrack)]
 
- 76. 2014  태양은 가득히
+ 89. 2014  태양은 가득히
      배역: 정세로(윤계상) · 한영원(한지혜)
      OST : 배호 — 태양은 가득히
      음원: yangpa / 태양은 가득히  [태양은 가득히 (Original Television Soundtrack), Pt. 4 - Single]
 
- 77. 2015  그녀는 예뻤다
+ 90. 2014  힐러
+     배역: 서정후(지창욱) · 채영신(박민영)
+     OST : Michael Learns To Rock — Eternal Love
+     음원: Michael Learns to Rock / Eternal Love  [Healer (Original Television Soundtrack)]
+
+ 91. 2015  그녀는 예뻤다
      배역: 지성준(박서준) · 김혜진(황정음)
      OST : SoYou — 모르나봐
      음원: SoYou & 브라더수 / 모르나봐  [그녀는 예뻤다 (Original Television Soundtrack), Pt. 4 - Single]
 
- 78. 2015  냄새를 보는 소녀
+ 92. 2015  냄새를 보는 소녀
      배역: 최무각(박유천) · 오초림(신세경)
      OST : 김은영 & 장이정(히스토리) — 아리송해
      음원: 김은영 & 장이정(히스토리) / 아리송해  [냄새를 보는 소녀 (Original Television Soundtrack)]
 
- 79. 2015  두번째 스무살
+ 93. 2015  두번째 스무살
      배역: 하노라(최지우) · 차현석(이상윤)
      OST : 잔나비 — 두번째 스무살 Title
      음원: 잔나비 / 두번째 스무살 Title  [두번째 스무살 (Original Television Soundtrack)]
 
- 80. 2015  맨도롱 또똣
+ 94. 2015  맨도롱 또똣
      배역: 백건우(유연석) · 이정주(강소라)
      OST : 효린 — 더 가까이
      음원: 효린 / 더 가까이  [맨도롱 또똣 (Original Television Soundtrack)]
 
- 81. 2015  오 나의 귀신님
+ 95. 2015  오 나의 귀신님
      배역: 강선우(조정석) · 나봉선(박보영)
      OST : 한소현 — 오! 나의 귀신님
      음원: 한소현 & 제이미 박 / 오! 나의 귀신님  [오 나의 귀신님 (Original Television Soundtrack)]
 
- 82. 2015  용팔이
+ 96. 2015  용팔이
      배역: 김태현(주원) · 한여진(김태희)
      OST : 박기헌 — 용팔이
      음원: 박기헌 / 용팔이  [용팔이 (Music from the Original TV Series)]
 
- 83. 2015  응답하라 1988
+ 97. 2015  응답하라 1988
      배역: 김정환(류준열) · 성덕선(혜리)
      OST : 김필 — 청춘
      음원: 김필 / 청춘 (feat. 김창완)  [응답하라 1988, Pt. 1 (Original Television Soundtrack) - Single]
 
- 84. 2015  착하지 않은 여자들
+ 98. 2015  착하지 않은 여자들
      배역: 김현숙(채시라) · 정마리(이하나)
      OST : 어쿠스틱 콜라보 — 소녀와 가로등 (Original Ver.)
      음원: 어쿠스틱 콜라보 / 소녀와 가로등 (Original Ver.)  [KBS2 수목드라마 착하지 않은 여자들 (Original Soundtrack) Pt. 1 - EP]
 
- 85. 2015  킬미힐미
+ 99. 2015  킬미힐미
      배역: 차도현(지성) · 오리진(황정음)
      OST : 장재인 — 환청
      음원: 장재인 / 환청 (feat. 나쑈)  [MBC 드라마 킬미힐미 (Original Television Soundtrack)]
 
- 86. 2015  프로듀사
+100. 2015  프로듀사
      배역: 백승찬(김수현) · 신디(아이유)
      OST : 벤 — 두근두근
      음원: 벤 / 두근두근  [프로듀사  : Special Edition (Original Soundtrack)]
 
- 87. 2015  후아유 학교 2015
+101. 2015  후아유 학교 2015
      배역: 고은별(김소현) · 한이안(남주혁)
      OST : 배치기 — 바람에 날려 (feat. 펀치)
      음원: 배치기 / 바람에 날려 (feat. 펀치)  [후아유-학교 2015, Pt. 2 (Original Television Soundtrack) - Single]
 
- 88. 2016  구르미 그린 달빛
+102. 2016  구르미 그린 달빛
      배역: 이영(박보검) · 홍라온(김유정)
      OST : 거미 — 구르미 그린 달빛
      음원: 거미 / 구르미 그린 달빛  [구르미 그린 달빛 (Original Television Soundtrack), Pt. 3 - Single]
 
- 89. 2016  굿와이프
+103. 2016  굿와이프
      배역: 김혜경(전도연) · 이태준(유지태)
      OST : 넬 — 숨
      음원: 넬 / 숨  [굿와이프, Pt. 1 (Original Television Soundtrack) - Single]
 
- 90. 2016  낭만닥터 김사부
+104. 2016  낭만닥터 김사부
      배역: 부용주(한석규) · 강동주(유연석)
      OST : 신용재 — 언제나 괜찮아
      음원: 신용재 / 언제나 괜찮아  [낭만닥터 김사부 (Music from the Original TV Series) Pt.7 - Single]
 
- 91. 2016  달의 연인 보보경심 려
+105. 2016  달의 연인 보보경심 려
      배역: 왕소(이준기) · 해수(아이유)
      OST : 다비치 — 그대를 잊는다는건
      음원: 다비치 / 그대를 잊는다는건  [달의 연인: 보보경심 려 (Original Television Soundtrack)]
 
- 92. 2016  더 케이투
+106. 2016  더 케이투
      배역: 김제하(지창욱) · 고안나(임윤아)
      OST : 유성은 — 아주 가끔
      음원: 유성은 / 아주 가끔  [더케이투, Pt. 2 (Original Television Soundtrack) - Single]
 
- 93. 2016  도깨비
+107. 2016  도깨비
      배역: 김신(공유) · 지은탁(김고은)
      OST : 에일리 — 첫눈처럼 너에게 가겠다
      음원: 에일리 / 첫눈처럼 너에게 가겠다  [도깨비, Pt. 9 (Original Television Soundtrack) - Single]
 
- 94. 2016  또 오해영
+108. 2016  또 오해영
      배역: 박도경(에릭) · 오해영(서현진)
      OST : 정승환 — 너였다면
      음원: 정승환 / 너였다면  [또 오해영, Pt. 5 (Original Television Soundtrack) - Single]
 
- 95. 2016  미녀 공심이
+109. 2016  미녀 공심이
      배역: 공심(민아) · 단태(남궁민)
      OST : 커피소년 — 찾았다
      음원: 커피소년 / 찾았다  [미녀 공심이 (Original Soundtrack) Part.5 - Single]
 
- 96. 2016  보이스
+110. 2016  보이스
      배역: 무진혁(장혁) · 강권주(이하나)
      OST : 김윤아 — 목소리
      음원: 김윤아 / 목소리  [보이스, Pt. 2 (Original Television Soundtrack) - Single]
 
- 97. 2016  옥중화
+111. 2016  시그널
+     배역: 박해영(이제훈) · 차수현(김혜수)
+     OST : 장범준 — 회상
+     음원: 장범준 / 회상  [시그널 (Original Television Soundtrack)]
+
+112. 2016  옥중화
      배역: 옥녀(진세연) · 윤태원(고수)
      OST : 정세린 — 옥중화 (Feat. 임윤정)
      음원: 정세린 / 옥중화 (Feat. 임윤정)  [옥중화 (Original Television Soundtrack)]
 
- 98. 2016  운빨로맨스
+113. 2016  운빨로맨스
      배역: 심보늬(황정음) · 제수호(류준열)
      OST : 박혜수 — 슬픈인연
      음원: 박혜수 / 슬픈인연  [운빨로맨스 (Original Television Soundtrack)]
 
- 99. 2016  질투의 화신
+114. 2016  질투의 화신
      배역: 이화신(조정석) · 표나리(공효진)
      OST : 에이프릴세컨드 — 질투의 화신
      음원: 에이프릴세컨드 / 질투의 화신  [질투의 화신 (Original Television Soundtrack)]
 
-100. 2016  태양의 후예
+115. 2016  태양의 후예
      배역: 유시진(송중기) · 강모연(송혜교)
      OST : 윤미래 — Always
      음원: 윤미래 / Always  [태양의 후예, Pt. 1 (Original Television Soundtrack) - Single]
 
-101. 2016  푸른 바다의 전설
+116. 2016  푸른 바다의 전설
      배역: 허준재(이민호) · 심청(전지현)
      OST : 윤미래 — 그대라는 세상
      음원: 윤미래 / 그대라는 세상  [푸른 바다의 전설 (Original Television Soundtrack), Pt. 2 - Single]
 
-102. 2016  함부로 애틋하게
+117. 2016  함부로 애틋하게
      배역: 신준영(김우빈) · 노을(배수지)
      OST : 에릭남 — 소나기
      음원: 에릭남 / 소나기  [함부로 애틋하게 (Original Television Soundtrack), Vol. 2]
 
-103. 2017  당신이 잠든 사이에
+118. 2017  당신이 잠든 사이에
      배역: 정재찬(이종석) · 남홍주(배수지)
      OST : 브라더수 & 세오 — 당신이 잠든 사이에
      음원: 브라더수 & 세오 / 당신이 잠든 사이에  [당신이 잠든 사이에 (Original Television Soundtrack), Pt. 5 - EP]
 
-104. 2017  매드독
+119. 2017  매드독
      배역: 최강우(유지태) · 김민준(우도환)
      OST : 에릭남 — 해가 지기 전에
      음원: 에릭남 / 해가 지기 전에  [매드독 (Original Television Soundtrack), Pt. 1 - Single]
 
-105. 2017  슬기로운 감빵생활
+120. 2017  슬기로운 감빵생활
      배역: 김제혁(박해수) · 이준호(정경호)
      OST : 에릭남 — Bravo, My Life!
      음원: 에릭남 / Bravo, My Life!  [슬기로운 감빵생활 (Original Television Soundtrack)]
 
-106. 2017  쌈 마이웨이
+121. 2017  쌈 마이웨이
      배역: 고동만(박서준) · 최애라(김지원)
      OST : 케이시 — 굿모닝
      음원: 케이시 / 굿모닝  [KBS2 드라마 쌈, 마이웨이 (Original Television Soundtrack), Pt. 2 - Single]
 
-107. 2017  의문의 일승
+122. 2017  의문의 일승
      배역: 오일승(윤균상) · 진진영(정혜성)
      OST : 소울 다이브 — 의문의 일승
      음원: 소울 다이브 / 의문의 일승  [의문의 일승, Pt. 2 (Original Soundtrack) - Single]
 
-108. 2017  피고인
+123. 2017  피고인
      배역: 박정우(지성) · 서은혜(권유리)
      OST : San E — 끝까지
      음원: San E / 끝까지  [피고인 (Original Soundtrack), Pt. 2 - Single]
 
-109. 2017  하백의 신부
+124. 2017  하백의 신부
      배역: 하백(남주혁) · 소아(신세경)
      OST : 양다일 — 이렇게 좋은 이유
      음원: 양다일 / 이렇게 좋은 이유  [하백의 신부 2017 (Original Television Soundtrack)]
 
-110. 2017  힘쎈여자 도봉순
+125. 2017  힘쎈여자 도봉순
      배역: 도봉순(박보영) · 안민혁(박형식)
      OST : 브로맨스 — 사랑에 빠진 걸까요 (feat. 오브로젝트)
      음원: 브로맨스 / 사랑에 빠진 걸까요 (feat. 오브로젝트)  [힘쎈여자 도봉순 (Original Television Soundtrack), Pt. 6 - Single]
 
-111. 2018  SKY 캐슬
+126. 2018  SKY 캐슬
      배역: 한서진(염정아) · 김주영(김서형)
      OST : 하니 — We All Lie
      음원: 하진 / We all lie  [SKY 캐슬, Pt. 4 (Original Television Soundtrack) - Single]
 
-112. 2018  기름진 멜로
+127. 2018  기름진 멜로
      배역: 서풍(이준호) · 단새우(정려원)
      OST : 백아연 — 너였었니
      음원: 백아연 / 너였었니  [기름진 멜로 (Original Television Soundtrack), Pt. 3 - Single]
 
-113. 2018  김비서가 왜 그럴까
+128. 2018  김비서가 왜 그럴까
      배역: 이영준(박서준) · 김미소(박민영)
      OST : 김나영 — 그대만 보여서
      음원: 김나영 / 그대만 보여서  [김비서가 왜 그럴까 (Original Soundtrack), Pt. 5 - Single]
 
-114. 2018  나의 아저씨
+129. 2018  나의 아저씨
      배역: 박동훈(이선균) · 이지안(아이유)
      OST : 손디아 — 어른
      음원: Sondia / 어른  [나의 아저씨 (Original Television Soundtrack) , Pt. 2 - Single]
 
-115. 2018  라이프 온 마스
+130. 2018  라이프 온 마스
      배역: 한태주(정경호) · 윤나영(고아성)
      OST : 신해경 — 너는 어디쯤
      음원: 신해경 / 너는 어디쯤  [라이프 온 마스, Pt. 2 (Original Television Soundtrack) - Single]
 
-116. 2018  미스터 션샤인
+131. 2018  미스터 션샤인
      배역: 최유진(이병헌) · 고애신(김태리)
      OST : 멜로망스 — 좋은 날
      음원: 멜로망스 / 좋은 날  [미스터 션샤인 (Original Television Soundtrack)]
 
-117. 2018  백일의 낭군님
+132. 2018  백일의 낭군님
      배역: 이율(도경수) · 홍심(남지현)
      OST : 노유림 — 기약 없는 이별
      음원: 노유림 / 기약 없는 이별  [백일의 낭군님 (Original Television Soundtrack)]
 
-118. 2018  뷰티 인사이드
+133. 2018  뷰티 인사이드
      배역: 서도재(이민기) · 한세계(서현진)
      OST : 케이윌 — 내 생에 아름다운
      음원: 케이윌 / 내 생에 아름다운  [뷰티 인사이드 (Original Television Soundtrack)]
 
-119. 2018  스위치 세상을 바꿔라
+134. 2018  스위치 세상을 바꿔라
      배역: 사도찬(장근석) · 오하라(한예리)
      OST : 틴탑 — Crazy
      음원: 틴탑 / Crazy  [스위치 - 세상을 바꿔라 (Original Soundtrack)]
 
-120. 2018  시크릿 마더
+135. 2018  시크릿 마더
      배역: 김윤진(송윤아) · 김소연(김소연)
      OST : 카더가든 — Nothing
      음원: 카더가든 / Nothing  [시크릿 마더 (Original Soundtrack) Part.1 - Single]
 
-121. 2018  알함브라 궁전의 추억
+136. 2018  알함브라 궁전의 추억
      배역: 유진우(현빈) · 정희주(박신혜)
      OST : 로꼬 & 유성은 — 별 (Little Prince)
      음원: 로꼬 & 유성은 / 별 (Little Prince)  [알함브라 궁전의 추억 (Original Television Soundtrack)]
 
-122. 2018  훈남정음
+137. 2018  훈남정음
      배역: 강훈남(남궁민) · 유정음(황정음)
      OST : 허각 — 너 아니면
      음원: 허각 / 너 아니면  [훈남정음 (Original Television Soundtrack), Pt. 4 - Single]
 
-123. 2019  검법남녀
+138. 2019  검법남녀
      배역: 백범(정재영) · 은솔(정유미)
      OST : JK 김동욱 — Truth
      음원: JK 김동욱 / Truth  [검법남녀 OST Part.2 - Single]
 
-124. 2019  검색어를 입력하세요 WWW
+139. 2019  검색어를 입력하세요 WWW
      배역: 배타미(임수정) · 박모건(장기용)
      OST : 오존 — 우리 사이 은하수를 만들어
      음원: 오존 / 우리 사이 은하수를 만들어  [검색어를 입력하세요 WWW, Pt. 1 (Original Television Soundtrack) - Single]
 
-125. 2019  동백꽃 필 무렵
+140. 2019  동백꽃 필 무렵
      배역: 황용식(강하늘) · 오동백(공효진)
      OST : 펀치 — 영화 속에 나오는 주인공처럼
      음원: 펀치 / 영화 속에 나오는 주인공처럼  [동백꽃 필 무렵 (KBS2 수목드라마) [Original Television Soundtrack], Pt.6 - Single]
 
-126. 2019  로맨스는 별책부록
+141. 2019  로맨스는 별책부록
      배역: 차은호(이종석) · 강단이(이나영)
      OST : 잔나비 — 나는 볼 수 없던 이야기
      음원: 잔나비 / 나는 볼 수 없던 이야기  [로맨스는 별책부록 (Original Soundtrack), Pt. 1 - Single]
 
-127. 2019  멜로가 체질
+142. 2019  멜로가 체질
      배역: 임진주(천우희) · 손범수(안재홍)
      OST : 장범준 — 흔들리는 꽃들 속에서 네 샴푸향이 느껴진거야
      음원: 장범준 / 흔들리는 꽃들 속에서 네 샴푸향이 느껴진거야  [멜로가 체질 (Original Television Soundtrack)]
 
-128. 2019  배가본드
+143. 2019  배가본드
      배역: 차달건(이승기) · 고해리(배수지)
      OST : 하현우 — Vagabond
      음원: 하현우 / Vagabond  [배가본드 (Original Television Soundtrack)]
 
-129. 2019  봄밤
+144. 2019  봄밤
      배역: 유지호(정해인) · 이정인(한지민)
      OST : 구름 — 봄, 밤
      음원: 김필 / 봄밤  [봄밤 - Single]
 
-130. 2019  사랑의 불시착
+145. 2019  사랑의 불시착
      배역: 리정혁(현빈) · 윤세리(손예진)
      OST : 백예린 — 다시 난 여기
      음원: 백예린 / 다시 난, 여기  [사랑의 불시착 (Original Television Soundtrack)]
 
-131. 2019  아름다운 세상
+146. 2019  아름다운 세상
      배역: 박무진(박희순) · 강인하(추자현)
      OST : 신재범 & 민경아 — 아름다운 세상 (From 알라딘)
      음원: 존박 & 박정현 / 아름다운 세상 (From 알라딘)  [아름다운 세상 (From 알라딘) - Single]
 
-132. 2019  아스달 연대기
+147. 2019  아스달 연대기
      배역: 타곤(장동건) · 탄야(김지원)
      OST : 이루리 — 대제관 니르하시여!
      음원: 이루리 / 대제관 니르하시여!  [아스달 연대기 (Original Television Soundtrack)]
 
-133. 2019  열혈사제
+148. 2019  열혈사제
      배역: 김해일(김남길) · 박경선(이하늬)
      OST : 노라조 — 우리동네 HERO
      음원: 노라조 / 우리동네 HERO  [열혈사제 (Original Soundtrack) Part.1 - Single]
 
-134. 2019  왜그래 풍상씨
+149. 2019  왜그래 풍상씨
      배역: 이풍상(유준상) · 간분실(신동미)
      OST : 박새별 — 너무 아픈 사랑은 사랑이 아니었음을
      음원: 박새별 / 너무 아픈 사랑은 사랑이 아니었음을  [왜그래 풍상씨 (Original Television Soundtrack), Pt.4 - Single]
 
-135. 2019  퍼퓸
+150. 2019  초콜릿
+     배역: 이강(윤계상) · 문차영(하지원)
+     OST : 에일리 — 그저 바라본다
+     음원: 에일리 / 그저 바라본다  [초콜릿, Pt.5 (Original Television Soundtrack) - Single]
+
+151. 2019  퍼퓸
      배역: 민재희(하재숙) · 서이도(신성록)
      OST : 바버렛츠 — 퍼퓸 (Perfume of love)
      음원: 바버렛츠 / 퍼퓸 (Perfume of love)  [퍼퓸 (Original Television Soundtrack), Pt. 6 - Single]
 
-136. 2019  호텔 델루나
+152. 2019  해치
+     배역: 이금(정일우) · 여지(고아라)
+     OST : 전우성 — 바람이 전하는 이야기
+     음원: 전우성 / 바람이 전하는 이야기  [해치 (Original Soundtrack) Part.2 - Single]
+
+153. 2019  호텔 델루나
      배역: 구찬성(여진구) · 장만월(아이유)
      OST : 태연 — 그대라는 시
      음원: 태연 / 그대라는 시  [호텔 델루나 (Original Soundtrack) Pt. 3 - Single]
 
-137. 2020  낭만닥터 김사부 2
+154. 2020  낭만닥터 김사부 2
      배역: 부용주(한석규) · 서우진(안효섭)
      OST : 백현 — 너를 사랑하고 있어
      음원: 백현 / 너를 사랑하고 있어  [낭만닥터 김사부 2 (Original Television Soundtrack)]
 
-138. 2020  더 킹 영원의 군주
+155. 2020  더 킹 영원의 군주
      배역: 이곤(이민호) · 정태을(김고은)
      OST : Zion.T — I Just Want To Stay With You
      음원: Zion.T / I Just Want To Stay With You  [더 킹 : 영원의 군주 (Original Television Soundtrack)]
 
-139. 2020  부부의 세계
+156. 2020  부부의 세계
      배역: 지선우(김희애) · 이태오(박해준)
      OST : 백지영 — 사랑했던 날들
      음원: 백지영 / 사랑했던 날들  [부부의 세계, Pt. 6 (Original Television Soundtrack) - Single]
 
-140. 2020  사이코지만 괜찮아
+157. 2020  사이코지만 괜찮아
      배역: 문강태(김수현) · 고문영(서예지)
      OST : 헤이즈 — 더 많이 사랑한 쪽이 아프대
      음원: 헤이즈 / 더 많이 사랑한 쪽이 아프대  [사이코지만 괜찮아 (Original Television Soundtrack), Pt. 1 - Single]
 
-141. 2020  스타트업
+158. 2020  스타트업
      배역: 남도산(남주혁) · 서달미(배수지)
      OST : 레드벨벳 — 미래
      음원: 레드벨벳 / 미래  [스타트업 (Original Television Soundtrack), Pt. 1 - Single]
 
-142. 2020  슬기로운 의사생활
+159. 2020  슬기로운 의사생활
      배역: 이익준(조정석) · 채송화(전미도)
      OST : 조정석 — 아로하
      음원: 조정석 / 아로하  [슬기로운 의사생활, Pt. 3 (Original Television Soundtrack) - Single]
 
-143. 2020  쌍갑포차
+160. 2020  쌍갑포차
      배역: 월주(황정음) · 한강배(육성재)
      OST : 육성재 — 사랑은 추억을 닮아서
      음원: 육성재 / 사랑은 추억을 닮아서  [쌍갑포차, Pt. 2 (Original Television Soundtrack) - Single]
 
-144. 2020  여신강림
+161. 2020  여신강림
      배역: 이수호(차은우) · 임주경(문가영)
      OST : 사야 — Call Me Maybe
      음원: 사야 / Call Me Maybe  [여신강림 (Original Television Soundtrack)]
 
-145. 2020  이태원 클라쓰
+162. 2020  이태원 클라쓰
      배역: 박새로이(박서준) · 조이서(김다미)
      OST : 가호 — 시작
      음원: 가호 / 시작  [ITAEWON CLASS (Original Television Soundtrack) Pt. 2 - Single]
 
-146. 2020  청춘기록
+163. 2020  청춘기록
      배역: 사혜준(박보검) · 안정하(박소담)
      OST : 자넷서 — 청춘기록
      음원: 자넷서 / 청춘기록  [청춘기록 (Original Television Soundtrack)]
 
-147. 2020  출사표
+164. 2020  출사표
      배역: 구세라(나나) · 서공명(박성훈)
      OST : 츄 — 봄꽃
      음원: 츄 / 봄꽃  [출사표(Original Television Soundtrack)]
 
-148. 2020  카이로스
+165. 2020  카이로스
      배역: 김서진(신성록) · 한애리(이세영)
      OST : 김태현 — 카이로스 (Original Television Soundtrack, Pt. 6)
      음원: 김태현 / 카이로스 (Original Television Soundtrack, Pt. 6)  [카이로스 (Original Television Soundtrack, Pt. 6) - Single]
 
-149. 2020  편의점 샛별이
+166. 2020  편의점 샛별이
      배역: 최대현(지창욱) · 정샛별(김유정)
      OST : 로시 — 잠이 오지 않는 밤에
      음원: 로시 / 잠이 오지 않는 밤에  [편의점 샛별이 (Original Television Soundtrack), Special]
 
-150. 2021  갯마을 차차차
+167. 2021  갯마을 차차차
      배역: 홍두식(김선호) · 윤혜진(신민아)
      OST : 카더가든 — 로맨틱 선데이
      음원: 카더가든 / 로맨틱 선데이  [갯마을 차차차, Pt. 1 (Original Television Soundtrack) - Single]
 
-151. 2021  그 해 우리는
+168. 2021  그 해 우리는
      배역: 최웅(최우식) · 국연수(김다미)
      OST : 10CM — 서랍
      음원: 10CM / 서랍  [그 해 우리는 (Original Television Soundtrack) Special]
 
-152. 2021  라켓소년단
+169. 2021  라켓소년단
      배역: 윤해강(탕준상) · 한세윤(이재인)
      OST : 더보이즈 — 지금처럼
      음원: 더보이즈 / 지금처럼  [라켓소년단 (Original Television Soundtrack), Pt. 1 - Single]
 
-153. 2021  마이 네임
+170. 2021  마우스
+     배역: 정바름(이승기) · 고무치(이희준)
+     OST : 소정 — 괜찮아
+     음원: 이소정 / 괜찮아  [마우스 (Original Television Soundtrack), Pt. 1 - Single]
+
+171. 2021  마이 네임
      배역: 윤지우(한소희) · 무진(박희순)
      OST : 황상준 — My Name (feat. Swervy & JEMINN)
      음원: 황상준 / My Name (feat. Swervy & JEMINN)  [마이 네임 (Original Soundtrack from the Netflix Series)]
 
-154. 2021  모범택시
+172. 2021  모범택시
      배역: 김도기(이제훈) · 강하나(이솜)
      OST : 김성율 — 모범택시
      음원: 김성율 / 모범택시  [모범택시 (Original Soundtrack)]
 
-155. 2021  빈센조
+173. 2021  빈센조
      배역: 빈센조 까사노(송중기) · 홍차영(전여빈)
      OST : 존박 — I'm Always by Your Side
      음원: 존박 / I′m Always by Your Side  [빈센조, Pt. 6 (Original Television Soundtrack) - Single]
 
-156. 2021  슬기로운 의사생활 시즌2
+174. 2021  슬기로운 의사생활 시즌2
      배역: 이익준(조정석) · 채송화(전미도)
      OST : 이무진 — 비와 당신
      음원: 이무진 / 비와 당신  [슬기로운 의사생활 시즌2 (Original Television Soundtrack)]
 
-157. 2021  어느 날 우리 집 현관으로
+175. 2021  어느 날 우리 집 현관으로
      배역: 김사람(서인국) · 탁동경(박보영)
      OST : 투모로우바이투게더 — 널 보면 시간이 멈춰 어느 순간에도
      음원: 투모로우바이투게더 / 널 보면 시간이 멈춰 어느 순간에도  [어느 날 우리 집 현관으로 멸망이 들어왔다 (Original Television Soundtrack), Pt. 2 - Single]
 
-158. 2021  엉클
+176. 2021  엉클
      배역: 왕준혁(오정세) · 왕준희(전혜진)
      OST : 추상민 — Be your side
      음원: 추상민 / Be your side  [엉클 (Original Television Soundtrack)]
 
-159. 2021  오징어 게임
+177. 2021  오징어 게임
      배역: 성기훈(이정재) · 강새벽(정호연)
      OST : 김성수 — Pink Soldiers
      음원: 김성수 / Pink Soldiers  [오징어게임 (Original Soundtrack from The Netflix Series)]
 
-160. 2021  옷소매 붉은 끝동
+178. 2021  옷소매 붉은 끝동
      배역: 이산(이준호) · 성덕임(이세영)
      OST : 휘인 — 바라고 바라
      음원: 휘인 / 바라고 바라  [옷소매 붉은 끝동 (Original Soundtrack), Pt. 1 - Single]
 
-161. 2021  지금 헤어지는 중입니다
+179. 2021  지금 헤어지는 중입니다
      배역: 하영은(송혜교) · 윤재국(장기용)
      OST : 허상은 & 박영익 — 지금 헤어지는 중입니다
      음원: 허상은 & 박영익 / 지금 헤어지는 중입니다  [지금, 헤어지는 중입니다 (Original Soundtrack)]
 
-162. 2021  해피니스
+180. 2021  해피니스
      배역: 윤새봄(한효주) · 정이현(박형식)
      OST : Joe Layne — Some Day
      음원: Joe Layne / Some Day  [해피니스 (Original Television Soundtrack)]
 
-163. 2021  홍천기
+181. 2021  홍천기
      배역: 홍천기(김유정) · 하람(안효섭)
      OST : 백현 — 나인가요 (From "홍천기")
      음원: 백현 / 나인가요 (From "홍천기")  [홍천기 (Original Soundtrack) Part.1 - Single]
 
-164. 2022  군검사 도베르만
+182. 2022  군검사 도베르만
      배역: 도배만(안보현) · 차우인(조보아)
      OST : 하현우 — 도베르만
      음원: 하현우 / 도베르만  [군검사 도베르만 (Original Television Soundtrack)]
 
-165. 2022  금수저
+183. 2022  금수저
      배역: 이승천(육성재) · 나주희(정채연)
      OST : 민경훈 — 이제 시작이야
      음원: 민경훈 / 이제 시작이야  [금수저 (Original Television Soundtrack)]
 
-166. 2022  기상청 사람들
+184. 2022  기상청 사람들
      배역: 진하경(박민영) · 이시우(송강)
      OST : 기리보이 — 이상기후
      음원: 기리보이 / 이상기후  [기상청 사람들 : 사내연애 잔혹사 편 (Original Television Soundtrack) Special]
 
-167. 2022  당신이 소원을 말하면
+185. 2022  당신이 소원을 말하면
      배역: 윤겨레(지창욱) · 유연주(최수영)
      OST : 태연 — 너와 나 사이
      음원: 태연 / 너와 나 사이  [당신이 소원을 말하면 (Original Soundtrack), Pt. 9 - Single]
 
-168. 2022  법대로 사랑하라
+186. 2022  법대로 사랑하라
      배역: 김정호(이승기) · 김유리(이세영)
      OST : 펀치 — 별이 빛나는 오늘 밤에
      음원: 펀치 / 별이 빛나는 오늘 밤에  [법대로 사랑하라 (Original Television Soundtrack) Special]
 
-169. 2022  사내맞선
+187. 2022  사내맞선
      배역: 강태무(안효섭) · 신하리(김세정)
      OST : 멜로망스 — 사랑인가 봐
      음원: 멜로망스 / 사랑인가 봐  [사내맞선 (Original Soundtrack)]
 
-170. 2022  살인자의 쇼핑목록
+188. 2022  살인자의 쇼핑목록
      배역: 이대성(이광수) · 도아희(김설현)
      OST : 조인호 — 살인자의 쇼핑목록 Title
      음원: 조인호 / 살인자의 쇼핑목록 Title  [살인자의 쇼핑목록 (Original Soundtrack)]
 
-171. 2022  소년심판
+189. 2022  소년심판
      배역: 심은석(김혜수) · 차태주(김무열)
      OST : INNI — Shchedryk
      음원: INNI / Shchedryk  [소년심판 (Original Soundtrack)]
 
-172. 2022  스물다섯 스물하나
+190. 2022  스물다섯 스물하나
      배역: 백이진(남주혁) · 나희도(김태리)
      OST : 비비 — 아주, 천천히
      음원: 비비 / 아주, 천천히  [스물다섯 스물하나, Pt. 3 (Original Television Soundtrack) - Single]
 
-173. 2022  신사와 아가씨
+191. 2022  신사와 아가씨
      배역: 이영국(지현우) · 박단단(이세희)
      OST : 최철호 & 오혜주 — 신사와 아가씨
      음원: 최철호 & 오혜주 / 신사와 아가씨  [신사와 아가씨 (Original Television Soundtrack) Special Score]
 
-174. 2022  왜 오수재인가
+192. 2022  왜 오수재인가
      배역: 오수재(서현진) · 공찬(황인엽)
      OST : 이소정 — I'm here
      음원: 이소정 / I'm here  [왜 오수재인가 (Originaal Television Soundtrack)]
 
-175. 2022  우리들의 블루스
+193. 2022  우리들의 블루스
      배역: 이동석(이병헌) · 민선아(신민아)
      OST : 지민 — With You
      음원: 지민 & 하성운 / With You  [우리들의 블루스 (Original Television Soundtrack)]
 
-176. 2022  유미의 세포들
+194. 2022  유미의 세포들
      배역: 유미(김고은) · 구웅(안보현)
      OST : 웬디 — 나를 신경 쓰고 있는 건가
      음원: 웬디 / 나를 신경 쓰고 있는 건가  [유미의 세포들 (Original Television Soundtrack)]
 
-177. 2022  이상한 변호사 우영우
+195. 2022  이상한 변호사 우영우
      배역: 우영우(박은빈) · 이준호(강태오)
      OST : 선우정아 — 상상
      음원: 선우정아 / 상상  [이상한 변호사 우영우 (Original Television Soundtrack) Pt. 2 - Single]
 
-178. 2022  재벌집 막내아들
+196. 2022  재벌집 막내아들
      배역: 진도준(송중기) · 서민영(신현빈)
      OST : 폴킴 — 기적 같은 너
      음원: 폴킴 / 기적 같은 너  [재벌집 막내아들 (Original Soundtrack)]
 
-179. 2022  천원짜리 변호사
+197. 2022  천원짜리 변호사
      배역: 천지훈(남궁민) · 백마리(김지은)
      OST : 김경호 — 천원짜리 변호사
      음원: 김경호 / 천원짜리 변호사  [천원짜리 변호사 (Original Soundtrack)]
 
-180. 2022  환혼
+198. 2022  환혼
      배역: 장욱(이재욱) · 무덕이(정소민)
      OST : 정세운 — 바라만 본다
      음원: 정세운 / 바라만 본다  [환혼, Pt. 3 (Original Television Soundtrack) - Single]
 
-181. 2023  국민사형투표
+199. 2023  국민사형투표
      배역: 김무찬(박해진) · 주현(임지연)
      OST : 구자완 — The Last Vote
      음원: 구자완 / The Last Vote  [국민사형투표 (Original Soundtrack)]
 
-182. 2023  나쁜엄마
+200. 2023  나쁜엄마
      배역: 최강호(이도현) · 영순(라미란)
      OST : 멜로망스 — 다시 사랑할 수 있게
      음원: 멜로망스 / 다시 사랑할 수 있게  [나쁜엄마 (Original Television Soundtrack)]
 
-183. 2023  낭만닥터 김사부 3
+201. 2023  낭만닥터 김사부 3
      배역: 부용주(한석규) · 차은재(이성경)
      OST : 백현 — Hello
      음원: 백현 / Hello  [낭만닥터 김사부 3 (Original Television Soundtrack), Pt.1 - Single]
 
-184. 2023  낮에 뜨는 달
+202. 2023  낮에 뜨는 달
      배역: 한준오(김영대) · 강영화(표예진)
      OST : 불꽃심장 — 낮에 뜨는 달
      음원: 안예은 / 낮에 뜨는 달  [낮에 뜨는 달 - Single]
 
-185. 2023  대행사
+203. 2023  대행사
      배역: 고아인(이보영) · 강한나(손나은)
      OST : 권진아 — You
      음원: 권진아 / You  [대행사 (Original Television Soundtrack)]
 
-186. 2023  더 글로리
+204. 2023  더 글로리
      배역: 문동은(송혜교) · 주여정(이도현)
      OST : 김태진 — 후회
      음원: 김태진 / 후회  [더 글로리, Pt. 2 (Original Soundtrack from the Netflix Series)]
 
-187. 2023  도적 칼의 소리
+205. 2023  도적 칼의 소리
      배역: 이윤(김남길) · 남희신(서현)
      OST : 태일 — Bandit
      음원: 태일 / Bandit  [도적: 칼의 소리 (Music from The Netflix Series) - EP]
 
-188. 2023  마이 데몬
+206. 2023  마이 데몬
      배역: 정구원(송강) · 도도희(김유정)
      OST : 뉴진스 — 우리의 밤은 당신의 낮보다 아름답다
      음원: 뉴진스 / 우리의 밤은 당신의 낮보다 아름답다  [마이데몬, Pt. 1 (Original Soundtrack) - Single]
 
-189. 2023  반짝이는 워터멜론
+207. 2023  반짝이는 워터멜론
      배역: 은결(려운) · 이찬(최현욱)
      OST : 정준일 — 반짝이는 그대에게
      음원: 정준일 / 반짝이는 그대에게  [반짝이는 워터멜론 (Original Television Soundtrack) Pt. 1 - Single]
 
-190. 2023  보라 데보라
+208. 2023  보라 데보라
      배역: 박데보라(유인나) · 이수혁(윤현민)
      OST : 구준회 — 우연히, 사랑
      음원: 구준회 / 우연히, 사랑  [보라! 데보라 (Original Soundtrack)]
 
-191. 2023  악귀
+209. 2023  악귀
      배역: 구산영(김태리) · 염해상(오정세)
      OST : 선우정아 — 숨
      음원: 선우정아 / 숨  [악귀 (Original Soundtrack) Pt.4 - Single]
 
-192. 2023  웰컴투 삼달리
+210. 2023  웰컴투 삼달리
      배역: 조용필(지창욱) · 조삼달(신혜선)
      OST : 태연 — 꿈
      음원: 태연 / 꿈  [웰컴투 삼달리 (Original Television Soundtrack), Pt.3 - Single]
 
-193. 2023  이번 생도 잘 부탁해
+211. 2023  이번 생도 잘 부탁해
      배역: 반지음(신혜선) · 문서하(안보현)
      OST : 옐로 — Secret
      음원: 옐로 / Secret  [이번 생도 잘 부탁해 (Original Television Soundtrack)]
 
-194. 2023  이재 곧 죽습니다
+212. 2023  이재 곧 죽습니다
      배역: 최이재(서인국) · 죽음(박소담)
      OST : Sondia — 거짓말인데
      음원: Sondia / 거짓말인데  [이재, 곧 죽습니다 (Original Television Soundtrack), Pt.1 - Single]
 
-195. 2023  일타 스캔들
+213. 2023  일타 스캔들
      배역: 최치열(정경호) · 남행선(전도연)
      OST : 이적 — 반대편
      음원: 이적 / 반대편  [일타 스캔들, Pt. 3 (Original Television Soundtrack) - Single]
 
-196. 2023  킹더랜드
+214. 2023  킹더랜드
      배역: 구원(이준호) · 천사랑(임윤아)
      OST : 펀치 — Keep Me Busy
      음원: 펀치 / Keep Me Busy  [킹더랜드 (Original Television Soundtrack), Pt.5 - Single]
 
-197. 2024  낮과 밤이 다른 그녀
+215. 2024  낮과 밤이 다른 그녀
      배역: 이미진(정은지) · 계지웅(최진혁)
      OST : 보이넥스트도어 — Lucky Charm
      음원: 보이넥스트도어 / Lucky Charm  [낮과 밤이 다른 그녀 (Original Television Soundtrack), Pt. 3 - Single]
 
-198. 2024  눈물의 여왕
+216. 2024  눈물의 여왕
      배역: 백현우(김수현) · 홍해인(김지원)
      OST : Crush — 미안해 미워해 사랑해
      음원: Crush / 미안해 미워해 사랑해  [눈물의 여왕 (Original Television Soundtrack), Pt.4 - Single]
 
-199. 2024  밤에 피는 꽃
+217. 2024  밤에 피는 꽃
      배역: 조여화(이하늬) · 박수호(이종원)
      OST : Zeenan — 내 사랑 내 곁에
      음원: Zeenan / 내 사랑 내 곁에  [밤에 피는 꽃 (Original Soundtrack) Pt.1 - Single]
 
-200. 2024  백설공주에게 죽음을
+218. 2024  백설공주에게 죽음을
      배역: 고정우(변요한) · 노상철(고준)
      OST : 김현도 — Endless Night
      음원: 김현도 / Endless Night  [백설공주에게 죽음을-Black Out (Original TV Series Soundtrack)]
 
-201. 2024  선재 업고 튀어
+219. 2024  선재 업고 튀어
      배역: 류선재(변우석) · 임솔(김혜윤)
      OST : 이클립스 — 소나기
      음원: 이클립스 / 소나기  [선재 업고 튀어, Pt. 1 (Original Soundtrack)]
 
-202. 2024  수사반장 1958
+220. 2024  수사반장 1958
      배역: 박영한(이제훈) · 김상순(이동휘)
      OST : 윤용남 — 수사반장 (1958)
      음원: 윤용남 / 수사반장 (1958)  [수사반장 1958 (Original Television Soundtrack)]
 
-203. 2024  엄마친구아들
+221. 2024  엄마친구아들
      배역: 배석류(정소민) · 최승효(정해인)
      OST : 정해인 — 꺼내지 못한 말
      음원: 정해인 / 꺼내지 못한 말  [엄마친구아들 (Original Soundtrack)]
 
-204. 2024  열혈사제 2
+222. 2024  열혈사제 2
      배역: 김해일(김남길) · 박경선(이하늬)
      OST : PLAVE — 멈추지 않아
      음원: PLAVE / 멈추지 않아  [열혈사제2 (Original Soundtrack) Part.2 - Single]
 
-205. 2024  정년이
+223. 2024  정년이
      배역: 윤정년(김태리) · 허영서(신예은)
      OST : 매란국극단 — 위에선 한나라가, 누굴까 그 사람
      음원: 매란국극단 / 위에선 한나라가, 누굴까 그 사람  [정년이, Pt. 4 : 목포의 청춘&자명고 (Original Soundtrack)]
 
-206. 2024  지금 거신 전화는
+224. 2024  지금 거신 전화는
      배역: 백사언(유연석) · 홍희주(채수빈)
      OST : 임현식 — See The Light
      음원: 임현식 / See The Light  [지금 거신 전화는 (Original Soundtrack)]
 
-207. 2024  커넥션
+225. 2024  커넥션
      배역: 장재경(지성) · 오윤진(전미도)
      OST : 설호승 — The Day
      음원: 설호승 / The Day  [커넥션, Pt. 1 (Original Soundtrack) - Single]
 
-208. 2025  견우와 선녀
+226. 2024  하이드
+     배역: 나문영(이보영) · 차성재(이무생)
+     OST : 제이세라 — 서약
+     음원: 제이세라 / 서약  [피도 눈물도 없이  (Original Television Soundtrack), Pt. 9 - Single]
+
+227. 2025  견우와 선녀
      배역: 박견우(추영우) · 성선녀(조이현)
      OST : 추영우 — 안녕
      음원: 추영우 / 안녕  [견우와 선녀, Pt. 3 (Original Soundtrack) - Single]
 
-209. 2025  귀궁
+228. 2025  귀궁
      배역: 여리(육성재) · 강철(김지연)
      OST : 이규옥 — 귀궁
      음원: 이규옥 / 귀궁  [귀궁 : Original Television Soundtrack]
 
-210. 2025  언더커버 하이스쿨
+229. 2025  언더커버 하이스쿨
      배역: 정해성(서강준) · 오수아(진기주)
      OST : 한경수 — 내 이름을 불러줘
      음원: 한경수 / 내 이름을 불러줘  [언더커버 하이스쿨 (Original Soundtrack)]
 
-211. 2025  폭싹 속았수다
+230. 2025  폭싹 속았수다
      배역: 양관식(박보검) · 오애순(아이유)
      OST : 마마스 — 폭싹 속았수다
      음원: PAN:DER / 폭싹 속았수다  [폭싹 속았수다 - Single]

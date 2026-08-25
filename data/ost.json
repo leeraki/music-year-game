@@ -3,8 +3,58 @@
  "mode": "ost",
  "source": "iTunes Search API (30초 미리듣기)",
  "note": "year 는 작품의 출시 연도(영화=개봉, 드라마=첫 방영)이며 게임의 정답이다.",
- "count": 211,
+ "count": 230,
  "songs": [
+  {
+   "id": "o1620461826",
+   "year": 1992,
+   "work": "질투",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "하영호",
+     "actor": "최수종"
+    },
+    {
+     "name": "유하경",
+     "actor": "최진실"
+    }
+   ],
+   "song": "질투",
+   "artist": "유승범",
+   "itunesTrackId": 1620461826,
+   "itunesTitle": "질투",
+   "itunesArtist": "유승범",
+   "album": "질투 (Original Sound Track)",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/25/59/74/255974c7-347d-a3c6-ff23-29c6a734e9f6/mzaf_1272533611957409.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/60/c9/0d/60c90d06-9613-ccd6-b017-a3e78f5728e1/8806384559118_cover.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "o1617076100",
+   "year": 2000,
+   "work": "가을동화",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "윤준서",
+     "actor": "송승헌"
+    },
+    {
+     "name": "윤은서",
+     "actor": "송혜교"
+    }
+   ],
+   "song": "기도",
+   "artist": "Five Sense",
+   "itunesTrackId": 1617076100,
+   "itunesTitle": "기도",
+   "itunesArtist": "정일영",
+   "album": "가을동화 (Original Television Soundtrack)",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/6b/36/0d/6b360d7b-8a89-b035-dfc6-70bb7da1a394/mzaf_5790008113688511380.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/62/d1/a0/62d1a0bc-6425-89ea-718d-29eed50ad976/8809856786593.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
   {
    "id": "o1418854136",
    "year": 2001,
@@ -53,6 +103,31 @@
    "album": "겨울연가 (Original Television Soundtrack)",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/0c/93/14/0c9314c2-5b41-a7bf-6aec-694e1fb9aaa3/mzaf_7239530911605085488.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/37/44/c7/3744c75b-17c6-4a62-7553-c8da677871c6/8806384573343.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "o1260499818",
+   "year": 2002,
+   "work": "로망스",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "김채원",
+     "actor": "김하늘"
+    },
+    {
+     "name": "최관우",
+     "actor": "김재원"
+    }
+   ],
+   "song": "이별이 오지 못하게",
+   "artist": "이가은",
+   "itunesTrackId": 1260499818,
+   "itunesTitle": "이별이 오지 못하게",
+   "itunesArtist": "페이지",
+   "album": "Unforgettable",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/88/a5/6e/88a56e4f-dd1c-9ae4-1d65-af0096437db7/mzaf_1812036237722396482.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/4b/04/49/4b044907-90eb-ec76-7969-72a5faba649c/108307_1.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
@@ -106,6 +181,31 @@
    "spotifyUri": null
   },
   {
+   "id": "o1678054810",
+   "year": 2003,
+   "work": "다모",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "장채옥",
+     "actor": "하지원"
+    },
+    {
+     "name": "황보윤",
+     "actor": "이서진"
+    }
+   ],
+   "song": "비가",
+   "artist": "김범수",
+   "itunesTrackId": 1678054810,
+   "itunesTitle": "비가",
+   "itunesArtist": "김범수",
+   "album": "다모 OST - Single",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/2c/8a/91/2c8a91e3-3e5e-3049-6428-fa58a059a4d9/mzaf_11895243702782080031.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/dd/62/d3/dd62d399-2a4f-2adb-acd9-f8cc413208ab/cover_KM0017020_1.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
    "id": "o1798620649",
    "year": 2003,
    "work": "대장금",
@@ -128,6 +228,31 @@
    "album": "대장금 (Original Television Soundtrack)",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/a0/b5/a2/a0b5a28d-d219-2ff0-35ba-412346f799ec/mzaf_5251735717365971218.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f4/e3/d4/f4e3d421-ff0d-aa68-6947-b6621166e4ca/8809596428630.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "o1676045260",
+   "year": 2003,
+   "work": "올인",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "이인하",
+     "actor": "이병헌"
+    },
+    {
+     "name": "민수연",
+     "actor": "송혜교"
+    }
+   ],
+   "song": "처음 그날처럼",
+   "artist": "박용하",
+   "itunesTrackId": 1676045260,
+   "itunesTitle": "처음 그 날처럼",
+   "itunesArtist": "박용하",
+   "album": "올인 (Original Soundtrack)",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/f9/93/69/f9936973-481d-bb60-08d9-a1977048ff80/mzaf_16983208704423365856.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/59/9a/6c/599a6c1e-009c-dc91-6a69-e892c396ff01/14972980.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
@@ -206,6 +331,31 @@
    "spotifyUri": null
   },
   {
+   "id": "o1547814412",
+   "year": 2004,
+   "work": "아일랜드",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "강국",
+     "actor": "현빈"
+    },
+    {
+     "name": "이중아",
+     "actor": "이나영"
+    }
+   ],
+   "song": "그대로 있어주면 돼",
+   "artist": "김장훈",
+   "itunesTrackId": 1547814412,
+   "itunesTitle": "그대로 있어주면 돼",
+   "itunesArtist": "김장훈",
+   "album": "아일랜드 (Original Soundtrack)",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/5d/d7/1a/5dd71a6a-c6a5-0d0d-b43c-5ff0d066ec84/mzaf_1420903826119445647.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/91/af/e9/91afe918-f5b4-0a96-b914-82f56e97c1b8/192994001702.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
    "id": "o1451923503",
    "year": 2004,
    "work": "파리의 연인",
@@ -278,6 +428,31 @@
    "album": "내 이름은 김삼순 (Original Television Soundtrack)",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/63/69/5d/63695d80-507f-53a2-f959-9084b9cb6a78/mzaf_5793691479295388799.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/22/6a/a3/226aa3c0-0a2f-3ea5-aea9-5e3afb8f6434/jacket-8009042.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "o6777020035",
+   "year": 2005,
+   "work": "마이걸",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "설공찬",
+     "actor": "이동욱"
+    },
+    {
+     "name": "주유린",
+     "actor": "이다해"
+    }
+   ],
+   "song": "상어를 사랑한 인어",
+   "artist": "조관우",
+   "itunesTrackId": 6777020035,
+   "itunesTitle": "상어를 사랑한 인어",
+   "itunesArtist": "조관우",
+   "album": "마이 걸 (Original Television Soundtrack)",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/dd/13/43/dd13430a-96f2-63d7-47d4-036afeecc23f/mzaf_17768818535473257171.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9b/25/d5/9b25d5d2-9dc3-b97d-e327-bd43a7b7fcb4/191953100906.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
@@ -403,6 +578,31 @@
    "album": "소문난 칠공주 (Original Television Soundtrack)",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/75/2a/fb/752afb7b-1dc2-9767-d20f-38885c2aeda6/mzaf_15648727218456677150.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/7b/a6/f5/7ba6f50f-9958-13c1-61ce-789393881597/516452_1.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "o1465580578",
+   "year": 2006,
+   "work": "주몽",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "주몽",
+     "actor": "송일국"
+    },
+    {
+     "name": "소서노",
+     "actor": "한혜진"
+    }
+   ],
+   "song": "하늘이여 제발",
+   "artist": "인순이",
+   "itunesTrackId": 1465580578,
+   "itunesTitle": "하늘이여 제발 (From \"주몽\")",
+   "itunesArtist": "인순이",
+   "album": "Drama Original Soundtrack Collection : 뒷걸음",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/bc/0b/30/bc0b30e5-bfaa-f218-64d4-4c64f312010e/mzaf_759487968090514494.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/7b/01/21/7b0121af-1001-6788-34d8-26bf8d98ec03/cover_dramacollection.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
@@ -631,6 +831,31 @@
    "spotifyUri": null
   },
   {
+   "id": "o1100570702",
+   "year": 2008,
+   "work": "온에어",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "이경민",
+     "actor": "박용하"
+    },
+    {
+     "name": "서영은",
+     "actor": "김하늘"
+    }
+   ],
+   "song": "한가지 말",
+   "artist": "FT아일랜드",
+   "itunesTrackId": 1100570702,
+   "itunesTitle": "한가지말",
+   "itunesArtist": "FTISLAND",
+   "album": "Rock Prince",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/14/87/e0/1487e017-3864-bb68-07b5-284a1cd04f4f/mzaf_11340896746900304688.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music49/v4/a4/18/b6/a418b6c3-cdbf-a9a0-7fd8-2d2dd5986ce4/FTISLAND_rock_prince_1400.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
    "id": "o1798074152",
    "year": 2008,
    "work": "이산",
@@ -803,6 +1028,31 @@
    "album": "선덕여왕 (Original Television Soundtrack)",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/eb/a1/d3/eba1d3c2-3621-6510-86ed-f63805c1c087/mzaf_7911801025041060044.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/12/f9/f7/12f9f702-9109-0ef2-87c0-5b787757845f/cover_OST.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "o372996611",
+   "year": 2009,
+   "work": "스타일",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "박기자",
+     "actor": "김혜수"
+    },
+    {
+     "name": "서우진",
+     "actor": "류시원"
+    }
+   ],
+   "song": "죽기 아니면 살기",
+   "artist": "바비킴",
+   "itunesTrackId": 372996611,
+   "itunesTitle": "죽기 아니면 살기",
+   "itunesArtist": "바비킴",
+   "album": "드림 Dream (SBS 월화드라마) [Original Television Soundtrack]",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/28/25/e1/2825e10a-cb15-c6d7-4f17-409f5952047a/mzaf_3841237005412405246.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music/2e/15/97/mzi.mzwzjqfr.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
@@ -1306,6 +1556,31 @@
    "spotifyUri": null
   },
   {
+   "id": "o1577667288",
+   "year": 2012,
+   "work": "신의",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "최영",
+     "actor": "이민호"
+    },
+    {
+     "name": "은수",
+     "actor": "김희선"
+    }
+   ],
+   "song": "Carry On",
+   "artist": "알리",
+   "itunesTrackId": 1577667288,
+   "itunesTitle": "Carry On",
+   "itunesArtist": "알리",
+   "album": "신의 (Original Television Soundtrack)",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/b3/97/d2/b397d22e-c99f-4b1c-887f-a016158f9bc2/mzaf_18343821936640975002.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/62/60/46/626046fc-9e66-8560-7039-e9a9e808ca49/8804775178269.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
    "id": "o1575493930",
    "year": 2012,
    "work": "아랑사또전",
@@ -1581,6 +1856,31 @@
    "spotifyUri": null
   },
   {
+   "id": "o1627440060",
+   "year": 2013,
+   "work": "상속자들",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "김탄",
+     "actor": "이민호"
+    },
+    {
+     "name": "차은상",
+     "actor": "박신혜"
+    }
+   ],
+   "song": "Moment",
+   "artist": "창민",
+   "itunesTrackId": 1627440060,
+   "itunesTitle": "Moment",
+   "itunesArtist": "이창민",
+   "album": "상속자들, Pt. 3 (Original Television Soundtrack) - Single",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/b0/7f/44/b07f44c9-72b5-092a-dc9c-c28b812ad4b2/mzaf_5035792774023454663.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/b7/f9/38/b7f93864-e6db-ae3f-7167-fced2de18e52/888272100297_Cover.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
    "id": "o1649461007",
    "year": 2013,
    "work": "응답하라 1994",
@@ -1781,6 +2081,31 @@
    "spotifyUri": null
   },
   {
+   "id": "o1655610509",
+   "year": 2014,
+   "work": "미생",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "장그래",
+     "actor": "임시완"
+    },
+    {
+     "name": "안영이",
+     "actor": "강소라"
+    }
+   ],
+   "song": "날아",
+   "artist": "이승열",
+   "itunesTrackId": 1655610509,
+   "itunesTitle": "날아",
+   "itunesArtist": "이승열",
+   "album": "미생 (Original Television Soundtrack)",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/22/0a/be/220abe5e-5f02-c58e-51a5-923a117c4e71/mzaf_17373752138253200436.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/b2/c2/02/b2c20269-afea-a28c-cd43-4dc7ac0f7f5b/8809435812170_Cover.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
    "id": "o1804637528",
    "year": 2014,
    "work": "쓰리데이즈",
@@ -1903,6 +2228,31 @@
    "album": "태양은 가득히 (Original Television Soundtrack), Pt. 4 - Single",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/a2/40/73/a240737f-4293-239f-bcbd-bec62b534483/mzaf_4767917836791764170.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/c0/89/c1/c089c1dc-9269-373d-0f1d-fd5a97258af8/KM0002653-_OST_Part.4-0324.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "o1664672951",
+   "year": 2014,
+   "work": "힐러",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "서정후",
+     "actor": "지창욱"
+    },
+    {
+     "name": "채영신",
+     "actor": "박민영"
+    }
+   ],
+   "song": "Eternal Love",
+   "artist": "Michael Learns To Rock",
+   "itunesTrackId": 1664672951,
+   "itunesTitle": "Eternal Love",
+   "itunesArtist": "Michael Learns to Rock",
+   "album": "Healer (Original Television Soundtrack)",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview113/v4/12/38/f6/1238f6df-28ae-7ef3-2b6f-eaeb66917e3e/mzaf_17998689110693541905.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/5c/15/ed/5c15ed66-ca11-8490-f6f5-d89d537083b4/190295658342.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
@@ -2403,6 +2753,31 @@
    "album": "보이스, Pt. 2 (Original Television Soundtrack) - Single",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/b1/5d/68/b15d681e-7d56-2b09-91a6-2872b18ab1ce/mzaf_6326086308701429865.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/98/14/22/98142225-3b74-4582-1005-181759fc98b6/8809534462832_Cover.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "o1610712391",
+   "year": 2016,
+   "work": "시그널",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "박해영",
+     "actor": "이제훈"
+    },
+    {
+     "name": "차수현",
+     "actor": "김혜수"
+    }
+   ],
+   "song": "회상",
+   "artist": "장범준",
+   "itunesTrackId": 1610712391,
+   "itunesTitle": "회상",
+   "itunesArtist": "장범준",
+   "album": "시그널 (Original Television Soundtrack)",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/95/6a/2f/956a2f62-488f-1d3b-01ed-c518611858de/mzaf_13460846850493789430.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/0f/2a/76/0f2a7607-e7a6-fa82-49f1-034a7e31ca69/8809484113204_Cover.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
@@ -3356,6 +3731,31 @@
    "spotifyUri": null
   },
   {
+   "id": "o1721099412",
+   "year": 2019,
+   "work": "초콜릿",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "이강",
+     "actor": "윤계상"
+    },
+    {
+     "name": "문차영",
+     "actor": "하지원"
+    }
+   ],
+   "song": "그저 바라본다",
+   "artist": "에일리",
+   "itunesTrackId": 1721099412,
+   "itunesTitle": "그저 바라본다",
+   "itunesArtist": "에일리",
+   "album": "초콜릿, Pt.5 (Original Television Soundtrack) - Single",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/49/69/c4/4969c4e3-b8e2-4259-60eb-7fb6c3f271b7/mzaf_13859251498313413750.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/22/10/51/22105123-3fc0-31c3-7507-3fa2b935b0dc/8718857993568.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
    "id": "o1800374528",
    "year": 2019,
    "work": "퍼퓸",
@@ -3378,6 +3778,31 @@
    "album": "퍼퓸 (Original Television Soundtrack), Pt. 6 - Single",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/1c/bc/ac/1cbcac1d-cf16-f2fc-4820-c9e2ed55ad94/mzaf_6248417812795433955.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/38/74/4f/38744f37-d813-0d9a-cf94-d06a4b7d9ccd/8809669791838.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "o1860003036",
+   "year": 2019,
+   "work": "해치",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "이금",
+     "actor": "정일우"
+    },
+    {
+     "name": "여지",
+     "actor": "고아라"
+    }
+   ],
+   "song": "바람이 전하는 이야기",
+   "artist": "전우성",
+   "itunesTrackId": 1860003036,
+   "itunesTitle": "바람이 전하는 이야기",
+   "itunesArtist": "전우성",
+   "album": "해치 (Original Soundtrack) Part.2 - Single",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/78/85/ea/7885eace-7ca6-143b-1b1b-aee19f4ba1af/mzaf_15702714124931859629.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e3/1e/54/e31e547b-d431-6d38-e834-bc7ccccb2c7d/191953491493.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
@@ -3803,6 +4228,31 @@
    "album": "라켓소년단 (Original Television Soundtrack), Pt. 1 - Single",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/a0/8a/f6/a08af6f1-429d-76ce-7d01-444f2997814c/mzaf_10887280456643097477.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/91/7c/b3/917cb3ec-64d3-f14b-4af0-d6ecf249104b/8809784748748.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "o1789487908",
+   "year": 2021,
+   "work": "마우스",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "정바름",
+     "actor": "이승기"
+    },
+    {
+     "name": "고무치",
+     "actor": "이희준"
+    }
+   ],
+   "song": "괜찮아",
+   "artist": "소정",
+   "itunesTrackId": 1789487908,
+   "itunesTitle": "괜찮아",
+   "itunesArtist": "이소정",
+   "album": "마우스 (Original Television Soundtrack), Pt. 1 - Single",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/bb/69/0b/bb690b98-e535-7d9d-4626-2b617ae861e1/mzaf_18181632725033263725.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/5b/06/96/5b0696c4-3818-b902-8437-5dde3c81ea7b/888272122954.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
@@ -5178,6 +5628,31 @@
    "album": "커넥션, Pt. 1 (Original Soundtrack) - Single",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/cb/7b/02/cb7b02ba-7a59-bc72-46c5-5652a2238c8d/mzaf_4448884259950472846.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d0/57/6f/d0576fde-a165-4fd9-6fb1-63f31ea98e7c/8804775304415.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "o1790662202",
+   "year": 2024,
+   "work": "하이드",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "나문영",
+     "actor": "이보영"
+    },
+    {
+     "name": "차성재",
+     "actor": "이무생"
+    }
+   ],
+   "song": "서약",
+   "artist": "제이세라",
+   "itunesTrackId": 1790662202,
+   "itunesTitle": "서약",
+   "itunesArtist": "제이세라",
+   "album": "피도 눈물도 없이  (Original Television Soundtrack), Pt. 9 - Single",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/b6/54/4f/b6544f8c-c378-1433-7c08-34fe2d9e4903/mzaf_12846222009642335446.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c8/a5/c1/c8a5c133-0cfd-69ac-5552-e19454477226/8800247782835.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
