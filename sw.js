@@ -7,7 +7,7 @@
  * 미리 전부 받아두지는 않는다 — 200곡이면 200MB 가까워서 설치가 무거워진다.
  */
 
-const VERSION = 'v18';   // 파일 구성이 바뀌면 올린다. 옛 캐시가 남아 새 코드가 안 도는 일을 막는다.
+const VERSION = 'v19';   // 파일 구성이 바뀌면 올린다. 옛 캐시가 남아 새 코드가 안 도는 일을 막는다.
 const SHELL_CACHE = `song-game-shell-${VERSION}`;
 const AUDIO_CACHE = `song-game-audio-${VERSION}`;
 const AUDIO_CACHE_MAX = 80;   // 최근 재생한 곡 위주로 이 개수까지만 보관

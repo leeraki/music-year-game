@@ -19,7 +19,7 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r13-langver';
+const RESOLVER_BUILD = 'r14-revalidate';
 // 찾아 둔 곡을 버릴지 판단하는 기준. 곡을 고르는 규칙이 바뀔 때만 올린다.
 // 판번호에 묶었더니 요청 제한 대응처럼 매칭과 무관한 수정에도 230곡을 다시
 // 찾게 되어, 그러느라 제한을 또 소진했다.
@@ -333,9 +333,49 @@ class SpotifyTrackResolver {
     try { saved = JSON.parse(localStorage.getItem(KEY_URIMAP) || '{}'); } catch (_) {}
     // 매칭 규칙이 바뀌면 예전에 붙여 둔 곡은 믿을 수 없다. 규칙을 고쳐 놓고도
     // 캐시가 남아 옛 결과가 그대로 쓰이면 고친 보람이 없다.
-    const fresh = saved.rules === MATCH_RULES;
-    this.map = fresh ? (saved.uris || {}) : {};
-    this.cache = fresh ? (saved.tracks || {}) : {};
+    this.map = saved.uris || {};
+    this.cache = saved.tracks || {};
+    this.staleRules = saved.rules !== MATCH_RULES;
+  }
+
+  /**
+   * 규칙이 바뀌었을 때 찾아 둔 것을 통째로 버리지 않는다.
+   *
+   * 처음엔 규칙이 바뀌면 전부 지웠는데, 그러면 멀쩡히 붙어 있던 곡까지 다시
+   * 찾느라 Spotify 할당량을 태운다. 저장해 둔 곡 정보로 지금 규칙에도 맞는지
+   * 그 자리에서 확인하고, 어긋나는 것만 지운다. 네트워크는 쓰지 않는다.
+   */
+  revalidate(songs) {
+    if (!this.staleRules) return null;
+    let kept = 0, dropped = 0;
+    for (const song of songs) {
+      if (!this.map[song.id]) continue;
+      if (SpotifyTrackResolver._stillValid(this.cache[song.id], song)) { kept++; continue; }
+      delete this.map[song.id];
+      delete this.cache[song.id];
+      dropped++;
+    }
+    this.staleRules = false;
+    this._save();
+    return { kept, dropped };
+  }
+
+  /** 저장해 둔 매칭이 지금 규칙으로도 받아들여지는가. */
+  static _stillValid(t, song) {
+    if (!t || !t.name) return false;      // 곡 정보를 안 남긴 옛 기록
+    const track = {
+      name: t.name,
+      artists: [{ name: t.artists || '' }],
+      album: { name: t.album || '', release_date: String(t.year || '') },
+    };
+    const m = SpotifyTrackResolver._titleMatch(track.name, song);
+    if (m <= 0) return false;
+    if (SpotifyTrackResolver._isInstrumental(track)) return false;
+    // 라이브·리믹스가 붙어 있었다면 규칙이 바뀐 김에 원곡을 다시 찾아 볼 만하다
+    if (SpotifyTrackResolver._isVariant(track)) return false;
+    const artistOk = SpotifyTrackResolver._artistOk(song.artist, t.artists || '');
+    if (song.work) return artistOk || SpotifyTrackResolver._onWorkAlbum(t.album, song.work);
+    return artistOk || m >= 1;
   }
 
   _save() {
@@ -896,6 +936,9 @@ async function diagnoseSpotify(sample, onStep, active = null) {
  */
 async function auditSpotifyMatches(songs, onResult, { delay = 400, signal } = {}) {
   const resolver = new SpotifyTrackResolver();
+  const moved = resolver.revalidate(songs);
+  if (moved) onResult({ notice: `곡 고르는 규칙이 바뀌어 다시 확인했습니다 — `
+    + `${moved.kept}곡은 그대로 두고 ${moved.dropped}곡만 다시 찾습니다.` });
   let blocked = 0;
 
   for (let i = 0; i < songs.length; i++) {

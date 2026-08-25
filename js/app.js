@@ -508,7 +508,16 @@
 
     const count = { ok: 0, warn: 0, fail: 0 };
     auditLines = [];
-    const render = ({ song, track, state, note, done, total, halted }) => {
+    const render = ({ song, track, state, note, done, total, halted, notice }) => {
+      if (notice) {                        // 검사 시작 전 안내
+        const li = document.createElement('li');
+        li.className = 'warn';
+        li.textContent = notice;
+        el.auditList.appendChild(li);
+        auditLines.push(`※ ${notice}
+`);
+        return;
+      }
       if (halted) {                        // 중단 안내는 곡이 아니라 알림이다
         el.auditProgress.textContent =
           `${done}/${total}  ·  정상 ${count.ok} · 확인 ${count.warn} · 실패 ${count.fail}  (중단됨)`;
