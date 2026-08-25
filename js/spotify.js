@@ -64,6 +64,9 @@ const ARTIST_ALIASES = {
   '서태지와 아이들': ['seo taiji and boys'], '신화': ['shinhwa'],
   '플레이브': ['plave'], '피프티피프티': ['fifty fifty'], '큐더블유이알': ['qwer'],
   '헌트릭스': ['huntr/x'], '아이오아이': ['i.o.i', 'ioi'],
+  '공일오비': ['015b'], '워너원': ['wanna one'], '이선희': ['lee sun-hee', 'lee sunhee'],
+  '김완선': ['kim wan-sun', 'kim wansun'], '조용필': ['cho yong-pil'],
+  '이문세': ['lee moon-sae'], '나훈아': ['na hoon-a'], '심수봉': ['sim su-bong'],
 };
 
 // ---------------------------------------------------------------- PKCE 유틸
@@ -248,6 +251,51 @@ class SpotifyTrackResolver {
   static _title(song) { return song.title || song.song || ''; }
 
   /**
+   * 비교용 제목 변형들.
+   *
+   * 한 곡의 제목이 한국어와 영어를 괄호로 함께 담는 일이 잦다
+   * ('GANGNAM STYLE (강남스타일)', '소원을 말해봐 (Genie)').
+   * 괄호 안을 버리면 한쪽 언어만 남아 반대쪽 표기와 영영 안 맞는다.
+   * 전체 / 괄호 밖 / 괄호 안을 모두 만들어 하나라도 걸리면 같은 곡으로 본다.
+   */
+  static _titleForms(s) {
+    const raw = s || '';
+    const out = new Set([
+      SpotifyTrackResolver._norm(raw.replace(/[()[\]]/g, ' ')),  // 괄호만 지우고 내용은 남김
+      SpotifyTrackResolver._norm(raw),                            // 괄호 안을 버린 형태
+    ]);
+    for (const m of raw.matchAll(/[(\[]([^)\]]*)[)\]]/g)) {
+      out.add(SpotifyTrackResolver._norm(m[1]));                  // 괄호 안만
+    }
+    out.delete('');
+    return [...out];
+  }
+
+  /** 이 곡을 가리키는 제목 후보. 수집 때 확인한 공식 표기도 함께 쓴다. */
+  static _titleCandidates(song) {
+    const forms = new Set();
+    for (const t of [SpotifyTrackResolver._title(song), song.itunesTitle]) {
+      SpotifyTrackResolver._titleForms(t).forEach((f) => forms.add(f));
+    }
+    return [...forms];
+  }
+
+  /** 두 제목이 같은 곡을 가리키는가. */
+  static _titleMatch(trackName, song) {
+    const got = SpotifyTrackResolver._titleForms(trackName);
+    const want = SpotifyTrackResolver._titleCandidates(song);
+    let best = 0;
+    for (const g of got) {
+      for (const w of want) {
+        if (!g || !w) continue;
+        if (g === w) return 1;
+        if (g.includes(w) || w.includes(g)) best = Math.max(best, 0.8);
+      }
+    }
+    return best;
+  }
+
+  /**
    * 같은 가수인가.
    *
    * Spotify 는 한국 가수를 영문명으로 올려 둔 경우가 많다(아이유 → IU,
@@ -291,9 +339,8 @@ class SpotifyTrackResolver {
   }
 
   static _score(track, song, rank = 0) {
-    const t = SpotifyTrackResolver._norm(track.name);
-    const want = SpotifyTrackResolver._norm(SpotifyTrackResolver._title(song));
-    if (!want) return -99;
+    if (!SpotifyTrackResolver._title(song)) return -99;
+    const m = SpotifyTrackResolver._titleMatch(track.name, song);
 
     // 가수가 다르면 제목이 같아도 다른 곡이다. iTunes 쪽에서 '폼생폼사'가 동명이곡으로
     // 잡혔던 사고와 같은 유형이라 여기서도 필수 조건으로 둔다.
@@ -301,15 +348,15 @@ class SpotifyTrackResolver {
     const artistOk = SpotifyTrackResolver._artistOk(song.artist, artists);
 
     let s = 0;
-    if (t === want) s += 5;                                   // 정확히 같으면 강한 신호
-    else if (t.includes(want) || want.includes(t)) s += 2;
+    if (m >= 1) s += 5;                                       // 정확히 같으면 강한 신호
+    else if (m > 0) s += 2;
     else return -50;                                          // 제목이 아예 다르면 탈락
 
     // 가수 표기가 안 맞아도 바로 버리지 않는다. 검색어에 이미 가수를 넣었으므로
     // 후보 자체가 그 가수로 좁혀져 있고, 표기 차이(아이유/IU)가 흔하기 때문이다.
     // 다만 제목까지 애매하면 다른 곡으로 본다.
     if (!artistOk) {
-      if (t !== want) return -50;
+      if (m < 1) return -50;
       s -= 1.5;
     }
 
@@ -346,16 +393,29 @@ class SpotifyTrackResolver {
 
     const title = SpotifyTrackResolver._title(song);
     const label = `${song.artist} - ${title}`;
-    // 한국어 곡명이 많아 필드 한정 검색보다 자유 질의가 더 잘 맞는다
-    const q = encodeURIComponent(`${song.artist} ${title}`);
-    const res = await SpotifyAuth.api(`/search?q=${q}&type=track&limit=10&market=KR`);
-    if (!res.ok) throw new Error(`Spotify 검색 실패 (${res.status})`);
 
-    const items = (await res.json()).tracks?.items || [];
-    const scored = items
-      .map((t, i) => ({ t, s: SpotifyTrackResolver._score(t, song, i) }))
-      .filter((x) => x.s > 0)
-      .sort((a, b) => b.s - a.s);
+    // 검색어가 하나뿐이면 표기가 다른 곡을 통째로 놓친다. 「나 홀로 뜰 앞에서」는
+    // Spotify 에 'Alone in Front of the Yard' 로만 올라와 있어 한글로는 영영 안 잡힌다.
+    // 곡을 수집할 때 확인해 둔 공식 표기를 두 번째 검색어로 쓴다.
+    const terms = [];
+    for (const t of [title, song.itunesTitle]) {
+      const q = t && `${song.artist} ${t}`;
+      if (q && !terms.includes(q)) terms.push(q);
+    }
+
+    // 한국어 곡명이 많아 필드 한정 검색보다 자유 질의가 더 잘 맞는다
+    let scored = [];
+    for (const term of terms) {
+      const res = await SpotifyAuth.api(
+        `/search?q=${encodeURIComponent(term)}&type=track&limit=10&market=KR`);
+      if (!res.ok) throw new Error(`Spotify 검색 실패 (${res.status})`);
+      const items = (await res.json()).tracks?.items || [];
+      scored = items
+        .map((t, i) => ({ t, s: SpotifyTrackResolver._score(t, song, i) }))
+        .filter((x) => x.s > 0)
+        .sort((a, b) => b.s - a.s);
+      if (scored.length) break;
+    }
     if (!scored.length) {
       throw new Error(`Spotify 에서 이 곡을 찾지 못했습니다: ${label}`);
     }
@@ -641,12 +701,10 @@ async function diagnoseSpotify(sample, onStep, active = null) {
  */
 async function auditSpotifyMatches(songs, onResult, { delay = 250, signal } = {}) {
   const resolver = new SpotifyTrackResolver();
-  const norm = SpotifyTrackResolver._norm;
 
   for (let i = 0; i < songs.length; i++) {
     if (signal?.aborted) return;
     const song = songs[i];
-    const want = SpotifyTrackResolver._title(song);
     let state = 'ok', note = '', track = null;
 
     try {
@@ -655,9 +713,13 @@ async function auditSpotifyMatches(songs, onResult, { delay = 250, signal } = {}
       if (!track) {
         note = '이전에 찾아 둔 결과 (상세 없음)';
       } else {
-        // 기대한 가수·곡과 실제로 붙은 트랙을 대조한다
-        const t = norm(track.name), w = norm(want);
-        if (!(t === w || t.includes(w) || w.includes(t))) { state = 'warn'; note = '곡 제목이 다릅니다'; }
+        // 기대한 가수·곡과 실제로 붙은 트랙을 대조한다.
+        // 판정 기준은 곡을 고를 때 쓴 것과 같아야 한다. 여기만 엄격하게 두면
+        // 'Alone in Front of the Yard'(「나 홀로 뜰 앞에서」)처럼 제대로 찾은 곡이
+        // 전부 경고로 뜬다.
+        if (SpotifyTrackResolver._titleMatch(track.name, song) <= 0) {
+          state = 'warn'; note = '곡 제목이 다릅니다';
+        }
         else if (!SpotifyTrackResolver._artistOk(song.artist, track.artists)) {
           state = 'warn'; note = `가수가 다릅니다 (기대 ${song.artist})`;
         }
