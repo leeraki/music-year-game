@@ -177,6 +177,9 @@ _VARIANT_KO_RE = re.compile(
 )
 
 
+_LANG_VER_RE = re.compile(r"(korean|japanese|chinese|english|mandarin)\s*(ver\.|version)", re.I)
+
+
 def is_variant(cand):
     """
     라이브·리믹스·재녹음 등 원곡과 음원이 다른 버전인가.
@@ -185,6 +188,9 @@ def is_variant(cand):
     품어 전부 라이브로 오판된다. 그래서 앞뒤 글자를 함께 본다.
     """
     blob = f"{cand.get('trackName', '')} {cand.get('collectionName', '')}"
+    # 'Korean Version' 은 언어판 표기다. 한국 가수에게는 오히려 그쪽이 원반이라
+    # 변형으로 보고 감점하면 정작 원곡을 밀어낸다.
+    blob = _LANG_VER_RE.sub(" ", blob)
     return bool(_VARIANT_RE.search(blob) or _VARIANT_KO_RE.search(blob))
 
 

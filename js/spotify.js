@@ -19,11 +19,11 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r12-resume';
+const RESOLVER_BUILD = 'r13-langver';
 // 찾아 둔 곡을 버릴지 판단하는 기준. 곡을 고르는 규칙이 바뀔 때만 올린다.
 // 판번호에 묶었더니 요청 제한 대응처럼 매칭과 무관한 수정에도 230곡을 다시
 // 찾게 되어, 그러느라 제한을 또 소진했다.
-const MATCH_RULES = 'm3-romanize-ost';
+const MATCH_RULES = 'm4-langver';
 // 로마자 표기가 얼마나 닮아야 같은 사람으로 볼지. 검사에 나온 실제 쌍으로 정했다.
 const ROMAN_MATCH = 0.72;
 
@@ -481,7 +481,10 @@ class SpotifyTrackResolver {
    * 없으면 차선으로 쓴다 — 라이브라도 알아들을 수는 있기 때문이다.
    */
   static _isVariant(track) {
-    const blob = `${track.name} ${track.album?.name || ''}`;
+    // 'Korean Version' 은 언어판 표기다. 한국 가수에게는 그쪽이 원반이라
+    // 변형으로 보고 감점하면 정작 원곡을 밀어낸다.
+    const blob = `${track.name} ${track.album?.name || ''}`
+      .replace(/(korean|japanese|chinese|english|mandarin)\s*(ver\.|version)/ig, ' ');
     return /(?<![a-z])(live|remix|acoustic|cover|ver\.|version|edit)(?![a-z])/i.test(blob)
         || /(?<![가-힣])(라이브|리믹스|어쿠스틱|재녹음)(?![가-힣])/.test(blob);
   }

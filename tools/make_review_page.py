@@ -27,8 +27,10 @@ from audit_songs import artist_matches, norm, load_alt_map  # noqa: E402
 ALT_MAP = load_alt_map()
 
 # 단어 단위로 본다. 문자열로 훑었더니 빅뱅의 음반 'Alive' 가 live 로 걸렸다.
+LANG_VER_RE = re.compile(r"(korean|japanese|chinese|english|mandarin)\s*(ver\.|version)", re.I)
+
 VARIANT_RE = re.compile(
-    r"(?<![a-z])(live|remix|acoustic|inst|ver\.|version)(?![a-z])"
+    r"(?<![a-z])(live|remix|acoustic|inst|ver\.|version|concert)(?![a-z])"
     r"|(?<![가-힣])(라이브|리믹스|어쿠스틱|재녹음)(?![가-힣])", re.I)
 
 
@@ -46,11 +48,14 @@ def classify(s):
     if not (same(seed_title, s.get("itunesTitle", "")) or (alt and same(alt, s.get("itunesTitle", "")))):
         reasons.append(f"제목 다름 → {s.get('itunesTitle')}")
 
-    if VARIANT_RE.search(f"{s.get('itunesTitle', '')} {s.get('album', '')}"):
+    blob = f"{s.get('itunesTitle', '')} {s.get('album', '')}"
+    # 'Korean Version' 은 언어판 표기라 오히려 원반이다. 변형으로 보면 안 된다.
+    blob = LANG_VER_RE.sub(" ", blob)
+    if VARIANT_RE.search(blob):
         reasons.append("라이브/리믹스 의심")
 
     gap = abs(s.get("itunesYear", s["year"]) - s["year"]) if MODE == "kpop" else 0
-    if gap > 3:
+    if gap > 2:                       # 3년으로 두었더니 재발매판 둘이 빠져나갔다
         reasons.append(f"연도 {gap}년 차 (iTunes {s.get('itunesYear')})")
 
     if any("불일치" in r or "다름" in r for r in reasons):
