@@ -19,7 +19,7 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r21-slower';
+const RESOLVER_BUILD = 'r22-export';
 // 찾아 둔 곡을 버릴지 판단하는 기준. 곡을 고르는 규칙이 바뀔 때만 올린다.
 // 판번호에 묶었더니 요청 제한 대응처럼 매칭과 무관한 수정에도 230곡을 다시
 // 찾게 되어, 그러느라 제한을 또 소진했다.
@@ -443,6 +443,24 @@ class SpotifyTrackResolver {
         };
       });
     }
+  }
+
+  /**
+   * 찾아 둔 것을 통째로 꺼낸다.
+   *
+   * Spotify 는 2026년 7월부터 개발 모드 할당량을 Client ID 가 아니라 개발자
+   * 계정 단위로 센다. 앱을 새로 만들어도 같은 통에서 빠져나간다. 한 번 쓴
+   * 할당량은 되돌릴 수 없으니, 어렵게 찾아 둔 것을 브라우저 안에만 두면
+   * 안 된다. 꺼내서 데이터 파일에 박아 두면 다시는 찾지 않아도 된다.
+   */
+  export() {
+    const uris = {}, tracks = {};
+    for (const [id, uri] of Object.entries(this.map)) {
+      if (!uri) continue;
+      uris[id] = uri;
+      if (this.cache[id]?.name) tracks[id] = this.cache[id];
+    }
+    return { rules: MATCH_RULES, count: Object.keys(uris).length, uris, tracks };
   }
 
   /** 저장해 둔 매칭이 지금 규칙으로도 받아들여지는가. */

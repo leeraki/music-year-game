@@ -41,7 +41,7 @@
     diagBtn: $('btn-diagnose'), diag: $('diag'),
     auditBtn: $('btn-audit'), audit: $('audit'), auditList: $('audit-list'),
     auditProgress: $('audit-progress'), auditStop: $('btn-audit-stop'),
-    auditCopy: $('btn-audit-copy'), auditText: $('audit-text'),
+    auditCopy: $('btn-audit-copy'), auditExport: $('btn-audit-export'), auditText: $('audit-text'),
     modeChips: $('mode-chips'), modeNote: $('mode-note'),
     work: $('reveal-work'), workType: $('reveal-worktype'),
     characters: $('reveal-characters'), ostSong: $('reveal-ost-song'),
@@ -583,6 +583,22 @@
   el.auditStop.addEventListener('click', () => auditAbort?.abort());
 
   // 결과를 그대로 옮겨 전달할 수 있게 텍스트로 뽑는다
+  // 찾아 둔 Spotify 곡을 파일로 옮기기 위해 꺼낸다. 개발 모드 할당량은
+  // 개발자 계정 단위라 다시 찾을 기회가 넉넉하지 않다.
+  el.auditExport.addEventListener('click', async () => {
+    const data = new SpotifyTrackResolver().export();
+    if (!data.count) { el.auditExport.textContent = '찾은 곡 없음'; return; }
+    const text = JSON.stringify(data);
+    try {
+      await navigator.clipboard.writeText(text);
+      el.auditExport.textContent = `${data.count}곡 복사됨`;
+      setTimeout(() => { el.auditExport.textContent = '찾은 곡 내보내기'; }, 2500);
+    } catch (_) {
+      el.auditText.value = text; el.auditText.hidden = false; el.auditText.select();
+      el.auditExport.textContent = '아래에서 직접 복사';
+    }
+  });
+
   el.auditCopy.addEventListener('click', async () => {
     if (!auditLines.length) { el.auditCopy.textContent = '결과 없음'; return; }
     const text = [
