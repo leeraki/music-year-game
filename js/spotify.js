@@ -19,7 +19,7 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r22-export';
+const RESOLVER_BUILD = 'r23-baked';
 // 찾아 둔 곡을 버릴지 판단하는 기준. 곡을 고르는 규칙이 바뀔 때만 올린다.
 // 판번호에 묶었더니 요청 제한 대응처럼 매칭과 무관한 수정에도 230곡을 다시
 // 찾게 되어, 그러느라 제한을 또 소진했다.
@@ -403,6 +403,7 @@ class SpotifyTrackResolver {
     await this._fillMissingTracks(songs);
     let kept = 0, dropped = 0;
     for (const song of songs) {
+      if (song.spotifyUri) { kept++; continue; }   // 파일에 박힌 것은 그대로 둔다
       if (!this.map[song.id]) continue;
       if (SpotifyTrackResolver._stillValid(this.cache[song.id], song)) { kept++; continue; }
       delete this.map[song.id];
@@ -422,7 +423,7 @@ class SpotifyTrackResolver {
    */
   async _fillMissingTracks(songs) {
     const need = songs
-      .map((s) => [s.id, (this.map[s.id] || '').split(':').pop()])
+      .map((s) => [s.id, (s.spotifyUri || this.map[s.id] || '').split(':').pop()])
       .filter(([id, tid]) => tid && !this.cache[id]?.name);
     for (let i = 0; i < need.length; i += 50) {
       const chunk = need.slice(i, i + 50);
@@ -689,7 +690,11 @@ class SpotifyTrackResolver {
    * 전곡을 훑어 '기대한 곡'과 '실제 매칭'을 대조하는 검사에 쓴다.
    */
   async resolveDetailed(song) {
-    if (song.spotifyUri) return { uri: song.spotifyUri, track: null, cached: true };
+    // 데이터에 박아 둔 주소가 있으면 찾지 않는다. 개발 모드 할당량은 개발자
+    // 계정 단위로 세므로, 한 번 찾은 곡을 다시 찾는 것이 가장 큰 낭비다.
+    if (song.spotifyUri) {
+      return { uri: song.spotifyUri, track: this.cache?.[song.id] || null, cached: true };
+    }
     if (this.map[song.id]) return { uri: this.map[song.id], track: this.cache?.[song.id] || null, cached: true };
 
     const title = SpotifyTrackResolver._title(song);
