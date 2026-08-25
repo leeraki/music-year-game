@@ -508,7 +508,18 @@
 
     const count = { ok: 0, warn: 0, fail: 0 };
     auditLines = [];
-    const render = ({ song, track, state, note, done, total }) => {
+    const render = ({ song, track, state, note, done, total, halted }) => {
+      if (halted) {                        // 중단 안내는 곡이 아니라 알림이다
+        el.auditProgress.textContent =
+          `${done}/${total}  ·  정상 ${count.ok} · 확인 ${count.warn} · 실패 ${count.fail}  (중단됨)`;
+        const li = document.createElement('li');
+        li.className = 'fail';
+        li.textContent = note;
+        el.auditList.appendChild(li);
+        auditLines.push(`
+※ ${note}`);
+        return;
+      }
       count[state] += 1;
       if (state !== 'ok') {
         // 그대로 붙여넣어 전달할 수 있도록 텍스트로도 쌓아 둔다
