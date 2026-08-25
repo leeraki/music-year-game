@@ -19,7 +19,7 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r11-halt';
+const RESOLVER_BUILD = 'r12-resume';
 // 찾아 둔 곡을 버릴지 판단하는 기준. 곡을 고르는 규칙이 바뀔 때만 올린다.
 // 판번호에 묶었더니 요청 제한 대응처럼 매칭과 무관한 수정에도 230곡을 다시
 // 찾게 되어, 그러느라 제한을 또 소진했다.
@@ -223,7 +223,7 @@ class SpotifyAuth {
   }
 
   /** 인증 헤더가 붙은 fetch. 401 이면 한 번 갱신해 재시도한다. */
-  static async api(path, options = {}, retry = true, tries = 5) {
+  static async api(path, options = {}, retry = true, tries = 1) {
     // 앱 단위로 막혀 있는 동안은 두드려 봐야 소용이 없다. 곡마다 다섯 번씩
     // 최대 1분을 기다리면 230곡 검사가 몇 시간이 된다.
     if (SpotifyAuth.blockedUntil && Date.now() < SpotifyAuth.blockedUntil) {
@@ -248,15 +248,12 @@ class SpotifyAuth {
       // Retry-After 는 CORS 기본 노출 목록에 없어 브라우저에서 못 읽는 일이 많다.
       // 그걸 모르고 기본값 3초로 물러섰다가 열네 곡이 그대로 실패했다.
       // 못 읽으면 점점 길게 기다린다.
+      // 오래 매달리지 않는다. 막힌 채로 계속 두드리면 제한이 더 길어진다.
+      // 한 번만 짧게 쉬었다 확인하고, 그래도 막혀 있으면 검사를 접는다.
       const hinted = parseInt(res.headers.get('Retry-After') || '', 10);
-      const steps = [5, 12, 25, 45, 60];
-      const wait = Number.isFinite(hinted) && hinted > 0
-        ? Math.min(60, hinted) : steps[Math.min(steps.length - 1, 5 - tries)];
+      const wait = Number.isFinite(hinted) && hinted > 0 ? Math.min(30, hinted) : 6;
       SpotifyAuth.throttled = true;
-      if (tries === 1) {
-        // 다 기다려 보고도 막혀 있으면 앱 단위로 잠긴 것이다. 잠시 손을 뗀다.
-        SpotifyAuth.blockedUntil = Date.now() + 60000;
-      }
+      SpotifyAuth.blockedUntil = Date.now() + 30000;   // 잠시 손을 뗀다
       await new Promise((r) => setTimeout(r, (wait + 1) * 1000));
       return SpotifyAuth.api(path, options, retry, tries - 1);
     }
@@ -901,11 +898,12 @@ async function auditSpotifyMatches(songs, onResult, { delay = 400, signal } = {}
   for (let i = 0; i < songs.length; i++) {
     if (signal?.aborted) return;
     const song = songs[i];
-    let state = 'ok', note = '', track = null;
+    let state = 'ok', note = '', track = null, hitNetwork = false;
 
     try {
       const r = await resolver.resolveDetailed(song);
       track = r.track;
+      hitNetwork = !r.cached;
       if (!track) {
         note = '이전에 찾아 둔 결과 (상세 없음)';
       } else {
@@ -941,6 +939,7 @@ async function auditSpotifyMatches(songs, onResult, { delay = 400, signal } = {}
     } catch (err) {
       state = 'fail';
       note = err.message;
+      hitNetwork = true;          // 실패도 부른 것은 부른 것이다
     }
     onResult({ song, track, state, note, done: i + 1, total: songs.length });
 
@@ -950,13 +949,16 @@ async function auditSpotifyMatches(songs, onResult, { delay = 400, signal } = {}
     if (blocked >= 3) {
       onResult({
         song, track: null, state: 'fail', done: i + 1, total: songs.length, halted: true,
-        note: 'Spotify 요청 제한에 걸려 검사를 멈춥니다. '
-            + '20~30분 뒤에 다시 시작하면 찾아 둔 곡은 건너뛰고 남은 곡부터 이어서 합니다.',
+        note: `Spotify 요청 제한에 걸려 검사를 멈춥니다 (${done - 1}곡까지 마침). `
+            + '찾아 둔 곡은 저장돼 있으니, 나중에 다시 누르면 남은 곡부터 바로 이어서 합니다. '
+            + '개발 모드 앱은 할당량이 작아 한 번에 다 못 돌 수 있습니다. 나눠서 돌리면 됩니다.',
       });
       return;
     }
-    // 한 번 제한에 걸렸으면 남은 곡은 천천히 간다. 검사는 한 번에 끝나야 한다.
-    const gap = SpotifyAuth.throttled ? Math.max(delay, 1800) : delay;
+    // 이미 찾아 둔 곡은 Spotify 를 부르지 않았으므로 쉴 이유가 없다.
+    // 이걸 빼먹어서 이어하기가 200곡 × 1.8초씩 헛돌았다.
+    // 새로 물어본 곡만, 그것도 제한에 걸린 뒤라면 더 천천히 간다.
+    const gap = !hitNetwork ? 0 : (SpotifyAuth.throttled ? Math.max(delay, 1800) : delay);
     if (!signal?.aborted && gap) await new Promise((r) => setTimeout(r, gap));
   }
 }
