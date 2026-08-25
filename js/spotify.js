@@ -19,7 +19,7 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r6-ratelimit';
+const RESOLVER_BUILD = 'r7-ost-album';
 
 // streaming 은 SDK 재생에, user-read-* 는 SDK 초기화에, user-modify-* 는 play/seek 에 필요하다
 const SCOPES = [
@@ -69,6 +69,14 @@ const ARTIST_ALIASES = {
   '공일오비': ['015b'], '워너원': ['wanna one'], '이선희': ['lee sun-hee', 'lee sunhee'],
   '김완선': ['kim wan-sun', 'kim wansun'], '조용필': ['cho yong-pil'],
   '이문세': ['lee moon-sae'], '나훈아': ['na hoon-a'], '심수봉': ['sim su-bong'],
+  // OST 검사에서 확인된 표기
+  '이수영': ['lee soo young'], '장근석': ['geun seok jang', 'jang keun suk'],
+  '박요한': ['park yo han'], '김장훈': ['kim jang-hoon'], '조관우': ['jo kwan woo'],
+  '윤건': ['yoon gun'], '베니': ['venny'], '이카': ['ihka'], '정아': ['jung-a'],
+  '강성': ['gang seong'], '류': ['ryu'], '이수': ['isu'], '남규리': ['nam gyu ri'],
+  '백지영': ['baek z young', 'baek ji young'], '더 원': ['the one'],
+  'sg wannabe': ['sg 워너비'], 'ft아일랜드': ['ftisland'],
+  '허밍어반스테레오': ['hus', 'humming urban stereo'],
 };
 
 // ---------------------------------------------------------------- PKCE 유틸
@@ -352,6 +360,18 @@ class SpotifyTrackResolver {
   }
 
   /**
+   * 이 트랙이 그 작품의 사운드트랙 음반에 실려 있는가.
+   *
+   * OST 는 같은 제목의 곡이 여기저기 있어 가수·제목만으로는 못 가린다.
+   * 그 작품의 음반에 실려 있다는 것이 '이 작품의 OST' 라는 가장 확실한 증거다.
+   * iTunes 로 곡을 모을 때도 같은 근거를 썼다.
+   */
+  static _onWorkAlbum(albumName, work) {
+    const w = SpotifyTrackResolver._norm(work);
+    return !!w && SpotifyTrackResolver._norm(albumName).includes(w);
+  }
+
+  /**
    * 연주곡인가. 가사가 없어 듣고 맞힐 수가 없으므로 아예 쓰지 않는다.
    * 라이브·리믹스와 달리 '차선책'조차 되지 못한다.
    */
@@ -379,6 +399,9 @@ class SpotifyTrackResolver {
     // 잡혔던 사고와 같은 유형이라 여기서도 필수 조건으로 둔다.
     const artists = track.artists.map((a) => a.name).join(' ');
     const artistOk = SpotifyTrackResolver._artistOk(song.artist, artists);
+    // 한국 가수는 로마자로 올라와 있는 일이 많다(류→Ryu, 김장훈→Kim Jang-Hoon).
+    // 작품 음반에 실려 있으면 표기가 달라도 그 곡이 맞다.
+    const onWork = SpotifyTrackResolver._onWorkAlbum(track.album?.name, song.work);
 
     let s = 0;
     if (m >= 1) s += 5;                                       // 정확히 같으면 강한 신호
@@ -390,8 +413,9 @@ class SpotifyTrackResolver {
     // 다만 제목까지 애매하면 다른 곡으로 본다.
     if (!artistOk) {
       if (m < 1) return -50;
-      s -= 1.5;
+      if (!onWork) s -= 1.5;
     }
+    if (onWork) s += 3;
 
     // 검색어에 가수 이름을 넣었으므로 Spotify 가 매긴 순위 자체가 신호다.
     // 이게 없으면 '젝스키스 폼생폼사' 검색에서 동명이곡이 이겨 버린다.
@@ -438,6 +462,9 @@ class SpotifyTrackResolver {
     const add = (q, strict) => {
       if (q && !terms.some((x) => x.q === q)) terms.push({ q, strict });
     };
+    // OST 는 작품명이 가수보다 확실한 단서다. 같은 제목의 곡이 여기저기 있어
+    // '태민 발걸음' 은 엉뚱한 가수의 동명곡을 물어 왔다.
+    for (const t of titles) if (song.work) add(`${song.work} ${t}`, false);
     for (const t of titles) {
       for (const n of SpotifyTrackResolver._artistNames(song.artist)) add(`${n} ${t}`, false);
     }
@@ -784,11 +811,17 @@ async function auditSpotifyMatches(songs, onResult, { delay = 250, signal } = {}
         if (SpotifyTrackResolver._titleMatch(track.name, song) <= 0) {
           state = 'warn'; note = '곡 제목이 다릅니다';
         }
-        else if (!SpotifyTrackResolver._artistOk(song.artist, track.artists)) {
+        else if (!SpotifyTrackResolver._artistOk(song.artist, track.artists)
+                 && !SpotifyTrackResolver._onWorkAlbum(track.album, song.work)) {
           state = 'warn'; note = `가수가 다릅니다 (기대 ${song.artist})`;
         }
         else if (/(?<![a-z])(live|remix|acoustic|ver\.|version|edit)(?![a-z])/i.test(track.name + ' ' + track.album)) {
           state = 'warn'; note = '원곡이 아닌 버전일 수 있습니다';
+        }
+        // OST 는 같은 제목의 곡이 여기저기 있다. 작품 음반이 아니면 조용히
+        // 엉뚱한 곡이 뽑힐 수 있는데, 게임 중에는 티가 안 나니 짚어 둔다.
+        else if (song.work && !SpotifyTrackResolver._onWorkAlbum(track.album, song.work)) {
+          state = 'warn'; note = `작품 음반이 아닙니다 (${song.work} OST 인지 확인 필요)`;
         }
       }
     } catch (err) {
