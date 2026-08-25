@@ -180,12 +180,17 @@
           <div class="audit-head"><span id="audit-progress"></span>
             <span class="audit-btns">
               <button type="button" class="btn btn-ghost btn-sm" id="btn-audit-copy">결과 복사</button>
-              <button type="button" class="btn btn-ghost btn-sm" id="btn-audit-export">찾은 곡 내보내기</button>
               <button type="button" class="btn btn-ghost btn-sm" id="btn-audit-stop">중지</button>
             </span></div>
           <ul id="audit-list"></ul>
-          <textarea id="audit-text" class="audit-text" readonly hidden></textarea>
         </div>
+
+        <button type="button" class="btn btn-ghost" id="btn-audit-export">찾은 곡 내보내기</button>
+        <p class="field-note">
+          지금까지 Spotify 에서 찾아 둔 곡 주소를 꺼냅니다. 이 브라우저에만 남아 있는
+          정보라, 파일에 옮겨 두면 다시 찾지 않아도 되고 다른 기기에서도 그대로 씁니다.
+        </p>
+        <textarea id="audit-text" class="audit-text" readonly hidden></textarea>
 
         <button type="button" class="btn btn-ghost" id="btn-qr">QR로 다른 기기에 옮기기</button>
         <div class="qr-box" id="qr-box" hidden>
