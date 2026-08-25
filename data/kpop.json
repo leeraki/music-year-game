@@ -62,18 +62,19 @@
    "spotifyUri": null
   },
   {
-   "id": "s1461741150",
    "year": 1982,
-   "title": "잊혀진 계절",
-   "artist": "이용",
-   "itunesTrackId": 1461741150,
-   "itunesTitle": "잊혀진 계절",
-   "itunesArtist": "이용",
-   "itunesYear": 1994,
-   "album": "골든 히트 앨범 2",
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/36/31/df/3631df76-9edf-16d9-7c05-99d9f8d0019f/mzaf_6688640169222000515.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/e0/df/00/e0df0040-03b8-e26e-731d-75bfe03bb063/8839.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "title": "종이학",
+   "alt": null,
+   "artist": "전영록",
+   "spotifyUri": null,
+   "id": "s386786990",
+   "itunesTrackId": 386786990,
+   "itunesTitle": "종이학",
+   "itunesArtist": "전영록",
+   "album": "전영록 2집",
+   "itunesYear": 1982,
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/4a/d9/5c/4ad95c7a-9d25-2871-e5fd-6b070bc6f073/mzaf_4199672370337257381.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music/61/cd/61/mzi.lbruhjtc.jpg/300x300bb.jpg"
   },
   {
    "id": "s311449549",
@@ -1141,18 +1142,19 @@
    "alt": "My Childhood Dream"
   },
   {
-   "id": "s1782311156",
+   "id": "s1420896289",
    "year": 1996,
-   "title": "겨울 이야기",
+   "title": "여름 이야기",
    "artist": "DJ DOC",
-   "itunesTrackId": 1782311156,
-   "itunesTitle": "겨울 이야기",
+   "itunesTrackId": 1420896289,
+   "itunesTitle": "여름 이야기",
    "itunesArtist": "DJ DOC",
-   "itunesYear": 2000,
-   "album": "Season‘s Greeting",
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/d1/4d/61/d14d6105-1c2b-431b-8b58-c4e0faa0bafb/mzaf_172710549974742259.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/84/42/b4/8442b47e-14ac-ef08-b578-c7ebe904810e/8800280888778.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "itunesYear": 1996,
+   "album": "Summer",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/9a/8e/6d/9a8e6d39-769f-713b-1d04-9d48381e4d52/mzaf_9803788539490697192.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/97/27/ca/9727cab1-8caf-df46-c491-a679e32cdb6f/104525_1.jpg/300x300bb.jpg",
+   "spotifyUri": null,
+   "alt": null
   },
   {
    "id": "s1060456814",
@@ -1482,18 +1484,19 @@
    "spotifyUri": null
   },
   {
-   "id": "s1477010072",
+   "id": "s1456211560",
    "year": 1998,
    "title": "루비",
    "artist": "핑클",
-   "itunesTrackId": 1477010072,
-   "itunesTitle": "루비 (슬픈 눈물)",
+   "itunesTrackId": 1456211560,
+   "itunesTitle": "루비 : 슬픈 눈물",
    "itunesArtist": "핑클",
-   "itunesYear": 2019,
-   "album": "FIN.K.L Best Album (2019 Remaster)",
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/eb/44/5d/eb445d75-cbee-6815-7ec8-9fa10ab9fcf6/mzaf_4570737023128226576.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/0b/b8/8f/0bb88f31-393b-a845-8b1b-6f0e26397ae1/cover-_Fin.K.L.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "itunesYear": 1998,
+   "album": "Fine Killing Liberty : Blue Rain",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/f0/70/7d/f0707d2a-feb5-c39f-d604-9a15a0a3214d/mzaf_4852700310364825644.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a7/61/51/a76151f7-d332-c152-2c91-07c1080a3c6c/cover-_Fine_Killing_Liberty_Blue_Rain.jpg/300x300bb.jpg",
+   "spotifyUri": null,
+   "alt": "루비 : 슬픈 눈물"
   },
   {
    "id": "s1456211553",
