@@ -17,7 +17,8 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 MODE = "ost" if "--ost" in sys.argv else "kpop"
 SONGS = os.path.join(os.path.dirname(HERE), "data", f"{MODE}.json")
-OUT = os.path.join(HERE, f"review_{MODE}.html")
+# 배포에 포함해 폰·태블릿에서도 열 수 있게 한다
+OUT = os.path.join(os.path.dirname(HERE), "review", f"{MODE}.html")
 
 sys.path.insert(0, HERE)
 from audit_songs import artist_matches, norm, load_alt_map  # noqa: E402
