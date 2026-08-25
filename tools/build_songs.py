@@ -56,8 +56,7 @@ COMPILATION_HINTS = [
 VARIANT_HINTS = [
     "live", "remix", "acoustic", "inst", "instrumental", "karaoke",
     "cover", "rearrange", "reissue", "ver.", "version", "edit", "on stage",
-    "라이브", "리믹스", "어쿠스틱", "재녹음", "커버", "반주",
-]
+    "라이브", "리믹스", "어쿠스틱", "재녹음", "커버", "반주", "mixed", "concert"]
 
 # 표기가 갈리는 가수를 이어 주는 대조표. 여기 걸리면 가수가 일치하는 것으로 본다.
 ARTIST_ALIASES = {

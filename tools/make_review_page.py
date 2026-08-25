@@ -30,7 +30,7 @@ ALT_MAP = load_alt_map()
 LANG_VER_RE = re.compile(r"(korean|japanese|chinese|english|mandarin)\s*(ver\.|version)", re.I)
 
 VARIANT_RE = re.compile(
-    r"(?<![a-z])(live|remix|acoustic|inst|ver\.|version|concert)(?![a-z])"
+    r"(?<![a-z])(live|remix|acoustic|inst|ver\.|version|concert|mixed|dj\s*mix)(?![a-z])"
     r"|(?<![가-힣])(라이브|리믹스|어쿠스틱|재녹음)(?![가-힣])", re.I)
 
 

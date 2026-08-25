@@ -2281,18 +2281,19 @@
    "spotifyUri": null
   },
   {
-   "id": "s369742968",
+   "id": "s299804122",
    "year": 2008,
    "title": "Nobody",
    "artist": "원더걸스",
-   "itunesTrackId": 369742968,
-   "itunesTitle": "Nobody",
+   "itunesTrackId": 299804122,
+   "itunesTitle": "Nobody (Korean Version)",
    "itunesArtist": "Wonder Girls",
-   "itunesYear": 2009,
-   "album": "2 Different Tears",
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/ac/4b/63/ac4b6381-58da-0f95-f99d-77c8f35a64da/mzaf_1956307944408334600.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Features/fa/08/60/dj.mweufima.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "itunesYear": 2008,
+   "album": "The Wonder Years - Trilogy (Korean Version)",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/17/fa/38/17fa3836-998a-e72d-6202-490c1ab0fe08/mzaf_7110907903747724249.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music/fd/8d/1a/mzi.ociwgxoi.jpg/300x300bb.jpg",
+   "spotifyUri": null,
+   "alt": "Nobody (Korean Version)"
   },
   {
    "id": "s289037777",
@@ -3949,6 +3950,21 @@
    "spotifyUri": null
   },
   {
+   "id": "s1773211923",
+   "year": 2024,
+   "title": "Mantra",
+   "artist": "제니",
+   "itunesTrackId": 1773211923,
+   "itunesTitle": "Mantra",
+   "itunesArtist": "제니",
+   "itunesYear": 2024,
+   "album": "Mantra - Single",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/92/cf/9e/92cf9ea9-dca8-6f4b-ae60-474f5207c233/mzaf_2778188034025649064.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/48/12/ac/4812acbe-515a-6c85-3dfe-5bcc7abb5f68/cover_KM0020451_1.jpg/300x300bb.jpg",
+   "spotifyUri": null,
+   "alt": null
+  },
+  {
    "id": "s1723932648",
    "year": 2024,
    "title": "첫 만남은 계획대로 되지 않아",
@@ -4048,18 +4064,19 @@
    "spotifyUri": null
   },
   {
-   "id": "s1871309543",
+   "id": "s1825258504",
    "year": 2025,
    "title": "JUMP",
    "artist": "블랙핑크",
-   "itunesTrackId": 1871309543,
-   "itunesTitle": "JUMP (Mixed)",
+   "itunesTrackId": 1825258504,
+   "itunesTitle": "뛰어(JUMP)",
    "itunesArtist": "BLACKPINK",
    "itunesYear": 2025,
-   "album": "INS LAND: ISSA LEE at Culture Club, November 2025 (DJ Mix)",
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/18/6f/14/186f14ce-c933-2866-bcf8-c84acdb96d6e/mzaf_5516009607202100401.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5f/eb/58/5feb589c-a78f-0169-7de3-5051b9cde391/f2e70d8c-a606-420b-9223-a2860e465099.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "album": "뛰어(JUMP) - Single",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/3f/d6/cd/3fd6cd11-560b-a02e-3cb5-46799386eb22/mzaf_5089899945772694993.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/00/3e/16/003e1619-3133-a934-3263-5749ee119625/8809519880736_cover.jpg/300x300bb.jpg",
+   "spotifyUri": null,
+   "alt": "뛰어"
   },
   {
    "id": "s1810665051",
@@ -4130,20 +4147,6 @@
    "album": "I’ll Never Love Again - Single",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/96/5f/4c/965f4ca2-1015-d506-476a-028160fa96d6/mzaf_4342236767457142190.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e9/62/bc/e962bc41-170c-d118-ab84-508758dcdd38/cover_KM0023462_1.jpg/300x300bb.jpg",
-   "spotifyUri": null
-  },
-  {
-   "id": "s1870958540",
-   "year": 2025,
-   "title": "like JENNIE",
-   "artist": "제니",
-   "itunesTrackId": 1870958540,
-   "itunesTitle": "like JENNIE (Mixed)",
-   "itunesArtist": "제니",
-   "itunesYear": 2026,
-   "album": "INS LAND: DJ Jackie at Culture Club, December 2025 (DJ Mix)",
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/10/22/32/1022327f-32c3-350e-b5b5-1aee7f62355e/mzaf_13244998300455800655.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/94/75/b0/9475b0b7-d25b-2874-69dc-ceb9a6df6e06/2fd27806-c7d4-4768-9870-9d97ba00645c.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
