@@ -19,7 +19,7 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r9-ost-strict';
+const RESOLVER_BUILD = 'r10-backoff';
 // 로마자 표기가 얼마나 닮아야 같은 사람으로 볼지. 검사에 나온 실제 쌍으로 정했다.
 const ROMAN_MATCH = 0.72;
 
@@ -236,7 +236,13 @@ class SpotifyAuth {
     // 알려 주는 만큼 기다렸다가 여러 번 다시 시도하고, 걸렸다는 사실을 남겨
     // 검사 쪽이 속도를 늦추도록 한다.
     if (res.status === 429 && tries > 0) {
-      const wait = Math.min(60, parseInt(res.headers.get('Retry-After') || '3', 10) || 3);
+      // Retry-After 는 CORS 기본 노출 목록에 없어 브라우저에서 못 읽는 일이 많다.
+      // 그걸 모르고 기본값 3초로 물러섰다가 열네 곡이 그대로 실패했다.
+      // 못 읽으면 점점 길게 기다린다.
+      const hinted = parseInt(res.headers.get('Retry-After') || '', 10);
+      const steps = [5, 12, 25, 45, 60];
+      const wait = Number.isFinite(hinted) && hinted > 0
+        ? Math.min(60, hinted) : steps[Math.min(steps.length - 1, 5 - tries)];
       SpotifyAuth.throttled = true;
       await new Promise((r) => setTimeout(r, (wait + 1) * 1000));
       return SpotifyAuth.api(path, options, retry, tries - 1);
@@ -313,12 +319,21 @@ function diceSimilarity(a, b) {
 
 class SpotifyTrackResolver {
   constructor() {
-    try { this.map = JSON.parse(localStorage.getItem(KEY_URIMAP) || '{}'); }
-    catch (_) { this.map = {}; }
+    let saved = {};
+    try { saved = JSON.parse(localStorage.getItem(KEY_URIMAP) || '{}'); } catch (_) {}
+    // 매칭 규칙이 바뀌면 예전에 붙여 둔 곡은 믿을 수 없다. 규칙을 고쳐 놓고도
+    // 캐시가 남아 옛 결과가 그대로 쓰이면 고친 보람이 없다.
+    const fresh = saved.build === RESOLVER_BUILD;
+    this.map = fresh ? (saved.uris || {}) : {};
+    this.cache = fresh ? (saved.tracks || {}) : {};
   }
 
   _save() {
-    try { localStorage.setItem(KEY_URIMAP, JSON.stringify(this.map)); } catch (_) {}
+    try {
+      localStorage.setItem(KEY_URIMAP, JSON.stringify({
+        build: RESOLVER_BUILD, uris: this.map, tracks: this.cache || {},
+      }));
+    } catch (_) {}
   }
 
   static _norm(s) {
@@ -866,7 +881,7 @@ async function diagnoseSpotify(sample, onStep, active = null) {
  *                            state: 'ok' | 'warn' | 'fail'
  * @param {object} opts {delay, signal}
  */
-async function auditSpotifyMatches(songs, onResult, { delay = 250, signal } = {}) {
+async function auditSpotifyMatches(songs, onResult, { delay = 400, signal } = {}) {
   const resolver = new SpotifyTrackResolver();
 
   for (let i = 0; i < songs.length; i++) {
@@ -900,9 +915,12 @@ async function auditSpotifyMatches(songs, onResult, { delay = 250, signal } = {}
         // 곡이 뽑힐 수 있는데 게임 중에는 티가 안 난다.
         // 다만 작품명이 영문으로 올라온 음반(미생→Misaeng)은 정상이므로,
         // 사운드트랙 음반이면서 가수도 맞으면 짚지 않는다.
+        // 가수가 맞을 때만 봐준다. 이 단서를 가수와 무관하게 적용했더니
+        // '드라마 OST 피아노' 같은 편곡 음반이 경고를 빠져나갔다.
         else if (song.work
                  && !SpotifyTrackResolver._onWorkAlbum(track.album, song.work)
-                 && !/(ost|soundtrack)/i.test(track.album || '')) {
+                 && !(SpotifyTrackResolver._artistOk(song.artist, track.artists)
+                      && /(ost|soundtrack)/i.test(track.album || ''))) {
           state = 'warn'; note = `작품 음반이 아닙니다 (${song.work} OST 인지 확인 필요)`;
         }
       }
@@ -912,7 +930,7 @@ async function auditSpotifyMatches(songs, onResult, { delay = 250, signal } = {}
     }
     onResult({ song, track, state, note, done: i + 1, total: songs.length });
     // 한 번 제한에 걸렸으면 남은 곡은 천천히 간다. 검사는 한 번에 끝나야 한다.
-    const gap = SpotifyAuth.throttled ? Math.max(delay, 900) : delay;
+    const gap = SpotifyAuth.throttled ? Math.max(delay, 1800) : delay;
     if (!signal?.aborted && gap) await new Promise((r) => setTimeout(r, gap));
   }
 }
