@@ -318,6 +318,17 @@ class SpotifyTrackResolver {
     return false;
   }
 
+  /** 이 가수를 가리키는 이름들. 대조뿐 아니라 검색어를 만들 때도 쓴다. */
+  static _artistNames(seed) {
+    const key = (seed || '').trim().toLowerCase();
+    const out = [seed];
+    for (const [k, list] of Object.entries(ARTIST_ALIASES)) {
+      if (k !== key && !list.includes(key)) continue;
+      for (const a of [k, ...list]) if (!out.includes(a)) out.push(a);
+    }
+    return out;
+  }
+
   /**
    * 연주곡인가. 가사가 없어 듣고 맞힐 수가 없으므로 아예 쓰지 않는다.
    * 라이브·리믹스와 달리 '차선책'조차 되지 못한다.
@@ -394,25 +405,35 @@ class SpotifyTrackResolver {
     const title = SpotifyTrackResolver._title(song);
     const label = `${song.artist} - ${title}`;
 
-    // 검색어가 하나뿐이면 표기가 다른 곡을 통째로 놓친다. 「나 홀로 뜰 앞에서」는
-    // Spotify 에 'Alone in Front of the Yard' 로만 올라와 있어 한글로는 영영 안 잡힌다.
-    // 곡을 수집할 때 확인해 둔 공식 표기를 두 번째 검색어로 쓴다.
+    // 검색어가 하나뿐이면 표기가 다른 곡을 통째로 놓친다.
+    //   가수 — '워너원'은 Spotify 색인에 없는 문자열이다. 'Wanna One' 으로만 올라와 있어
+    //          한글로 물으면 걸리는 게 없다.
+    //   곡   — 「나 홀로 뜰 앞에서」는 'Alone in Front of the Yard' 로만 올라와 있다.
+    // 양쪽 표기를 조합해 차례로 시도한다. 첫 번째에서 찾으면 거기서 멈추므로
+    // 평소에는 질의가 한 번이고, 못 찾은 곡만 더 두드린다.
+    const titles = [...new Set([title, song.itunesTitle].filter(Boolean))];
     const terms = [];
-    for (const t of [title, song.itunesTitle]) {
-      const q = t && `${song.artist} ${t}`;
-      if (q && !terms.includes(q)) terms.push(q);
+    const add = (q, strict) => {
+      if (q && !terms.some((x) => x.q === q)) terms.push({ q, strict });
+    };
+    for (const t of titles) {
+      for (const n of SpotifyTrackResolver._artistNames(song.artist)) add(`${n} ${t}`, false);
     }
+    // 마지막 수단으로 곡명만 던진다. 가수를 빼면 동명이곡이 섞이므로
+    // 이때는 가수가 확인된 것만 받아들인다.
+    for (const t of titles) add(t, true);
 
     // 한국어 곡명이 많아 필드 한정 검색보다 자유 질의가 더 잘 맞는다
     let scored = [];
-    for (const term of terms) {
+    for (const { q, strict } of terms) {
       const res = await SpotifyAuth.api(
-        `/search?q=${encodeURIComponent(term)}&type=track&limit=10&market=KR`);
+        `/search?q=${encodeURIComponent(q)}&type=track&limit=10&market=KR`);
       if (!res.ok) throw new Error(`Spotify 검색 실패 (${res.status})`);
       const items = (await res.json()).tracks?.items || [];
       scored = items
         .map((t, i) => ({ t, s: SpotifyTrackResolver._score(t, song, i) }))
-        .filter((x) => x.s > 0)
+        .filter((x) => x.s > 0 && (!strict || SpotifyTrackResolver._artistOk(
+          song.artist, x.t.artists.map((a) => a.name).join(' '))))
         .sort((a, b) => b.s - a.s);
       if (scored.length) break;
     }
