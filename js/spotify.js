@@ -19,7 +19,9 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r7-ost-album';
+const RESOLVER_BUILD = 'r9-ost-strict';
+// 로마자 표기가 얼마나 닮아야 같은 사람으로 볼지. 검사에 나온 실제 쌍으로 정했다.
+const ROMAN_MATCH = 0.72;
 
 // streaming 은 SDK 재생에, user-read-* 는 SDK 초기화에, user-modify-* 는 play/seek 에 필요하다
 const SCOPES = [
@@ -217,7 +219,7 @@ class SpotifyAuth {
   }
 
   /** 인증 헤더가 붙은 fetch. 401 이면 한 번 갱신해 재시도한다. */
-  static async api(path, options = {}, retry = true) {
+  static async api(path, options = {}, retry = true, tries = 5) {
     const token = await SpotifyAuth.getAccessToken();
     const res = await fetch(path.startsWith('http') ? path : SPOTIFY_API + path, {
       ...options,
@@ -226,15 +228,18 @@ class SpotifyAuth {
     if (res.status === 401 && retry) {
       const t = SpotifyAuth.loadToken();
       if (t) { t.expires_at = 0; localStorage.setItem(KEY_TOKEN, JSON.stringify(t)); }
-      return SpotifyAuth.api(path, options, false);
+      return SpotifyAuth.api(path, options, false, tries);
     }
     // 곡을 못 찾으면 표기를 바꿔 가며 여러 번 묻는다. 230개짜리 검사에서는 그게
-    // 몰려 요청 제한에 걸릴 수 있고, 그러면 남은 곡이 전부 '검색 실패'로 끝난다.
-    // Spotify 가 알려 주는 만큼 기다렸다가 한 번 더 시도한다.
-    if (res.status === 429 && retry) {
-      const wait = Math.min(60, parseInt(res.headers.get('Retry-After') || '2', 10) || 2);
+    // 몰려 요청 제한에 걸린다. 한 번만 다시 시도하게 해 두었더니 부족했다.
+    // 제한에 걸린 뒤로 회복하지 못하고 마흔 곡이 통째로 '검색 실패'로 끝났다.
+    // 알려 주는 만큼 기다렸다가 여러 번 다시 시도하고, 걸렸다는 사실을 남겨
+    // 검사 쪽이 속도를 늦추도록 한다.
+    if (res.status === 429 && tries > 0) {
+      const wait = Math.min(60, parseInt(res.headers.get('Retry-After') || '3', 10) || 3);
+      SpotifyAuth.throttled = true;
       await new Promise((r) => setTimeout(r, (wait + 1) * 1000));
-      return SpotifyAuth.api(path, options, false);
+      return SpotifyAuth.api(path, options, retry, tries - 1);
     }
     return res;
   }
@@ -246,6 +251,66 @@ class SpotifyAuth {
  * 곡 데이터에는 Spotify URI 가 비어 있으므로 검색으로 찾아 채운다.
  * 한 번 찾은 결과는 저장해 두어 매번 검색하지 않는다.
  */
+/**
+ * 한글 이름을 로마자로 옮긴다.
+ *
+ * Spotify 는 한국 가수를 로마자로 올려 두는 일이 많다(류→Ryu, 김장훈→Kim Jang-Hoon).
+ * 글자로는 한 자도 안 겹치니 별칭표로는 감당이 안 된다 — OST 230개에 나오는
+ * 가수를 전부 손으로 적을 수는 없다.
+ */
+const RM_CHO = ['g','kk','n','d','tt','r','m','b','pp','s','ss','','j','jj','ch','k','t','p','h'];
+const RM_JUNG = ['a','ae','ya','yae','eo','e','yeo','ye','o','wa','wae','oe','yo','u',
+                 'wo','we','wi','yu','eu','ui','i'];
+const RM_JONG = ['','k','k','k','n','n','n','t','l','l','l','l','l','l','l','l','m','p','p',
+                 't','t','ng','t','t','k','t','p','t'];
+
+function romanize(s) {
+  let out = '';
+  for (const ch of s || '') {
+    const c = ch.charCodeAt(0) - 0xac00;
+    if (c >= 0 && c < 11172) {
+      out += RM_CHO[Math.floor(c / 588)] + RM_JUNG[Math.floor((c % 588) / 28)] + RM_JONG[c % 28];
+    } else {
+      out += ch;
+    }
+  }
+  return out;
+}
+
+/**
+ * 로마자 표기의 흔들림을 지운다.
+ *
+ * 같은 이름도 적는 사람마다 다르다. Kim/Gim, Soo/Su, Seong/Sung, Park/Bak.
+ * 소리가 같은 것끼리 묶어 하나로 만든다.
+ */
+function canonRoman(s) {
+  let t = (s || '').toLowerCase().replace(/[^a-z]/g, '');
+  t = t.replace(/oo/g, 'u').replace(/ou/g, 'u').replace(/ee/g, 'i');
+  t = t.replace(/eo/g, 'u').replace(/eu/g, 'u').replace(/ae/g, 'e');
+  t = t.replace(/ch/g, 'c').replace(/j/g, 'c');
+  return t.replace(/[gk]/g, 'k').replace(/[dt]/g, 't')
+          .replace(/[bp]/g, 'p').replace(/[rl]/g, 'l');
+}
+
+/** 두 글자열이 얼마나 닮았는가 ((0~1). 두 글자씩 끊어 겹치는 비율을 본다. */
+function diceSimilarity(a, b) {
+  if (!a || !b) return 0;
+  if (a === b) return 1;
+  if (a.length < 2 || b.length < 2) return a === b ? 1 : 0;
+  const pairs = (x) => {
+    const m = new Map();
+    for (let i = 0; i < x.length - 1; i++) {
+      const g = x.slice(i, i + 2);
+      m.set(g, (m.get(g) || 0) + 1);
+    }
+    return m;
+  };
+  const A = pairs(a), B = pairs(b);
+  let hit = 0;
+  for (const [g, n] of A) hit += Math.min(n, B.get(g) || 0);
+  return (2 * hit) / (a.length - 1 + b.length - 1);
+}
+
 class SpotifyTrackResolver {
   constructor() {
     try { this.map = JSON.parse(localStorage.getItem(KEY_URIMAP) || '{}'); }
@@ -345,7 +410,10 @@ class SpotifyTrackResolver {
         if (c && (a.includes(c) || c.includes(a))) return true;
       }
     }
-    return false;
+    // 별칭표에 없으면 소리로 견줘 본다. 로마자 표기는 적는 사람마다 흔들리므로
+    // 똑같기를 바랄 수는 없고, 닮은 정도로 판단한다.
+    return diceSimilarity(canonRoman(romanize(seed)), canonRoman(romanize(got)))
+           >= ROMAN_MATCH;
   }
 
   /** 이 가수를 가리키는 이름들. 대조뿐 아니라 검색어를 만들 때도 쓴다. */
@@ -377,8 +445,10 @@ class SpotifyTrackResolver {
    */
   static _isInstrumental(track) {
     const blob = `${track.name} ${track.album?.name || ''}`;
-    return /(?<![a-z])(instrumental|inst|karaoke|mr\s*ver|backing\s*track)(?![a-z])/i.test(blob)
-        || /(?<![가-힣])(반주|연주곡)(?![가-힣])/.test(blob);
+    // 드라마 OST 를 피아노·현악으로 다시 연주한 편집음반이 대량으로 올라와 있다.
+    // 제목에 작품명이 그대로 들어 있어 검색에 잘 걸리는데, 가사가 없어 쓸 수 없다.
+    return /(?<![a-z])(instrumental|inst|karaoke|mr\s*ver|backing\s*track|piano|cello|violin|orgel|music\s*box|new\s*age)(?![a-z])/i.test(blob)
+        || /(?<![가-힣])(반주|연주곡|피아노|첼로|바이올린|오르골|뉴에이지|매장음악)(?![가-힣])/.test(blob);
   }
 
   /**
@@ -413,6 +483,9 @@ class SpotifyTrackResolver {
     // 다만 제목까지 애매하면 다른 곡으로 본다.
     if (!artistOk) {
       if (m < 1) return -50;
+      // OST 는 같은 제목의 곡이 널려 있다. 가수도 안 맞고 작품 음반도 아니면
+      // 그냥 동명의 다른 곡이다 (이수 「Foolish Heart」 에 Sheena Easton 이 붙었다).
+      if (song.work && !onWork) return -50;
       if (!onWork) s -= 1.5;
     }
     if (onWork) s += 3;
@@ -480,12 +553,15 @@ class SpotifyTrackResolver {
         `/search?q=${encodeURIComponent(q)}&type=track&limit=10&market=KR`);
       if (!res.ok) throw new Error(`Spotify 검색 실패 (${res.status})`);
       const items = (await res.json()).tracks?.items || [];
-      scored = items
+      const round = items
         .map((t, i) => ({ t, s: SpotifyTrackResolver._score(t, song, i) }))
         .filter((x) => x.s > 0 && (!strict || SpotifyTrackResolver._artistOk(
           song.artist, x.t.artists.map((a) => a.name).join(' '))))
         .sort((a, b) => b.s - a.s);
-      if (scored.length) break;
+      if (round.length && (!scored.length || round[0].s > scored[0].s)) scored = round;
+      // 확실한 것을 찾았을 때만 멈춘다. 어설픈 후보에서 멈추면 뒤 질의가 막힌다.
+      // '시그널 회상' 이 피아노 편곡을 물어 오는 바람에 '장범준 회상' 을 못 물었다.
+      if (scored.length && scored[0].s >= 6) break;
       const top = items[0];
       tried.push(`"${q}" → ${items.length}건`
         + (top ? ` · 1위 ${top.artists.map((a) => a.name).join(', ')} / ${top.name}`
@@ -820,7 +896,13 @@ async function auditSpotifyMatches(songs, onResult, { delay = 250, signal } = {}
         }
         // OST 는 같은 제목의 곡이 여기저기 있다. 작품 음반이 아니면 조용히
         // 엉뚱한 곡이 뽑힐 수 있는데, 게임 중에는 티가 안 나니 짚어 둔다.
-        else if (song.work && !SpotifyTrackResolver._onWorkAlbum(track.album, song.work)) {
+        // OST 는 같은 제목의 곡이 여기저기 있다. 작품 음반이 아니면 조용히 엉뚱한
+        // 곡이 뽑힐 수 있는데 게임 중에는 티가 안 난다.
+        // 다만 작품명이 영문으로 올라온 음반(미생→Misaeng)은 정상이므로,
+        // 사운드트랙 음반이면서 가수도 맞으면 짚지 않는다.
+        else if (song.work
+                 && !SpotifyTrackResolver._onWorkAlbum(track.album, song.work)
+                 && !/(ost|soundtrack)/i.test(track.album || '')) {
           state = 'warn'; note = `작품 음반이 아닙니다 (${song.work} OST 인지 확인 필요)`;
         }
       }
@@ -829,7 +911,9 @@ async function auditSpotifyMatches(songs, onResult, { delay = 250, signal } = {}
       note = err.message;
     }
     onResult({ song, track, state, note, done: i + 1, total: songs.length });
-    if (!signal?.aborted && delay) await new Promise((r) => setTimeout(r, delay));
+    // 한 번 제한에 걸렸으면 남은 곡은 천천히 간다. 검사는 한 번에 끝나야 한다.
+    const gap = SpotifyAuth.throttled ? Math.max(delay, 900) : delay;
+    if (!signal?.aborted && gap) await new Promise((r) => setTimeout(r, gap));
   }
 }
 
