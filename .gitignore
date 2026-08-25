@@ -7,3 +7,4 @@ tools/fetch.log
 tools/review_report.txt
 .claude/
 tools/*.log
+.wiki_song_cache.json
