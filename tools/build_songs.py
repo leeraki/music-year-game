@@ -216,6 +216,11 @@ def score_candidate(cand, artist, title, seed_year=None, alt=None):
         return -30.0
 
     s = t * 3.0
+    # 제목이 정확히 같으면 확실한 신호다. 이 가산이 없으면 연도 가산점(+2.0)이
+    # 제목 차이를 눌러, DJ DOC 「겨울 이야기」자리에 같은 해에 나온 「여름 이야기」가
+    # 들어가는 일이 생긴다.
+    if t >= 1.0:
+        s += 2.5
 
     album = (cand.get("collectionName") or "").lower()
     if any(h in album for h in COMPILATION_HINTS):

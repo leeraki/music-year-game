@@ -3,7 +3,7 @@
  "mode": "ost",
  "source": "iTunes Search API (30초 미리듣기)",
  "note": "year 는 작품의 출시 연도(영화=개봉, 드라마=첫 방영)이며 게임의 정답이다.",
- "count": 203,
+ "count": 211,
  "songs": [
   {
    "id": "o1418854136",
@@ -331,6 +331,31 @@
    "spotifyUri": null
   },
   {
+   "id": "o1681563802",
+   "year": 2005,
+   "work": "프라하의 연인",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "최상현",
+     "actor": "김주혁"
+    },
+    {
+     "name": "윤재희",
+     "actor": "전도연"
+    }
+   ],
+   "song": "프라하성에서",
+   "artist": "최성욱",
+   "itunesTrackId": 1681563802,
+   "itunesTitle": "프라하성에서",
+   "itunesArtist": "최성욱",
+   "album": "프라하의 연인 OST",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/6c/52/4d/6c524d13-6db6-e3df-6c5c-38686420ba7c/mzaf_4699638998737070090.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/48/3a/85/483a85e0-6e64-4b55-d17d-8fc0a079a01b/6942870315829.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
    "id": "o1451918194",
    "year": 2006,
    "work": "궁",
@@ -403,6 +428,31 @@
    "album": "환상의 커플 (Original Television Soundtrack)",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/10/be/1c/10be1c89-77fc-b02b-484f-4261e9315223/mzaf_16853368358388533339.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/66/26/57/66265768-49bd-2258-a4a1-22903d249601/8809522686714.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "o1546342876",
+   "year": 2006,
+   "work": "황진이",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "황진이",
+     "actor": "하지원"
+    },
+    {
+     "name": "김은호",
+     "actor": "장근석"
+    }
+   ],
+   "song": "꽃날",
+   "artist": "서웅석",
+   "itunesTrackId": 1546342876,
+   "itunesTitle": "꽃날",
+   "itunesArtist": "서웅석",
+   "album": "황진이 (Original Television Soundtrack)",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/50/ec/3a/50ec3ac5-a4e9-1054-61aa-1dc91a8ad0ee/mzaf_10625658296615838592.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/b7/ce/da/b7ceda9d-59ec-2ae9-7bc0-c63c6773c0ce/8809784677345.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
@@ -1481,6 +1531,31 @@
    "spotifyUri": null
   },
   {
+   "id": "o674399435",
+   "year": 2013,
+   "work": "너의 목소리가 들려",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "박수하",
+     "actor": "이종석"
+    },
+    {
+     "name": "장혜성",
+     "actor": "이보영"
+    }
+   ],
+   "song": "에코",
+   "artist": "에브리 싱글 데이",
+   "itunesTrackId": 674399435,
+   "itunesTitle": "에코",
+   "itunesArtist": "에브리 싱글 데이",
+   "album": "너의 목소리가 들려 (Original Television Soundtrack), Pt. 1 - EP",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/e2/6b/b2/e26bb25b-f3d7-ad1c-a3dd-54a996cb37c4/mzaf_4795009944213098970.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/1a/7d/51/1a7d5118-19ab-45a7-47ab-2016ff64ed55/1700.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
    "id": "o1859810437",
    "year": 2013,
    "work": "별에서 온 그대",
@@ -2256,6 +2331,31 @@
    "spotifyUri": null
   },
   {
+   "id": "o1570577415",
+   "year": 2016,
+   "work": "또 오해영",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "박도경",
+     "actor": "에릭"
+    },
+    {
+     "name": "오해영",
+     "actor": "서현진"
+    }
+   ],
+   "song": "너였다면",
+   "artist": "정승환",
+   "itunesTrackId": 1570577415,
+   "itunesTitle": "너였다면",
+   "itunesArtist": "정승환",
+   "album": "또 오해영, Pt. 5 (Original Television Soundtrack) - Single",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/03/96/dd/0396ddd0-82fa-daea-fd9b-1e529523a58d/mzaf_9236112660680925264.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/66/4a/11/664a11b9-a062-8685-0787-17dae2bdb03d/8809484115420_Cover.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
    "id": "o1861298571",
    "year": 2016,
    "work": "미녀 공심이",
@@ -2781,6 +2881,31 @@
    "spotifyUri": null
   },
   {
+   "id": "o1777767175",
+   "year": 2018,
+   "work": "미스터 션샤인",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "최유진",
+     "actor": "이병헌"
+    },
+    {
+     "name": "고애신",
+     "actor": "김태리"
+    }
+   ],
+   "song": "좋은 날",
+   "artist": "멜로망스",
+   "itunesTrackId": 1777767175,
+   "itunesTitle": "좋은 날",
+   "itunesArtist": "멜로망스",
+   "album": "미스터 션샤인 (Original Television Soundtrack)",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/8b/77/c8/8b77c85a-1812-ce50-5832-568adca72153/mzaf_6593689673713027146.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4e/bc/fe/4ebcfe01-6039-d03a-2ac1-d2a44a917bf5/8809704430135_Cover.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
    "id": "o1609915582",
    "year": 2018,
    "work": "백일의 낭군님",
@@ -3056,6 +3181,31 @@
    "spotifyUri": null
   },
   {
+   "id": "o1489748590",
+   "year": 2019,
+   "work": "배가본드",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "차달건",
+     "actor": "이승기"
+    },
+    {
+     "name": "고해리",
+     "actor": "배수지"
+    }
+   ],
+   "song": "Vagabond",
+   "artist": "하현우",
+   "itunesTrackId": 1489748590,
+   "itunesTitle": "Vagabond",
+   "itunesArtist": "하현우",
+   "album": "배가본드 (Original Television Soundtrack)",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/9e/b2/1e/9eb21e67-072c-2215-5ce9-0f543dbdfa74/mzaf_6313173490550230002.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/b8/be/dc/b8bedc0f-b1b0-c4dd-ce09-283deed6ac79/8809691055243.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
    "id": "o1618911003",
    "year": 2019,
    "work": "봄밤",
@@ -3103,6 +3253,31 @@
    "album": "사랑의 불시착 (Original Television Soundtrack)",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/df/71/75/df717559-93bf-6d64-d907-7754ea699a54/mzaf_4447733851898572630.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/8e/9d/67/8e9d67df-ec0b-a4e0-23b9-496918941f9c/8809704412261_Cover.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "o1462701419",
+   "year": 2019,
+   "work": "아름다운 세상",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "박무진",
+     "actor": "박희순"
+    },
+    {
+     "name": "강인하",
+     "actor": "추자현"
+    }
+   ],
+   "song": "아름다운 세상 (From 알라딘)",
+   "artist": "신재범 & 민경아",
+   "itunesTrackId": 1462701419,
+   "itunesTitle": "아름다운 세상 (From 알라딘)",
+   "itunesArtist": "존박 & 박정현",
+   "album": "아름다운 세상 (From 알라딘) - Single",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/6b/03/61/6b0361f9-8699-feb3-11f0-6744ecc952b2/mzaf_11173847422055936151.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/64/95/38/649538f4-4f2c-187b-f42a-bec0f9703cd5/19UMGIM41757.rgb.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
@@ -4753,6 +4928,31 @@
    "album": "낮과 밤이 다른 그녀 (Original Television Soundtrack), Pt. 3 - Single",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/3f/5d/93/3f5d938c-ca47-17fa-ecc2-b925a1a50141/mzaf_10530529126279970064.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/1d/94/2a/1d942aa9-976f-e06c-114b-523d0789be76/5021732422170.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "o1736887939",
+   "year": 2024,
+   "work": "눈물의 여왕",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "백현우",
+     "actor": "김수현"
+    },
+    {
+     "name": "홍해인",
+     "actor": "김지원"
+    }
+   ],
+   "song": "미안해 미워해 사랑해",
+   "artist": "Crush",
+   "itunesTrackId": 1736887939,
+   "itunesTitle": "미안해 미워해 사랑해",
+   "itunesArtist": "Crush",
+   "album": "눈물의 여왕 (Original Television Soundtrack), Pt.4 - Single",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/bb/7f/f5/bb7ff5a7-87b8-2e2c-a2ce-1f40d19aabc5/mzaf_11552351934799265549.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/84/b6/a8/84b6a808-9f87-47df-b41b-b15e1bdace30/191953341866.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
