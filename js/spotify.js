@@ -19,7 +19,7 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r18-pace';
+const RESOLVER_BUILD = 'r19-newapp';
 // 찾아 둔 곡을 버릴지 판단하는 기준. 곡을 고르는 규칙이 바뀔 때만 올린다.
 // 판번호에 묶었더니 요청 제한 대응처럼 매칭과 무관한 수정에도 230곡을 다시
 // 찾게 되어, 그러느라 제한을 또 소진했다.
@@ -107,7 +107,16 @@ async function sha256Base64Url(text) {
 class SpotifyAuth {
   static get clientId() { return localStorage.getItem(KEY_CLIENT) || ''; }
   static set clientId(v) {
-    if (v) localStorage.setItem(KEY_CLIENT, v.trim());
+    const next = (v || '').trim();
+    // Client ID 를 바꾸면 갖고 있던 토큰은 이전 앱의 것이다. 그대로 두면 새 앱으로
+    // 바꾼 줄 알면서 실제 요청은 옛 앱으로 나간다. 요청 제한은 앱마다 매겨지므로
+    // 막힌 앱을 벗어나려고 ID 를 바꿔도 아무 소용이 없어진다.
+    if (next !== SpotifyAuth.clientId) {
+      SpotifyAuth.logout();
+      SpotifyAuth.blockedUntil = 0;
+      SpotifyAuth.throttled = false;
+    }
+    if (next) localStorage.setItem(KEY_CLIENT, next);
     else localStorage.removeItem(KEY_CLIENT);
   }
 
@@ -119,12 +128,19 @@ class SpotifyAuth {
   static loadToken() {
     try {
       const t = JSON.parse(localStorage.getItem(KEY_TOKEN) || 'null');
-      return t && t.access_token ? t : null;
+      if (!t || !t.access_token) return null;
+      // 다른 앱에서 받은 토큰은 쓰지 않는다. 새 앱으로 옮겼는데 옛 토큰이 남아
+      // 있으면 요청이 계속 옛 앱 앞으로 달린다.
+      // 어느 앱 것인지 안 적힌 토큰은 이 표시를 넣기 전에 받은 것이라 알 수가
+      // 없다. 한 번은 다시 로그인하게 한다.
+      if (t.client_id !== SpotifyAuth.clientId) return null;
+      return t;
     } catch (_) { return null; }
   }
 
   static saveToken(t) {
     t.expires_at = Date.now() + (t.expires_in ?? 3600) * 1000 - 60_000; // 1분 여유
+    t.client_id = SpotifyAuth.clientId;      // 어느 앱의 토큰인지 남긴다
     localStorage.setItem(KEY_TOKEN, JSON.stringify(t));
     return t;
   }

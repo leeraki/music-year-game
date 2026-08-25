@@ -450,8 +450,12 @@
   });
 
   el.spotifyClient.addEventListener('change', () => {
+    const was = SpotifyAuth.isLoggedIn;
     SpotifyAuth.clientId = el.spotifyClient.value;
-    setSpotifyStatus(el.spotifyClient.value ? 'Client ID 저장됨. 로그인해 주세요.' : '');
+    if (!el.spotifyClient.value) { setSpotifyStatus(''); return; }
+    setSpotifyStatus(was && !SpotifyAuth.isLoggedIn
+      ? '앱이 바뀌어 로그아웃했습니다. 새 앱으로 다시 로그인해 주세요.'
+      : 'Client ID 저장됨. 로그인해 주세요.');
   });
 
   el.copyRedirect.addEventListener('click', async () => {
