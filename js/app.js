@@ -586,13 +586,14 @@
   // 찾아 둔 Spotify 곡을 파일로 옮기기 위해 꺼낸다. 개발 모드 할당량은
   // 개발자 계정 단위라 다시 찾을 기회가 넉넉하지 않다.
   el.auditExport.addEventListener('click', async () => {
-    const data = new SpotifyTrackResolver().export();
+    const data = new SpotifyTrackResolver().export(deck.all);
     if (!data.count) { el.auditExport.textContent = '찾은 곡 없음'; return; }
     const text = JSON.stringify(data);
+    const label = `${Deck.MODES[prefs.mode].label} ${data.deck.have}/${data.deck.total}곡`;
     try {
       await navigator.clipboard.writeText(text);
-      el.auditExport.textContent = `${data.count}곡 복사됨`;
-      setTimeout(() => { el.auditExport.textContent = '찾은 곡 내보내기'; }, 2500);
+      el.auditExport.textContent = `${label} 복사됨`;
+      setTimeout(() => { el.auditExport.textContent = '찾은 곡 내보내기'; }, 3500);
     } catch (_) {
       el.auditText.value = text; el.auditText.hidden = false; el.auditText.select();
       el.auditExport.textContent = '아래에서 직접 복사';
