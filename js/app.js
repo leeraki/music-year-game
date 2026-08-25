@@ -41,6 +41,7 @@
     diagBtn: $('btn-diagnose'), diag: $('diag'),
     auditBtn: $('btn-audit'), audit: $('audit'), auditList: $('audit-list'),
     auditProgress: $('audit-progress'), auditStop: $('btn-audit-stop'),
+    auditCopy: $('btn-audit-copy'), auditText: $('audit-text'),
     modeChips: $('mode-chips'), modeNote: $('mode-note'),
     work: $('reveal-work'), workType: $('reveal-worktype'),
     characters: $('reveal-characters'), ostSong: $('reveal-ost-song'),
@@ -494,6 +495,7 @@
   // Spotify 는 실행 중에 검색해 곡을 찾으므로, 무엇에 붙었는지 미리 볼 수가 없다.
   // 전곡을 훑어 기대한 곡과 실제 매칭을 나란히 보여준다.
   let auditAbort = null;
+  let auditLines = [];
   el.auditBtn.addEventListener('click', async () => {
     if (!SpotifyAuth.isLoggedIn) {
       setSpotifyStatus('먼저 Spotify 에 로그인해 주세요.', 'warn');
@@ -505,8 +507,19 @@
     el.auditBtn.disabled = true;
 
     const count = { ok: 0, warn: 0, fail: 0 };
+    auditLines = [];
     const render = ({ song, track, state, note, done, total }) => {
       count[state] += 1;
+      if (state !== 'ok') {
+        // 그대로 붙여넣어 전달할 수 있도록 텍스트로도 쌓아 둔다
+        auditLines.push(
+          `[${state === 'fail' ? '실패' : '확인'}] ${song.year} ${song.artist} — ${song.title || song.song}`
+          + (track ? `
+    → ${track.artists} / ${track.name} [${track.album}]` : '')
+          + `
+    ${note}`
+        );
+      }
       el.auditProgress.textContent =
         `${done}/${total}  ·  정상 ${count.ok} · 확인 ${count.warn} · 실패 ${count.fail}`;
       if (state === 'ok') return;          // 문제 있는 것만 남겨 눈에 띄게 한다
@@ -539,6 +552,28 @@
   });
 
   el.auditStop.addEventListener('click', () => auditAbort?.abort());
+
+  // 결과를 그대로 옮겨 전달할 수 있게 텍스트로 뽑는다
+  el.auditCopy.addEventListener('click', async () => {
+    if (!auditLines.length) { el.auditCopy.textContent = '결과 없음'; return; }
+    const text = [
+      `# 곡 매칭 검사 — ${Deck.MODES[prefs.mode].label} (${deck.all.length}곡)`,
+      el.auditProgress.textContent.trim(),
+      '',
+      ...auditLines,
+    ].join('\n');
+    try {
+      await navigator.clipboard.writeText(text);
+      el.auditCopy.textContent = '복사됨';
+      setTimeout(() => { el.auditCopy.textContent = '결과 복사'; }, 1800);
+    } catch (_) {
+      // 클립보드가 막힌 환경이면 직접 선택해 복사할 수 있게 펼쳐 준다
+      el.auditText.value = text;
+      el.auditText.hidden = false;
+      el.auditText.select();
+      el.auditCopy.textContent = '아래에서 직접 복사';
+    }
+  });
 
   // Client ID 32자를 다른 기기에서 손으로 치기 번거로워 QR 로 옮긴다.
   el.qrBtn.addEventListener('click', () => {

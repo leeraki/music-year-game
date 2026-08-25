@@ -178,8 +178,12 @@
         </p>
         <div class="audit" id="audit" hidden>
           <div class="audit-head"><span id="audit-progress"></span>
-            <button type="button" class="btn btn-ghost btn-sm" id="btn-audit-stop">중지</button></div>
+            <span class="audit-btns">
+              <button type="button" class="btn btn-ghost btn-sm" id="btn-audit-copy">결과 복사</button>
+              <button type="button" class="btn btn-ghost btn-sm" id="btn-audit-stop">중지</button>
+            </span></div>
           <ul id="audit-list"></ul>
+          <textarea id="audit-text" class="audit-text" readonly hidden></textarea>
         </div>
 
         <button type="button" class="btn btn-ghost" id="btn-qr">QR로 다른 기기에 옮기기</button>
