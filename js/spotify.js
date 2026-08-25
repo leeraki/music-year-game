@@ -19,11 +19,14 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r17-djmix';
+const RESOLVER_BUILD = 'r18-pace';
 // 찾아 둔 곡을 버릴지 판단하는 기준. 곡을 고르는 규칙이 바뀔 때만 올린다.
 // 판번호에 묶었더니 요청 제한 대응처럼 매칭과 무관한 수정에도 230곡을 다시
 // 찾게 되어, 그러느라 제한을 또 소진했다.
 const MATCH_RULES = 'm5-djmix';
+// 검색·조회 요청 사이의 최소 간격. 분당 60건 남짓으로, 개발 모드 한도에
+// 닿지 않는 속도다. 검사 한 번이 조금 느려지는 대신 앱이 잠기지 않는다.
+const REQUEST_GAP = 1000;
 // 로마자 표기가 얼마나 닮아야 같은 사람으로 볼지. 검사에 나온 실제 쌍으로 정했다.
 const ROMAN_MATCH = 0.72;
 
@@ -223,12 +226,29 @@ class SpotifyAuth {
   }
 
   /** 인증 헤더가 붙은 fetch. 401 이면 한 번 갱신해 재시도한다. */
+  /**
+   * 검색·조회 요청을 일정 간격으로 흘려보낸다.
+   *
+   * 개발 모드 앱은 할당량이 작다. 매칭 규칙을 고칠 때마다 전곡을 다시 찾느라
+   * 그 할당량을 며칠에 걸쳐 태웠고, 결국 몇 시간을 못 쓰는 상태가 됐다.
+   * 한도에 닿은 뒤에 물러서는 것보다 애초에 닿지 않는 편이 낫다.
+   * 재생 요청은 게임 중에 바로 반응해야 하므로 늦추지 않는다.
+   */
+  static async _pace(path) {
+    if (!/^\/(search|tracks|artists|albums)/.test(path)) return;
+    const now = Date.now();
+    const slot = Math.max(now, SpotifyAuth._nextSlot || 0);
+    SpotifyAuth._nextSlot = slot + REQUEST_GAP;
+    if (slot > now) await new Promise((r) => setTimeout(r, slot - now));
+  }
+
   static async api(path, options = {}, retry = true, tries = 1) {
     // 앱 단위로 막혀 있는 동안은 두드려 봐야 소용이 없다. 곡마다 다섯 번씩
     // 최대 1분을 기다리면 230곡 검사가 몇 시간이 된다.
     if (SpotifyAuth.blockedUntil && Date.now() < SpotifyAuth.blockedUntil) {
       return new Response(null, { status: 429 });
     }
+    await SpotifyAuth._pace(path);
     const token = await SpotifyAuth.getAccessToken();
     const res = await fetch(path.startsWith('http') ? path : SPOTIFY_API + path, {
       ...options,
@@ -1006,7 +1026,7 @@ async function waitForQuota(onResult, signal, at) {
   return false;
 }
 
-async function auditSpotifyMatches(songs, onResult, { delay = 400, signal } = {}) {
+async function auditSpotifyMatches(songs, onResult, { delay = 0, signal } = {}) {
   const resolver = new SpotifyTrackResolver();
   const moved = await resolver.revalidate(songs);
   if (moved) onResult({ notice: `곡 고르는 규칙이 바뀌어 다시 확인했습니다 — `
@@ -1080,10 +1100,9 @@ async function auditSpotifyMatches(songs, onResult, { delay = 400, signal } = {}
       i -= 1;                 // 막혔던 곡부터 다시
       continue;
     }
-    // 이미 찾아 둔 곡은 Spotify 를 부르지 않았으므로 쉴 이유가 없다.
-    // 이걸 빼먹어서 이어하기가 200곡 × 1.8초씩 헛돌았다.
-    // 새로 물어본 곡만, 그것도 제한에 걸린 뒤라면 더 천천히 간다.
-    const gap = !hitNetwork ? 0 : (SpotifyAuth.throttled ? Math.max(delay, 1800) : delay);
+    // 요청 간격은 이제 SpotifyAuth 가 지킨다. 여기서 또 쉬면 이중으로 느려진다.
+    // 한 번 제한에 걸린 뒤에만 더 물러선다.
+    const gap = !hitNetwork ? 0 : (SpotifyAuth.throttled ? Math.max(delay, 2000) : delay);
     if (!signal?.aborted && gap) await new Promise((r) => setTimeout(r, gap));
   }
 }
