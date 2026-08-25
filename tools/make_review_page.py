@@ -11,6 +11,7 @@
 
 import html
 import json
+import re
 import os
 import sys
 
@@ -25,8 +26,10 @@ from audit_songs import artist_matches, norm, load_alt_map  # noqa: E402
 
 ALT_MAP = load_alt_map()
 
-VARIANT_HINTS = ["live", "remix", "acoustic", "inst", "ver.", "version",
-                 "라이브", "리믹스", "어쿠스틱", "재녹음"]
+# 단어 단위로 본다. 문자열로 훑었더니 빅뱅의 음반 'Alive' 가 live 로 걸렸다.
+VARIANT_RE = re.compile(
+    r"(?<![a-z])(live|remix|acoustic|inst|ver\.|version)(?![a-z])"
+    r"|(?<![가-힣])(라이브|리믹스|어쿠스틱|재녹음)(?![가-힣])", re.I)
 
 
 def classify(s):
@@ -43,8 +46,7 @@ def classify(s):
     if not (same(seed_title, s.get("itunesTitle", "")) or (alt and same(alt, s.get("itunesTitle", "")))):
         reasons.append(f"제목 다름 → {s.get('itunesTitle')}")
 
-    blob = f"{s.get('itunesTitle', '')} {s.get('album', '')}".lower()
-    if any(h in blob for h in VARIANT_HINTS):
+    if VARIANT_RE.search(f"{s.get('itunesTitle', '')} {s.get('album', '')}"):
         reasons.append("라이브/리믹스 의심")
 
     gap = abs(s.get("itunesYear", s["year"]) - s["year"]) if MODE == "kpop" else 0
