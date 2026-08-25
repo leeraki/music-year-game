@@ -203,24 +203,64 @@ class SpotifyTrackResolver {
   }
 
   static _norm(s) {
-    return (s || '').toLowerCase().replace(/\([^)]*\)/g, '').replace(/[^0-9a-z가-힣]/g, '');
+    // 악센트만 떼고 한글 음절은 다시 합친다. NFD 로 쪼갠 채 두면 아래 [가-힣] 필터가
+    // 자모를 전부 걸러 한글이 통째로 사라진다.
+    let out = (s || '').toLowerCase().normalize('NFD')
+      .replace(/[̀-ͯ]/g, '').normalize('NFC');
+    return out.replace(/\([^)]*\)/g, '').replace(/\[[^\]]*\]/g, '')
+              .replace(/[^0-9a-z가-힣ぁ-ゖァ-ヺ一-龯]/g, '');
+  }
+
+  /** 곡 제목. K-POP 은 title, OST 는 song 에 들어 있다. */
+  static _title(song) { return song.title || song.song || ''; }
+
+  /**
+   * 연주곡인가. 가사가 없어 듣고 맞힐 수가 없으므로 아예 쓰지 않는다.
+   * 라이브·리믹스와 달리 '차선책'조차 되지 못한다.
+   */
+  static _isInstrumental(track) {
+    const blob = `${track.name} ${track.album?.name || ''}`;
+    return /(?<![a-z])(instrumental|inst|karaoke|mr\s*ver|backing\s*track)(?![a-z])/i.test(blob)
+        || /(?<![가-힣])(반주|연주곡)(?![가-힣])/.test(blob);
+  }
+
+  /**
+   * 원곡과 소리가 다른 버전인가. 원곡이 있으면 그쪽이 이기고,
+   * 없으면 차선으로 쓴다 — 라이브라도 알아들을 수는 있기 때문이다.
+   */
+  static _isVariant(track) {
+    const blob = `${track.name} ${track.album?.name || ''}`;
+    return /(?<![a-z])(live|remix|acoustic|cover|ver\.|version|edit)(?![a-z])/i.test(blob)
+        || /(?<![가-힣])(라이브|리믹스|어쿠스틱|재녹음)(?![가-힣])/.test(blob);
   }
 
   static _score(track, song) {
     const t = SpotifyTrackResolver._norm(track.name);
-    const want = SpotifyTrackResolver._norm(song.title);
-    let s = 0;
-    if (t === want) s += 3;
-    else if (t.includes(want) || want.includes(t)) s += 2;
+    const want = SpotifyTrackResolver._norm(SpotifyTrackResolver._title(song));
+    if (!want) return -99;
 
+    // 가수가 다르면 제목이 같아도 다른 곡이다. iTunes 쪽에서 '폼생폼사'가 동명이곡으로
+    // 잡혔던 사고와 같은 유형이라 여기서도 필수 조건으로 둔다.
     const artists = track.artists.map((a) => SpotifyTrackResolver._norm(a.name)).join('');
     const wantArtist = SpotifyTrackResolver._norm(song.artist);
-    if (artists.includes(wantArtist) || wantArtist.includes(artists)) s += 2;
+    const artistOk = artists && wantArtist &&
+      (artists.includes(wantArtist) || wantArtist.includes(artists));
 
-    // 발매 연도가 맞으면 가산점. 리마스터·편집반을 피하는 데 도움이 된다.
-    const year = parseInt((track.album?.release_date || '').slice(0, 4), 10);
-    if (year === song.year) s += 1.5;
-    else if (Math.abs(year - song.year) <= 1) s += 0.7;
+    let s = 0;
+    if (t === want) s += 5;                                   // 정확히 같으면 강한 신호
+    else if (t.includes(want) || want.includes(t)) s += 2;
+    else return -50;                                          // 제목이 아예 다르면 탈락
+    if (!artistOk) return -50;
+
+    if (SpotifyTrackResolver._isInstrumental(track)) return -50;
+    if (SpotifyTrackResolver._isVariant(track)) s -= 4;
+
+    // 연도는 K-POP 에서만 본다. OST 의 year 는 '작품의 방영 연도'라 곡 발매일과 무관하다.
+    if (!song.work) {
+      const year = parseInt((track.album?.release_date || '').slice(0, 4), 10);
+      if (year === song.year) s += 1.5;
+      else if (Math.abs(year - song.year) <= 1) s += 0.7;
+    }
 
     s += (track.popularity || 0) / 200;   // 동점이면 널리 알려진 쪽
     return s;
@@ -230,20 +270,25 @@ class SpotifyTrackResolver {
     if (song.spotifyUri) return song.spotifyUri;
     if (this.map[song.id]) return this.map[song.id];
 
+    const title = SpotifyTrackResolver._title(song);
+    const label = `${song.artist} - ${title}`;
     // 한국어 곡명이 많아 필드 한정 검색보다 자유 질의가 더 잘 맞는다
-    const q = encodeURIComponent(`${song.artist} ${song.title}`);
+    const q = encodeURIComponent(`${song.artist} ${title}`);
     const res = await SpotifyAuth.api(`/search?q=${q}&type=track&limit=10&market=KR`);
     if (!res.ok) throw new Error(`Spotify 검색 실패 (${res.status})`);
 
     const items = (await res.json()).tracks?.items || [];
-    if (!items.length) throw new Error(`Spotify 에서 곡을 찾지 못했습니다: ${song.artist} - ${song.title}`);
+    const scored = items
+      .map((t) => ({ t, s: SpotifyTrackResolver._score(t, song) }))
+      .filter((x) => x.s > 0)
+      .sort((a, b) => b.s - a.s);
+    if (!scored.length) {
+      throw new Error(`Spotify 에서 이 곡을 찾지 못했습니다: ${label}`);
+    }
 
-    const best = items.reduce((a, b) =>
-      SpotifyTrackResolver._score(b, song) > SpotifyTrackResolver._score(a, song) ? b : a
-    );
-    this.map[song.id] = best.uri;
+    this.map[song.id] = scored[0].t.uri;
     this._save();
-    return best.uri;
+    return scored[0].t.uri;
   }
 }
 
