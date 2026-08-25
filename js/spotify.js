@@ -19,7 +19,7 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r14-revalidate';
+const RESOLVER_BUILD = 'r15-rescue';
 // 찾아 둔 곡을 버릴지 판단하는 기준. 곡을 고르는 규칙이 바뀔 때만 올린다.
 // 판번호에 묶었더니 요청 제한 대응처럼 매칭과 무관한 수정에도 230곡을 다시
 // 찾게 되어, 그러느라 제한을 또 소진했다.
@@ -333,8 +333,16 @@ class SpotifyTrackResolver {
     try { saved = JSON.parse(localStorage.getItem(KEY_URIMAP) || '{}'); } catch (_) {}
     // 매칭 규칙이 바뀌면 예전에 붙여 둔 곡은 믿을 수 없다. 규칙을 고쳐 놓고도
     // 캐시가 남아 옛 결과가 그대로 쓰이면 고친 보람이 없다.
-    this.map = saved.uris || {};
-    this.cache = saved.tracks || {};
+    if (saved.uris) {
+      this.map = saved.uris;
+      this.cache = saved.tracks || {};
+    } else {
+      // 예전에는 { 곡id: uri } 만 통째로 저장했다. 형식이 바뀌었다고 버리면
+      // 어렵게 찾아 둔 것이 사라진다. 곡 정보는 없지만 uri 는 살릴 수 있다.
+      this.map = Object.fromEntries(Object.entries(saved)
+        .filter(([, v]) => typeof v === 'string' && v.startsWith('spotify:')));
+      this.cache = {};
+    }
     this.staleRules = saved.rules !== MATCH_RULES;
   }
 
@@ -345,8 +353,9 @@ class SpotifyTrackResolver {
    * 찾느라 Spotify 할당량을 태운다. 저장해 둔 곡 정보로 지금 규칙에도 맞는지
    * 그 자리에서 확인하고, 어긋나는 것만 지운다. 네트워크는 쓰지 않는다.
    */
-  revalidate(songs) {
+  async revalidate(songs) {
     if (!this.staleRules) return null;
+    await this._fillMissingTracks(songs);
     let kept = 0, dropped = 0;
     for (const song of songs) {
       if (!this.map[song.id]) continue;
@@ -358,6 +367,37 @@ class SpotifyTrackResolver {
     this.staleRules = false;
     this._save();
     return { kept, dropped };
+  }
+
+  /**
+   * 곡 정보 없이 uri 만 남은 기록에 정보를 채운다.
+   *
+   * 한 곡씩 다시 검색하면 179곡이면 179번이다. Spotify 는 곡 정보를 50개씩
+   * 묶어 주므로 네 번이면 끝난다. 지금처럼 할당량이 빠듯할 때 차이가 크다.
+   */
+  async _fillMissingTracks(songs) {
+    const need = songs
+      .map((s) => [s.id, (this.map[s.id] || '').split(':').pop()])
+      .filter(([id, tid]) => tid && !this.cache[id]?.name);
+    for (let i = 0; i < need.length; i += 50) {
+      const chunk = need.slice(i, i + 50);
+      let res;
+      try {
+        res = await SpotifyAuth.api(`/tracks?ids=${chunk.map(([, t]) => t).join(',')}`);
+      } catch (_) { return; }
+      if (!res.ok) return;                       // 못 채우면 그 곡들은 다시 찾는다
+      const items = (await res.json()).tracks || [];
+      chunk.forEach(([id], j) => {
+        const t = items[j];
+        if (!t) return;
+        this.cache[id] = {
+          name: t.name,
+          artists: (t.artists || []).map((a) => a.name).join(', '),
+          album: t.album?.name || '',
+          year: (t.album?.release_date || '').slice(0, 4),
+        };
+      });
+    }
   }
 
   /** 저장해 둔 매칭이 지금 규칙으로도 받아들여지는가. */
@@ -936,7 +976,7 @@ async function diagnoseSpotify(sample, onStep, active = null) {
  */
 async function auditSpotifyMatches(songs, onResult, { delay = 400, signal } = {}) {
   const resolver = new SpotifyTrackResolver();
-  const moved = resolver.revalidate(songs);
+  const moved = await resolver.revalidate(songs);
   if (moved) onResult({ notice: `곡 고르는 규칙이 바뀌어 다시 확인했습니다 — `
     + `${moved.kept}곡은 그대로 두고 ${moved.dropped}곡만 다시 찾습니다.` });
   let blocked = 0;
