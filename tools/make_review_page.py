@@ -66,13 +66,29 @@ def build():
         level, reasons = classify(s)
         counts[level] += 1
         e = lambda v: html.escape(str(v or ""))
+        if MODE == "ost":
+            # OST 검수에서 가장 확인이 필요한 건 배역 이름이다. 게임에서 정답으로
+            # 읽어주는 값이라 곡 매칭보다 먼저 눈에 들어와야 한다.
+            kind = "드라마" if s.get("workType") == "drama" else "영화"
+            chars = " · ".join(
+                f"<b>{e(c['name'])}</b>" + (f" <span class='actor'>({e(c['actor'])})</span>" if c.get("actor") else "")
+                for c in s.get("characters", [])
+            ) or "<span class='flag'>배역 없음</span>"
+            head = f"""
+        <div class="seed"><span class="kind">{kind}</span> {e(s['work'])}</div>
+        <div class="chars">{chars}</div>
+        <div class="matched">OST · {e(s.get('itunesArtist'))} — {e(s.get('itunesTitle'))}</div>
+        <div class="album">{e(s.get('album'))}</div>"""
+        else:
+            head = f"""
+        <div class="seed">{e(s['artist'])} — {e(s['title'])}</div>
+        <div class="matched">{e(s.get('itunesArtist'))} — {e(s.get('itunesTitle'))}</div>
+        <div class="album">{e(s.get('album'))} ({s.get('itunesYear')})</div>"""
+
         rows.append(f"""
     <tr class="{level}" data-level="{level}">
       <td class="yr">{s['year']}</td>
-      <td>
-        <div class="seed">{e(s.get('work') or s['artist'])} — {e(s.get('song') or s['title'])}</div>
-        <div class="matched">{e(s.get('itunesArtist'))} — {e(s.get('itunesTitle'))}</div>
-        <div class="album">{e(s.get('album'))} ({s.get('itunesYear')})</div>
+      <td>{head}
         {''.join(f'<div class="flag">{e(r)}</div>' for r in reasons)}
       </td>
       <td class="play">
@@ -100,17 +116,19 @@ def build():
   .matched {{ color:#9a93c4; font-size:13px; margin-top:2px; }}
   .album {{ color:#5b5390; font-size:11px; margin-top:2px; }}
   .flag {{ color:#ff5c6c; font-size:12px; margin-top:4px; font-weight:600; }}
+  .kind {{ display:inline-block; font-size:11px; font-weight:700; color:#0e0c1f;
+           background:#ff8ab4; border-radius:4px; padding:2px 7px; margin-right:7px;
+           vertical-align:2px; }}
+  .chars {{ font-size:17px; margin-top:6px; color:#fff; }}
+  .chars .actor {{ color:#9a93c4; font-size:14px; font-weight:400; }}
   tr.bad  {{ background:rgba(255,92,108,.10); }}
   tr.warn {{ background:rgba(255,190,60,.07); }}
   tr.warn .flag {{ color:#ffbe3c; }}
   .play {{ width:290px; text-align:right; }}
   audio {{ width:280px; height:34px; }}
 </style></head><body>
-<h1>곡 목록 검수 — 총 {len(songs)}곡</h1>
-<div class="sub">
-  위 줄이 <b>덱에 표시될 정보</b>, 아래 회색 줄이 <b>실제 매칭된 음원</b>입니다.
-  재생해 보고 다른 곡이면 <code>tools/seed_songs.csv</code> 의 검색어를 고쳐 다시 수집하세요.
-</div>
+<h1>{'OST 검수 — 배역 이름 확인용' if MODE == 'ost' else '곡 목록 검수'} — 총 {len(songs)}{'개' if MODE == 'ost' else '곡'}</h1>
+<div class="sub" id="sub"></div>
 <div class="filters">
   <button class="on" data-f="all">전체 {len(songs)}</button>
   <button data-f="bad">교체 필요 {counts['bad']}</button>
@@ -126,6 +144,15 @@ def build():
       tr.style.display = (f === 'all' || tr.dataset.level === f) ? '' : 'none';
     }});
   }});
+  document.getElementById('sub').innerHTML = {json.dumps(
+    "굵은 글씨가 <b>극중 배역 이름</b>, 괄호가 배우입니다. 게임에서 이 값을 정답으로 읽어줍니다. "
+    "틀린 배역이 있으면 <b>연도와 작품명</b>을 알려주시면 고치겠습니다. "
+    "아래 회색 줄은 실제 매칭된 음원이니 재생해 보고 다른 곡이면 함께 알려주세요."
+    if MODE == "ost" else
+    "위 줄이 <b>덱에 표시될 정보</b>, 아래 회색 줄이 <b>실제 매칭된 음원</b>입니다. "
+    "재생해 보고 다른 곡이면 알려주세요."
+)};
+
   // 한 번에 한 곡만 나오게 한다
   document.addEventListener('play', e => {{
     document.querySelectorAll('audio').forEach(a => {{ if (a !== e.target) a.pause(); }});

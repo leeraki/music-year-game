@@ -36,6 +36,20 @@ def split_pipe(s):
     return [p.strip() for p in (s or "").split("|") if p.strip()]
 
 
+def references_work(cand, work):
+    """
+    이 트랙이 '그 작품의 음원'이라는 근거가 있는가.
+
+    앨범명에 OST 가 들어가면 통과시켰더니 다른 작품의 사운드트랙이 대거 섞여 들어왔다
+    (「질투」에 슬기로운 의사생활 OST, 「사도」에 The Shape of Water OST).
+    작품 이름이 앨범명이나 트랙명에 실제로 나타나야 한다.
+    """
+    w = bs.norm(work)
+    if not w:
+        return False
+    return w in bs.norm(cand.get("collectionName")) or w in bs.norm(cand.get("trackName"))
+
+
 def score_ost(cand, artist, song, alt=None):
     """
     OST 전용 채점.
@@ -84,6 +98,7 @@ def build(cache_only=False, delay=bs.DEFAULT_DELAY):
         song = row["song"].strip()
         artist = row["artist"].strip()
         alt = (row.get("alt") or "").strip() or None
+        verified = (row.get("verified") or "").strip().lower() in ("1", "y", "yes", "true")
         term = (row.get("search") or "").strip() or f"{artist} {song}"
 
         if term in cache:
@@ -111,7 +126,10 @@ def build(cache_only=False, delay=bs.DEFAULT_DELAY):
             continue
 
         score = lambda c: score_ost(c, artist, song, alt)
-        ranked = sorted(usable, key=score, reverse=True)
+        # 작품과의 연결 근거가 없는 후보는 아예 제외한다.
+        # verified 로 표시한 항목만 예외로 둔다(앨범명이 영문이라 근거를 못 잡는 경우).
+        pool = usable if verified else [c for c in usable if references_work(c, work)]
+        ranked = sorted(pool, key=score, reverse=True)
         best = next((c for c in ranked
                      if c["trackId"] not in claimed and score(c) > 0), None)
         if best is None:

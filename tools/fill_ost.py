@@ -20,6 +20,7 @@ import json
 import os
 import re
 import sys
+import tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SEED = os.path.join(HERE, "seed_ost.csv")
@@ -54,16 +55,42 @@ def pick(work, results):
             continue
         if any(s in al for s in SKIP_ALBUM):
             continue
-        # 그 작품의 음원이라는 근거가 있어야 한다
-        belongs = w and w in norm(album)
-        soundtrackish = "ost" in al or "soundtrack" in al
-        if not (belongs or soundtrackish):
+        # 그 작품의 음원이라는 근거가 반드시 있어야 한다.
+        # 'OST 가 붙은 앨범이면 통과'로 뒀더니 다른 작품의 사운드트랙이 대거 섞였다
+        # (「질투」에 슬기로운 의사생활 OST, 「사도」에 The Shape of Water OST).
+        if not (w and (w in norm(album) or w in norm(c.get("trackName")))):
             continue
-        out.append((0 if belongs else 1, -(c.get("trackCount") or 0), c))
+        out.append((0, -(c.get("trackCount") or 0), c))
     if not out:
         return None
     out.sort(key=lambda t: (t[0], t[1]))
     return out[0][2]
+
+
+FIELDS = ["year", "type", "work", "characters", "actors",
+          "song", "artist", "search", "alt", "verified"]
+
+
+def write_seed(rows):
+    """
+    임시 파일에 다 쓰고 나서 원본과 바꾼다.
+
+    바로 "w" 로 열면 그 순간 파일이 비워진다. 실제로 열 이름이 안 맞아 쓰기 도중
+    예외가 났을 때 시드 207개가 통째로 날아갔다(git 에서 복구).
+    """
+    d = os.path.dirname(SEED)
+    fd, tmp = tempfile.mkstemp(dir=d, suffix=".csv")
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=FIELDS, extrasaction="ignore")
+            w.writeheader()
+            for r in rows:
+                w.writerow({k: r.get(k, "") for k in FIELDS})
+        os.replace(tmp, SEED)
+    except BaseException:
+        if os.path.exists(tmp):
+            os.remove(tmp)
+        raise
 
 
 def main(dry=False):
@@ -86,11 +113,7 @@ def main(dry=False):
         filled.append(f"{r['year']} {work:<22} → {best['artistName']} / {best['trackName']}")
 
     if not dry:
-        w = csv.DictWriter(open(SEED, "w", encoding="utf-8", newline=""),
-                           fieldnames=["year", "type", "work", "characters",
-                                       "actors", "song", "artist", "search", "alt"])
-        w.writeheader()
-        w.writerows(rows)
+        write_seed(rows)
 
     for line in filled:
         print("  " + line)
