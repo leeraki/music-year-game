@@ -516,6 +516,25 @@ input[type="range"] {
 .howto b { color: var(--text); }
 .howto a { color: var(--accent); }
 
+.diag {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  font-size: 13px;
+}
+.diag[hidden] { display: none; }
+.diag li { display: flex; gap: 9px; padding: 5px 0; align-items: baseline; }
+.diag .mark { flex: 0 0 16px; font-weight: 800; }
+.diag .name { flex: 0 0 108px; color: var(--text); font-weight: 600; }
+.diag .detail { color: var(--muted); word-break: break-all; }
+.diag .ok   .mark { color: var(--ok); }
+.diag .fail .mark { color: var(--danger); }
+.diag .warn .mark { color: #ffbe3c; }
+.diag .skip { opacity: .45; }
+
 .qr-box {
   margin-top: 14px;
   padding: 16px;

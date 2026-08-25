@@ -38,6 +38,7 @@
     redirectUri: $('redirect-uri'), copyRedirect: $('btn-copy-redirect'),
     spotifyLogin: $('btn-spotify-login'), spotifyLogout: $('btn-spotify-logout'),
     qrBtn: $('btn-qr'), qrBox: $('qr-box'), qrCanvas: $('qr-canvas'),
+    diagBtn: $('btn-diagnose'), diag: $('diag'),
     modeChips: $('mode-chips'), modeNote: $('mode-note'),
     work: $('reveal-work'), workType: $('reveal-worktype'),
     characters: $('reveal-characters'), ostSong: $('reveal-ost-song'),
@@ -458,6 +459,33 @@
     } catch (_) {
       setSpotifyStatus('복사에 실패했습니다. 주소를 직접 선택해 복사해 주세요.', 'warn');
     }
+  });
+
+  // Spotify 가 안 될 때 원인이 여러 갈래라, 어디서 막혔는지 순서대로 짚어 보여준다.
+  el.diagBtn.addEventListener('click', async () => {
+    SpotifyAuth.clientId = el.spotifyClient.value || SpotifyAuth.clientId;
+    el.diag.hidden = false;
+    el.diag.innerHTML = '';
+    el.diagBtn.disabled = true;
+    el.diagBtn.textContent = '진단 중…';
+
+    const MARK = { ok: '✓', fail: '✕', warn: '!', skip: '·' };
+    const add = ({ name, state, detail }) => {
+      const li = document.createElement('li');
+      li.className = state;
+      li.innerHTML = `<span class="mark">${MARK[state]}</span>`
+        + `<span class="name"></span><span class="detail"></span>`;
+      li.querySelector('.name').textContent = name;
+      li.querySelector('.detail').textContent = detail || '';
+      el.diag.appendChild(li);
+    };
+    try {
+      await diagnoseSpotify(deck.peek(0) || deck.all[0], add);
+    } catch (err) {
+      add({ name: '진단', state: 'fail', detail: err.message });
+    }
+    el.diagBtn.disabled = false;
+    el.diagBtn.textContent = '연결 진단';
   });
 
   // Client ID 32자를 다른 기기에서 손으로 치기 번거로워 QR 로 옮긴다.

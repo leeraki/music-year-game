@@ -460,6 +460,92 @@ class SpotifyProvider extends AudioProvider {
   }
 }
 
+/**
+ * 연결 진단.
+ *
+ * Spotify 재생이 안 될 때 원인이 여러 갈래다 — 요금제, 대시보드 사용자 등록,
+ * Redirect URI 오타, SDK 로드 실패, 기기 연결, 곡 검색. 어디서 막혔는지
+ * 말로 주고받으면 오래 걸려서, 순서대로 짚어 그 자리에서 보여준다.
+ *
+ * @param {object} sample 곡 하나 (검색까지 되는지 확인용)
+ * @param {function} onStep 단계마다 호출: ({name, state, detail})
+ *                          state: 'ok' | 'fail' | 'warn' | 'skip'
+ */
+async function diagnoseSpotify(sample, onStep) {
+  const step = (name, state, detail) => onStep({ name, state, detail });
+  const skipRest = (from, list) => list.slice(from).forEach((n) => step(n, 'skip', '앞 단계 실패로 건너뜀'));
+  const NAMES = ['Client ID', '로그인 토큰', '계정 등급', '대시보드 사용자 등록',
+                 'SDK 로드', '기기 연결', '곡 검색'];
+
+  if (!SpotifyAuth.clientId) {
+    step(NAMES[0], 'fail', '입력되지 않음');
+    return skipRest(1, NAMES);
+  }
+  step(NAMES[0], 'ok', SpotifyAuth.clientId.slice(0, 8) + '…');
+
+  let token;
+  try {
+    token = await SpotifyAuth.getAccessToken();
+    const t = SpotifyAuth.loadToken();
+    const left = Math.max(0, Math.round((t.expires_at - Date.now()) / 60000));
+    step(NAMES[1], 'ok', `유효 (${left}분 남음)`);
+  } catch (err) {
+    step(NAMES[1], 'fail', err.message);
+    return skipRest(2, NAMES);
+  }
+
+  let me;
+  try {
+    const res = await SpotifyAuth.api('/me');
+    if (res.status === 403) {
+      step(NAMES[2], 'fail', '권한 없음');
+      step(NAMES[3], 'fail', '대시보드 User Management 에 이 계정 이메일을 추가해야 합니다');
+      return skipRest(4, NAMES);
+    }
+    if (!res.ok) { step(NAMES[2], 'fail', `계정 정보를 못 읽음 (${res.status})`); return skipRest(3, NAMES); }
+    me = await res.json();
+    if (me.product === 'premium') step(NAMES[2], 'ok', `Premium (${me.display_name || me.id})`);
+    else {
+      step(NAMES[2], 'fail', `${me.product} — SDK 재생은 Premium 이 필요합니다`);
+      step(NAMES[3], 'ok', '로그인된 것으로 보아 등록되어 있습니다');
+      return skipRest(4, NAMES);
+    }
+    step(NAMES[3], 'ok', '등록되어 있습니다');
+  } catch (err) {
+    step(NAMES[2], 'fail', err.message);
+    return skipRest(3, NAMES);
+  }
+
+  const player = new SpotifyProvider();
+  try {
+    await SpotifyProvider._loadSdk();
+    step(NAMES[4], 'ok', '불러옴');
+  } catch (err) {
+    step(NAMES[4], 'fail', err.message);
+    return skipRest(5, NAMES);
+  }
+
+  try {
+    const id = await player.connect();
+    step(NAMES[5], 'ok', `기기 등록됨 (${String(id).slice(0, 8)}…)`);
+  } catch (err) {
+    step(NAMES[5], 'fail', err.message);
+    step(NAMES[6], 'skip', '앞 단계 실패로 건너뜀');
+    player.destroy();
+    return;
+  }
+
+  try {
+    const uri = await player.resolver.resolve(sample);
+    const title = SpotifyTrackResolver._title(sample);
+    step(NAMES[6], 'ok', `${sample.artist} — ${title} → ${uri.split(':').pop().slice(0, 8)}…`);
+  } catch (err) {
+    step(NAMES[6], 'warn', err.message);
+  }
+  player.destroy();
+}
+
+window.diagnoseSpotify = diagnoseSpotify;
 window.SpotifyAuth = SpotifyAuth;
 window.SpotifyProvider = SpotifyProvider;
 window.SpotifyTrackResolver = SpotifyTrackResolver;
