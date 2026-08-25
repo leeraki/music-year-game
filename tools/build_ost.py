@@ -42,23 +42,35 @@ def references_work(cand, work):
 
     앨범명에 OST 가 들어가면 통과시켰더니 다른 작품의 사운드트랙이 대거 섞여 들어왔다
     (「질투」에 슬기로운 의사생활 OST, 「사도」에 The Shape of Water OST).
-    작품 이름이 앨범명이나 트랙명에 실제로 나타나야 한다.
+
+    트랙명까지 근거로 인정했더니 이번엔 작품명과 제목이 같기만 한 무관한 곡이 들어왔다
+    (《굳세어라 금순아》에 1953년 원곡 트로트, 《아름다운 날들》에 동명 가요).
+    그래서 앨범명만 근거로 삼는다.
     """
     w = bs.norm(work)
     if not w:
         return False
-    return w in bs.norm(cand.get("collectionName")) or w in bs.norm(cand.get("trackName"))
+    return w in bs.norm(cand.get("collectionName"))
 
 
-def score_ost(cand, artist, song, alt=None):
+def album_year(cand):
+    try:
+        return int(cand["releaseDate"][:4])
+    except (KeyError, ValueError, TypeError):
+        return None
+
+
+def score_ost(cand, artist, song, alt=None, work_year=None):
     """
     OST 전용 채점.
 
-    K-POP 과 두 가지가 다르다.
-      - 연도 가산점을 주지 않는다. 여기서 year 는 작품의 연도라 곡 발매일과 무관하다.
-      - 가수 불일치를 바로 탈락시키지 않는다. iTunes 한국은 외국 아티스트를 한글로
-        옮겨 적는 일이 많아('John Williams' → '존 윌리엄스') 표기만으로는 판단할 수 없다.
-        대신 제목이 확실히 맞을 때만 통과시키고 점수를 깎는다.
+    가수 불일치를 바로 탈락시키지는 않는다. iTunes 한국은 외국 아티스트를 한글로
+    옮겨 적는 일이 많아 표기만으로는 판단할 수 없다. 제목이 확실할 때만 통과시킨다.
+
+    연도는 본다. 처음엔 'year 가 작품 연도라 곡 발매일과 무관하다'고 보고 뺐는데,
+    드라마 OST 는 방영 시기에 나오므로 실제로는 붙어 있어야 정상이다.
+    이걸 빼둔 탓에 1996년 《첫사랑》에 2003년 동명 드라마의 OST 가 들어갔다.
+    앨범명만으로는 동명 작품을 구분할 수 없어 연도가 유일한 단서다.
     """
     if not cand.get("previewUrl"):
         return -99.0
@@ -81,6 +93,19 @@ def score_ost(cand, artist, song, alt=None):
     # 사운드트랙 음반이면 그 작품의 음원일 가능성이 높다
     if "ost" in album or "soundtrack" in album or "original motion picture" in album:
         s += 1.5
+
+    # 방영 시기와 앨범 발매 시기가 붙어 있어야 그 작품의 OST 다
+    ay = album_year(cand)
+    if work_year and ay:
+        gap = ay - work_year
+        if gap > 5 or gap < -3:
+            # 앨범명이 작품을 가리켜도 시기가 이만큼 벌어지면 동명 다른 작품이다.
+            # 1996년 《첫사랑》에 2003년 동명 드라마 OST 가 들어간 경우가 그랬다.
+            return -25.0
+        if -1 <= gap <= 1:
+            s += 2.0
+        elif gap > 3 or gap < -2:
+            s -= 4.0
     return s
 
 
@@ -125,7 +150,7 @@ def build(cache_only=False, delay=bs.DEFAULT_DELAY):
             print(f"  {i:3d}/{len(seeds)} [NONE] {work}")
             continue
 
-        score = lambda c: score_ost(c, artist, song, alt)
+        score = lambda c: score_ost(c, artist, song, alt, year)
         # 작품과의 연결 근거가 없는 후보는 아예 제외한다.
         # verified 로 표시한 항목만 예외로 둔다(앨범명이 영문이라 근거를 못 잡는 경우).
         pool = usable if verified else [c for c in usable if references_work(c, work)]
@@ -166,6 +191,9 @@ def build(cache_only=False, delay=bs.DEFAULT_DELAY):
         })
 
         flags = []
+        ay = album_year(best)
+        if ay and abs(ay - year) > 3:
+            flags.append(f"앨범 {ay}년 — 작품 {year}년과 {abs(ay-year)}년 차 (동명 다른 작품 의심)")
         if bs.is_variant(best):
             flags.append("라이브/리믹스 의심")
         if not chars:
