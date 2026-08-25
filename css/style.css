@@ -529,7 +529,7 @@ input[type="range"] {
 .diag li { display: flex; gap: 9px; padding: 5px 0; align-items: baseline; }
 .diag .mark { flex: 0 0 16px; font-weight: 800; }
 .diag .name { flex: 0 0 108px; color: var(--text); font-weight: 600; }
-.diag .detail { color: var(--muted); word-break: break-all; }
+.diag .detail { color: var(--muted); word-break: break-all; white-space: pre-wrap; }
 .diag .ok   .mark { color: var(--ok); }
 .diag .fail .mark { color: var(--danger); }
 .diag .warn .mark { color: #ffbe3c; }

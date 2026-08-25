@@ -19,7 +19,7 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r19-newapp';
+const RESOLVER_BUILD = 'r20-diagbody';
 // 찾아 둔 곡을 버릴지 판단하는 기준. 곡을 고르는 규칙이 바뀔 때만 올린다.
 // 판번호에 묶었더니 요청 제한 대응처럼 매칭과 무관한 수정에도 230곡을 다시
 // 찾게 되어, 그러느라 제한을 또 소진했다.
@@ -992,12 +992,26 @@ async function diagnoseSpotify(sample, onStep, active = null) {
     return;
   }
 
+  // 검색은 상태 코드만으로는 왜 막혔는지 알 수 없다. 응답을 그대로 보여준다.
   try {
-    const uri = await player.resolver.resolve(sample);
-    const title = SpotifyTrackResolver._title(sample);
-    step(NAMES[6], 'ok', `${sample.artist} — ${title} → ${uri.split(':').pop().slice(0, 8)}…`);
+    const res = await SpotifyAuth.api('/search?q=test&type=track&limit=1&market=KR');
+    if (res.ok) {
+      const uri = await player.resolver.resolve(sample);
+      const title = SpotifyTrackResolver._title(sample);
+      step(NAMES[6], 'ok', `${sample.artist} — ${title} → ${uri.split(':').pop().slice(0, 8)}…`);
+    } else {
+      let body = '';
+      try { body = (await res.text()).slice(0, 300); } catch (_) {}
+      const hdr = ['retry-after', 'x-ratelimit-remaining', 'x-ratelimit-limit']
+        .map((h) => [h, res.headers.get(h)]).filter(([, v]) => v)
+        .map(([h, v]) => `${h}=${v}`).join(' · ');
+      step(NAMES[6], 'fail',
+        `HTTP ${res.status} ${res.statusText || ''}`.trim()
+        + (hdr ? ` · ${hdr}` : ' · (헤더 안 보임 — CORS 로 가려짐)')
+        + (body ? `\n응답: ${body}` : '\n응답 본문 없음'));
+    }
   } catch (err) {
-    step(NAMES[6], 'warn', err.message);
+    step(NAMES[6], 'fail', `요청 자체가 실패: ${err.message}`);
   }
   if (!reuse) player.destroy();   // 앱이 쓰는 플레이어는 끊지 않는다
 }
