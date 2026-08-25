@@ -7,7 +7,7 @@
  * 미리 전부 받아두지는 않는다 — 200곡이면 200MB 가까워서 설치가 무거워진다.
  */
 
-const VERSION = 'v8';   // 파일 구성이 바뀌면 올린다. 옛 캐시가 남아 새 코드가 안 도는 일을 막는다.
+const VERSION = 'v9';   // 파일 구성이 바뀌면 올린다. 옛 캐시가 남아 새 코드가 안 도는 일을 막는다.
 const SHELL_CACHE = `song-game-shell-${VERSION}`;
 const AUDIO_CACHE = `song-game-audio-${VERSION}`;
 const AUDIO_CACHE_MAX = 80;   // 최근 재생한 곡 위주로 이 개수까지만 보관
@@ -102,7 +102,10 @@ self.addEventListener('fetch', (event) => {
   if (url.origin === self.location.origin) {
     event.respondWith((async () => {
       try {
-        const res = await fetch(request);
+        // no-cache 는 '받지 말라'가 아니라 '쓰기 전에 물어보라'다. 브라우저 HTTP 캐시가
+        // 옛 파일을 그대로 내주는 바람에 고친 코드가 안 도는 일이 있었다.
+        // 바뀐 게 없으면 304 라 비용은 거의 없다.
+        const res = await fetch(request, { cache: 'no-cache' });
         if (res.ok) {
           const cache = await caches.open(SHELL_CACHE);
           cache.put(request, res.clone()).catch(() => {});

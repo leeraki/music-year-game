@@ -557,7 +557,7 @@
   el.auditCopy.addEventListener('click', async () => {
     if (!auditLines.length) { el.auditCopy.textContent = '결과 없음'; return; }
     const text = [
-      `# 곡 매칭 검사 — ${Deck.MODES[prefs.mode].label} (${deck.all.length}곡)`,
+      `# 곡 매칭 검사 — ${Deck.MODES[prefs.mode].label} (${deck.all.length}곡)` + ` · ${window.RESOLVER_BUILD || '구버전'}`,
       el.auditProgress.textContent.trim(),
       '',
       ...auditLines,

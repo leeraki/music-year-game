@@ -18,6 +18,8 @@ const SPOTIFY_AUTH = 'https://accounts.spotify.com/authorize';
 const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
+// 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
+const RESOLVER_BUILD = 'r3-alias-search';
 
 // streaming 은 SDK 재생에, user-read-* 는 SDK 초기화에, user-modify-* 는 play/seek 에 필요하다
 const SCOPES = [
@@ -425,6 +427,7 @@ class SpotifyTrackResolver {
 
     // 한국어 곡명이 많아 필드 한정 검색보다 자유 질의가 더 잘 맞는다
     let scored = [];
+    const tried = [];       // 실패했을 때 '무엇을 물었고 무엇이 왔는지' 남긴다
     for (const { q, strict } of terms) {
       const res = await SpotifyAuth.api(
         `/search?q=${encodeURIComponent(q)}&type=track&limit=10&market=KR`);
@@ -436,9 +439,14 @@ class SpotifyTrackResolver {
           song.artist, x.t.artists.map((a) => a.name).join(' '))))
         .sort((a, b) => b.s - a.s);
       if (scored.length) break;
+      const top = items[0];
+      tried.push(`"${q}" → ${items.length}건`
+        + (top ? ` · 1위 ${top.artists.map((a) => a.name).join(', ')} / ${top.name}`
+                 + ` (${SpotifyTrackResolver._score(top, song, 0).toFixed(1)}점)` : ''));
     }
     if (!scored.length) {
-      throw new Error(`Spotify 에서 이 곡을 찾지 못했습니다: ${label}`);
+      throw new Error(`Spotify 에서 이 곡을 찾지 못했습니다: ${label}\n`
+        + tried.map((t) => `    · ${t}`).join('\n'));
     }
 
     const best = scored[0].t;
@@ -759,6 +767,7 @@ async function auditSpotifyMatches(songs, onResult, { delay = 250, signal } = {}
 
 window.auditSpotifyMatches = auditSpotifyMatches;
 window.diagnoseSpotify = diagnoseSpotify;
+window.RESOLVER_BUILD = RESOLVER_BUILD;
 window.SpotifyAuth = SpotifyAuth;
 window.SpotifyProvider = SpotifyProvider;
 window.SpotifyTrackResolver = SpotifyTrackResolver;
