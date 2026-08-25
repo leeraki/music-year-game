@@ -180,6 +180,7 @@ def build(cache_only=False, delay=bs.DEFAULT_DELAY):
                 for j, c in enumerate(chars)
             ],
             "song": song,
+            "alt": alt,   # Spotify 가 쓰는 다른 표기(영어 제목 등). 검색·대조에 쓴다.
             "artist": artist,
             "itunesTrackId": best["trackId"],
             "itunesTitle": best.get("trackName"),

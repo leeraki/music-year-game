@@ -19,7 +19,7 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r4-market-probe';
+const RESOLVER_BUILD = 'r5-title-alias';
 
 // streaming 은 SDK 재생에, user-read-* 는 SDK 초기화에, user-modify-* 는 play/seek 에 필요하다
 const SCOPES = [
@@ -273,10 +273,22 @@ class SpotifyTrackResolver {
     return [...out];
   }
 
-  /** 이 곡을 가리키는 제목 후보. 수집 때 확인한 공식 표기도 함께 쓴다. */
+  /**
+   * 이 곡을 가리키는 제목들.
+   *
+   * Spotify 한국은 한국 곡을 영어 제목으로만 올려 두는 일이 잦다.
+   * 「에너제틱」은 'Energetic', 「첫 만남은 계획대로 되지 않아」는 'plot twist',
+   * 「행복」은 'Full of happiness' 다. 한글 제목으로는 한 곡도 안 맞는다.
+   * 큐레이션할 때 적어 둔 다른 표기(alt)와 수집 때 확인한 표기를 함께 쓴다.
+   */
+  static _titleNames(song) {
+    return [SpotifyTrackResolver._title(song), song.alt, song.itunesTitle].filter(Boolean);
+  }
+
+  /** 비교용으로 펼친 제목 후보. */
   static _titleCandidates(song) {
     const forms = new Set();
-    for (const t of [SpotifyTrackResolver._title(song), song.itunesTitle]) {
+    for (const t of SpotifyTrackResolver._titleNames(song)) {
       SpotifyTrackResolver._titleForms(t).forEach((f) => forms.add(f));
     }
     return [...forms];
@@ -413,7 +425,7 @@ class SpotifyTrackResolver {
     //   곡   — 「나 홀로 뜰 앞에서」는 'Alone in Front of the Yard' 로만 올라와 있다.
     // 양쪽 표기를 조합해 차례로 시도한다. 첫 번째에서 찾으면 거기서 멈추므로
     // 평소에는 질의가 한 번이고, 못 찾은 곡만 더 두드린다.
-    const titles = [...new Set([title, song.itunesTitle].filter(Boolean))];
+    const titles = [...new Set(SpotifyTrackResolver._titleNames(song))];
     const terms = [];
     const add = (q, strict) => {
       if (q && !terms.some((x) => x.q === q)) terms.push({ q, strict });

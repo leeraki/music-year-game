@@ -16,7 +16,8 @@
    "album": "산울림 제6집 - 조금만 기다려요",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/6f/a0/20/6fa02006-f8fe-9d6d-8d9f-e71320a50a8e/mzaf_7297604857566775413.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e5/78/15/e578157c-d03a-344e-7cfd-4a6567bd0056/8809259907694.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "창문 너머 어렴풋이 옛 생각이 나겠지요"
   },
   {
    "id": "s310139455",
@@ -338,7 +339,8 @@
    "album": "이선희 2집",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/d6/f3/c7/d6f3c750-6b17-44c8-073d-da8951f4cc1a/mzaf_5033372963569476859.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music/7b/60/41/mzi.kqorfrbk.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "I Want To Know"
   },
   {
    "id": "s1649267256",
@@ -352,7 +354,8 @@
    "album": "Alone in Front of the Yard",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/33/ae/b8/33aeb8f2-d3fd-d2af-4e48-e8e6f7eed11e/mzaf_17230497690869167861.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/cd/6c/f2/cd6cf2c3-2213-3110-9d96-5d1c4f132bbf/8806163381664_cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Alone in Front of the Yard"
   },
   {
    "id": "s1618867163",
@@ -548,7 +551,8 @@
    "album": "아무말 않으리",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/98/96/f6/9896f630-a17d-d516-d657-87c7ed045992/mzaf_17980772345705825409.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/5c/46/78/5c46788d-2401-c8d3-bd10-27e7e4edd7a8/8806197959549_cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Like an Indian Doll"
   },
   {
    "id": "s1638682095",
@@ -842,7 +846,8 @@
    "album": "Seotaiji and Boys",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/ab/be/30/abbe3082-e59d-8f78-5423-d894337e5f63/mzaf_14445661295376207985.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ad/78/22/ad7822cf-49f9-dcac-7b75-2028492a9907/8809704420648_Cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "I Know"
   },
   {
    "id": "s1614224701",
@@ -856,7 +861,8 @@
    "album": "Seotaiji and Boys",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/aa/21/16/aa211654-f3f1-1695-1606-0aee539d4f64/mzaf_16071166708404976409.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ad/78/22/ad7822cf-49f9-dcac-7b75-2028492a9907/8809704420648_Cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "You in the Fantasy"
   },
   {
    "id": "s1562124567",
@@ -1010,7 +1016,8 @@
    "album": "머피의 법칙",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/1c/5e/c6/1c5ec68b-3e5b-b0ad-ef27-853e364473d4/mzaf_8146169888785227975.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/81/b9/b1/81b9b1fc-7459-d9fc-7a1f-733bdda51f7f/8806384512458_cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Murphy's Law"
   },
   {
    "id": "s1674699742",
@@ -1038,7 +1045,8 @@
    "album": "Wrongful Meeting",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/b0/ea/85/b0ea850d-881f-69e7-bf00-9b562b432582/mzaf_14159311126904900939.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/26/ae/61/26ae61fc-bc76-99c5-5873-75e9fafc57ce/cover_KM0019195_1.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Wrongful Meeting"
   },
   {
    "id": "s1728628939",
@@ -1066,7 +1074,8 @@
    "album": "날개 잃은 천사",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/c9/af/ab/c9afabff-d82d-da4e-5d26-676b8a91c9bc/mzaf_10766297628448038922.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/44/7e/ab/447eabb9-6092-14f1-dcc3-f29c7c7c6738/8809691081204.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Angel Without Wings"
   },
   {
    "id": "s1728821762",
@@ -1094,7 +1103,8 @@
    "album": "Seotaiji and Boys IV",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/af/51/fe/af51fe65-7628-6442-2827-5cbb1e060764/mzaf_8651671111720237765.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/0a/a0/77/0aa07752-0dfc-5cf2-a451-807ca8fc61dc/8809704420679_Cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Come Back Home"
   },
   {
    "id": "s890343217",
@@ -1122,7 +1132,8 @@
    "album": "280km / h speed",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/24/0b/1d/240b1dd3-6fc8-2aed-6007-9639d3001ca3/mzaf_15060181224892831302.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music62/v4/db/eb/55/dbeb5559-721c-2320-dd0c-01e53f54bfcf/asset.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "My Childhood Dream"
   },
   {
    "id": "s1782311156",
@@ -1164,7 +1175,8 @@
    "album": "We Hate All Kinds of Violence... - The 1st Album",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/b9/3a/58/b93a5806-0a73-9c9d-ba1c-fe29e54db2e8/mzaf_12973314473649694196.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/b6/e0/23/b6e0233a-d2d7-12c9-2f97-5abdb8133658/hot_1.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Candy"
   },
   {
    "id": "s1267190063",
@@ -1248,7 +1260,8 @@
    "album": "Are You Ready?",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/35/9a/bd/359abd7e-75fb-a112-a338-3b0865d1882b/mzaf_813279759223266637.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/5b/17/3e/5b173e6b-10da-1a37-db8d-0099d6f3d32e/cover_KM0019183_1.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Kkung Ttari Shabara"
   },
   {
    "id": "s1060462217",
@@ -1276,7 +1289,8 @@
    "album": "Wolf & Sheeps - The 2nd Album",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/ad/00/1a/ad001ab5-0fa2-8add-3b71-afbf49619db4/mzaf_15759956206612309926.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music69/v4/a3/3b/28/a33b28f3-b4f3-4d35-074a-a18ddaaaebfe/2nd_Album_Wolf_Sheeps.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Full of happiness"
   },
   {
    "id": "s1060481744",
@@ -1304,7 +1318,8 @@
    "album": "학원별곡",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/54/a8/3e/54a83e0b-4954-6976-f10b-9eafe69a5349/mzaf_423159004431269928.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/fc/7b/76/fc7b765a-7264-2ca2-5714-f9a131a18a48/5368.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "사나이 가는 길"
   },
   {
    "id": "s1463773585",
@@ -1444,7 +1459,8 @@
    "album": "Cool 4",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/8b/7e/9c/8b7e9c05-ffd2-9923-9799-87f5d0fb1cdd/mzaf_4573498049999093402.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/37/5e/fd/375efdd1-67c3-0a3b-d27f-65b7f270d539/18677.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Sorrow"
   },
   {
    "id": "s1456211553",
@@ -1458,7 +1474,8 @@
    "album": "Fine Killing Liberty : Blue Rain",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/a4/d3/ff/a4d3ff22-37da-042e-fa60-c29265eaa4dc/mzaf_6059815917548217514.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a7/61/51/a76151f7-d332-c152-2c91-07c1080a3c6c/cover-_Fine_Killing_Liberty_Blue_Rain.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Blue Rain"
   },
   {
    "id": "s1456211562",
@@ -1528,7 +1545,8 @@
    "album": "Year of the Tiger",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/8a/62/25/8a6225d9-d501-319a-e1a1-3f894fe4aa77/mzaf_503689779457895733.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/72/84/47/72844789-e034-c73f-3f97-2aa01a921d88/8809649887834.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Do You Know Hip Hop"
   },
   {
    "id": "s1804621387",
@@ -1556,7 +1574,8 @@
    "album": "Let's Go To My Star",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/32/76/31/3276319b-f9ac-ee0b-5a57-ff9d6830f788/mzaf_12407445031042571060.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/32/56/39/32563983-f304-57dd-47e4-111134beff2a/8809856786999.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Wa"
   },
   {
    "id": "s1456207541",
@@ -1584,7 +1603,8 @@
    "album": "Chapter 3",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/53/6a/f3/536af32f-13d3-c184-57b4-f350f80d251c/mzaf_5318198812174015654.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/64/8b/93/648b93b7-4a00-9862-4bb4-230179c7ab5f/8804524011205_cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Lies"
   },
   {
    "id": "s1578474691",
@@ -1612,7 +1632,8 @@
    "album": "왁스 1집 - 엄마의 일기",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/a4/3f/8b/a43f8be4-5595-2124-3933-ca4eeec9b056/mzaf_12537002770483053047.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music/5f/a5/49/mzi.datfgaxb.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Oppa"
   },
   {
    "id": "s1678032983",
@@ -1654,7 +1675,8 @@
    "album": "Chapter 4",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/a0/3b/ce/a03bcedd-6500-8f5b-ea4f-917f4240d0d8/mzaf_1994803627903143615.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/5a/af/97/5aaf978b-b249-8028-df84-d09ca68b8444/8809912009208_cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Road"
   },
   {
    "id": "s1657368398",
@@ -1696,7 +1718,8 @@
    "album": "Psy From The Psycho World",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/57/7a/f6/577af6d5-0919-8706-4fc6-0ad8e2ad6fc3/mzaf_8730484541596828905.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/e7/7a/8d/e77a8d47-13d7-ed4a-bee3-5c00b5145815/8806384547139.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Bird"
   },
   {
    "id": "s1448968765",
@@ -1738,7 +1761,8 @@
    "album": "NO.1 - The 2nd Album",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/95/55/70/9555707d-733e-e79c-8316-4b2f798f702f/mzaf_8256146321191964484.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music5/v4/65/e8/71/65e8711b-dc79-e1c6-1f35-9d2176b22c71/BoA_No1.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "넘버원"
   },
   {
    "id": "s1119063197",
@@ -1752,7 +1776,8 @@
    "album": "N001",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/b1/a7/03/b1a703f1-bff7-4f51-7c2b-b2753aed83d8/mzaf_10915699201491121753.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music20/v4/43/b2/4a/43b24a61-6dd2-bd31-772c-41e2f71eb6c0/cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Bad Guy"
   },
   {
    "id": "s1804555648",
@@ -1822,7 +1847,8 @@
    "album": "Just Listen",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/8a/aa/c9/8aaac9c7-5287-7d74-8832-efacd8727752/mzaf_374062317818345231.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/36/13/f2/3613f2e5-fedb-d9f6-056d-388fd662f416/8806197904549.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Come Back To Me"
   },
   {
    "id": "s1397154168",
@@ -1836,7 +1862,8 @@
    "album": "Stylish...",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/fe/1c/43/fe1c4370-0e33-d993-c57e-4c421d1561d7/mzaf_14420089433299538153.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/10/e3/f5/10e3f5e5-bce5-1735-8f50-89343d802d00/cover-_Stylish.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "텐 미닛"
   },
   {
    "id": "s1375826720",
@@ -1850,7 +1877,8 @@
    "album": "YG 10th Anniversary",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/44/40/8c/44408cd3-bb8d-8a6d-d8d8-10f2c10aab23/mzaf_5730525683388574660.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/83/46/2f/83462f2e-41ef-f92f-6a4f-935aac6fab4b/edit_120964.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "위드 미"
   },
   {
    "id": "s1657129318",
@@ -1892,7 +1920,8 @@
    "album": "Evolution",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/04/69/5e/04695e82-c1bc-17a9-d0db-d7aa6de78689/mzaf_9315201363558435286.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/20/64/16/20641689-9773-35a0-4932-cee44a42585d/resize-001.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "One Man"
   },
   {
    "id": "s1620530923",
@@ -1906,7 +1935,8 @@
    "album": "Brand New",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/bf/61/13/bf611368-e0d1-8c32-0f17-37f55c126d57/mzaf_172353626098993198.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/f0/ad/c0/f0adc0a7-9668-10d6-547f-b16ccb918fd7/08809144344481_Cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "브랜드 뉴"
   },
   {
    "id": "s1804690572",
@@ -2004,7 +2034,8 @@
    "album": "Rising Sun - 2nd Album",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/23/05/dd/2305ddbc-e80d-5847-494a-c4d228dff552/mzaf_3021799507617474312.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music7/v4/4d/ea/e6/4deae60f-0602-3c6c-3b3a-aaf5da0a9f6a/8011132.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "순수"
   },
   {
    "id": "s1454772755",
@@ -2046,7 +2077,8 @@
    "album": "Swan Songs",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/8c/c7/bf/8cc7bfae-d776-4178-7f23-40fd2d732459/mzaf_16291278794132403966.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/01/64/76/016476e9-24ab-d17d-e587-ec5b1788e671/8809484114881_Cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "플라이"
   },
   {
    "id": "s1798411927",
@@ -2060,7 +2092,8 @@
    "album": "청연 Original Sound Track",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/cd/eb/18/cdeb1820-b99b-335c-2434-99d60ad86adc/mzaf_3123384063104188145.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/50/48/4e/50484e14-bc76-88ca-ce14-3c21d2f07770/cover_KM0021305_1.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "West Sky"
   },
   {
    "id": "s1564228828",
@@ -2074,7 +2107,8 @@
    "album": "The 3rd Masterpiece",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/8c/01/4b/8c014bdf-2085-2b45-2b42-2f27a50e92a0/mzaf_17438745032226648445.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/67/fa/c9/67fac9b1-e770-efa2-51e5-2d9ed02fa71e/3000.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "내사람"
   },
   {
    "id": "s1656914828",
@@ -2088,7 +2122,8 @@
    "album": "California Dream",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/25/4a/db/254adbb9-bd9a-3a92-e4f1-9e7daf718ab8/mzaf_6060826902309117663.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/a4/39/93/a4399300-2f27-7b4f-da24-84ab21e080b8/8809231380699_Cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Crazy Love Song"
   },
   {
    "id": "s1100519869",
@@ -2102,7 +2137,8 @@
    "album": "Cheerful Sensibility",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/33/db/79/33db792b-ce70-e214-664e-2ca724fed700/mzaf_4256220480607302910.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music49/v4/52/44/8f/52448f21-353f-eec6-e78a-ed24ba7e8473/cover-FTISLAND_Cheerful_Sensibility.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Love Sick"
   },
   {
    "id": "s1330947216",
@@ -2116,7 +2152,8 @@
    "album": "Always - EP",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/59/7b/be/597bbec0-e892-7069-6c9b-d84af1ecb173/mzaf_8740762921626122907.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/80/7e/de/807edef3-53a7-41aa-47d0-2c9fc5c16045/KakaoTalk_Photo_2018-01-03-19-36-56.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Lies"
   },
   {
    "id": "s1333032325",
@@ -2130,7 +2167,8 @@
    "album": "Hot Issue - EP",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/f4/10/5a/f4105a99-fbd8-0ae1-6e0c-2f9693513d85/mzaf_1460188083115578454.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/90/2c/70/902c7072-de6e-a65e-194a-4ab2962cc279/edit_54229276_1443664824989_1_600x600.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Last Farewell"
   },
   {
    "id": "s854886013",
@@ -2144,7 +2182,8 @@
    "album": "소녀시대",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/8a/24/ca/8a24ca84-9143-c885-388d-6be5a08d0afb/mzaf_2828527521786968864.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/03/0b/3c/030b3c0a-40eb-b388-29af-a3a6d6fbc0e1/asset.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Into the New World"
   },
   {
    "id": "s1804698129",
@@ -2200,7 +2239,8 @@
    "album": "Stand Up - EP",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/ff/c2/a0/ffc2a011-0a44-d2df-657e-b8d9fc8ea805/mzaf_15222953779225658651.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/b9/9e/94/b99e9493-030c-5f73-b5c8-e69de5b04a6d/edit_3rd.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Haru Haru"
   },
   {
    "id": "s854928929",
@@ -2214,7 +2254,8 @@
    "album": "누난 너무 예뻐 The First Mini Album - EP",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/d0/8d/ce/d08dce3c-e7a6-1c00-b1b8-2dccf26c1012/mzaf_11229985623296216794.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/80/62/98/806298ca-b4c7-8061-f21e-998f1641ce0d/asset.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Replay"
   },
   {
    "id": "s1561311537",
@@ -2326,7 +2367,8 @@
    "album": "2NE1 1st Mini Album",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/a1/c9/dc/a1c9dca1-32ec-5040-0c85-cbd333d99d47/mzaf_14214902308157488890.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ad/54/17/ad54177e-3f63-2e84-67f0-640627feeb97/8806384562958.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "아이 돈 케어"
   },
   {
    "id": "s313380064",
@@ -2340,7 +2382,8 @@
    "album": "2:00PM Time for Change",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/09/1b/01/091b011b-ea6a-9d67-f85c-484cd727c245/mzaf_17373451039238655529.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/27/9a/31/279a3108-72d9-a460-a3d4-8214361730ed/mzi.jmlorloh.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "어게인 앤 어게인"
   },
   {
    "id": "s1804714937",
@@ -2354,7 +2397,8 @@
    "album": "Davichi In Wonderland - EP",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/93/9c/19/939c19e1-2ee7-b851-220c-9c9cdfae315f/mzaf_6661339762893028631.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/6b/5c/4d/6b5c4db9-9c5e-ca69-d8f2-b6e4ca363617/cover_KM0002247_1.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "8282"
   },
   {
    "id": "s1804699150",
@@ -2368,7 +2412,8 @@
    "album": "Sound G.",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/6e/ed/36/6eed36fd-ae84-9718-f4fa-e6cc3883e5aa/mzaf_10471661715250465195.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c4/fa/a2/c4faa26c-ca85-40c8-b91c-cea1994348c4/cover_KM0002552_1.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Abracadabra"
   },
   {
    "id": "s854911644",
@@ -2396,7 +2441,8 @@
    "album": "소원을 말해봐 (Genie) - EP",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/0d/53/7d/0d537d58-8100-c1c7-24f5-4f500cb150dd/mzaf_715832534791500985.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/02/5f/0c/025f0c9a-6346-ed15-e7c3-055c442ac580/asset.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "소원을 말해봐"
   },
   {
    "id": "s854890251",
@@ -2410,7 +2456,8 @@
    "album": "쏘리 쏘리",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/03/2d/34/032d344a-2dcf-f180-c655-2845e9e7fa9a/mzaf_3049550223211998607.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/d4/f5/55/d4f555bb-e12d-807d-2c12-f8817f0fa6e7/asset.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "쏘리 쏘리"
   },
   {
    "id": "s1640483598",
@@ -2438,7 +2485,8 @@
    "album": "Revolution",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/ab/9a/9f/ab9a9f94-b8ef-80a5-71d0-fae1723877d4/mzaf_786722203430076803.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/21/0d/8c/210d8ce4-6865-9e6a-54c5-3f0ac64847bd/cover-KARA_Revolution.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Mister"
   },
   {
    "id": "s1804714422",
@@ -2466,7 +2514,8 @@
    "album": "Bad But Good",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/a0/d7/ce/a0d7ce50-f5fd-6518-f9f2-62d1aa41536a/mzaf_11487030164141508574.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music/54/05/f8/mzi.vnraryvm.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "배드 걸 굿 걸"
   },
   {
    "id": "s1289688655",
@@ -2480,7 +2529,8 @@
    "album": "Lights Go on Again - EP",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/f9/1a/4b/f91a4b90-947a-d961-830a-2b244dca9338/mzaf_16991385712586015739.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/c4/98/d5/c498d5dc-1b01-580b-fa1d-a01c4d81f2dc/cover-BEAST_Lights_go_on_again.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "뷰티풀"
   },
   {
    "id": "s1289664606",
@@ -2494,7 +2544,8 @@
    "album": "Shock of the New Era - EP",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/92/1c/52/921c5243-5773-db55-50ae-4f6bd1585a0c/mzaf_11712735343939620303.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/0d/88/7c/0d887c82-5a2d-dd3c-01ff-baebbbc9cd39/cover-BEAT_Shock_of_the_new_era.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Shock"
   },
   {
    "id": "s1090778363",
@@ -2508,7 +2559,8 @@
    "album": "Bluetory - EP",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/95/bc/08/95bc08a1-8a47-a9f5-2a5f-16e5bd316b6b/mzaf_2766761931528818205.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/34/da/9f/34da9fac-2431-9e16-94eb-52d0e49d0b1b/CNBLUE_Bluetory.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Loner"
   },
   {
    "id": "s409076748",
@@ -2522,7 +2574,8 @@
    "album": "Real",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/e9/40/15/e940150d-0cde-c74e-893c-ddab87f921c7/mzaf_17571703730484332698.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/6d/2e/c9/6d2ec954-d8d8-b26a-1a8f-def6026815c5/mzi.orccormf.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Good Day"
   },
   {
    "id": "s450789239",
@@ -2564,7 +2617,8 @@
    "album": "So Cool",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/9a/32/1d/9a321df5-977f-cc97-18f7-868e6b374660/mzaf_7256365225522627571.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music/c5/b3/1c/mzi.osoznpcy.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "쏘쿨"
   },
   {
    "id": "s484346204",
@@ -2578,7 +2632,8 @@
    "album": "Last Fantasy",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/5c/f1/fc/5cf1fcb2-7acf-2b01-a76f-88c2197f5d6d/mzaf_5454703593068667241.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music/61/42/2c/mzi.mezumbpd.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "You & I"
   },
   {
    "id": "s1804698378",
@@ -2592,7 +2647,8 @@
    "album": "존트라볼타 워너비",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/22/81/81/22818108-f67e-233f-f5fe-b4c3b29087f8/mzaf_18027937626619316311.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a6/e9/2d/a6e92d40-c0df-ceba-7559-4908e7f7dfff/cover_KM0000970_1.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "ROLY-POLY"
   },
   {
    "id": "s1570572282",
@@ -2606,7 +2662,8 @@
    "album": "버스커버스커 1집",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/51/29/f4/5129f4ff-6ea4-a00a-a11b-c911713d9d70/mzaf_10819770660885468929.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/43/d8/6f/43d86fe5-632a-8226-be7c-7b5dee99a461/08809309174588_Cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Cherry Blossom Ending"
   },
   {
    "id": "s1337452979",
@@ -2634,7 +2691,8 @@
    "album": "싸이6甲, Pt. 1 - EP",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/8e/85/29/8e85291a-d894-9940-1942-6b284fa6c4b4/mzaf_14206141927925811767.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/77/a3/98/77a39810-e45e-35de-fe20-dbe809ac789d/8806384535815.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Gangnam Style"
   },
   {
    "id": "s518564086",
@@ -2662,7 +2720,8 @@
    "album": "Infinitize",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/d0/32/9e/d0329e46-ac99-8997-1e67-ffff156f3fe2/mzaf_15431547036340137211.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/88/b7/d3/88b7d37d-07db-ff0c-c5ee-09004593b1ed/cover-.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "The Chaser"
   },
   {
    "id": "s905850558",
@@ -2676,7 +2735,8 @@
    "album": "The 4th Album 'I Got a Boy'",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/19/d2/0a/19d20a84-4117-2ec6-50ba-8c650bddc3e0/mzaf_16570646879639757908.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/32/c9/15/32c9152b-cf16-3cf0-d550-1fa21abacb71/Girls_Generation_Cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "아이 갓 어 보이"
   },
   {
    "id": "s660567992",
@@ -2690,7 +2750,8 @@
    "album": "Give It To Me",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/27/c0/71/27c071e8-f5e9-77ef-15f3-4f6402b65572/mzaf_5247560376279789818.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/41/1a/d3/411ad3d7-516b-1047-59ca-d267025e89b3/KM0002128-_Sistar_2_-0611.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "기브 잇 투 미"
   },
   {
    "id": "s721958301",
@@ -2704,7 +2765,8 @@
    "album": "Modern Times",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/6f/73/55/6f73551b-48e0-2e3f-a5f8-94a473b34cd7/mzaf_5926323430802697003.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/b6/84/fd/b684fdae-92d3-782b-fa89-eb3b9986c2a5/KM0002335-_3_-1008.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Red Shoes"
   },
   {
    "id": "s854908245",
@@ -2718,7 +2780,8 @@
    "album": "The 1st Album 'XOXO' (Repackage)",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/32/aa/af/32aaaf08-d360-704f-f383-61e741cfe88b/mzaf_8326348149614908714.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/3a/10/77/3a1077bc-cfb4-dc63-eb69-bf8bc7d7245e/asset.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Growl"
   },
   {
    "id": "s854908246",
@@ -2746,7 +2809,8 @@
    "album": "빠빠빠 - Single",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/7e/de/60/7ede60f1-8f57-1b7e-1ab0-5f847e19131b/mzaf_17737286962242117165.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/89/f9/b3/89f9b3db-3bfd-0b6c-526d-2c2423d3da17/8809596465987.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Bar Bar Bar"
   },
   {
    "id": "s913346311",
@@ -2760,7 +2824,8 @@
    "album": "Up & Down - Single",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/4e/5b/c5/4e5bc5c6-8a06-8dc3-1d40-9d0a44d51d22/mzaf_661171647526214802.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/d8/88/96/d88896ec-265a-e8c5-64c9-c6e037418eee/886444819909.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Up & Down"
   },
   {
    "id": "s816025139",
@@ -2774,7 +2839,8 @@
    "album": "썸 - Single",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/fb/76/c8/fb76c8c3-a8a4-7026-061a-d7960ecc4aef/mzaf_7136525263174386554.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music4/v4/13/35/de/1335de61-248d-03eb-638a-26b746138223/KM0002557-_DS-0207.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Some"
   },
   {
    "id": "s879281078",
@@ -2788,7 +2854,8 @@
    "album": "꽃갈피",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/68/c1/65/68c165b5-df0c-68e3-bd81-b1cad8a72a52/mzaf_5265228493847202565.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/30/1a/7b/301a7b9e-edf2-2db1-e4c5-64044774389a/KM0002740-_-0516.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Meaning of You"
   },
   {
    "id": "s1316852697",
@@ -2802,7 +2869,8 @@
    "album": "PLAY",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/c4/f2/6c/c4f26c7c-5fc0-c9d7-0402-74795df16139/mzaf_6552442707309217514.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/0d/fc/aa/0dfcaa7f-c686-e945-85e1-73aece780869/AKMU-PLAY_DS_cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "200%"
   },
   {
    "id": "s854855933",
@@ -2816,7 +2884,8 @@
    "album": "Pink Blossom",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/23/b0/45/23b04545-9854-b863-f5d0-c974efd868eb/mzaf_8714009102318342462.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/26/d6/ce/26d6cef6-17e8-33b3-145d-2c5e399c068f/KM0002664-_-0331.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Mr.Chu"
   },
   {
    "id": "s1607289319",
@@ -2830,7 +2899,8 @@
    "album": "양화대교 - Single",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/75/b6/d4/75b6d4ed-8cb3-bd94-b227-92e8c49d68d1/mzaf_11294178300129101238.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/85/c3/21/85c32109-1153-592d-2fe4-26a348d863a2/8809603542731_Cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Yanghwa BRDG"
   },
   {
    "id": "s1317322831",
@@ -2844,7 +2914,8 @@
    "album": "Rise",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/56/47/a1/5647a174-9d02-c5c2-3f6f-6c599d9074e2/mzaf_394874124034230464.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/b1/93/47/b193475e-dab8-b946-f71a-953bfdb16581/T_RISE_F.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Eyes, Nose, Lips"
   },
   {
    "id": "s1063152227",
@@ -2900,7 +2971,8 @@
    "album": "CHAT-SHIRE",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/11/64/ad/1164ad34-d7e3-8183-3928-56ce14271cb3/mzaf_6230257126281102763.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/f8/75/d2/f875d2e2-1317-7f5a-2025-7ca9513dbb3d/COVER-.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Twenty-Three"
   },
   {
    "id": "s1754044871",
@@ -2914,7 +2986,8 @@
    "album": "Flower Bud - EP",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/87/1f/f5/871ff5f7-1f4c-66e8-86ac-ed9af69077e2/mzaf_14479755997270979170.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/00/da/1600dac5-6d00-4e32-7024-d69321091b86/888272025637_Cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Me Gustas Tu"
   },
   {
    "id": "s1604898417",
@@ -2942,7 +3015,8 @@
    "album": "Full Album RED PLANET",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/9d/79/02/9d790212-7f41-df5b-bd77-f93268a66cf8/mzaf_13528148262790830846.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/7b/af/8e/7baf8ec9-e0b5-726a-e763-61bcdb3f7371/jacket-585591.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Galaxy"
   },
   {
    "id": "s1315917629",
@@ -2956,7 +3030,8 @@
    "album": "SQUARE ONE - Single",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/66/cb/46/66cb4653-32cb-7459-fa3f-be0856958c55/mzaf_15640984397179131172.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/66/1f/06/661f06a5-a04a-be0a-8683-4ff5123bda1e/blackpink_fin0807.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Whistle"
   },
   {
    "id": "s1569280368",
@@ -2984,7 +3059,8 @@
    "album": "SNOWFLAKE",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f9/f7/7f/f9f77f89-8e6e-22ae-f0e4-8d2d34acf433/mzaf_209248006647806987.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/76/af/a1/76afa134-530e-07f2-2a00-2ea26645c5dc/8804775068362_Cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Rough"
   },
   {
    "id": "s1107529253",
@@ -3068,7 +3144,8 @@
    "album": "마지막처럼 - Single",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/97/44/12/974412d8-624e-7a85-25b5-a4a0ac135299/mzaf_10160984043858145771.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/0b/d6/6e/0bd66efc-caba-41e0-7d84-c92e925b1d94/as_if_its_your_last.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "AS IF IT'S YOUR LAST"
   },
   {
    "id": "s1219218446",
@@ -3082,7 +3159,8 @@
    "album": "밤편지 - Single",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/95/2c/41/952c41c2-f92a-afd8-ce06-33d353f9dee5/mzaf_9189779995448710851.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/dc/12/fe/dc12fe03-172b-a843-0d96-12819fa05b6c/cover-.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Through the Night"
   },
   {
    "id": "s1569744609",
@@ -3096,7 +3174,8 @@
    "album": "1-1=0 (Nothing Without You)",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/8d/d1/14/8dd11420-c1c8-55ce-90c2-8d7b4893ccba/mzaf_11206629400677110806.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/aa/55/d9/aa55d9a5-b570-464b-2643-f7ee5d3ab3ec/8809534468186_Cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Energetic"
   },
   {
    "id": "s1236672157",
@@ -3124,7 +3203,8 @@
    "album": "Great! - EP",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/bf/24/33/bf24337a-e353-8138-6d53-0e7cea7aecc4/mzaf_1552158385588829069.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/c1/ff/43/c1ff4301-b514-d41b-fa20-44b020bbbace/cover-_new.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "뿜뿜"
   },
   {
    "id": "s1598730980",
@@ -3152,7 +3232,8 @@
    "album": "SQUARE UP - EP",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/27/ad/ca/27adca22-d3e7-50bb-9ea5-7a29c6ce4ac0/mzaf_1409044628709112202.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d8/c2/7b/d8c27bd6-8358-5f68-45b2-673bf6baa1fa/BLACKPINK_DIGITAL_SINGLE_IMAGE.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "DDU-DU DDU-DU"
   },
   {
    "id": "s1435849571",
@@ -3264,7 +3345,8 @@
    "album": "MAP OF THE SOUL : PERSONA",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/0b/8d/84/0b8d84e5-5273-ae21-0c6e-591af6097294/mzaf_16252906211188582302.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/40/d4/93/40d493e3-ac9e-1746-8d4c-f380f27c97cb/193483706238_Cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Boy With Luv"
   },
   {
    "id": "s1488300930",
@@ -3418,7 +3500,8 @@
    "album": "아무노래 - Single",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/a0/ae/6c/a0ae6c6f-cfb0-1af4-8afa-3efc4f23bdb4/mzaf_3852645139889131270.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/14/1e/87/141e87bd-a541-e26a-bc74-c586d3e68d75/ZICO_cover_4000px.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Any song"
   },
   {
    "id": "s1561143399",
@@ -3460,7 +3543,8 @@
    "album": "IU 5th Album 'LILAC'",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview124/v4/57/86/dc/5786dcfa-9502-e272-b6cb-0c2797c8e57e/mzaf_3537909928807442396.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/35/9f/83/359f83b3-1423-3153-1641-98e948b7fc65/cover_-_EDAM_5_LILAC.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "LILAC"
   },
   {
    "id": "s1550907178",
@@ -3488,7 +3572,8 @@
    "album": "NEXT EPISODE - EP",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/86/4d/a5/864da591-eeb0-27db-bbfa-a190ee20a05c/mzaf_17780542814473670833.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/12/31/63/12316366-55bb-065c-8ad9-47e107fa79b2/AKMU_NEXT_EPISODE.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Nakka"
   },
   {
    "id": "s1567326688",
@@ -3866,7 +3951,8 @@
    "album": "투어스 미니 1집 'Sparkling Blue' - EP",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/ac/8d/97/ac8d9717-2bbf-b1bf-b2e9-476feea6a480/mzaf_11615065500455071115.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/17/bb/d4/17bbd45f-fee7-a9dd-ff01-e7b174cc1462/196922759543_Cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Plot Twist"
   },
   {
    "id": "s1832031336",
@@ -4020,7 +4106,8 @@
    "album": "GOLDEN HOUR : Part.3 - EP",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/74/a6/fa/74a6fa94-c7ab-15a0-b8ad-1b76def8e148/mzaf_11134608546451602847.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/6d/d2/68/6dd26826-582e-8f68-392d-3c8c4cd1ea23/196873155647.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "레몬 드롭"
   },
   {
    "id": "s1840834178",
@@ -4216,7 +4303,8 @@
    "album": "I.O.I 3rd MINI ALBUM (I.O.I : LOOP) - EP",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/2f/f9/b5/2ff9b590-9405-acb8-4596-f77e680ecc4f/mzaf_4211101374025559833.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4e/f0/d9/4ef0d927-e14f-49c7-b273-e92ed3ce354b/888272181623_Cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
+   "spotifyUri": null,
+   "alt": "Suddenly"
   },
   {
    "id": "s1887773335",

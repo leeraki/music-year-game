@@ -394,6 +394,7 @@ def build(limit=None, delay=DEFAULT_DELAY, cache_only=False):
             "id": f"s{best['trackId']}",
             "year": year,                   # 큐레이션 확정 연도 (게임 정답)
             "title": title,                 # 화면 표기는 큐레이션 표기를 따른다
+            "alt": alt,   # Spotify 가 쓰는 다른 표기(영어 제목 등). 검색·대조에 쓴다.
             "artist": artist,
             "itunesTrackId": best["trackId"],
             "itunesTitle": best.get("trackName"),
