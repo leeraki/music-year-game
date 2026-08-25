@@ -19,7 +19,7 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r15-rescue';
+const RESOLVER_BUILD = 'r16-autowait';
 // 찾아 둔 곡을 버릴지 판단하는 기준. 곡을 고르는 규칙이 바뀔 때만 올린다.
 // 판번호에 묶었더니 요청 제한 대응처럼 매칭과 무관한 수정에도 230곡을 다시
 // 찾게 되어, 그러느라 제한을 또 소진했다.
@@ -974,6 +974,38 @@ async function diagnoseSpotify(sample, onStep, active = null) {
  *                            state: 'ok' | 'warn' | 'fail'
  * @param {object} opts {delay, signal}
  */
+/**
+ * 요청 제한이 풀릴 때까지 기다린다.
+ *
+ * 막힐 때마다 사람이 다시 눌러야 하면 언제 열릴지 몰라 계속 붙들려 있게 된다.
+ * 점점 긴 간격으로 한 번씩만 두드려 보고, 열리면 이어서 간다.
+ * 자주 두드릴수록 제한이 길어지므로 두드리는 횟수를 아낀다.
+ */
+async function waitForQuota(onResult, signal, at) {
+  const steps = [60, 180, 420, 900, 1800, 1800, 1800];   // 1분 → 30분
+  for (let n = 0; n < steps.length; n++) {
+    for (let left = steps[n]; left > 0 && !signal?.aborted; left -= 5) {
+      const m = Math.floor(left / 60), sec = left % 60;
+      onResult({ transient: true, notice:
+        `Spotify 요청 제한이 걸려 기다리는 중입니다 · ${at.done}/${at.total}곡 마침`
+        + ` — ${m ? m + '분 ' : ''}${sec}초 뒤 다시 확인합니다` });
+      await new Promise((r) => setTimeout(r, 5000));
+    }
+    if (signal?.aborted) return false;
+    onResult({ transient: true, notice: '제한이 풀렸는지 확인하는 중…' });
+    SpotifyAuth.blockedUntil = 0;
+    let res;
+    try {
+      res = await SpotifyAuth.api('/search?q=a&type=track&limit=1', {}, true, 0);
+    } catch (_) { continue; }
+    if (res.ok) {
+      SpotifyAuth.throttled = true;      // 풀렸어도 조심스럽게 간다
+      return true;
+    }
+  }
+  return false;
+}
+
 async function auditSpotifyMatches(songs, onResult, { delay = 400, signal } = {}) {
   const resolver = new SpotifyTrackResolver();
   const moved = await resolver.revalidate(songs);
@@ -1033,13 +1065,20 @@ async function auditSpotifyMatches(songs, onResult, { delay = 400, signal } = {}
     // 있어 봐야 시간만 버리고 제한만 더 길어진다. 여기서 멈추는 게 낫다.
     blocked = /\(429\)/.test(note) ? blocked + 1 : 0;
     if (blocked >= 3) {
-      onResult({
-        song, track: null, state: 'fail', done: i + 1, total: songs.length, halted: true,
-        note: `Spotify 요청 제한에 걸려 검사를 멈춥니다 (${done - 1}곡까지 마침). `
-            + '찾아 둔 곡은 저장돼 있으니, 나중에 다시 누르면 남은 곡부터 바로 이어서 합니다. '
-            + '개발 모드 앱은 할당량이 작아 한 번에 다 못 돌 수 있습니다. 나눠서 돌리면 됩니다.',
-      });
-      return;
+      // 앱 전체가 잠긴 것이다. 검사를 접는 대신 열릴 때까지 기다렸다 이어간다.
+      // 언제 열릴지 몰라 사람이 계속 눌러 보게 만드는 것이 제일 나쁘다.
+      const open = await waitForQuota(onResult, signal, { done: i, total: songs.length });
+      if (!open) {
+        onResult({
+          song, track: null, state: 'fail', done: i + 1, total: songs.length, halted: true,
+          note: `한참 기다려도 Spotify 요청 제한이 풀리지 않아 검사를 멈춥니다 (${i}곡까지 마침). `
+              + '찾아 둔 곡은 저장돼 있으니 나중에 다시 누르면 남은 곡부터 이어서 합니다.',
+        });
+        return;
+      }
+      blocked = 0;
+      i -= 1;                 // 막혔던 곡부터 다시
+      continue;
     }
     // 이미 찾아 둔 곡은 Spotify 를 부르지 않았으므로 쉴 이유가 없다.
     // 이걸 빼먹어서 이어하기가 200곡 × 1.8초씩 헛돌았다.

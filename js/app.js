@@ -507,13 +507,18 @@
     el.auditBtn.disabled = true;
 
     const count = { ok: 0, warn: 0, fail: 0 };
+    let waiting = null;   // 대기 안내 줄 (한 줄만 유지)
     auditLines = [];
-    const render = ({ song, track, state, note, done, total, halted, notice }) => {
-      if (notice) {                        // 검사 시작 전 안내
+    const render = ({ song, track, state, note, done, total, halted, notice, transient }) => {
+      if (notice) {
+        // transient 는 대기 상태 표시다. 줄을 쌓지 않고 한 줄을 고쳐 쓴다.
+        if (waiting && waiting.parentNode) waiting.remove();
         const li = document.createElement('li');
         li.className = 'warn';
         li.textContent = notice;
         el.auditList.appendChild(li);
+        if (transient) { waiting = li; return; }
+        waiting = null;
         auditLines.push(`※ ${notice}
 `);
         return;
