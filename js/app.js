@@ -59,7 +59,9 @@
   const flip = new FlipDetector();
   const prefetcher = new Prefetcher();
 
-  let player = null;
+  let player = null;          // 지금 곡을 맡은 쪽
+  let spotifyPlayer = null;   // 풀 트랙 (주소를 아는 곡만)
+  let itunesPlayer = null;    // 30초 미리듣기 (언제나 된다)
   let currentSong = null;
   let wakeLock = null;
   const prefs = loadPrefs();
@@ -118,7 +120,12 @@
 
   /** 엔진을 교체한다. Spotify 연결에 실패하면 예외를 던지고 호출부가 iTunes 로 되돌린다. */
   async function setEngine(name) {
-    if (player) { try { player.stop(); player.destroy?.(); } catch (_) {} player = null; }
+    for (const p of [spotifyPlayer, itunesPlayer]) {
+      if (p) { try { p.stop(); p.destroy?.(); } catch (_) {} }
+    }
+    spotifyPlayer = null;
+    itunesPlayer = wirePlayer(new ItunesPreviewProvider());
+    player = itunesPlayer;
 
     if (name === 'spotify') {
       if (typeof SpotifyProvider === 'undefined' || !SpotifyAuth.isLoggedIn) {
@@ -126,15 +133,32 @@
       }
       const sp = wirePlayer(new SpotifyProvider());
       await sp.connect();          // Premium 아님 / 기기 연결 실패가 여기서 걸린다
+      spotifyPlayer = sp;
       player = sp;
-    } else {
-      player = wirePlayer(new ItunesPreviewProvider());
     }
 
     prefs.engine = name;
     savePrefs();
-    player.volume = prefs.volume / 100;
+    setVolume(prefs.volume);
     applyEngineUi();
+  }
+
+  /** 모든 엔진에 소리 크기를 맞춘다. 곡마다 엔진이 바뀌므로 한쪽만 하면 안 된다. */
+  function setVolume(percent) {
+    for (const p of [spotifyPlayer, itunesPlayer]) if (p) p.volume = percent / 100;
+  }
+
+  /**
+   * 이 곡을 어느 엔진으로 틀지 고른다.
+   *
+   * Spotify 개발 모드 할당량은 개발자 계정 단위로 매겨져, 한 번 바닥나면
+   * 하루가 지나도 새 곡을 찾지 못한다. 주소를 미리 박아 둔 곡만 풀 트랙으로
+   * 나오고 나머지는 라운드가 통째로 멈추는데, 파티 중에 그런 일이 나면 안 된다.
+   * 주소를 모르는 곡은 30초 미리듣기로라도 넘긴다.
+   */
+  function pickPlayer(song) {
+    if (spotifyPlayer && song.spotifyUri) return spotifyPlayer;
+    return itunesPlayer;
   }
 
   function applyEngineUi() {
@@ -179,11 +203,15 @@
     if (!song) { showDone(); return; }
     currentSong = song;
 
+    const next = pickPlayer(song);
+    if (player && player !== next) { try { player.stop(); } catch (_) {} }
+    player = next;
+
     show('playing');
     setPlayingFlag(false);
     el.progressFill.style.width = '0%';
     el.timeCurrent.textContent = '0:00';
-    el.timeTotal.textContent = prefs.engine === 'spotify' ? '--:--' : '0:30';
+    el.timeTotal.textContent = player === spotifyPlayer ? '--:--' : '0:30';
     requestWakeLock();
 
     try {
@@ -340,7 +368,7 @@
 
   el.volume.addEventListener('input', () => {
     prefs.volume = Number(el.volume.value);
-    player.volume = prefs.volume / 100;
+    setVolume(prefs.volume);
     savePrefs();
   });
   el.startAt.addEventListener('input', () => {

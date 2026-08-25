@@ -19,7 +19,7 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r24-exportcount';
+const RESOLVER_BUILD = 'r25-fallback';
 // 찾아 둔 곡을 버릴지 판단하는 기준. 곡을 고르는 규칙이 바뀔 때만 올린다.
 // 판번호에 묶었더니 요청 제한 대응처럼 매칭과 무관한 수정에도 230곡을 다시
 // 찾게 되어, 그러느라 제한을 또 소진했다.
@@ -1090,6 +1090,9 @@ async function waitForQuota(onResult, signal, at) {
       await new Promise((r) => setTimeout(r, 5000));
     }
     if (signal?.aborted) return false;
+    // 속도 제한이 아니라 할당량이 바닥난 것이면 몇 분 기다려도 소용없다.
+    // Spotify 는 회복 시점을 공개하지 않지만, 분 단위가 아닌 것은 분명하다.
+    if (SpotifyAuth.lastRateLimit?.body?.includes('QUOTA_EXCEEDED')) return false;
     onResult({ transient: true, notice: '제한이 풀렸는지 확인하는 중…' });
     SpotifyAuth.blockedUntil = 0;
     let res;
@@ -1172,8 +1175,12 @@ async function auditSpotifyMatches(songs, onResult, { delay = 0, signal } = {}) 
       if (!open) {
         onResult({
           song, track: null, state: 'fail', done: i + 1, total: songs.length, halted: true,
-          note: `한참 기다려도 Spotify 요청 제한이 풀리지 않아 검사를 멈춥니다 (${i}곡까지 마침). `
-              + '찾아 둔 곡은 저장돼 있으니 나중에 다시 누르면 남은 곡부터 이어서 합니다.',
+          note: (SpotifyAuth.lastRateLimit?.body?.includes('QUOTA_EXCEEDED')
+                 ? `Spotify 개발 모드 할당량을 다 썼습니다 (${i}곡까지 마침). `
+                   + '속도 문제가 아니라 개발자 계정에 걸린 한도라, 기다려서 풀립니다. '
+                   + '지금까지 찾은 곡은 저장돼 있으니 [찾은 곡 내보내기] 로 꺼내 두세요.'
+                 : `한참 기다려도 Spotify 요청 제한이 풀리지 않아 검사를 멈춥니다 (${i}곡까지 마침). `)
+              + ' 나중에 다시 누르면 남은 곡부터 이어서 합니다.',
         });
         return;
       }
