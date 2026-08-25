@@ -535,6 +535,32 @@ input[type="range"] {
 .diag .warn .mark { color: #ffbe3c; }
 .diag .skip { opacity: .45; }
 
+.audit {
+  margin-top: 12px;
+  border-radius: 12px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+.audit[hidden] { display: none; }
+.audit-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px; color: var(--muted);
+}
+.audit ul { list-style: none; margin: 0; padding: 0; max-height: 46vh; overflow-y: auto; }
+.audit li { padding: 9px 14px; border-bottom: 1px solid rgba(50,44,95,.5); font-size: 13px; }
+.audit li:last-child { border-bottom: 0; }
+.audit .want { font-weight: 700; }
+.audit .got  { color: var(--muted); font-size: 12px; margin-top: 2px; }
+.audit .note { font-size: 12px; font-weight: 600; margin-top: 3px; }
+.audit li.warn { background: rgba(255,190,60,.08); }
+.audit li.warn .note { color: #ffbe3c; }
+.audit li.fail { background: rgba(255,92,108,.10); }
+.audit li.fail .note { color: var(--danger); }
+.audit li.ok .note { display: none; }
+
 .qr-box {
   margin-top: 14px;
   padding: 16px;

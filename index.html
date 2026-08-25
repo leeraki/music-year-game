@@ -171,6 +171,17 @@
         <button type="button" class="btn btn-ghost" id="btn-diagnose">연결 진단</button>
         <ul class="diag" id="diag" hidden></ul>
 
+        <button type="button" class="btn btn-ghost" id="btn-audit">곡 매칭 검사</button>
+        <p class="field-note">
+          현재 모드의 곡을 하나씩 Spotify 에서 찾아, 무엇에 매칭됐는지 보여줍니다.
+          기대한 곡과 다르면 표시되니 그것만 확인하시면 됩니다.
+        </p>
+        <div class="audit" id="audit" hidden>
+          <div class="audit-head"><span id="audit-progress"></span>
+            <button type="button" class="btn btn-ghost btn-sm" id="btn-audit-stop">중지</button></div>
+          <ul id="audit-list"></ul>
+        </div>
+
         <button type="button" class="btn btn-ghost" id="btn-qr">QR로 다른 기기에 옮기기</button>
         <div class="qr-box" id="qr-box" hidden>
           <canvas id="qr-canvas" aria-label="설정 전송용 QR 코드"></canvas>

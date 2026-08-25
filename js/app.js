@@ -39,6 +39,8 @@
     spotifyLogin: $('btn-spotify-login'), spotifyLogout: $('btn-spotify-logout'),
     qrBtn: $('btn-qr'), qrBox: $('qr-box'), qrCanvas: $('qr-canvas'),
     diagBtn: $('btn-diagnose'), diag: $('diag'),
+    auditBtn: $('btn-audit'), audit: $('audit'), auditList: $('audit-list'),
+    auditProgress: $('audit-progress'), auditStop: $('btn-audit-stop'),
     modeChips: $('mode-chips'), modeNote: $('mode-note'),
     work: $('reveal-work'), workType: $('reveal-worktype'),
     characters: $('reveal-characters'), ostSong: $('reveal-ost-song'),
@@ -488,6 +490,55 @@
     el.diagBtn.disabled = false;
     el.diagBtn.textContent = '연결 진단';
   });
+
+  // Spotify 는 실행 중에 검색해 곡을 찾으므로, 무엇에 붙었는지 미리 볼 수가 없다.
+  // 전곡을 훑어 기대한 곡과 실제 매칭을 나란히 보여준다.
+  let auditAbort = null;
+  el.auditBtn.addEventListener('click', async () => {
+    if (!SpotifyAuth.isLoggedIn) {
+      setSpotifyStatus('먼저 Spotify 에 로그인해 주세요.', 'warn');
+      return;
+    }
+    auditAbort = new AbortController();
+    el.audit.hidden = false;
+    el.auditList.innerHTML = '';
+    el.auditBtn.disabled = true;
+
+    const count = { ok: 0, warn: 0, fail: 0 };
+    const render = ({ song, track, state, note, done, total }) => {
+      count[state] += 1;
+      el.auditProgress.textContent =
+        `${done}/${total}  ·  정상 ${count.ok} · 확인 ${count.warn} · 실패 ${count.fail}`;
+      if (state === 'ok') return;          // 문제 있는 것만 남겨 눈에 띄게 한다
+      const li = document.createElement('li');
+      li.className = state;
+      const want = document.createElement('div');
+      want.className = 'want';
+      want.textContent = `${song.year} ${song.artist} — ${song.title || song.song}`;
+      li.appendChild(want);
+      if (track) {
+        const got = document.createElement('div');
+        got.className = 'got';
+        got.textContent = `→ ${track.artists} / ${track.name} [${track.album}]`;
+        li.appendChild(got);
+      }
+      const n = document.createElement('div');
+      n.className = 'note';
+      n.textContent = note;
+      li.appendChild(n);
+      el.auditList.appendChild(li);
+    };
+
+    try {
+      await auditSpotifyMatches(deck.all, render, { signal: auditAbort.signal });
+      el.auditProgress.textContent += auditAbort.signal.aborted ? '  (중지됨)' : '  (완료)';
+    } catch (err) {
+      el.auditProgress.textContent = '검사 실패: ' + err.message;
+    }
+    el.auditBtn.disabled = false;
+  });
+
+  el.auditStop.addEventListener('click', () => auditAbort?.abort());
 
   // Client ID 32자를 다른 기기에서 손으로 치기 번거로워 QR 로 옮긴다.
   el.qrBtn.addEventListener('click', () => {

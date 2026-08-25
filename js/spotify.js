@@ -33,6 +33,39 @@ const KEY_VERIFIER = 'music-game/spotify/verifier/v1';
 const KEY_CLIENT = 'music-game/spotify/client-id/v1';
 const KEY_URIMAP = 'music-game/spotify/uri-map/v1';
 
+// Spotify 는 한국 가수를 영문명으로 올려 두는 일이 많다. 글자로는 안 이어지므로 대조표를 둔다.
+const ARTIST_ALIASES = {
+  '아이유': ['iu'], '방탄소년단': ['bts'], '소녀시대': ["girls' generation", 'snsd'],
+  '빅뱅': ['bigbang', 'big bang'], '블랙핑크': ['blackpink'], '엑소': ['exo'],
+  '트와이스': ['twice'], '레드벨벳': ['red velvet'], '에스파': ['aespa'],
+  '아이브': ['ive'], '뉴진스': ['newjeans'], '르세라핌': ['le sserafim'],
+  '세븐틴': ['seventeen'], '스트레이 키즈': ['stray kids'], '엔하이픈': ['enhypen'],
+  '투모로우바이투게더': ['tomorrow x together', 'txt'], '있지': ['itzy'],
+  '샤이니': ['shinee'], '슈퍼주니어': ['super junior'], '동방신기': ['tvxq'],
+  '원더걸스': ['wonder girls'], '카라': ['kara'], '티아라': ['t-ara'],
+  '씨스타': ['sistar'], '에이핑크': ['apink'], '여자친구': ['gfriend'],
+  '인피니트': ['infinite'], '비스트': ['beast', 'highlight'], '2ne1': ['투애니원'],
+  '미쓰에이': ['miss a'], '오마이걸': ['oh my girl'], '아이즈원': ['iz*one'],
+  '모모랜드': ['momoland'], '마마무': ['mamamoo'], '화사': ['hwasa'],
+  '태연': ['taeyeon'], '제니': ['jennie'], '지코': ['zico'], '태양': ['taeyang'],
+  '싸이': ['psy'], '보아': ['boa'], '비': ['rain'], '선미': ['sunmi'],
+  '악동뮤지션': ['akmu', '악뮤'], '악뮤': ['akmu', '악동뮤지션'],
+  '자이언티': ['zion.t'], '크러쉬': ['crush'], '딘': ['dean'], '헤이즈': ['heize'],
+  '폴킴': ['paul kim'], '벤': ['ben'], '거미': ['gummy'], '에일리': ['ailee'],
+  '백예린': ['yerin baek'], '볼빨간사춘기': ['bol4', 'bolbbalgan4'],
+  '잔나비': ['jannabi'], '버스커버스커': ['busker busker'], '십센치': ['10cm'],
+  '아이들': ['(g)i-dle', 'i-dle'], '엔믹스': ['nmixx'], '아일릿': ['illit'],
+  '투어스': ['tws'], '라이즈': ['riize'], '베이비몬스터': ['babymonster'],
+  '키키': ['kiiikiii'], '코르티스': ['cortis'], '리센느': ['rescene'],
+  '데이식스': ['day6'], '트레저': ['treasure'], '에이티즈': ['ateez'],
+  '키스오브라이프': ['kiss of life'], '우즈': ['woodz'], '텐': ['ten'],
+  '젝스키스': ['sechskies'], '지오디': ['god'], 'god': ['지오디'],
+  '핑클': ['fin.k.l'], 's.e.s.': ['ses'], 'h.o.t.': ['hot'],
+  '서태지와 아이들': ['seo taiji and boys'], '신화': ['shinhwa'],
+  '플레이브': ['plave'], '피프티피프티': ['fifty fifty'], '큐더블유이알': ['qwer'],
+  '헌트릭스': ['huntr/x'], '아이오아이': ['i.o.i', 'ioi'],
+};
+
 // ---------------------------------------------------------------- PKCE 유틸
 
 function randomString(len = 64) {
@@ -215,6 +248,29 @@ class SpotifyTrackResolver {
   static _title(song) { return song.title || song.song || ''; }
 
   /**
+   * 같은 가수인가.
+   *
+   * Spotify 는 한국 가수를 영문명으로 올려 둔 경우가 많다(아이유 → IU,
+   * 방탄소년단 → BTS). 글자로만 비교하면 한 글자도 겹치지 않아 전부 불일치가 되고,
+   * 그러면 한국 곡이 통째로 재생되지 않는다.
+   */
+  static _artistOk(seed, got) {
+    const a = SpotifyTrackResolver._norm(got);
+    const b = SpotifyTrackResolver._norm(seed);
+    if (!a || !b) return false;
+    if (a.includes(b) || b.includes(a)) return true;
+    const key = seed.trim().toLowerCase();
+    for (const [k, list] of Object.entries(ARTIST_ALIASES)) {
+      if (k !== key && !list.includes(key)) continue;
+      for (const alias of [k, ...list]) {
+        const c = SpotifyTrackResolver._norm(alias);
+        if (c && (a.includes(c) || c.includes(a))) return true;
+      }
+    }
+    return false;
+  }
+
+  /**
    * 연주곡인가. 가사가 없어 듣고 맞힐 수가 없으므로 아예 쓰지 않는다.
    * 라이브·리믹스와 달리 '차선책'조차 되지 못한다.
    */
@@ -234,23 +290,32 @@ class SpotifyTrackResolver {
         || /(?<![가-힣])(라이브|리믹스|어쿠스틱|재녹음)(?![가-힣])/.test(blob);
   }
 
-  static _score(track, song) {
+  static _score(track, song, rank = 0) {
     const t = SpotifyTrackResolver._norm(track.name);
     const want = SpotifyTrackResolver._norm(SpotifyTrackResolver._title(song));
     if (!want) return -99;
 
     // 가수가 다르면 제목이 같아도 다른 곡이다. iTunes 쪽에서 '폼생폼사'가 동명이곡으로
     // 잡혔던 사고와 같은 유형이라 여기서도 필수 조건으로 둔다.
-    const artists = track.artists.map((a) => SpotifyTrackResolver._norm(a.name)).join('');
-    const wantArtist = SpotifyTrackResolver._norm(song.artist);
-    const artistOk = artists && wantArtist &&
-      (artists.includes(wantArtist) || wantArtist.includes(artists));
+    const artists = track.artists.map((a) => a.name).join(' ');
+    const artistOk = SpotifyTrackResolver._artistOk(song.artist, artists);
 
     let s = 0;
     if (t === want) s += 5;                                   // 정확히 같으면 강한 신호
     else if (t.includes(want) || want.includes(t)) s += 2;
     else return -50;                                          // 제목이 아예 다르면 탈락
-    if (!artistOk) return -50;
+
+    // 가수 표기가 안 맞아도 바로 버리지 않는다. 검색어에 이미 가수를 넣었으므로
+    // 후보 자체가 그 가수로 좁혀져 있고, 표기 차이(아이유/IU)가 흔하기 때문이다.
+    // 다만 제목까지 애매하면 다른 곡으로 본다.
+    if (!artistOk) {
+      if (t !== want) return -50;
+      s -= 1.5;
+    }
+
+    // 검색어에 가수 이름을 넣었으므로 Spotify 가 매긴 순위 자체가 신호다.
+    // 이게 없으면 '젝스키스 폼생폼사' 검색에서 동명이곡이 이겨 버린다.
+    s += Math.max(0, 1.2 - rank * 0.4);
 
     if (SpotifyTrackResolver._isInstrumental(track)) return -50;
     if (SpotifyTrackResolver._isVariant(track)) s -= 4;
@@ -267,8 +332,17 @@ class SpotifyTrackResolver {
   }
 
   async resolve(song) {
-    if (song.spotifyUri) return song.spotifyUri;
-    if (this.map[song.id]) return this.map[song.id];
+    return (await this.resolveDetailed(song)).uri;
+  }
+
+  /**
+   * URI 뿐 아니라 무엇에 매칭됐는지까지 돌려준다.
+   * Spotify 는 실행 중에 검색해 곡을 찾으므로, 미리 눈으로 확인할 방법이 없다.
+   * 전곡을 훑어 '기대한 곡'과 '실제 매칭'을 대조하는 검사에 쓴다.
+   */
+  async resolveDetailed(song) {
+    if (song.spotifyUri) return { uri: song.spotifyUri, track: null, cached: true };
+    if (this.map[song.id]) return { uri: this.map[song.id], track: this.cache?.[song.id] || null, cached: true };
 
     const title = SpotifyTrackResolver._title(song);
     const label = `${song.artist} - ${title}`;
@@ -279,16 +353,23 @@ class SpotifyTrackResolver {
 
     const items = (await res.json()).tracks?.items || [];
     const scored = items
-      .map((t) => ({ t, s: SpotifyTrackResolver._score(t, song) }))
+      .map((t, i) => ({ t, s: SpotifyTrackResolver._score(t, song, i) }))
       .filter((x) => x.s > 0)
       .sort((a, b) => b.s - a.s);
     if (!scored.length) {
       throw new Error(`Spotify 에서 이 곡을 찾지 못했습니다: ${label}`);
     }
 
-    this.map[song.id] = scored[0].t.uri;
+    const best = scored[0].t;
+    this.map[song.id] = best.uri;
+    (this.cache ||= {})[song.id] = {
+      name: best.name,
+      artists: best.artists.map((a) => a.name).join(', '),
+      album: best.album?.name || '',
+      year: (best.album?.release_date || '').slice(0, 4),
+    };
     this._save();
-    return scored[0].t.uri;
+    return { uri: best.uri, track: this.cache[song.id], score: scored[0].s, cached: false };
   }
 }
 
@@ -550,6 +631,50 @@ async function diagnoseSpotify(sample, onStep, active = null) {
   if (!reuse) player.destroy();   // 앱이 쓰는 플레이어는 끊지 않는다
 }
 
+/**
+ * 덱 전체를 Spotify 에서 찾아보고 무엇에 매칭됐는지 돌려준다.
+ *
+ * @param {Array} songs 검사할 곡 목록
+ * @param {function} onResult 한 곡 끝날 때마다: ({song, track, state, note, done, total})
+ *                            state: 'ok' | 'warn' | 'fail'
+ * @param {object} opts {delay, signal}
+ */
+async function auditSpotifyMatches(songs, onResult, { delay = 250, signal } = {}) {
+  const resolver = new SpotifyTrackResolver();
+  const norm = SpotifyTrackResolver._norm;
+
+  for (let i = 0; i < songs.length; i++) {
+    if (signal?.aborted) return;
+    const song = songs[i];
+    const want = SpotifyTrackResolver._title(song);
+    let state = 'ok', note = '', track = null;
+
+    try {
+      const r = await resolver.resolveDetailed(song);
+      track = r.track;
+      if (!track) {
+        note = '이전에 찾아 둔 결과 (상세 없음)';
+      } else {
+        // 기대한 가수·곡과 실제로 붙은 트랙을 대조한다
+        const t = norm(track.name), w = norm(want);
+        if (!(t === w || t.includes(w) || w.includes(t))) { state = 'warn'; note = '곡 제목이 다릅니다'; }
+        else if (!SpotifyTrackResolver._artistOk(song.artist, track.artists)) {
+          state = 'warn'; note = `가수가 다릅니다 (기대 ${song.artist})`;
+        }
+        else if (/(?<![a-z])(live|remix|acoustic|ver\.|version|edit)(?![a-z])/i.test(track.name + ' ' + track.album)) {
+          state = 'warn'; note = '원곡이 아닌 버전일 수 있습니다';
+        }
+      }
+    } catch (err) {
+      state = 'fail';
+      note = err.message;
+    }
+    onResult({ song, track, state, note, done: i + 1, total: songs.length });
+    if (!signal?.aborted && delay) await new Promise((r) => setTimeout(r, delay));
+  }
+}
+
+window.auditSpotifyMatches = auditSpotifyMatches;
 window.diagnoseSpotify = diagnoseSpotify;
 window.SpotifyAuth = SpotifyAuth;
 window.SpotifyProvider = SpotifyProvider;
