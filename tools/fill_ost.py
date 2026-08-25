@@ -31,6 +31,31 @@ SKIP_TRACK = [
     "inst", "instrumental", "반주", "narration", "나레이션", "피아노", "piano",
     "score", "interlude", "theme song ver", "guitar", "orgel", "오르골", "cover",
 ]
+
+# 노래가 아니라 배경음악(스코어)일 가능성이 큰 신호.
+# 듣고 맞히는 게임이라 가사 있는 보컬곡이라야 한다.
+SCORE_TITLE = re.compile(
+    r"(main\s*theme|title\s*theme|opening|ending|prologue|epilogue|suite|"
+    r"오프닝|엔딩|서곡|메인\s*테마|타이틀\s*테마|연주곡)", re.I)
+
+# 드라마 음악감독·작곡가. 이들 이름으로 올라온 트랙은 스코어인 경우가 많다.
+# 다만 가수를 feat. 로 세운 보컬곡도 있어 배제가 아니라 후순위로만 둔다.
+COMPOSERS = {
+    "남혜승", "개미", "박성일", "김준석", "이필호", "방준석", "조영욱", "달파란",
+    "이재진", "정세린", "황상준", "신인수", "전창엽", "김현준", "이동준", "김해원",
+    "이지수", "최인희", "정재일", "김태성", "홍동표", "이병우", "장영규", "노형우",
+    "전세진", "김지수",
+}
+
+
+def score_like(cand):
+    """배경음악으로 보이는가."""
+    t = cand.get("trackName") or ""
+    a = cand.get("artistName") or ""
+    if SCORE_TITLE.search(t):
+        return True
+    # 작곡가 이름만 단독으로 올라온 트랙 (feat. 로 가수가 붙으면 보컬곡으로 본다)
+    return any(c in a for c in COMPOSERS) and "feat" not in (t + a).lower()
 # 작품과 무관한 편집/커버 음반
 # '벨' 처럼 짧은 조각으로 거르면 '레드벨벳'까지 걸린다. 실제로 겪어서 표기를 늘렸다.
 SKIP_ALBUM = ["ost 피아노", "드라마 ost 피아노", "노래방", "karaoke", "가요반주",
@@ -60,7 +85,8 @@ def pick(work, results):
         # (「질투」에 슬기로운 의사생활 OST, 「사도」에 The Shape of Water OST).
         if not (w and (w in norm(album) or w in norm(c.get("trackName")))):
             continue
-        out.append((0, -(c.get("trackCount") or 0), c))
+        # 보컬곡을 앞에 세운다. 스코어밖에 없으면 그때 쓴다.
+        out.append((1 if score_like(c) else 0, -(c.get("trackCount") or 0), c))
     if not out:
         return None
     out.sort(key=lambda t: (t[0], t[1]))
