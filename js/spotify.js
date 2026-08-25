@@ -19,7 +19,7 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r5-title-alias';
+const RESOLVER_BUILD = 'r6-ratelimit';
 
 // streaming 은 SDK 재생에, user-read-* 는 SDK 초기화에, user-modify-* 는 play/seek 에 필요하다
 const SCOPES = [
@@ -218,6 +218,14 @@ class SpotifyAuth {
     if (res.status === 401 && retry) {
       const t = SpotifyAuth.loadToken();
       if (t) { t.expires_at = 0; localStorage.setItem(KEY_TOKEN, JSON.stringify(t)); }
+      return SpotifyAuth.api(path, options, false);
+    }
+    // 곡을 못 찾으면 표기를 바꿔 가며 여러 번 묻는다. 230개짜리 검사에서는 그게
+    // 몰려 요청 제한에 걸릴 수 있고, 그러면 남은 곡이 전부 '검색 실패'로 끝난다.
+    // Spotify 가 알려 주는 만큼 기다렸다가 한 번 더 시도한다.
+    if (res.status === 429 && retry) {
+      const wait = Math.min(60, parseInt(res.headers.get('Retry-After') || '2', 10) || 2);
+      await new Promise((r) => setTimeout(r, (wait + 1) * 1000));
       return SpotifyAuth.api(path, options, false);
     }
     return res;
