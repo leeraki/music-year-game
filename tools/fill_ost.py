@@ -1,0 +1,107 @@
+"""
+곡이 비어 있는 OST 항목을 캐시된 검색 결과로 자동으로 채운다.
+
+discover_ost.py 가 후보를 보여주는 도구라면, 이쪽은 그 후보 중에서 규칙에 맞는 것을
+골라 seed_ost.csv 에 써 넣는다. 90개를 손으로 옮겨 적으면 오타가 나기 쉬워서 만들었다.
+
+고르는 기준:
+  1. 앨범명에 작품 이름이나 OST/Soundtrack 이 들어갈 것 — 그 작품의 음원이라는 근거
+  2. 반주·스코어 조각·피아노 커버는 제외 — 게임에서 알아들을 수 없다
+  3. 남으면 수록곡이 많은 앨범(정규 OST 음반)의 것을 우선
+
+사용법:
+    python fill_ost.py            # 채운 뒤 결과 요약
+    python fill_ost.py --dry      # 무엇이 채워질지 보기만 한다
+"""
+
+import argparse
+import csv
+import json
+import os
+import re
+import sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+SEED = os.path.join(HERE, "seed_ost.csv")
+CACHE = os.path.join(HERE, ".itunes_cache.json")
+
+# 게임에 쓸 수 없는 트랙 (가사가 없거나 원곡이 아님)
+SKIP_TRACK = [
+    "inst", "instrumental", "반주", "narration", "나레이션", "피아노", "piano",
+    "score", "interlude", "theme song ver", "guitar", "orgel", "오르골", "cover",
+]
+# 작품과 무관한 편집/커버 음반
+# '벨' 처럼 짧은 조각으로 거르면 '레드벨벳'까지 걸린다. 실제로 겪어서 표기를 늘렸다.
+SKIP_ALBUM = ["ost 피아노", "드라마 ost 피아노", "노래방", "karaoke", "가요반주",
+              "벨소리", "화음벨", "ringtone", "메들리", "medley", "오르골"]
+
+
+def norm(s):
+    return re.sub(r"[^0-9a-z가-힣]", "", (s or "").lower())
+
+
+def pick(work, results):
+    """작품 OST 앨범에 속한 트랙 중 가장 그럴듯한 것을 고른다."""
+    w = norm(work)
+    out = []
+    for c in results:
+        if not c.get("previewUrl"):
+            continue
+        track = (c.get("trackName") or "").lower()
+        album = (c.get("collectionName") or "")
+        al = album.lower()
+        if any(s in track for s in SKIP_TRACK):
+            continue
+        if any(s in al for s in SKIP_ALBUM):
+            continue
+        # 그 작품의 음원이라는 근거가 있어야 한다
+        belongs = w and w in norm(album)
+        soundtrackish = "ost" in al or "soundtrack" in al
+        if not (belongs or soundtrackish):
+            continue
+        out.append((0 if belongs else 1, -(c.get("trackCount") or 0), c))
+    if not out:
+        return None
+    out.sort(key=lambda t: (t[0], t[1]))
+    return out[0][2]
+
+
+def main(dry=False):
+    cache = json.load(open(CACHE, encoding="utf-8")) if os.path.exists(CACHE) else {}
+    rows = list(csv.DictReader(open(SEED, encoding="utf-8")))
+
+    filled, failed = [], []
+    for r in rows:
+        if r["song"].strip() and r["artist"].strip():
+            continue
+        work = r["work"].strip()
+        term = (r.get("search") or "").strip() or f"{work} OST"
+        best = pick(work, cache.get(term) or [])
+        if not best:
+            failed.append(f"{r['year']} {work}")
+            continue
+        r["song"] = best["trackName"]
+        r["artist"] = best["artistName"]
+        r["search"] = term
+        filled.append(f"{r['year']} {work:<22} → {best['artistName']} / {best['trackName']}")
+
+    if not dry:
+        w = csv.DictWriter(open(SEED, "w", encoding="utf-8", newline=""),
+                           fieldnames=["year", "type", "work", "characters",
+                                       "actors", "song", "artist", "search", "alt"])
+        w.writeheader()
+        w.writerows(rows)
+
+    for line in filled:
+        print("  " + line)
+    print(f"\n채움 {len(filled)}개 / 후보 없음 {len(failed)}개" + (" (미리보기)" if dry else ""))
+    if failed:
+        print("  후보 없음: " + ", ".join(failed))
+
+
+if __name__ == "__main__":
+    p = argparse.ArgumentParser()
+    p.add_argument("--dry", action="store_true")
+    args = p.parse_args()
+    sys.stdout.reconfigure(encoding="utf-8")
+    main(args.dry)
