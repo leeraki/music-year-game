@@ -19,7 +19,7 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r3-alias-search';
+const RESOLVER_BUILD = 'r4-market-probe';
 
 // streaming 은 SDK 재생에, user-read-* 는 SDK 초기화에, user-modify-* 는 play/seek 에 필요하다
 const SCOPES = [
@@ -445,8 +445,23 @@ class SpotifyTrackResolver {
                  + ` (${SpotifyTrackResolver._score(top, song, 0).toFixed(1)}점)` : ''));
     }
     if (!scored.length) {
+      // 한국 카탈로그에만 없는 것인지, 아예 없는 것인지 갈라 준다.
+      // 곡이 분명히 있는데 market=KR 로 0건이 오는 경우가 있어 원인을 특정해야 한다.
+      let extra = '';
+      try {
+        const res = await SpotifyAuth.api(
+          `/search?q=${encodeURIComponent(terms[0].q)}&type=track&limit=5`);
+        if (res.ok) {
+          const items = (await res.json()).tracks?.items || [];
+          const hit = items.find((t) => SpotifyTrackResolver._score(t, song, 0) > 0);
+          extra = hit
+            ? `\n    · 시장 제한을 풀면 있음 → ${hit.artists.map((a) => a.name).join(', ')}`
+              + ` / ${hit.name}  (한국 계정으로는 재생 불가)`
+            : `\n    · 시장 제한을 풀어도 없음 (${items.length}건)`;
+        }
+      } catch (_) { /* 진단일 뿐이라 실패해도 넘어간다 */ }
       throw new Error(`Spotify 에서 이 곡을 찾지 못했습니다: ${label}\n`
-        + tried.map((t) => `    · ${t}`).join('\n'));
+        + tried.map((t) => `    · ${t}`).join('\n') + extra);
     }
 
     const best = scored[0].t;
