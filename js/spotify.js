@@ -19,14 +19,14 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r20-diagbody';
+const RESOLVER_BUILD = 'r21-slower';
 // 찾아 둔 곡을 버릴지 판단하는 기준. 곡을 고르는 규칙이 바뀔 때만 올린다.
 // 판번호에 묶었더니 요청 제한 대응처럼 매칭과 무관한 수정에도 230곡을 다시
 // 찾게 되어, 그러느라 제한을 또 소진했다.
 const MATCH_RULES = 'm5-djmix';
 // 검색·조회 요청 사이의 최소 간격. 분당 60건 남짓으로, 개발 모드 한도에
 // 닿지 않는 속도다. 검사 한 번이 조금 느려지는 대신 앱이 잠기지 않는다.
-const REQUEST_GAP = 1000;
+const REQUEST_GAP = 2000;
 // 로마자 표기가 얼마나 닮아야 같은 사람으로 볼지. 검사에 나온 실제 쌍으로 정했다.
 const ROMAN_MATCH = 0.72;
 
@@ -254,7 +254,7 @@ class SpotifyAuth {
     if (!/^\/(search|tracks|artists|albums)/.test(path)) return;
     const now = Date.now();
     const slot = Math.max(now, SpotifyAuth._nextSlot || 0);
-    SpotifyAuth._nextSlot = slot + REQUEST_GAP;
+    SpotifyAuth._nextSlot = slot + (SpotifyAuth._gap || REQUEST_GAP);
     if (slot > now) await new Promise((r) => setTimeout(r, slot - now));
   }
 
@@ -262,7 +262,8 @@ class SpotifyAuth {
     // 앱 단위로 막혀 있는 동안은 두드려 봐야 소용이 없다. 곡마다 다섯 번씩
     // 최대 1분을 기다리면 230곡 검사가 몇 시간이 된다.
     if (SpotifyAuth.blockedUntil && Date.now() < SpotifyAuth.blockedUntil) {
-      return new Response(null, { status: 429 });
+      // 우리가 지어낸 응답이다. Spotify 가 보낸 것과 헷갈리면 원인을 못 찾는다.
+      return new Response('{"local":"blocked"}', { status: 429 });
     }
     await SpotifyAuth._pace(path);
     const token = await SpotifyAuth.getAccessToken();
@@ -287,6 +288,14 @@ class SpotifyAuth {
       // 오래 매달리지 않는다. 막힌 채로 계속 두드리면 제한이 더 길어진다.
       // 한 번만 짧게 쉬었다 확인하고, 그래도 막혀 있으면 검사를 접는다.
       const hinted = parseInt(res.headers.get('Retry-After') || '', 10);
+      SpotifyAuth.lastRateLimit = {
+        retryAfter: res.headers.get('Retry-After'),
+        remaining: res.headers.get('x-ratelimit-remaining'),
+        body: await res.clone().text().catch(() => '').then((t) => t.slice(0, 300)),
+      };
+      // 한도에 닿았으니 앞으로는 더 천천히 간다. 얼마가 한도인지 알 수 없으니
+      // 겪으면서 늦춘다. 개발 모드 앱은 생각보다 훨씬 빡빡하다.
+      SpotifyAuth._gap = Math.min(6000, (SpotifyAuth._gap || REQUEST_GAP) * 2);
       const wait = Number.isFinite(hinted) && hinted > 0 ? Math.min(30, hinted) : 6;
       SpotifyAuth.throttled = true;
       SpotifyAuth.blockedUntil = Date.now() + 30000;   // 잠시 손을 뗀다
@@ -994,6 +1003,7 @@ async function diagnoseSpotify(sample, onStep, active = null) {
 
   // 검색은 상태 코드만으로는 왜 막혔는지 알 수 없다. 응답을 그대로 보여준다.
   try {
+    SpotifyAuth.blockedUntil = 0;      // 진단은 진짜 응답을 봐야 한다
     const res = await SpotifyAuth.api('/search?q=test&type=track&limit=1&market=KR');
     if (res.ok) {
       const uri = await player.resolver.resolve(sample);
@@ -1002,6 +1012,14 @@ async function diagnoseSpotify(sample, onStep, active = null) {
     } else {
       let body = '';
       try { body = (await res.text()).slice(0, 300); } catch (_) {}
+      // 앞서 겪은 진짜 제한 응답이 있으면 그쪽이 더 쓸모 있다
+      const seen = SpotifyAuth.lastRateLimit;
+      if (seen && (seen.body || seen.retryAfter)) {
+        body = (body ? body + ' | ' : '')
+             + `직전 실제 응답: ${seen.body || '(본문 없음)'}`
+             + (seen.retryAfter ? ` retry-after=${seen.retryAfter}` : '')
+             + (seen.remaining ? ` remaining=${seen.remaining}` : '');
+      }
       const hdr = ['retry-after', 'x-ratelimit-remaining', 'x-ratelimit-limit']
         .map((h) => [h, res.headers.get(h)]).filter(([, v]) => v)
         .map(([h, v]) => `${h}=${v}`).join(' · ');
@@ -1058,6 +1076,9 @@ async function waitForQuota(onResult, signal, at) {
 
 async function auditSpotifyMatches(songs, onResult, { delay = 0, signal } = {}) {
   const resolver = new SpotifyTrackResolver();
+  onResult({ transient: true, notice:
+    `Spotify 한도에 닿지 않도록 ${((SpotifyAuth._gap || REQUEST_GAP) / 1000).toFixed(1)}초에 한 곡씩 찾습니다.`
+    + ` 이미 찾아 둔 곡은 건너뛰므로 실제로는 더 빠릅니다.` });
   const moved = await resolver.revalidate(songs);
   if (moved) onResult({ notice: `곡 고르는 규칙이 바뀌어 다시 확인했습니다 — `
     + `${moved.kept}곡은 그대로 두고 ${moved.dropped}곡만 다시 찾습니다.` });
