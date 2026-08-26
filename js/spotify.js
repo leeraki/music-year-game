@@ -19,7 +19,7 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r26-bandnames';
+const RESOLVER_BUILD = 'r27-worktrack';
 // 찾아 둔 곡을 버릴지 판단하는 기준. 곡을 고르는 규칙이 바뀔 때만 올린다.
 // 판번호에 묶었더니 요청 제한 대응처럼 매칭과 무관한 수정에도 230곡을 다시
 // 찾게 되어, 그러느라 제한을 또 소진했다.
@@ -82,6 +82,8 @@ const ARTIST_ALIASES = {
   '푸른하늘': ['blue sky'], '동물원': ['zoo'], '들국화': ['deulgukhwa', 'wild chrysanthemum'],
   '해바라기': ['sunflower', 'haebaragi'], '산울림': ['sanullim', 'sanulrim', 'echo'],
   '무한궤도': ['muhan gwedo', 'infinite track'],
+  '보이넥스트도어': ['boynextdoor'], '멜로망스': ['melomance'],
+  '불꽃심장': ['flame heart'], '민경훈': ['min kyung hoon'],
   // OST 검사에서 확인된 표기
   '이수영': ['lee soo young'], '장근석': ['geun seok jang', 'jang keun suk'],
   '박요한': ['park yo han'], '김장훈': ['kim jang-hoon'], '조관우': ['jo kwan woo'],
@@ -620,6 +622,26 @@ class SpotifyTrackResolver {
   }
 
   /**
+   * 곡 이름 자체가 그 작품의 것임을 밝히고 있는가.
+   *
+   * 'One Love (SBS 드라마 ′봄의 왈츠′ OST)' 처럼 음반이 아니라 곡명에 작품을
+   * 적어 두는 경우가 있다. 음반만 보면 편집반이라 근거가 없는 것으로 읽힌다.
+   * 다만 작품명이 흔한 말이면 동명의 다른 곡이 걸리므로(《굳세어라 금순아》에
+   * 옛 트로트가 붙은 적이 있다), OST 라고 밝힌 것만 인정한다.
+   */
+  static _trackNamesWork(trackName, work) {
+    const w = SpotifyTrackResolver._norm(work);
+    if (!w || !SpotifyTrackResolver._norm(trackName).includes(w)) return false;
+    return /(ost|soundtrack|드라마|영화)/i.test(trackName || '');
+  }
+
+  /** 이 트랙이 그 작품의 것이라는 근거가 있는가. */
+  static _refersToWork(albumName, trackName, work) {
+    return SpotifyTrackResolver._onWorkAlbum(albumName, work)
+        || SpotifyTrackResolver._trackNamesWork(trackName, work);
+  }
+
+  /**
    * 연주곡인가. 가사가 없어 듣고 맞힐 수가 없으므로 아예 쓰지 않는다.
    * 라이브·리믹스와 달리 '차선책'조차 되지 못한다.
    */
@@ -654,7 +676,7 @@ class SpotifyTrackResolver {
     const artistOk = SpotifyTrackResolver._artistOk(song.artist, artists);
     // 한국 가수는 로마자로 올라와 있는 일이 많다(류→Ryu, 김장훈→Kim Jang-Hoon).
     // 작품 음반에 실려 있으면 표기가 달라도 그 곡이 맞다.
-    const onWork = SpotifyTrackResolver._onWorkAlbum(track.album?.name, song.work);
+    const onWork = SpotifyTrackResolver._refersToWork(track.album?.name, track.name, song.work);
 
     let s = 0;
     if (m >= 1) s += 5;                                       // 정확히 같으면 강한 신호
@@ -1141,7 +1163,7 @@ async function auditSpotifyMatches(songs, onResult, { delay = 0, signal } = {}) 
           state = 'warn'; note = '곡 제목이 다릅니다';
         }
         else if (!SpotifyTrackResolver._artistOk(song.artist, track.artists)
-                 && !SpotifyTrackResolver._onWorkAlbum(track.album, song.work)) {
+                 && !SpotifyTrackResolver._refersToWork(track.album, track.name, song.work)) {
           state = 'warn'; note = `가수가 다릅니다 (기대 ${song.artist})`;
         }
         else if (/(?<![a-z])(live|remix|acoustic|ver\.|version|edit|mixed|dj\s*mix)(?![a-z])/i.test(track.name + ' ' + track.album)) {
@@ -1156,7 +1178,7 @@ async function auditSpotifyMatches(songs, onResult, { delay = 0, signal } = {}) 
         // 가수가 맞을 때만 봐준다. 이 단서를 가수와 무관하게 적용했더니
         // '드라마 OST 피아노' 같은 편곡 음반이 경고를 빠져나갔다.
         else if (song.work
-                 && !SpotifyTrackResolver._onWorkAlbum(track.album, song.work)
+                 && !SpotifyTrackResolver._refersToWork(track.album, track.name, song.work)
                  && !(SpotifyTrackResolver._artistOk(song.artist, track.artists)
                       && /(ost|soundtrack)/i.test(track.album || ''))) {
           state = 'warn'; note = `작품 음반이 아닙니다 (${song.work} OST 인지 확인 필요)`;
