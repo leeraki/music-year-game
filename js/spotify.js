@@ -19,7 +19,7 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r28-nocover';
+const RESOLVER_BUILD = 'r29-ostquery';
 // 찾아 둔 곡을 버릴지 판단하는 기준. 곡을 고르는 규칙이 바뀔 때만 올린다.
 // 판번호에 묶었더니 요청 제한 대응처럼 매칭과 무관한 수정에도 230곡을 다시
 // 찾게 되어, 그러느라 제한을 또 소진했다.
@@ -759,7 +759,13 @@ class SpotifyTrackResolver {
     };
     // OST 는 작품명이 가수보다 확실한 단서다. 같은 제목의 곡이 여기저기 있어
     // '태민 발걸음' 은 엉뚱한 가수의 동명곡을 물어 왔다.
-    for (const t of titles) if (song.work) add(`${song.work} ${t}`, false);
+    // 'OST' 를 붙인 질의도 함께 던진다. 그냥 작품명만으로는 그 가수의 다른
+    // 무대 영상이 먼저 올라오는 일이 있다(시크릿 가든 「그 여자」).
+    for (const t of titles) {
+      if (!song.work) continue;
+      add(`${song.work} OST ${t}`, false);
+      add(`${song.work} ${t}`, false);
+    }
     for (const t of titles) {
       for (const n of SpotifyTrackResolver._artistNames(song.artist)) add(`${n} ${t}`, false);
     }
