@@ -19,11 +19,11 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r29-ostquery';
+const RESOLVER_BUILD = 'r30-artistgate';
 // 찾아 둔 곡을 버릴지 판단하는 기준. 곡을 고르는 규칙이 바뀔 때만 올린다.
 // 판번호에 묶었더니 요청 제한 대응처럼 매칭과 무관한 수정에도 230곡을 다시
 // 찾게 되어, 그러느라 제한을 또 소진했다.
-const MATCH_RULES = 'm5-djmix';
+const MATCH_RULES = 'm6-artistgate';
 // 검색·조회 요청 사이의 최소 간격. 분당 60건 남짓으로, 개발 모드 한도에
 // 닿지 않는 속도다. 검사 한 번이 조금 느려지는 대신 앱이 잠기지 않는다.
 const REQUEST_GAP = 2000;
@@ -631,7 +631,12 @@ class SpotifyTrackResolver {
    * 다만 작품명이 흔한 말이면 동명의 다른 곡이 걸리므로(《굳세어라 금순아》에
    * 옛 트로트가 붙은 적이 있다), OST 라고 밝힌 것만 인정한다.
    */
-  static _trackNamesWork(trackName, work, albumName) {
+  static _trackNamesWork(trackName, work, albumName, artistOk) {
+    // 곡 이름에 적힌 작품명은 가수가 맞을 때만 근거가 된다.
+    // 편집·리메이크 음반일수록 곡 이름에 원작을 밝혀 적기 때문에, 이것만으로
+    // 가수 불일치를 덮으면 오히려 그런 음반을 골라 들이게 된다.
+    // 'Five Sense / 마지막 승부 (마지막 승부 OST)' 가 그렇게 들어왔다.
+    if (!artistOk) return false;
     // 편곡·리메이크 음반일수록 곡 이름에 원작을 밝혀 적는다.
     // '비와 당신 (슬기로운 의사생활 시즌2 OST)' 는 피아노 편곡반의 것이고
     // '약속 (드라마 아름다운 날들 OST)' 는 리메이크 음반의 것이다.
@@ -649,9 +654,9 @@ class SpotifyTrackResolver {
   }
 
   /** 이 트랙이 그 작품의 것이라는 근거가 있는가. */
-  static _refersToWork(albumName, trackName, work) {
+  static _refersToWork(albumName, trackName, work, artistOk = false) {
     return SpotifyTrackResolver._onWorkAlbum(albumName, work)
-        || SpotifyTrackResolver._trackNamesWork(trackName, work, albumName);
+        || SpotifyTrackResolver._trackNamesWork(trackName, work, albumName, artistOk);
   }
 
   /**
@@ -691,7 +696,7 @@ class SpotifyTrackResolver {
     const artistOk = SpotifyTrackResolver._artistOk(song.artist, artists);
     // 한국 가수는 로마자로 올라와 있는 일이 많다(류→Ryu, 김장훈→Kim Jang-Hoon).
     // 작품 음반에 실려 있으면 표기가 달라도 그 곡이 맞다.
-    const onWork = SpotifyTrackResolver._refersToWork(track.album?.name, track.name, song.work);
+    const onWork = SpotifyTrackResolver._refersToWork(track.album?.name, track.name, song.work, artistOk);
 
     let s = 0;
     if (m >= 1) s += 5;                                       // 정확히 같으면 강한 신호
@@ -1184,7 +1189,7 @@ async function auditSpotifyMatches(songs, onResult, { delay = 0, signal } = {}) 
           state = 'warn'; note = '곡 제목이 다릅니다';
         }
         else if (!SpotifyTrackResolver._artistOk(song.artist, track.artists)
-                 && !SpotifyTrackResolver._refersToWork(track.album, track.name, song.work)) {
+                 && !SpotifyTrackResolver._onWorkAlbum(track.album, song.work)) {
           state = 'warn'; note = `가수가 다릅니다 (기대 ${song.artist})`;
         }
         else if (/(?<![a-z])(live|remix|acoustic|ver\.|version|edit|mixed|dj\s*mix)(?![a-z])/i.test(track.name + ' ' + track.album)) {
@@ -1199,7 +1204,8 @@ async function auditSpotifyMatches(songs, onResult, { delay = 0, signal } = {}) 
         // 가수가 맞을 때만 봐준다. 이 단서를 가수와 무관하게 적용했더니
         // '드라마 OST 피아노' 같은 편곡 음반이 경고를 빠져나갔다.
         else if (song.work
-                 && !SpotifyTrackResolver._refersToWork(track.album, track.name, song.work)
+                 && !SpotifyTrackResolver._refersToWork(track.album, track.name, song.work,
+                        SpotifyTrackResolver._artistOk(song.artist, track.artists))
                  && !(SpotifyTrackResolver._artistOk(song.artist, track.artists)
                       && /(ost|soundtrack)/i.test(track.album || ''))) {
           state = 'warn'; note = `작품 음반이 아닙니다 (${song.work} OST 인지 확인 필요)`;
