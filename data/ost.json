@@ -3,7 +3,7 @@
  "mode": "ost",
  "source": "iTunes Search API (30초 미리듣기)",
  "note": "year 는 작품의 출시 연도(영화=개봉, 드라마=첫 방영)이며 게임의 정답이다.",
- "count": 240,
+ "count": 244,
  "songs": [
   {
    "id": "o1425976395",
@@ -29,6 +29,32 @@
    "album": "타타타",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/62/e7/55/62e75556-0f1e-6869-5a26-0aafe23e38a0/mzaf_11758563921708998385.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/c3/c5/48/c3c54814-7d79-0141-20d6-50d5006e9825/101163_1.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "o1617065816",
+   "year": 1992,
+   "work": "내일은 사랑",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "신범수",
+     "actor": "이병헌"
+    },
+    {
+     "name": "유현경",
+     "actor": "고소영"
+    }
+   ],
+   "song": "내일은 사랑",
+   "alt": null,
+   "artist": "이후종",
+   "itunesTrackId": 1617065816,
+   "itunesTitle": "내일은 사랑",
+   "itunesArtist": "이후종",
+   "album": "내일은 사랑 (Original Television Soundtrack)",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/9b/36/e8/9b36e8d5-6bff-a371-0336-5a33e9ed3b99/mzaf_7811696558407483499.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/92/04/99/920499a3-28cb-37ee-52b0-1e60c486dad6/8809856786616.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
@@ -184,6 +210,84 @@
    "album": "서울의 달 (Original Television Soundtrack)",
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/fb/de/71/fbde7166-c847-4f4c-560f-8cdba423f6c9/mzaf_17119883326899358748.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b5/63/10/b563101c-2d9c-f121-7ca0-285119dd6b88/8809856786630.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "o1762624190",
+   "year": 1994,
+   "work": "종합병원",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "김도훈",
+     "actor": "이재룡"
+    },
+    {
+     "name": "이정화",
+     "actor": "신은경"
+    }
+   ],
+   "song": "혼자만의 사랑",
+   "alt": null,
+   "artist": "김태영",
+   "itunesTrackId": 1762624190,
+   "itunesTitle": "혼자만의 사랑",
+   "itunesArtist": "김태영",
+   "album": "Kim Tae Young 1",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/45/59/98/4559981f-9655-67fb-4049-ae228c17c8d4/mzaf_8155221809084297638.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/de/8d/8b/de8d8b4c-8aec-a7fd-11a6-cfe8c66c0a06/8800263510948.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "o1877998382",
+   "year": 1997,
+   "work": "그대 그리고 나",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "윤수경",
+     "actor": "최진실"
+    },
+    {
+     "name": "박동규",
+     "actor": "박상원"
+    }
+   ],
+   "song": "바람과 함께 부르는 노래",
+   "alt": null,
+   "artist": "조혜리",
+   "itunesTrackId": 1877998382,
+   "itunesTitle": "바람과 함께 부르는 노래 (시연 Love 테마)",
+   "itunesArtist": "조혜리",
+   "album": "그대 그리고 나 Original Motion Picture Soundtrack",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/55/6d/48/556d487f-9e0d-67cb-a4ec-77d00b0675f7/mzaf_2815413542282604552.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a1/a4/48/a1a44890-0149-9b12-25c1-8f4f532e021e/8803821003999_cover.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "o1419989020",
+   "year": 1997,
+   "work": "모델",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "송경린",
+     "actor": "김남주"
+    },
+    {
+     "name": "제임스 리",
+     "actor": "장동건"
+    }
+   ],
+   "song": "너 하나만 사랑해",
+   "alt": null,
+   "artist": "고한우",
+   "itunesTrackId": 1419989020,
+   "itunesTitle": "너 하나만 사랑해",
+   "itunesArtist": "고한우",
+   "album": "암연",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/32/56/f9/3256f9c6-d175-5ad8-023b-0c266668c336/mzaf_4040519081691109225.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/d2/70/29/d2702928-a5f9-b928-7cab-212ce484efe9/100999_1.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
@@ -2439,7 +2543,7 @@
     }
    ],
    "song": "태양은 가득히",
-   "artist": "배호",
+   "artist": "양파",
    "itunesTrackId": 847125980,
    "itunesTitle": "태양은 가득히",
    "itunesArtist": "yangpa",
@@ -3852,31 +3956,6 @@
    "spotifyUri": "spotify:track:1N4RFoxtwFDwjoAS6tKUE9"
   },
   {
-   "id": "o1618911003",
-   "year": 2019,
-   "work": "봄밤",
-   "workType": "drama",
-   "characters": [
-    {
-     "name": "유지호",
-     "actor": "정해인"
-    },
-    {
-     "name": "이정인",
-     "actor": "한지민"
-    }
-   ],
-   "song": "봄, 밤",
-   "artist": "구름",
-   "itunesTrackId": 1618911003,
-   "itunesTitle": "봄밤",
-   "itunesArtist": "김필",
-   "album": "봄밤 - Single",
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/1f/16/23/1f1623f9-d77f-4eee-1873-49369e830106/mzaf_17083613965396365218.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/33/a5/6f/33a56f8d-0555-8451-7aa3-58b6894725d5/888272097269.jpg/300x300bb.jpg",
-   "spotifyUri": "spotify:track:5fiJdmJtJciVXER7XOODey"
-  },
-  {
    "id": "o1603411913",
    "year": 2019,
    "work": "사랑의 불시착",
@@ -3902,7 +3981,7 @@
    "spotifyUri": "spotify:track:1uZ5Ulb2qfle3HbqB12vNQ"
   },
   {
-   "id": "o1462701419",
+   "id": "o1646827093",
    "year": 2019,
    "work": "아름다운 세상",
    "workType": "drama",
@@ -3916,15 +3995,16 @@
      "actor": "추자현"
     }
    ],
-   "song": "아름다운 세상 (From 알라딘)",
-   "artist": "신재범 & 민경아",
-   "itunesTrackId": 1462701419,
-   "itunesTitle": "아름다운 세상 (From 알라딘)",
-   "itunesArtist": "존박 & 박정현",
-   "album": "아름다운 세상 (From 알라딘) - Single",
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/6b/03/61/6b0361f9-8699-feb3-11f0-6744ecc952b2/mzaf_11173847422055936151.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/64/95/38/649538f4-4f2c-187b-f42a-bec0f9703cd5/19UMGIM41757.rgb.jpg/300x300bb.jpg",
-   "spotifyUri": "spotify:track:6RgVItrZhkJP2x96vCo6PK"
+   "song": "Over the Moon",
+   "artist": "하은 & 한빈",
+   "itunesTrackId": 1646827093,
+   "itunesTitle": "Over the Moon",
+   "itunesArtist": "하은 & 한빈",
+   "album": "아름다운 세상 (Original Soundtrack)",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/2e/9c/a3/2e9ca3be-adaf-3f31-bd8f-3800e0c0c0bf/mzaf_15156286796050915070.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/69/81/ee/6981ee1e-a98d-b0e2-5a76-5c6c247d467f/8809788344717_cover.jpg/300x300bb.jpg",
+   "spotifyUri": null,
+   "alt": null
   },
   {
    "id": "o1618903899",
@@ -3975,6 +4055,32 @@
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/83/63/63/83636377-7837-a204-2df3-540b6e0df8a4/mzaf_863514208658727889.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/cd/f1/da/cdf1daff-f20b-ec09-48ab-2cc78b01f1dd/191953491417.jpg/300x300bb.jpg",
    "spotifyUri": "spotify:track:2mXTZrDIe4uywQaOcs0nzf"
+  },
+  {
+   "id": "o1453473582",
+   "year": 2019,
+   "work": "왕이 된 남자",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "하선",
+     "actor": "여진구"
+    },
+    {
+     "name": "유소운",
+     "actor": "이세영"
+    }
+   ],
+   "song": "니 곁이라면",
+   "artist": "성시경",
+   "itunesTrackId": 1453473582,
+   "itunesTitle": "니 곁이라면",
+   "itunesArtist": "성시경",
+   "album": "왕이 된 남자 (Original Television Soundtrack), Pt. 6 - Single",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/47/e7/71/47e771e6-62eb-7c39-fc1a-134dd3f04955/mzaf_12542548493817312341.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/53/42/e3/5342e362-efc3-1aec-c457-c9e539175085/8809649891046.jpg/300x300bb.jpg",
+   "spotifyUri": null,
+   "alt": null
   },
   {
    "id": "o1452738759",
@@ -6006,7 +6112,7 @@
    "spotifyUri": "spotify:track:3qTqGpQ6bqnmySBe6tvr9s"
   },
   {
-   "id": "o1832455422",
+   "id": "o1802808901",
    "year": 2025,
    "work": "폭싹 속았수다",
    "workType": "drama",
@@ -6020,15 +6126,16 @@
      "actor": "아이유"
     }
    ],
-   "song": "폭싹 속았수다",
-   "artist": "마마스",
-   "itunesTrackId": 1832455422,
-   "itunesTitle": "폭싹 속았수다",
-   "itunesArtist": "PAN:DER",
-   "album": "폭싹 속았수다 - Single",
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/c1/e4/39/c1e439e4-40f1-061d-f36b-b2375beaf380/mzaf_3422957154135362176.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/65/aa/0f/65aa0fb1-c263-db0c-9eac-f56f36a76bc1/artwork.jpg/300x300bb.jpg",
-   "spotifyUri": "spotify:track:1whGpQIyPAfKnelp6AuEIg"
+   "song": "밤 산책",
+   "artist": "아이유",
+   "itunesTrackId": 1802808901,
+   "itunesTitle": "밤 산책",
+   "itunesArtist": "아이유",
+   "album": "폭싹 속았수다 (Original Soundtrack from the Netflix Series) - 3막 - Single",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/55/76/21/557621d8-6999-3e5e-c2cb-44f50228ca67/mzaf_16432326537834319096.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c4/f3/03/c4f303c8-26d0-bff7-3147-fa000e7038df/cover_KM0021933_1.jpg/300x300bb.jpg",
+   "spotifyUri": null,
+   "alt": null
   }
  ]
 }

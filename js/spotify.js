@@ -83,6 +83,8 @@ const ARTIST_ALIASES = {
   '해바라기': ['sunflower', 'haebaragi'], '산울림': ['sanullim', 'sanulrim', 'echo'],
   '무한궤도': ['muhan gwedo', 'infinite track'],
   '보이넥스트도어': ['boynextdoor'], '멜로망스': ['melomance'],
+  '이가은': ['페이지', 'page'],   // 「이별이 오지 못하게」 는 페이지라는 이름으로 냈다
+  '하은 & 한빈': ['하은', '한빈', '포맨'],
   '불꽃심장': ['flame heart'], '민경훈': ['min kyung hoon'],
   // OST 검사에서 확인된 표기
   '이수영': ['lee soo young'], '장근석': ['geun seok jang', 'jang keun suk'],
