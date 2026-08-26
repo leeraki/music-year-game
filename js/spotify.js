@@ -19,7 +19,7 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r27-worktrack';
+const RESOLVER_BUILD = 'r28-nocover';
 // 찾아 둔 곡을 버릴지 판단하는 기준. 곡을 고르는 규칙이 바뀔 때만 올린다.
 // 판번호에 묶었더니 요청 제한 대응처럼 매칭과 무관한 수정에도 230곡을 다시
 // 찾게 되어, 그러느라 제한을 또 소진했다.
@@ -629,16 +629,27 @@ class SpotifyTrackResolver {
    * 다만 작품명이 흔한 말이면 동명의 다른 곡이 걸리므로(《굳세어라 금순아》에
    * 옛 트로트가 붙은 적이 있다), OST 라고 밝힌 것만 인정한다.
    */
-  static _trackNamesWork(trackName, work) {
+  static _trackNamesWork(trackName, work, albumName) {
+    // 편곡·리메이크 음반일수록 곡 이름에 원작을 밝혀 적는다.
+    // '비와 당신 (슬기로운 의사생활 시즌2 OST)' 는 피아노 편곡반의 것이고
+    // '약속 (드라마 아름다운 날들 OST)' 는 리메이크 음반의 것이다.
+    // 이 표기를 근거로 인정하면 오히려 그런 음반만 골라 들이게 된다.
+    const fake = { name: trackName, album: { name: albumName || '' } };
+    if (SpotifyTrackResolver._isVariant(fake)) return false;
+    if (SpotifyTrackResolver._isInstrumental(fake)) return false;
     const w = SpotifyTrackResolver._norm(work);
-    if (!w || !SpotifyTrackResolver._norm(trackName).includes(w)) return false;
+    // 작품명은 대개 괄호 안에 적힌다. 그런데 _norm 은 괄호 안을 통째로 버리므로
+    // 'One Love (SBS 드라마 ′봄의 왈츠′ OST)' 에서 정작 찾을 것이 사라진다.
+    // 여기서는 괄호 기호만 지우고 안은 남긴다.
+    const t = SpotifyTrackResolver._norm((trackName || '').replace(/[()[\]]/g, ' '));
+    if (!w || !t.includes(w)) return false;
     return /(ost|soundtrack|드라마|영화)/i.test(trackName || '');
   }
 
   /** 이 트랙이 그 작품의 것이라는 근거가 있는가. */
   static _refersToWork(albumName, trackName, work) {
     return SpotifyTrackResolver._onWorkAlbum(albumName, work)
-        || SpotifyTrackResolver._trackNamesWork(trackName, work);
+        || SpotifyTrackResolver._trackNamesWork(trackName, work, albumName);
   }
 
   /**
@@ -650,7 +661,9 @@ class SpotifyTrackResolver {
     // 드라마 OST 를 피아노·현악으로 다시 연주한 편집음반이 대량으로 올라와 있다.
     // 제목에 작품명이 그대로 들어 있어 검색에 잘 걸리는데, 가사가 없어 쓸 수 없다.
     return /(?<![a-z])(instrumental|inst|karaoke|mr\s*ver|backing\s*track|piano|cello|violin|orgel|music\s*box|new\s*age)(?![a-z])/i.test(blob)
-        || /(?<![가-힣])(반주|연주곡|피아노|첼로|바이올린|오르골|뉴에이지|매장음악)(?![가-힣])/.test(blob);
+        // 한국어는 뒤에 조사가 붙는다. '피아노로 듣는' 을 놓치지 않으려면
+        // 뒷글자까지 막으면 안 된다.
+        || /(?<![가-힣])(반주|연주곡|피아노|첼로|바이올린|오르골|뉴에이지|매장음악)/.test(blob);
   }
 
   /**
@@ -662,7 +675,7 @@ class SpotifyTrackResolver {
     // 변형으로 보고 감점하면 정작 원곡을 밀어낸다.
     const blob = `${track.name} ${track.album?.name || ''}`
       .replace(/(korean|japanese|chinese|english|mandarin)\s*(ver\.|version)/ig, ' ');
-    return /(?<![a-z])(live|remix|acoustic|cover|ver\.|version|edit|mixed|dj\s*mix)(?![a-z])/i.test(blob)
+    return /(?<![a-z])(live|remix|remake|acoustic|cover|ver\.|version|edit|mixed|dj\s*mix)(?![a-z])/i.test(blob)
         || /(?<![가-힣])(라이브|리믹스|어쿠스틱|재녹음)(?![가-힣])/.test(blob);
   }
 
