@@ -19,7 +19,7 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r25-fallback';
+const RESOLVER_BUILD = 'r26-bandnames';
 // 찾아 둔 곡을 버릴지 판단하는 기준. 곡을 고르는 규칙이 바뀔 때만 올린다.
 // 판번호에 묶었더니 요청 제한 대응처럼 매칭과 무관한 수정에도 230곡을 다시
 // 찾게 되어, 그러느라 제한을 또 소진했다.
@@ -78,6 +78,10 @@ const ARTIST_ALIASES = {
   '공일오비': ['015b'], '워너원': ['wanna one'], '이선희': ['lee sun-hee', 'lee sunhee'],
   '김완선': ['kim wan-sun', 'kim wansun'], '조용필': ['cho yong-pil'],
   '이문세': ['lee moon-sae'], '나훈아': ['na hoon-a'], '심수봉': ['sim su-bong'],
+  // 뜻을 옮긴 이름은 소리로 견줘도 안 맞는다. 푸른하늘은 'Blue Sky' 로 올라와 있다.
+  '푸른하늘': ['blue sky'], '동물원': ['zoo'], '들국화': ['deulgukhwa', 'wild chrysanthemum'],
+  '해바라기': ['sunflower', 'haebaragi'], '산울림': ['sanullim', 'sanulrim', 'echo'],
+  '무한궤도': ['muhan gwedo', 'infinite track'],
   // OST 검사에서 확인된 표기
   '이수영': ['lee soo young'], '장근석': ['geun seok jang', 'jang keun suk'],
   '박요한': ['park yo han'], '김장훈': ['kim jang-hoon'], '조관우': ['jo kwan woo'],
