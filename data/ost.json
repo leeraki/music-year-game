@@ -3,8 +3,34 @@
  "mode": "ost",
  "source": "iTunes Search API (30초 미리듣기)",
  "note": "year 는 작품의 출시 연도(영화=개봉, 드라마=첫 방영)이며 게임의 정답이다.",
- "count": 232,
+ "count": 240,
  "songs": [
+  {
+   "id": "o1425976395",
+   "year": 1991,
+   "work": "사랑이 뭐길래",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "이대발",
+     "actor": "최민수"
+    },
+    {
+     "name": "박지은",
+     "actor": "하희라"
+    }
+   ],
+   "song": "타타타",
+   "alt": null,
+   "artist": "김국환",
+   "itunesTrackId": 1425976395,
+   "itunesTitle": "타타타",
+   "itunesArtist": "김국환",
+   "album": "타타타",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/62/e7/55/62e75556-0f1e-6869-5a26-0aafe23e38a0/mzaf_11758563921708998385.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/c3/c5/48/c3c54814-7d79-0141-20d6-50d5006e9825/101163_1.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
   {
    "id": "o1620461826",
    "year": 1992,
@@ -29,6 +55,188 @@
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/25/59/74/255974c7-347d-a3c6-ff23-29c6a734e9f6/mzaf_1272533611957409.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/60/c9/0d/60c90d06-9613-ccd6-b017-a3e78f5728e1/8806384559118_cover.jpg/300x300bb.jpg",
    "spotifyUri": "spotify:track:2rLsIW1Ny7Sx2nlKhVGyhb"
+  },
+  {
+   "id": "o1621441833",
+   "year": 1993,
+   "work": "걸어서 하늘까지",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "정종호",
+     "actor": "최민수"
+    },
+    {
+     "name": "임지숙",
+     "actor": "김혜선"
+    }
+   ],
+   "song": "걸어서 하늘까지",
+   "alt": null,
+   "artist": "장현철",
+   "itunesTrackId": 1621441833,
+   "itunesTitle": "걸어서 하늘까지",
+   "itunesArtist": "장현철",
+   "album": "걸어서 하늘까지 (Original Television Soundtrack)",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/09/b3/06/09b30680-3ca2-899d-2c62-6457497d634d/mzaf_16438953585336158424.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/1d/65/4e/1d654e32-b3ce-75cd-da01-dcbf859426a4/8806384558579.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "o6802518467",
+   "year": 1994,
+   "work": "느낌",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "한빈",
+     "actor": "손지창"
+    },
+    {
+     "name": "유리",
+     "actor": "우희진"
+    }
+   ],
+   "song": "그대와 함께",
+   "alt": null,
+   "artist": "손지창 & 김민종",
+   "itunesTrackId": 6802518467,
+   "itunesTitle": "그대와 함께",
+   "itunesArtist": "손지창 & 김민종",
+   "album": "느낌 (Original TV Soundtrack)",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/fd/0e/6b/fd0e6bfa-3009-4f92-5a79-b9aa4dc89a89/mzaf_14276685623281945495.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bc/1a/81/bc1a81c4-a98d-c6e2-0a4c-b10fdec8fe7d/190295022600.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "o767300327",
+   "year": 1994,
+   "work": "마지막 승부",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "윤철준",
+     "actor": "장동건"
+    },
+    {
+     "name": "정다슬",
+     "actor": "심은하"
+    }
+   ],
+   "song": "마지막 승부",
+   "alt": null,
+   "artist": "김민교",
+   "itunesTrackId": 767300327,
+   "itunesTitle": "마지막 승부",
+   "itunesArtist": "김민교",
+   "album": "마지막 승부 (Original Television Soundtrack)",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/88/dd/40/88dd401c-f051-d790-5b36-0007b58d99d1/mzaf_9542816521052204174.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music4/v4/7c/32/d2/7c32d2b7-dffb-cb64-f0be-dee5dac08dab/asset.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "o1817432109",
+   "year": 1994,
+   "work": "사랑을 그대 품안에",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "강풍호",
+     "actor": "차인표"
+    },
+    {
+     "name": "이진주",
+     "actor": "신애라"
+    }
+   ],
+   "song": "사랑을 그대 품안에",
+   "alt": null,
+   "artist": "최진영",
+   "itunesTrackId": 1817432109,
+   "itunesTitle": "사랑을 그대 품안에",
+   "itunesArtist": "최진영",
+   "album": "Love, Forever",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/88/45/12/88451220-ec9a-6b34-3237-0101947020f6/mzaf_8373576961199945484.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a4/66/93/a466932c-8f90-e809-541a-589f571d9ea8/cover_KM0022089_1.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "o1617065855",
+   "year": 1994,
+   "work": "서울의 달",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "김홍식",
+     "actor": "한석규"
+    },
+    {
+     "name": "차영숙",
+     "actor": "채시라"
+    }
+   ],
+   "song": "서울의 달",
+   "alt": null,
+   "artist": "장철웅",
+   "itunesTrackId": 1617065855,
+   "itunesTitle": "서울의 달",
+   "itunesArtist": "장철웅",
+   "album": "서울의 달 (Original Television Soundtrack)",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/fb/de/71/fbde7166-c847-4f4c-560f-8cdba423f6c9/mzaf_17119883326899358748.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b5/63/10/b563101c-2d9c-f121-7ca0-285119dd6b88/8809856786630.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "o1422624032",
+   "year": 1997,
+   "work": "별은 내 가슴에",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "강민",
+     "actor": "안재욱"
+    },
+    {
+     "name": "이연이",
+     "actor": "최진실"
+    }
+   ],
+   "song": "Forever",
+   "alt": null,
+   "artist": "안재욱",
+   "itunesTrackId": 1422624032,
+   "itunesTitle": "Forever",
+   "itunesArtist": "안재욱",
+   "album": "Forever",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/24/9b/be/249bbe8b-b2b5-2001-ccc5-181ca4e51e31/mzaf_10875261068127166505.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/6a/d0/7b/6ad07ba5-6165-8540-ac6d-850795d0ae25/108428_1.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "o1632576983",
+   "year": 1998,
+   "work": "미스터Q",
+   "workType": "drama",
+   "characters": [
+    {
+     "name": "이강토",
+     "actor": "김민종"
+    },
+    {
+     "name": "한해원",
+     "actor": "김희선"
+    }
+   ],
+   "song": "세상 끝에서의 시작",
+   "alt": null,
+   "artist": "김민종",
+   "itunesTrackId": 1632576983,
+   "itunesTitle": "세상 끝에서의 시작",
+   "itunesArtist": "김민종",
+   "album": "김민종 4집 \"애\"",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/d8/2f/00/d82f0044-80df-219a-6f42-373fec23157d/mzaf_8809547930169094890.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/30/cb/50/30cb50e3-8dba-9e37-3102-9174cd3731fa/8806184752221.jpg/300x300bb.jpg",
+   "spotifyUri": null
   },
   {
    "id": "o1617076100",
