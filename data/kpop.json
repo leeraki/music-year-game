@@ -2,7 +2,7 @@
  "version": 1,
  "source": "iTunes Search API (30초 미리듣기)",
  "note": "year 필드는 큐레이션 확정값이며 게임의 정답으로 사용된다.",
- "count": 583,
+ "count": 568,
  "songs": [
   {
    "id": "s1780356547",
@@ -91,21 +91,6 @@
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/a5/3f/ed/a53fed9f-07f8-8425-43ac-40a3e608fae3/mzaf_12159473921273861785.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/4c/8a/3d/4c8a3d70-96d9-39ae-5bb8-37b5df9f6e94/mzi.dujeszpb.jpg/300x300bb.jpg",
    "spotifyUri": "spotify:track:0XLVGNOcII5TYYzKFl85WG"
-  },
-  {
-   "id": "s324994794",
-   "year": 1980,
-   "title": "촛불",
-   "alt": null,
-   "artist": "조용필",
-   "itunesTrackId": 324994794,
-   "itunesTitle": "촛불",
-   "itunesArtist": "조용필",
-   "album": "조용필 NHK 실황",
-   "itunesYear": 1983,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/fd/9f/97/fd9f9766-d705-1ba3-3453-a4c21b4fc679/mzaf_8443150334643840074.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music/db/e9/04/mzi.ghlliwbx.jpg/300x300bb.jpg",
-   "spotifyUri": null
   },
   {
    "id": "s1545083706",
@@ -212,21 +197,6 @@
    "spotifyUri": null
   },
   {
-   "id": "s1262248268",
-   "year": 1982,
-   "title": "잊혀진 계절",
-   "alt": null,
-   "artist": "이용",
-   "itunesTrackId": 1262248268,
-   "itunesTitle": "잊혀진 계절",
-   "itunesArtist": "이용",
-   "album": "사랑의 상처, Vol. 9",
-   "itunesYear": 2006,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/2b/8c/96/2b8c96a1-9489-1428-b1a6-6d2aea8fa38e/mzaf_15963688176240453827.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/37/32/73/37327354-4766-e963-5205-9a557648296c/108980_1.jpg/300x300bb.jpg",
-   "spotifyUri": null
-  },
-  {
    "year": 1982,
    "title": "종이학",
    "alt": null,
@@ -283,21 +253,6 @@
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/62/34/de/6234de60-530a-f963-c0c1-44c5f380b808/mzaf_12040686721301227981.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music/3f/1f/e6/mzi.ulqrvsxp.jpg/300x300bb.jpg",
    "spotifyUri": "spotify:track:50ghKzxuHrJBdfv4oLror7"
-  },
-  {
-   "id": "s311455737",
-   "year": 1982,
-   "title": "어제 오늘 그리고",
-   "alt": null,
-   "artist": "조용필",
-   "itunesTrackId": 311455737,
-   "itunesTitle": "어제, 오늘, 그리고",
-   "itunesArtist": "조용필",
-   "album": "조용필 7집",
-   "itunesYear": 1985,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/49/a3/e3/49a3e3cc-305a-f4c8-8863-29931a507992/mzaf_13203621802860185890.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/fe/bc/63/febc63c1-bd8c-d8e8-1e68-5c3f687e0c41/mzi.psrvdlqn.jpg/300x300bb.jpg",
-   "spotifyUri": null
   },
   {
    "id": "s1619945101",
@@ -647,6 +602,21 @@
    "spotifyUri": "spotify:track:4tY5exqmaj6hJmE3ny1kj8"
   },
   {
+   "id": "s311455737",
+   "year": 1985,
+   "title": "어제 오늘 그리고",
+   "alt": null,
+   "artist": "조용필",
+   "itunesTrackId": 311455737,
+   "itunesTitle": "어제, 오늘, 그리고",
+   "itunesArtist": "조용필",
+   "album": "조용필 7집",
+   "itunesYear": 1985,
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/49/a3/e3/49a3e3cc-305a-f4c8-8863-29931a507992/mzaf_13203621802860185890.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/fe/bc/63/febc63c1-bd8c-d8e8-1e68-5c3f687e0c41/mzi.psrvdlqn.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
    "id": "s311457031",
    "year": 1985,
    "title": "킬리만자로의 표범",
@@ -688,36 +658,6 @@
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/fa/6d/dc/fa6ddc18-638e-3f31-4b75-8c4205f8a7b9/mzaf_6433802992023900792.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/fd/51/3a/fd513a59-893d-ef09-16b5-6519bc6fcb26/8809621003320.jpg/300x300bb.jpg",
    "spotifyUri": "spotify:track:5wsnQ5dKkJ0yYPYlJzLquw"
-  },
-  {
-   "id": "s1690701128",
-   "year": 1986,
-   "title": "오늘밤",
-   "alt": null,
-   "artist": "김완선",
-   "itunesTrackId": 1690701128,
-   "itunesTitle": "오늘밤",
-   "itunesArtist": "김완선",
-   "album": "The Original",
-   "itunesYear": 2017,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/bd/9c/8d/bd9c8d87-4fed-2a31-99c9-d51bf3c0a6e8/mzaf_1905730186242302001.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/11/9c/06/119c0606-cde3-1e6c-0341-41eaec7a4614/8809691084052_cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
-  },
-  {
-   "id": "s1448457728",
-   "year": 1986,
-   "title": "그대 내게 다시",
-   "alt": null,
-   "artist": "변진섭",
-   "itunesTrackId": 1448457728,
-   "itunesTitle": "그대 내게 다시",
-   "itunesArtist": "변진섭",
-   "album": "변진섭5집-그대 내게 다시",
-   "itunesYear": 1992,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/37/7c/0b/377c0bb1-4edb-75e8-0dae-3f778b065031/mzaf_8991974146016074059.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/44/9e/65/449e6572-22e1-ef8a-ead8-a655d6b15b45/8809640918612.jpg/300x300bb.jpg",
-   "spotifyUri": null
   },
   {
    "id": "s1454764584",
@@ -1014,21 +954,6 @@
    "spotifyUri": null
   },
   {
-   "id": "s1690701242",
-   "year": 1988,
-   "title": "리듬 속의 그 춤을",
-   "alt": null,
-   "artist": "김완선",
-   "itunesTrackId": 1690701242,
-   "itunesTitle": "리듬속의 그 춤을",
-   "itunesArtist": "김완선",
-   "album": "The Original",
-   "itunesYear": 2017,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/b9/30/5a/b9305a0b-ddcb-c5d4-7c16-dabd475cbbaa/mzaf_13687875724530347264.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/11/9c/06/119c0606-cde3-1e6c-0341-41eaec7a4614/8809691084052_cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
-  },
-  {
    "id": "s1638682095",
    "year": 1988,
    "title": "혜화동",
@@ -1159,21 +1084,6 @@
    "spotifyUri": null
   },
   {
-   "id": "s1647910765",
-   "year": 1988,
-   "title": "칠갑산",
-   "alt": null,
-   "artist": "주병선",
-   "itunesTrackId": 1647910765,
-   "itunesTitle": "칠갑산",
-   "itunesArtist": "주병선",
-   "album": "주병선 6집",
-   "itunesYear": 1998,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/2a/6e/e4/2a6ee46b-4045-04f3-5cb2-1af113a9a729/mzaf_11068930028658619628.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/1c/93/0c/1c930cb0-78a2-dbf6-8be1-18f94d2dea74/8809788343451_cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
-  },
-  {
    "id": "s356559825",
    "year": 1988,
    "title": "신사동 그 사람",
@@ -1200,21 +1110,6 @@
    "itunesYear": 1987,
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/87/e1/6e/87e16e43-b151-f15a-dc04-b3bba3c17230/mzaf_16216156237839761482.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/8f/be/8a/8fbe8a6b-0717-3bd7-093b-046446841e91/888618216361_cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
-  },
-  {
-   "id": "s1690701247",
-   "year": 1989,
-   "title": "기분 좋은 날",
-   "alt": null,
-   "artist": "김완선",
-   "itunesTrackId": 1690701247,
-   "itunesTitle": "기분 좋은 날",
-   "itunesArtist": "김완선",
-   "album": "The Original",
-   "itunesYear": 2017,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/dc/47/6d/dc476dfd-2473-b161-977c-bbc7ad680dc1/mzaf_9332870974037076507.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/11/9c/06/119c0606-cde3-1e6c-0341-41eaec7a4614/8809691084052_cover.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
@@ -1389,21 +1284,6 @@
    "itunesYear": 1989,
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/55/af/af/55afafc5-c310-2e1c-f187-1ccd268455a5/mzaf_13322228526035713554.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music/41/58/be/mzi.tpviklpj.jpg/300x300bb.jpg",
-   "spotifyUri": null
-  },
-  {
-   "id": "s767301948",
-   "year": 1989,
-   "title": "김삿갓",
-   "alt": null,
-   "artist": "홍서범",
-   "itunesTrackId": 767301948,
-   "itunesTitle": "김삿갓",
-   "itunesArtist": "홍서범",
-   "album": "Return to Rock",
-   "itunesYear": 2008,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/22/bb/6d/22bb6d8b-c251-86ce-0f3f-98de17cc8bd9/mzaf_13611554795028872556.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/45/35/50/45355077-d730-66f6-4ad6-d33ea425e443/asset.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
@@ -1758,21 +1638,6 @@
    "alt": null
   },
   {
-   "id": "s1550589376",
-   "year": 1991,
-   "title": "슬픈 마네킹",
-   "alt": null,
-   "artist": "현진영",
-   "itunesTrackId": 1550589376,
-   "itunesTitle": "슬픈마네킹",
-   "itunesArtist": "현진영",
-   "album": "SBS 아카이브 K - 전설의 무대 문나이트 - EP",
-   "itunesYear": 2021,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview124/v4/87/d0/0e/87d00e11-1e9e-fc62-514f-8e4f7209d430/mzaf_11938293041080717778.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/44/2e/06/442e063e-d2dc-3136-8bee-2b4a903273f3/1.jpg/300x300bb.jpg",
-   "spotifyUri": null
-  },
-  {
    "id": "s1562123975",
    "year": 1992,
    "title": "아주 오래된 연인들",
@@ -1799,6 +1664,21 @@
    "itunesYear": 1992,
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/80/c4/39/80c43927-bd6f-c095-a812-441a65ab243d/mzaf_224902837717534088.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/bd/13/77/bd137767-2dd9-5fc6-fe91-e4c97c418183/cover_KM0019194_1.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "s1448457728",
+   "year": 1992,
+   "title": "그대 내게 다시",
+   "alt": null,
+   "artist": "변진섭",
+   "itunesTrackId": 1448457728,
+   "itunesTitle": "그대 내게 다시",
+   "itunesArtist": "변진섭",
+   "album": "변진섭5집-그대 내게 다시",
+   "itunesYear": 1992,
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/37/7c/0b/377c0bb1-4edb-75e8-0dae-3f778b065031/mzaf_8991974146016074059.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/44/9e/65/449e6572-22e1-ef8a-ead8-a655d6b15b45/8809640918612.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
@@ -1906,21 +1786,6 @@
    "spotifyUri": null
   },
   {
-   "id": "s1679303137",
-   "year": 1992,
-   "title": "흐린 기억 속의 그대",
-   "alt": null,
-   "artist": "현진영",
-   "itunesTrackId": 1679303137,
-   "itunesTitle": "흐린 기억 속의 그대 (Club Mix)",
-   "itunesArtist": "현진영",
-   "album": "New Dance 2 (2023 Remastered)",
-   "itunesYear": 2023,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/68/c8/e6/68c8e6ae-3f80-1892-4c33-0c2bf76dd241/mzaf_13408513213978189304.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/f6/66/ea/f666ea7d-6f31-f552-878c-6d3bb1f955a2/888735943454.png/300x300bb.jpg",
-   "spotifyUri": null
-  },
-  {
    "id": "s1562124567",
    "year": 1993,
    "title": "신인류의 사랑",
@@ -1961,6 +1826,21 @@
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/59/43/af/5943af61-e8db-8051-6450-8654bfac74d2/mzaf_2442758686751051886.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/18/48/36/18483627-02de-e814-45db-6f5e3eae0b17/cover_KM0019237_1.jpg/300x300bb.jpg",
    "spotifyUri": "spotify:track:1g4ERn5UjFJt6BH5ke8L6w"
+  },
+  {
+   "id": "s1804573835",
+   "year": 1993,
+   "title": "달의 몰락",
+   "alt": null,
+   "artist": "김현철",
+   "itunesTrackId": 1804573835,
+   "itunesTitle": "달의몰락",
+   "itunesArtist": "김현철",
+   "album": "횡계에서 돌아오는 저녁",
+   "itunesYear": 1993,
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/06/f8/99/06f8997d-9a04-0bb0-cef8-4e0e34e69dda/mzaf_3440109666104330865.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0e/46/a5/0e46a59a-f134-a935-f87f-ceebd3b30ff7/cover_KM0021268_1.jpg/300x300bb.jpg",
+   "spotifyUri": null
   },
   {
    "id": "s1562128297",
@@ -2093,21 +1973,6 @@
    "itunesYear": 1993,
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/5e/ef/8c/5eef8c9e-e998-ce28-8785-0dea2e5bc036/mzaf_6981436727547532788.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/18/48/36/18483627-02de-e814-45db-6f5e3eae0b17/cover_KM0019237_1.jpg/300x300bb.jpg",
-   "spotifyUri": null
-  },
-  {
-   "id": "s6767654698",
-   "year": 1994,
-   "title": "모두 잠든 후에",
-   "alt": null,
-   "artist": "김원준",
-   "itunesTrackId": 6767654698,
-   "itunesTitle": "모두 잠든후에",
-   "itunesArtist": "김원준",
-   "album": "눈에 띄고 싶어",
-   "itunesYear": 2025,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/1c/fa/c6/1cfac69e-3066-0999-fffb-ac353aa55a84/mzaf_6053996886185707939.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a6/35/18/a6351859-21f9-e87c-852e-572e6aefff28/291256.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
@@ -2298,6 +2163,21 @@
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/00/79/17/007917c7-a727-db28-ab99-c54f2c9bd26d/mzaf_10799232868213487070.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/09/a4/9b/09a49bc8-6d85-ef4e-5aa3-517d3492b042/cover_KM0019206_1.jpg/300x300bb.jpg",
    "spotifyUri": "spotify:track:6Mko5FVZMHBXsYF9INH4Cl"
+  },
+  {
+   "id": "s1541628559",
+   "year": 1995,
+   "title": "준비 없는 이별",
+   "alt": null,
+   "artist": "녹색지대",
+   "itunesTrackId": 1541628559,
+   "itunesTitle": "준비 없는 이별",
+   "itunesArtist": "녹색지대",
+   "album": "녹색지대Ⅱ",
+   "itunesYear": 1995,
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/c0/5d/4a/c05d4a2c-0263-10b4-5baf-877dc1883d0d/mzaf_9324026840227439731.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/1c/ad/36/1cad368a-84ab-0644-1e05-a0aa49c3bd7a/8809764960252.jpg/300x300bb.jpg",
+   "spotifyUri": null
   },
   {
    "id": "s1573347325",
@@ -2533,21 +2413,6 @@
    "itunesYear": 1996,
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview113/v4/11/49/03/11490369-280c-be97-e9e0-82df02710576/mzaf_15752504968801915074.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/24/d5/d4/24d5d4e2-c577-99e8-e172-8764ecc067a6/cover_KM0000783_1.jpg/300x300bb.jpg",
-   "spotifyUri": null
-  },
-  {
-   "id": "s1804573835",
-   "year": 1996,
-   "title": "달의 몰락",
-   "alt": null,
-   "artist": "김현철",
-   "itunesTrackId": 1804573835,
-   "itunesTitle": "달의몰락",
-   "itunesArtist": "김현철",
-   "album": "횡계에서 돌아오는 저녁",
-   "itunesYear": 1993,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/06/f8/99/06f8997d-9a04-0bb0-cef8-4e0e34e69dda/mzaf_3440109666104330865.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0e/46/a5/0e46a59a-f134-a935-f87f-ceebd3b30ff7/cover_KM0021268_1.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
@@ -2942,21 +2807,6 @@
    "itunesYear": 1996,
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/0d/7c/6e/0d7c6e2a-9968-1eae-0d86-69a609484b84/mzaf_1171333702029257826.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d4/b4/8d/d4b48d30-505c-e9b3-fae9-4ecf7ce2b09c/8809795743138.jpg/300x300bb.jpg",
-   "spotifyUri": null
-  },
-  {
-   "id": "s1719946770",
-   "year": 1998,
-   "title": "헤이 헤이 헤이",
-   "alt": null,
-   "artist": "자우림",
-   "itunesTrackId": 1719946770,
-   "itunesTitle": "헤이헤이헤이 25th",
-   "itunesArtist": "자우림",
-   "album": "HAPPY 25th JAURIM",
-   "itunesYear": 2022,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/77/30/dd/7730dda3-f99d-1ebd-ff44-161c84abb8f7/mzaf_13617563539373134926.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/08/ed/e9/08ede93e-60a4-0554-8f75-5398cf77741c/8809887699398.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
@@ -3531,21 +3381,6 @@
    "alt": "Road"
   },
   {
-   "id": "s1541628559",
-   "year": 2001,
-   "title": "준비 없는 이별",
-   "alt": null,
-   "artist": "녹색지대",
-   "itunesTrackId": 1541628559,
-   "itunesTitle": "준비 없는 이별",
-   "itunesArtist": "녹색지대",
-   "album": "녹색지대Ⅱ",
-   "itunesYear": 1995,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/c0/5d/4a/c05d4a2c-0263-10b4-5baf-877dc1883d0d/mzaf_9324026840227439731.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/1c/ad/36/1cad368a-84ab-0644-1e05-a0aa49c3bd7a/8809764960252.jpg/300x300bb.jpg",
-   "spotifyUri": null
-  },
-  {
    "id": "s1448985057",
    "year": 2001,
    "title": "사랑해 이 말밖엔",
@@ -3751,6 +3586,21 @@
    "itunesYear": 2001,
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f8/50/a6/f850a652-c6af-24f6-b2e1-7801f5792d2c/mzaf_8723287281655182002.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/66/eb/87/66eb8719-bc0f-f7a4-0f0c-da2d9167b24e/cover_KM0021078_1.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "s1804631798",
+   "year": 2002,
+   "title": "좋은 사람",
+   "alt": null,
+   "artist": "박효신",
+   "itunesTrackId": 1804631798,
+   "itunesTitle": "좋은사람",
+   "itunesArtist": "박효신",
+   "album": "Time-Honored Voice",
+   "itunesYear": 2002,
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/14/d1/86/14d18610-5617-5b7e-7252-ba9d93763e90/mzaf_9557655953511357804.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/92/0c/53/920c5356-f533-2e5f-ed0c-deddf2e08b6a/cover_KM0021105_1.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
@@ -4167,21 +4017,6 @@
    "spotifyUri": "spotify:track:3GHcOcFo5naXorURm6fuOK"
   },
   {
-   "id": "s1786294650",
-   "year": 2004,
-   "title": "내 여자라니까",
-   "alt": null,
-   "artist": "이승기",
-   "itunesTrackId": 1786294650,
-   "itunesTitle": "내 여자라니까 (with 차은우)",
-   "itunesArtist": "이승기",
-   "album": "With - EP",
-   "itunesYear": 2024,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/ef/cb/2a/efcb2aae-7c18-6055-fd6e-bb6d424e37a9/mzaf_5371114498622757148.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/af/38/7e/af387ed7-e44b-7ac9-1a78-6557ba3f8ebf/8804775380655_cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
-  },
-  {
    "id": "s1653754052",
    "year": 2004,
    "title": "어머나",
@@ -4325,21 +4160,6 @@
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music7/v4/4d/ea/e6/4deae60f-0602-3c6c-3b3a-aaf5da0a9f6a/8011132.jpg/300x300bb.jpg",
    "spotifyUri": "spotify:track:4Ak5M4CD9XGkSUmW0loxAl",
    "alt": "순수"
-  },
-  {
-   "id": "s1804631798",
-   "year": 2005,
-   "title": "좋은 사람",
-   "alt": null,
-   "artist": "박효신",
-   "itunesTrackId": 1804631798,
-   "itunesTitle": "좋은사람",
-   "itunesArtist": "박효신",
-   "album": "Time-Honored Voice",
-   "itunesYear": 2002,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/14/d1/86/14d18610-5617-5b7e-7252-ba9d93763e90/mzaf_9557655953511357804.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/92/0c/53/920c5356-f533-2e5f-ed0c-deddf2e08b6a/cover_KM0021105_1.jpg/300x300bb.jpg",
-   "spotifyUri": null
   },
   {
    "id": "s1454772762",
@@ -4535,21 +4355,6 @@
    "spotifyUri": null
   },
   {
-   "id": "s1786294652",
-   "year": 2006,
-   "title": "하기 힘든 말",
-   "alt": null,
-   "artist": "이승기",
-   "itunesTrackId": 1786294652,
-   "itunesTitle": "하기 힘든 말 (with 캡틴플래닛)",
-   "itunesArtist": "이승기",
-   "album": "With - EP",
-   "itunesYear": 2024,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/d8/be/1a/d8be1a09-8e40-dc76-ec86-aeee89c048e7/mzaf_9481725915604749253.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/af/38/7e/af387ed7-e44b-7ac9-1a78-6557ba3f8ebf/8804775380655_cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
-  },
-  {
    "id": "s1397154461",
    "year": 2006,
    "title": "Get Ya",
@@ -4740,21 +4545,6 @@
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/1f/79/b5/1f79b5d6-2fea-bb57-25ae-a174c5834364/mzaf_16566872824728331579.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/81/20/00/81200060-5c3c-4f8d-bf55-c6836f644632/COVER-_DS.jpg/300x300bb.jpg",
    "spotifyUri": "spotify:track:44V2lUQHUuUQ97iRuEd1ik"
-  },
-  {
-   "id": "s1786294651",
-   "year": 2007,
-   "title": "삭제",
-   "alt": null,
-   "artist": "이승기",
-   "itunesTrackId": 1786294651,
-   "itunesTitle": "삭제 (with 이수)",
-   "itunesArtist": "이승기",
-   "album": "With - EP",
-   "itunesYear": 2024,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/67/b5/b4/67b5b412-a4de-9900-6e79-da44cee9b2cf/mzaf_16508961728471503940.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/af/38/7e/af387ed7-e44b-7ac9-1a78-6557ba3f8ebf/8804775380655_cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
   },
   {
    "id": "s299805325",
@@ -5674,21 +5464,6 @@
    "spotifyUri": "spotify:track:40gUfKHwCNLpXowFN9Hvsu"
   },
   {
-   "id": "s1602185218",
-   "year": 2012,
-   "title": "너와 나",
-   "alt": null,
-   "artist": "아이유",
-   "itunesTrackId": 1602185218,
-   "itunesTitle": "너",
-   "itunesArtist": "아이유",
-   "album": "조각집 - EP",
-   "itunesYear": 2021,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/e5/b6/33/e5b633f0-cedd-8be0-168a-3ee38a68ac60/mzaf_1375679969451428235.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b6/d7/03/b6d70395-380c-42b1-6cab-04d51c1c4d9d/cover_KM0014526_1.jpg/300x300bb.jpg",
-   "spotifyUri": null
-  },
-  {
    "id": "s1075705836",
    "year": 2012,
    "title": "Hush",
@@ -6359,6 +6134,21 @@
    "spotifyUri": null
   },
   {
+   "id": "s1579989309",
+   "year": 2016,
+   "title": "데칼코마니",
+   "alt": null,
+   "artist": "마마무",
+   "itunesTrackId": 1579989309,
+   "itunesTitle": "데칼코마니",
+   "itunesArtist": "마마무",
+   "album": "Memory",
+   "itunesYear": 2016,
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/73/bf/02/73bf02d0-5763-ac38-04ea-a187366e61cd/mzaf_11105594311707070782.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/63/56/55/6356554a-0d01-8c6d-336a-144e5f4ad5f6/20064819.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
    "id": "s1596528841",
    "year": 2016,
    "title": "피 땀 눈물",
@@ -6989,6 +6779,21 @@
    "spotifyUri": "spotify:track:5JA4q7xkeSxmhgfAkPWnWW"
   },
   {
+   "id": "s1471938396",
+   "year": 2019,
+   "title": "한 페이지가 될 수 있게",
+   "alt": null,
+   "artist": "데이식스",
+   "itunesTrackId": 1471938396,
+   "itunesTitle": "한 페이지가 될 수 있게",
+   "itunesArtist": "데이식스",
+   "album": "The Book of Us : Gravity - EP",
+   "itunesYear": 2019,
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/79/19/be/7919be5a-969d-0e3b-df54-71592942d13f/mzaf_767193238431796792.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/b3/8f/9d/b38f9d23-d5c3-cde5-92ad-9a8fa6d0a7eb/DAY6_The_Book_of_Us_Gravity_3000x3000.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
    "id": "s1476513508",
    "year": 2019,
    "title": "음파음파",
@@ -7192,21 +6997,6 @@
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/4b/7f/75/4b7f75d6-70a0-f573-8e99-c8f8b514635a/mzaf_10626210618490765550.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/3b/0d/24/3b0d2467-173c-98e8-9ada-1da25aae7581/cover-_DS.jpg/300x300bb.jpg",
    "spotifyUri": "spotify:track:6qyz1KOlGJsKYJ4ZsRmRSD"
-  },
-  {
-   "id": "s1579989309",
-   "year": 2020,
-   "title": "데칼코마니",
-   "alt": null,
-   "artist": "마마무",
-   "itunesTrackId": 1579989309,
-   "itunesTitle": "데칼코마니",
-   "itunesArtist": "마마무",
-   "album": "Memory",
-   "itunesYear": 2016,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/73/bf/02/73bf02d0-5763-ac38-04ea-a187366e61cd/mzaf_11105594311707070782.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/63/56/55/6356554a-0d01-8c6d-336a-144e5f4ad5f6/20064819.jpg/300x300bb.jpg",
-   "spotifyUri": null
   },
   {
    "id": "s1596532400",
@@ -7913,21 +7703,6 @@
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/67/0c/69/670c697b-b943-1148-95ba-5733b70e3042/mzaf_14041457009119207683.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/42/fb/af/42fbaf16-efe2-4e1f-2e5e-bb42c2bdc281/DAY6_Fourever_Online_Cover.jpg/300x300bb.jpg",
    "spotifyUri": "spotify:track:3BMAWsBp4jc35mCmebC3WT"
-  },
-  {
-   "id": "s1471938396",
-   "year": 2024,
-   "title": "한 페이지가 될 수 있게",
-   "alt": null,
-   "artist": "데이식스",
-   "itunesTrackId": 1471938396,
-   "itunesTitle": "한 페이지가 될 수 있게",
-   "itunesArtist": "데이식스",
-   "album": "The Book of Us : Gravity - EP",
-   "itunesYear": 2019,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/79/19/be/7919be5a-969d-0e3b-df54-71592942d13f/mzaf_767193238431796792.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/b3/8f/9d/b38f9d23-d5c3-cde5-92ad-9a8fa6d0a7eb/DAY6_The_Book_of_Us_Gravity_3000x3000.jpg/300x300bb.jpg",
-   "spotifyUri": null
   },
   {
    "id": "s1773262055",
