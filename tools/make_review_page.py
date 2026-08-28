@@ -29,7 +29,8 @@ from audit_songs import artist_matches, norm, load_alt_map  # noqa: E402
 ALT_MAP = load_alt_map()
 
 # 단어 단위로 본다. 문자열로 훑었더니 빅뱅의 음반 'Alive' 가 live 로 걸렸다.
-LANG_VER_RE = re.compile(r"(korean|japanese|chinese|english|mandarin)\s*(ver\.|version)", re.I)
+# 한국 곡이므로 'Korean Ver.' 만 원반 표기다. 일본어판은 번안 재녹음이라 걸러야 한다.
+LANG_VER_RE = re.compile(r"korean\s*(ver\.|version)", re.I)
 
 VARIANT_RE = re.compile(
     r"(?<![a-z])(live|remix|acoustic|inst|ver\.|version|concert|mixed|mix)(?![a-z])"
@@ -70,6 +71,59 @@ def classify(s):
     return "ok", reasons
 
 
+_CHO = "g kk n d tt r m b pp s ss  j jj ch k t p h".split(" ")
+_JUNG = ("a ae ya yae eo e yeo ye o wa wae oe yo u wo we wi yu eu ui i").split(" ")
+_JONG = ["", "k", "k", "k", "n", "n", "n", "t", "l", "l", "l", "l", "l", "l",
+         "l", "l", "m", "p", "p", "t", "t", "ng", "t", "t", "k", "t", "p", "t"]
+
+
+def romanize(text):
+    out = []
+    for ch in text:
+        code = ord(ch) - 0xAC00
+        if 0 <= code < 11172:
+            out.append(_CHO[code // 588] + _JUNG[(code % 588) // 28] + _JONG[code % 28])
+        else:
+            out.append(ch)
+    return "".join(out)
+
+
+def canon(text):
+    """표기가 갈려도 같은 소리면 같은 글자로 모은다."""
+    t = re.sub(r"[^a-z]", "", romanize(text or "").lower())
+    for a, b in (("oo", "u"), ("ou", "u"), ("ee", "i"), ("eo", "u"),
+                 ("eu", "u"), ("ae", "e"), ("ch", "c"), ("j", "c")):
+        t = t.replace(a, b)
+    for group, rep in (("gk", "k"), ("dt", "t"), ("bp", "p"), ("rl", "l")):
+        t = re.sub(f"[{group}]", rep, t)
+    return t
+
+
+def dice(a, b):
+    ga = {a[i:i + 2] for i in range(len(a) - 1)}
+    gb = {b[i:i + 2] for i in range(len(b) - 1)}
+    return 2 * len(ga & gb) / (len(ga) + len(gb)) if ga and gb else 0.0
+
+
+def find_twins(songs):
+    """로마자 표기가 갈려 같은 곡이 두 번 들어간 것을 찾는다(Roly Poly / 롤리폴리)."""
+    twins, by_artist = set(), {}
+    for s in songs:
+        by_artist.setdefault(s["artist"], []).append(s)
+    for group in by_artist.values():
+        for i, a in enumerate(group):
+            for b in group[i + 1:]:
+                ka = canon(a.get("title") or a.get("song") or "")
+                kb = canon(b.get("title") or b.get("song") or "")
+                if not ka or not kb:
+                    continue
+                # 짧은 제목은 우연히 겹친다. 「U」 가 「로꾸거」 안에 들어가 걸렸었다.
+                if ka == kb or (min(len(ka), len(kb)) >= 4 and dice(ka, kb) >= 0.55):
+                    twins.add(id(a))
+                    twins.add(id(b))
+    return twins
+
+
 def write_csv(songs, stamp):
     """외부 도구로 전수 대조할 수 있게 같은 내용을 표로 내보낸다."""
     path = os.path.join(os.path.dirname(OUT), f"{MODE}.csv")
@@ -101,9 +155,14 @@ def build():
     data = json.load(open(SONGS, encoding="utf-8"))
     songs = data["songs"]
 
+    twins = find_twins(songs)
+
     rows, counts = [], {"bad": 0, "warn": 0, "ok": 0}
     for s in songs:
         level, reasons = classify(s)
+        if id(s) in twins:                # 같은 가수·같은 해 → 같은 곡이 두 번일 수 있다
+            reasons.append("같은 가수·같은 해가 둘 — 중복 여부 확인")
+            level = "warn" if level == "ok" else level
         counts[level] += 1
         e = lambda v: html.escape(str(v or ""))
         if MODE == "ost":
