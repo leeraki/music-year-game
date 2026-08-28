@@ -9,6 +9,7 @@
     python make_review_page.py      # tools/review.html 생성
 """
 
+import datetime
 import html
 import json
 import re
@@ -30,7 +31,7 @@ ALT_MAP = load_alt_map()
 LANG_VER_RE = re.compile(r"(korean|japanese|chinese|english|mandarin)\s*(ver\.|version)", re.I)
 
 VARIANT_RE = re.compile(
-    r"(?<![a-z])(live|remix|acoustic|inst|ver\.|version|concert|mixed|dj\s*mix)(?![a-z])"
+    r"(?<![a-z])(live|remix|acoustic|inst|ver\.|version|concert|mixed|mix)(?![a-z])"
     r"|(?<![가-힣])(라이브|리믹스|어쿠스틱|재녹음)(?![가-힣])", re.I)
 
 
@@ -45,8 +46,11 @@ def classify(s):
         return bool(a) and bool(b) and (a == b or a in b or b in a)
     seed_title = s.get("song") or s.get("title") or ""
     alt = ALT_MAP.get((s["artist"].strip(), seed_title.strip()))
-    if not (same(seed_title, s.get("itunesTitle", "")) or (alt and same(alt, s.get("itunesTitle", "")))):
-        reasons.append(f"제목 다름 → {s.get('itunesTitle')}")
+    itunes_title = s.get("itunesTitle", "")
+    album_only = norm(itunes_title) == norm((s.get("album") or "").replace(" - Single", ""))
+    if not (same(seed_title, itunes_title) or (alt and same(alt, itunes_title))):
+        # 싱글 한 장에 곡명 없이 음반명만 붙은 OST 가 있다. 음원은 맞으니 확인만 권한다.
+        reasons.append("곡명 없이 음반명뿐" if album_only else f"제목 다름 → {itunes_title}")
 
     blob = f"{s.get('itunesTitle', '')} {s.get('album', '')}"
     # 'Korean Version' 은 언어판 표기라 오히려 원반이다. 변형으로 보면 안 된다.
@@ -104,6 +108,7 @@ def build():
       </td>
     </tr>""")
 
+    stamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
     doc = f"""<!doctype html>
 <html lang="ko"><head><meta charset="utf-8">
 <title>곡 목록 검수 — {len(songs)}곡</title>
@@ -132,10 +137,12 @@ def build():
   tr.bad  {{ background:rgba(255,92,108,.10); }}
   tr.warn {{ background:rgba(255,190,60,.07); }}
   tr.warn .flag {{ color:#ffbe3c; }}
+  .stamp {{ color:#7f7aa0; font-size:13px; margin:-8px 0 14px; }}
   .play {{ width:290px; text-align:right; }}
   audio {{ width:280px; height:34px; }}
 </style></head><body>
 <h1>{'OST 검수 — 배역 이름 확인용' if MODE == 'ost' else '곡 목록 검수'} — 총 {len(songs)}{'개' if MODE == 'ost' else '곡'}</h1>
+<div class="stamp">{stamp} 판 · 이보다 오래된 사본은 이미 고친 곳이 남아 있습니다</div>
 <div class="sub" id="sub"></div>
 <div class="filters">
   <button class="on" data-f="all">전체 {len(songs)}</button>

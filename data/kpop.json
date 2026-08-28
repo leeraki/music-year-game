@@ -457,21 +457,6 @@
    "spotifyUri": null
   },
   {
-   "id": "s1602583592",
-   "year": 1984,
-   "title": "환희",
-   "alt": null,
-   "artist": "정수라",
-   "itunesTrackId": 1602583592,
-   "itunesTitle": "환희",
-   "itunesArtist": "정수라",
-   "album": "가요산책 2",
-   "itunesYear": 1994,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/b2/b0/94/b2b09429-198b-dcaf-9af7-bdb0aae1038e/mzaf_17959945315844033020.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/de/ee/25/deee258a-c320-66dc-9ed7-4657f6ceeb2e/8809856742322.jpg/300x300bb.jpg",
-   "spotifyUri": null
-  },
-  {
    "id": "s1676197769",
    "year": 1985,
    "title": "희나리",
@@ -1066,6 +1051,21 @@
    "itunesYear": 1988,
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f3/97/b3/f397b31b-5461-e31b-f706-01509dff3011/mzaf_2771119949864974239.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/da/16/6d/da166d8a-a311-8df2-d251-4777ca3b4cb5/cover_KM0021203_1.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "s1602583592",
+   "year": 1988,
+   "title": "환희",
+   "alt": null,
+   "artist": "정수라",
+   "itunesTrackId": 1602583592,
+   "itunesTitle": "환희",
+   "itunesArtist": "정수라",
+   "album": "가요산책 2",
+   "itunesYear": 1994,
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/b2/b0/94/b2b09429-198b-dcaf-9af7-bdb0aae1038e/mzaf_17959945315844033020.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/de/ee/25/deee258a-c320-66dc-9ed7-4657f6ceeb2e/8809856742322.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
@@ -1667,6 +1667,21 @@
    "spotifyUri": null
   },
   {
+   "id": "s1728630329",
+   "year": 1992,
+   "title": "너에게 원한건",
+   "alt": null,
+   "artist": "노이즈",
+   "itunesTrackId": 1728630329,
+   "itunesTitle": "너에게 원한건",
+   "itunesArtist": "노이즈",
+   "album": "Sound Shock",
+   "itunesYear": 1992,
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/22/70/cf/2270cf74-41f5-6721-68f5-602772485054/mzaf_12626215492457596238.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/1a/49/70/1a49708d-cffe-4ab9-6cb3-4c9d45513233/cover_KM0019223_1.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
    "id": "s1448457728",
    "year": 1992,
    "title": "그대 내게 다시",
@@ -1682,19 +1697,19 @@
    "spotifyUri": null
   },
   {
-   "id": "s1614224693",
+   "id": "s1614225010",
    "year": 1992,
-   "title": "난 알아요",
+   "title": "이 밤이 깊어가지만",
    "artist": "서태지와 아이들",
-   "itunesTrackId": 1614224693,
-   "itunesTitle": "난 알아요 (Club Mix)",
+   "itunesTrackId": 1614225010,
+   "itunesTitle": "이밤이 깊어가지만",
    "itunesArtist": "서태지와 아이들",
    "itunesYear": 1992,
    "album": "Seotaiji and Boys",
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/ab/be/30/abbe3082-e59d-8f78-5423-d894337e5f63/mzaf_14445661295376207985.plus.aac.p.m4a",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/b9/45/fc/b945fc01-4699-3682-2b22-b6b9006052f9/mzaf_10552231616739590572.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ad/78/22/ad7822cf-49f9-dcac-7b75-2028492a9907/8809704420648_Cover.jpg/300x300bb.jpg",
-   "spotifyUri": "spotify:track:5p0EAPiH5jFWsZRntqfsLg",
-   "alt": "I Know"
+   "spotifyUri": null,
+   "alt": null
   },
   {
    "id": "s1614224701",
@@ -1946,48 +1961,18 @@
    "spotifyUri": null
   },
   {
-   "id": "s1804579554",
+   "id": "s1620514483",
    "year": 1994,
    "title": "슈퍼맨의 비애",
-   "alt": null,
+   "alt": "Tragedy of Superman",
    "artist": "DJ DOC",
-   "itunesTrackId": 1804579554,
-   "itunesTitle": "슈퍼맨의 비애",
+   "itunesTrackId": 1620514483,
+   "itunesTitle": "Tragedy of Superman",
    "itunesArtist": "DJ DOC",
-   "album": "DJ DOC Best Of Best Panda Mix Vol.1",
-   "itunesYear": 1997,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/73/16/86/7316869f-9d25-1b78-2316-f18b5289bb70/mzaf_3742166097543540985.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b8/8b/04/b88b0491-9b8d-ae48-e7c2-0e6b567b2268/cover_KM0020993_1.jpg/300x300bb.jpg",
-   "spotifyUri": null
-  },
-  {
-   "id": "s1728633031",
-   "year": 1994,
-   "title": "첫인상",
-   "alt": null,
-   "artist": "김건모",
-   "itunesTrackId": 1728633031,
-   "itunesTitle": "첫인상 (Video Land Mix)",
-   "itunesArtist": "김건모",
-   "album": "Excuses",
-   "itunesYear": 1993,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/5e/ef/8c/5eef8c9e-e998-ce28-8785-0dea2e5bc036/mzaf_6981436727547532788.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/18/48/36/18483627-02de-e814-45db-6f5e3eae0b17/cover_KM0019237_1.jpg/300x300bb.jpg",
-   "spotifyUri": null
-  },
-  {
-   "id": "s1728629233",
-   "year": 1994,
-   "title": "너에게 원한건",
-   "alt": null,
-   "artist": "노이즈",
-   "itunesTrackId": 1728629233,
-   "itunesTitle": "너에게 원한 건 (Multi Mix)",
-   "itunesArtist": "노이즈",
-   "album": "When I Become You",
+   "album": "슈퍼맨의 비애",
    "itunesYear": 1994,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/37/61/ce/3761cebc-2e5f-02b2-57d0-7946bc2aed35/mzaf_15396341524902382979.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/bf/45/d9/bf45d9d4-6a4d-bd91-c82d-8fa0eb67e54d/cover_KM0019207_1.jpg/300x300bb.jpg",
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/a2/58/38/a25838f6-5c91-da92-5300-f92de68c5cf9/mzaf_2170758038686985533.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/6c/30/56/6c3056b8-fc6d-ce9e-df33-5d638882a3e5/8806384514834_cover.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
@@ -2018,6 +2003,21 @@
    "itunesYear": 1994,
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/52/16/e6/5216e6dc-0b3a-2e39-eae4-4679898e7fea/mzaf_10312378302548754276.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/eb/80/e2/eb80e200-7e11-8c00-e34d-8199961362ed/8809691056103.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "s1678031870",
+   "year": 1994,
+   "title": "칵테일 사랑",
+   "alt": null,
+   "artist": "마로니에",
+   "itunesTrackId": 1678031870,
+   "itunesTitle": "칵테일 사랑",
+   "itunesArtist": "마로니에",
+   "album": "칵테일 사랑",
+   "itunesYear": 1994,
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/f6/da/c5/f6dac553-af68-e650-fb4f-f923e85acee1/mzaf_15983642769078245261.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/71/5e/15/715e1572-b0cc-e1dc-1cdf-5beb8b88d2b0/8806384517354_cover.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
@@ -4280,21 +4280,6 @@
    "alt": "내사람"
   },
   {
-   "id": "s1680169199",
-   "year": 2006,
-   "title": "내 사람",
-   "alt": null,
-   "artist": "SG워너비",
-   "itunesTrackId": 1680169199,
-   "itunesTitle": "내사람 (Ivy Mix)",
-   "itunesArtist": "SG 워너비",
-   "album": "아이비 메가 믹스 2006",
-   "itunesYear": 2006,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/c0/3f/da/c03fda8c-7130-560b-6812-b349bb3c303f/mzaf_12432625166148958155.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/53/99/0f/53990fa2-b136-1a22-d029-6050f10dac5f/888618218631_cover.jpg/300x300bb.jpg",
-   "spotifyUri": null
-  },
-  {
    "id": "s1078511118",
    "year": 2006,
    "title": "U",
@@ -4559,6 +4544,21 @@
    "itunesYear": 2008,
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/08/36/af/0836af9c-764b-6e0f-ebd4-6c39a9b4ec3f/mzaf_3434806651087615174.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music/fe/4e/72/mzi.evnxtqie.jpg/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
+   "id": "s1675219696",
+   "year": 2008,
+   "title": "라라라",
+   "alt": null,
+   "artist": "SG워너비",
+   "itunesTrackId": 1675219696,
+   "itunesTitle": "라라라",
+   "itunesArtist": "SG Wannabe",
+   "album": "My Friend",
+   "itunesYear": 2008,
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/c8/3a/c8/c83ac87c-5ace-cde7-9ac3-1107fe825749/mzaf_17182230597558119446.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/8a/b9/2b/8ab92b55-d7c8-9c80-77c5-3d7ee86d308e/8809231381733_Cover.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
@@ -8080,18 +8080,18 @@
    "spotifyUri": "spotify:track:1L00vG2kGAmaAw47GQUNNI"
   },
   {
-   "id": "s1870958540",
+   "id": "s1800387706",
    "year": 2025,
-   "title": "like JENNIE",
+   "title": "Seoul City",
    "alt": null,
    "artist": "제니",
-   "itunesTrackId": 1870958540,
-   "itunesTitle": "like JENNIE (Mixed)",
+   "itunesTrackId": 1800387706,
+   "itunesTitle": "Seoul City",
    "itunesArtist": "제니",
-   "album": "INS LAND: DJ Jackie at Culture Club, December 2025 (DJ Mix)",
-   "itunesYear": 2026,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/10/22/32/1022327f-32c3-350e-b5b5-1aee7f62355e/mzaf_13244998300455800655.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/94/75/b0/9475b0b7-d25b-2874-69dc-ceb9a6df6e06/2fd27806-c7d4-4768-9870-9d97ba00645c.jpg/300x300bb.jpg",
+   "album": "Ruby",
+   "itunesYear": 2025,
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/3a/e0/1c/3ae01c8e-6d2c-d603-1f03-63331e8b25ee/mzaf_7497390170750817099.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c4/9f/f1/c49ff171-59c6-6cc3-0576-9247f9b1e58b/dj.nmzxiamh.jpg/300x300bb.jpg",
    "spotifyUri": null
   },
   {
