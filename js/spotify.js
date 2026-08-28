@@ -19,7 +19,7 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r30-artistgate';
+const RESOLVER_BUILD = 'r31-aliases';
 // 찾아 둔 곡을 버릴지 판단하는 기준. 곡을 고르는 규칙이 바뀔 때만 올린다.
 // 판번호에 묶었더니 요청 제한 대응처럼 매칭과 무관한 수정에도 230곡을 다시
 // 찾게 되어, 그러느라 제한을 또 소진했다.
@@ -72,6 +72,9 @@ const ARTIST_ALIASES = {
   '키스오브라이프': ['kiss of life'], '우즈': ['woodz'], '텐': ['ten'],
   '젝스키스': ['sechskies'], '지오디': ['god'], 'god': ['지오디'],
   '지드래곤': ['g-dragon', 'gdragon'],
+  '박진영': ['j.y. park', 'jy park', 'jyp', 'park jin young'],
+  'h.o.t.': ['hot', 'h.o.t'],
+  '10cm': ['10 cm'],
   '핑클': ['fin.k.l'], 's.e.s.': ['ses'], 'h.o.t.': ['hot'],
   '서태지와 아이들': ['seo taiji and boys'], '신화': ['shinhwa'],
   '플레이브': ['plave'], '피프티피프티': ['fifty fifty'], '큐더블유이알': ['qwer'],
