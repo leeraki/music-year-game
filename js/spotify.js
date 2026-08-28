@@ -19,11 +19,11 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r31-aliases';
+const RESOLVER_BUILD = 'r32-cover';
 // 찾아 둔 곡을 버릴지 판단하는 기준. 곡을 고르는 규칙이 바뀔 때만 올린다.
 // 판번호에 묶었더니 요청 제한 대응처럼 매칭과 무관한 수정에도 230곡을 다시
 // 찾게 되어, 그러느라 제한을 또 소진했다.
-const MATCH_RULES = 'm6-artistgate';
+const MATCH_RULES = 'm7-cover';
 // 검색·조회 요청 사이의 최소 간격. 분당 60건 남짓으로, 개발 모드 한도에
 // 닿지 않는 속도다. 검사 한 번이 조금 느려지는 대신 앱이 잠기지 않는다.
 const REQUEST_GAP = 2000;
@@ -75,6 +75,16 @@ const ARTIST_ALIASES = {
   '박진영': ['j.y. park', 'jy park', 'jyp', 'park jin young'],
   'h.o.t.': ['hot', 'h.o.t'],
   '10cm': ['10 cm'],
+  '이상우': ['lee sang woo'],
+  '심신': ['shim shin'],
+  '노이즈': ['noise'],
+  '전람회': ['exhibition'],
+  '삐삐밴드': ['pippi band'],
+  '패닉': ['panic'],
+  '클론': ['clon'],
+  '포미닛': ['4minute'],
+  '씨엔블루': ['cnblue'],
+  '케플러': ['kep1er'],
   '핑클': ['fin.k.l'], 's.e.s.': ['ses'], 'h.o.t.': ['hot'],
   '서태지와 아이들': ['seo taiji and boys'], '신화': ['shinhwa'],
   '플레이브': ['plave'], '피프티피프티': ['fifty fifty'], '큐더블유이알': ['qwer'],
@@ -484,6 +494,13 @@ class SpotifyTrackResolver {
   }
 
   /** 저장해 둔 매칭이 지금 규칙으로도 받아들여지는가. */
+  /** 헌정·커버 기획반은 다른 사람이 부른 것이라 원곡이 아니다. */
+  static _isCover(track) {
+    const blob = `${track.name || ''} ${track.album?.name || ''}`;
+    return /(보컬전쟁|신의\s*목소리|헌정|tribute|커버|cover\s*project|originally\s+performed|노래방|karaoke|리메이크)/i
+      .test(blob);
+  }
+
   static _stillValid(t, song) {
     if (!t || !t.name) return false;      // 곡 정보를 안 남긴 옛 기록
     const track = {
@@ -494,6 +511,7 @@ class SpotifyTrackResolver {
     const m = SpotifyTrackResolver._titleMatch(track.name, song);
     if (m <= 0) return false;
     if (SpotifyTrackResolver._isInstrumental(track)) return false;
+    if (SpotifyTrackResolver._isCover(track)) return false;
     // 라이브·리믹스가 붙어 있었다면 규칙이 바뀐 김에 원곡을 다시 찾아 볼 만하다
     if (SpotifyTrackResolver._isVariant(track)) return false;
     const artistOk = SpotifyTrackResolver._artistOk(song.artist, t.artists || '');
@@ -724,6 +742,7 @@ class SpotifyTrackResolver {
     s += Math.max(0, 1.2 - rank * 0.4);
 
     if (SpotifyTrackResolver._isInstrumental(track)) return -50;
+    if (SpotifyTrackResolver._isCover(track)) return -50;
     if (SpotifyTrackResolver._isVariant(track)) s -= 4;
 
     // 연도는 K-POP 에서만 본다. OST 의 year 는 '작품의 방영 연도'라 곡 발매일과 무관하다.

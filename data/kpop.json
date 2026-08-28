@@ -2257,7 +2257,7 @@
    "id": "s1423481283",
    "year": 1995,
    "title": "엘리베이터",
-   "alt": null,
+   "alt": "Elevator",
    "artist": "박진영",
    "itunesTrackId": 1423481283,
    "itunesTitle": "엘리베이터",
@@ -2784,7 +2784,7 @@
    "id": "s1060504292",
    "year": 1998,
    "title": "으쌰!으쌰!",
-   "alt": null,
+   "alt": "으샤! 으샤!",
    "artist": "신화",
    "itunesTrackId": 1060504292,
    "itunesTitle": "으쌰! 으쌰!",
@@ -4961,7 +4961,7 @@
    "id": "s1809805021",
    "year": 2010,
    "title": "아메리카노",
-   "alt": null,
+   "alt": "Americano",
    "artist": "10cm",
    "itunesTrackId": 1809805021,
    "itunesTitle": "아메리카노",
@@ -6116,7 +6116,7 @@
    "itunesYear": 2015,
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/cd/d1/ff/cdd1ffc5-47f3-66ab-aa4e-2f67721b77d9/mzaf_13861132425614672145.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music49/v4/f7/b4/5a/f7b45a67-2be9-58ee-7a89-9a018cd1ad63/COVER_OUT.jpg/300x300bb.jpg",
-   "spotifyUri": "spotify:track:20z62tMSgmQ4rbNZixAwYE"
+   "spotifyUri": null
   },
   {
    "id": "s1579991274",
