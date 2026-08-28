@@ -613,19 +613,21 @@
   // 결과를 그대로 옮겨 전달할 수 있게 텍스트로 뽑는다
   // 찾아 둔 Spotify 곡을 파일로 옮기기 위해 꺼낸다. 개발 모드 할당량은
   // 개발자 계정 단위라 다시 찾을 기회가 넉넉하지 않다.
-  el.auditExport.addEventListener('click', async () => {
+  // 붙여넣기로 주고받으면 주소 한 글자만 틀려도 엉뚱한 곡이 나온다. 파일로 내려받는다.
+  el.auditExport.addEventListener('click', () => {
     const data = new SpotifyTrackResolver().export(deck.all);
     if (!data.count) { el.auditExport.textContent = '찾은 곡 없음'; return; }
-    const text = JSON.stringify(data);
-    const label = `${Deck.MODES[prefs.mode].label} ${data.deck.have}/${data.deck.total}곡`;
-    try {
-      await navigator.clipboard.writeText(text);
-      el.auditExport.textContent = `${label} 복사됨`;
-      setTimeout(() => { el.auditExport.textContent = '찾은 곡 내보내기'; }, 3500);
-    } catch (_) {
-      el.auditText.value = text; el.auditText.hidden = false; el.auditText.select();
-      el.auditExport.textContent = '아래에서 직접 복사';
-    }
+    const url = URL.createObjectURL(
+      new Blob([JSON.stringify(data)], { type: 'application/json' }));
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `spotify-${prefs.mode}-${data.deck.have}of${data.deck.total}.json`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+    el.auditExport.textContent = `${data.deck.have}/${data.deck.total}곡 저장됨`;
+    setTimeout(() => { el.auditExport.textContent = '찾은 곡 파일로 저장'; }, 3500);
   });
 
   el.auditCopy.addEventListener('click', async () => {
