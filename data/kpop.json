@@ -4122,7 +4122,7 @@
    "title": "Rising Sun",
    "artist": "동방신기",
    "itunesTrackId": 1062475773,
-   "itunesTitle": "순수",
+   "itunesTitle": "Rising Sun",
    "itunesArtist": "동방신기",
    "itunesYear": 2005,
    "album": "Rising Sun - 2nd Album",
@@ -4767,21 +4767,6 @@
    "alt": "8282"
   },
   {
-   "id": "s1804662030",
-   "year": 2009,
-   "title": "Abracadabra",
-   "alt": null,
-   "artist": "브라운아이드걸스",
-   "itunesTrackId": 1804662030,
-   "itunesTitle": "Abracadabra",
-   "itunesArtist": "Brown Eyed Girls",
-   "album": "감성 터지는 그 시절의 사랑과 이별",
-   "itunesYear": 2009,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f8/8a/4a/f88a4a0f-1278-c786-b178-2b7cbc439f1b/mzaf_10551644465936500446.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/48/4d/3c/484d3c58-3f77-4f3c-1f87-db822c296c2e/cover_KM0021133_1.jpg/300x300bb.jpg",
-   "spotifyUri": null
-  },
-  {
    "id": "s1804699150",
    "year": 2009,
    "title": "아브라카다브라",
@@ -4912,6 +4897,21 @@
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/52/9d/8e/529d8e7c-6daa-3284-5239-007cd7489d57/mzaf_11871617255773568729.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/65/0f/c7/650fc77c-5145-f337-5c2a-7c095cdbf8fb/8809691056752_cover.jpg/300x300bb.jpg",
    "spotifyUri": "spotify:track:5MGZPn7QWGD3DTmPyrpj79"
+  },
+  {
+   "id": "s1337476500",
+   "year": 2009,
+   "title": "Heartbreaker",
+   "alt": null,
+   "artist": "지드래곤",
+   "itunesTrackId": 1337476500,
+   "itunesTitle": "Heartbreaker",
+   "itunesArtist": "G-DRAGON",
+   "album": "Heartbreaker",
+   "itunesYear": 2009,
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/d6/3d/ed/d63ded74-02e9-bf57-823e-ac80af9fb5ff/mzaf_16558853562242981373.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/54/37/ea/5437eada-464a-7769-c1d9-3dc092aab5f0/edit_8806384562965.jpg/300x300bb.jpg",
+   "spotifyUri": null
   },
   {
    "id": "s1386119205",
@@ -7776,6 +7776,21 @@
    "spotifyUri": "spotify:track:18nZWRpJIHzgb1SQr4ncwb"
   },
   {
+   "id": "s1772644601",
+   "year": 2024,
+   "title": "Whiplash",
+   "alt": null,
+   "artist": "에스파",
+   "itunesTrackId": 1772644601,
+   "itunesTitle": "Whiplash",
+   "itunesArtist": "aespa",
+   "album": "Whiplash - The 5th Mini Album - EP",
+   "itunesYear": 2024,
+   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/91/84/e5/9184e5d0-54c8-eccc-e62c-e3175a88b396/mzaf_13467227653896090925.plus.aac.p.m4a",
+   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/1a/26/5d/1a265da7-ff45-8df0-ee94-7b79becfc7d9/888735949562.png/300x300bb.jpg",
+   "spotifyUri": null
+  },
+  {
    "id": "s1723294481",
    "year": 2024,
    "title": "Dash",
@@ -8019,21 +8034,6 @@
    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/62/e9/0f/62e90fdf-938e-33a2-10a4-ddd6a7d7fd92/mzaf_9580756345575601042.plus.aac.p.m4a",
    "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/34/87/b3/3487b324-3f81-a740-b66e-8fd992e7defa/888735952029.png/300x300bb.jpg",
    "spotifyUri": "spotify:track:1ImRS2KtSaDZcj9vQTxwFA"
-  },
-  {
-   "id": "s1802766473",
-   "year": 2025,
-   "title": "Whiplash",
-   "alt": null,
-   "artist": "에스파",
-   "itunesTrackId": 1802766473,
-   "itunesTitle": "Whiplash (English Version)",
-   "itunesArtist": "aespa",
-   "album": "Whiplash (English Version) - Single",
-   "itunesYear": 2025,
-   "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/16/48/23/16482381-ac2c-0fa9-9666-aa6538e34be1/mzaf_13936531173800946004.plus.aac.p.m4a",
-   "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f4/b8/66/f4b86695-f39f-7494-5cb4-3b71b0bed001/888735951480.png/300x300bb.jpg",
-   "spotifyUri": null
   },
   {
    "id": "s1816844216",

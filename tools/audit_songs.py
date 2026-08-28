@@ -21,6 +21,7 @@ DATA_DIR = os.path.join(os.path.dirname(HERE), "data")
 
 # 같은 가수를 다르게 표기하는 경우가 많아 대조표를 둔다
 ALIASES = {
+    "지드래곤": ["g-dragon", "gdragon", "g dragon"],
     "젝스키스": ["sechskies", "sechs kies"],
     "지오디": ["god"],
     "god": ["지오디"],

@@ -118,7 +118,7 @@ def find_twins(songs):
                 if not ka or not kb:
                     continue
                 # 짧은 제목은 우연히 겹친다. 「U」 가 「로꾸거」 안에 들어가 걸렸었다.
-                if ka == kb or (min(len(ka), len(kb)) >= 4 and dice(ka, kb) >= 0.55):
+                if ka == kb or (min(len(ka), len(kb)) >= 4 and dice(ka, kb) >= 0.50):
                     twins.add(id(a))
                     twins.add(id(b))
     return twins

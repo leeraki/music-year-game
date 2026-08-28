@@ -71,6 +71,7 @@ const ARTIST_ALIASES = {
   '데이식스': ['day6'], '트레저': ['treasure'], '에이티즈': ['ateez'],
   '키스오브라이프': ['kiss of life'], '우즈': ['woodz'], '텐': ['ten'],
   '젝스키스': ['sechskies'], '지오디': ['god'], 'god': ['지오디'],
+  '지드래곤': ['g-dragon', 'gdragon'],
   '핑클': ['fin.k.l'], 's.e.s.': ['ses'], 'h.o.t.': ['hot'],
   '서태지와 아이들': ['seo taiji and boys'], '신화': ['shinhwa'],
   '플레이브': ['plave'], '피프티피프티': ['fifty fifty'], '큐더블유이알': ['qwer'],
