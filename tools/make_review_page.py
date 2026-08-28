@@ -9,6 +9,7 @@
     python make_review_page.py      # tools/review.html 생성
 """
 
+import csv
 import datetime
 import html
 import json
@@ -67,6 +68,33 @@ def classify(s):
     if reasons:
         return "warn", reasons
     return "ok", reasons
+
+
+def write_csv(songs, stamp):
+    """외부 도구로 전수 대조할 수 있게 같은 내용을 표로 내보낸다."""
+    path = os.path.join(os.path.dirname(OUT), f"{MODE}.csv")
+    if MODE == "ost":
+        head = ["번호", "첫방영연도", "작품", "배역", "배우", "곡명",
+                "가수", "iTunes가수", "iTunes곡명", "음반", "음반연도", "판"]
+    else:
+        head = ["번호", "발표연도", "가수", "곡명", "병기",
+                "iTunes가수", "iTunes곡명", "음반", "음반연도", "판"]
+    with open(path, "w", encoding="utf-8-sig", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(head)
+        for i, s in enumerate(songs, 1):
+            common = [s.get("itunesArtist", ""), s.get("itunesTitle", ""),
+                      s.get("album", ""), s.get("itunesYear", ""), stamp]
+            if MODE == "ost":
+                chars = s.get("characters") or []
+                w.writerow([i, s["year"], s.get("work", ""),
+                            " · ".join(c.get("name", "") for c in chars),
+                            " · ".join(c.get("actor", "") for c in chars),
+                            s.get("song", ""), s.get("artist", "")] + common)
+            else:
+                w.writerow([i, s["year"], s["artist"], s["title"],
+                            s.get("alt") or ""] + common)
+    return path
 
 
 def build():
@@ -176,7 +204,9 @@ def build():
 </body></html>"""
 
     open(OUT, "w", encoding="utf-8").write(doc)
+    csv_path = write_csv(songs, stamp)
     print(f"검수 페이지 생성: {OUT}")
+    print(f"      대조용 표: {csv_path}")
     print(f"  교체 필요 {counts['bad']}곡 / 확인 권장 {counts['warn']}곡 / 정상 {counts['ok']}곡")
 
 
