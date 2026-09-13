@@ -26,7 +26,7 @@
     art: $('reveal-art'), year: $('reveal-year'), artist: $('reveal-artist'),
     title: $('reveal-title'), album: $('reveal-album'),
     errorMessage: $('error-message'), doneCount: $('done-count'),
-    settings: $('btn-settings'), sheet: $('sheet'),
+    settings: $('btn-settings'), sheet: $('sheet'), library: $('btn-library'),
     chips: $('decade-chips'), filterCount: $('filter-count'),
     volume: $('volume'), startAt: $('startat'), startAtValue: $('startat-value'),
     startAtNote: $('startat-note'),
@@ -359,6 +359,24 @@
     const { from, to } = deck.filter;
     el.filterCount.textContent = `선택된 범위에 ${deck.countInRange(from, to)}곡이 있습니다`;
   }
+
+  // ---------- 곡 목록 ----------
+  const library = new SongLibrary({
+    spotify: () => spotifyPlayer,
+    volume: () => prefs.volume / 100,
+    mode: () => prefs.mode,
+    beforePreview: () => { if (player?.isPlaying) player.pause(); },
+    afterClose: (usedSpotify) => {
+      // Spotify 재생기는 게임과 함께 쓴다. 목록에서 다른 곡을 틀었다면 그 곡이 물려 있으니
+      // 게임 곡으로 되돌려 둔다. 되돌리지 않으면 '재생'을 눌렀을 때 목록의 곡이 나온다.
+      if (!usedSpotify || !currentSong || player !== spotifyPlayer) return;
+      spotifyPlayer.load(currentSong).catch(() => {});
+      setPlayingFlag(false);
+      el.progressFill.style.width = '0%';
+      el.timeCurrent.textContent = '0:00';
+    },
+  });
+  el.library.addEventListener('click', () => library.open());
 
   // ---------- 설정: 시트 ----------
   el.settings.addEventListener('click', () => { buildChips(); el.sheet.hidden = false; });
@@ -722,7 +740,8 @@
   el.retry.addEventListener('click', () => location.reload());
 
   document.addEventListener('keydown', (e) => {
-    if (e.code !== 'Space' || !el.sheet.hidden) return;
+    if (e.code !== 'Space' || !el.sheet.hidden || library.isOpen) return;
+    if (e.target.closest?.('input, textarea')) return;
     if (app.dataset.screen === 'playing') { e.preventDefault(); togglePlay(); }
     else if (app.dataset.screen === 'idle') { e.preventDefault(); startRound(); }
   });
@@ -770,6 +789,7 @@
       syncGyroNote();
       refreshIdle();
       show(deck.isEmpty ? 'done' : 'idle');
+      library.syncProcessed();
 
       // 로그인 직후에는 결과를 바로 볼 수 있게 설정 시트를 열어 준다
       if (justLoggedIn || fromQr) { buildChips(); el.sheet.hidden = false; el.spotifySetup.hidden = false; }

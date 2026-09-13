@@ -21,11 +21,18 @@
 
   <header class="topbar">
     <h1 class="brand">노래 맞히기</h1>
+    <div class="topbar-actions">
+    <button id="btn-library" class="icon-btn" aria-label="곡 목록" title="곡 목록">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+        <path fill="currentColor" d="M15 6H3v2h12V6zm0 4H3v2h12v-2zM3 16h8v-2H3v2zM17 6v8.18A3 3 0 1 0 19 17V8h3V6h-5z"/>
+      </svg>
+    </button>
     <button id="btn-settings" class="icon-btn" aria-label="설정" title="설정">
       <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
         <path fill="currentColor" d="M19.4 13a7.6 7.6 0 0 0 0-2l2-1.6-2-3.4-2.4 1a7.6 7.6 0 0 0-1.7-1L15 3.4h-4l-.3 2.6a7.6 7.6 0 0 0-1.7 1l-2.4-1-2 3.4L4.6 11a7.6 7.6 0 0 0 0 2l-2 1.6 2 3.4 2.4-1a7.6 7.6 0 0 0 1.7 1l.3 2.6h4l.3-2.6a7.6 7.6 0 0 0 1.7-1l2.4 1 2-3.4Zm-6.4 2.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4Z"/>
       </svg>
     </button>
+    </div>
   </header>
 
   <main class="stage">
@@ -262,11 +269,48 @@
   </div>
 </div>
 
+<!-- 곡 목록 — 전체 곡을 훑어보며 재검수·빼기·추가를 표시해 둔다 -->
+<div id="library" class="sheet library" hidden>
+  <div class="sheet-backdrop" data-lib-close></div>
+  <div class="sheet-panel library-panel" role="dialog" aria-modal="true" aria-label="곡 목록">
+    <div class="lib-head">
+      <div class="lib-titlebar">
+        <h2 class="sheet-title">곡 목록</h2>
+        <button type="button" class="btn btn-ghost btn-sm" data-lib-close>닫기</button>
+      </div>
+      <div class="chips" id="lib-modes">
+        <button type="button" class="chip" data-mode="kpop" aria-pressed="true">K-POP</button>
+        <button type="button" class="chip" data-mode="ost" aria-pressed="false">영화·드라마 OST</button>
+      </div>
+      <input type="search" id="lib-search" class="text-input lib-search"
+             placeholder="가수 · 제목 · 작품 · 연도로 찾기" autocomplete="off" spellcheck="false">
+      <div class="chips lib-filters" id="lib-filters"></div>
+      <p class="field-note" id="lib-engine-note"></p>
+    </div>
+
+    <section class="lib-requests">
+      <div class="lib-req-head">
+        <span id="lib-req-summary"></span>
+        <button type="button" class="btn btn-primary btn-sm" id="lib-save">요청 파일로 저장</button>
+      </div>
+      <p class="field-note" id="lib-save-note"></p>
+      <ul class="lib-req-list" id="lib-req-list"></ul>
+      <details class="lib-add">
+        <summary>곡 추가 요청</summary>
+        <form id="lib-add-form" class="lib-add-form" autocomplete="off"></form>
+      </details>
+    </section>
+
+    <ul class="lib-list" id="lib-list"></ul>
+  </div>
+</div>
+
 <script src="js/audio.js"></script>
 <script src="js/gyro.js"></script>
 <script src="js/qr.js"></script>
 <script src="js/spotify.js"></script>
 <script src="js/deck.js"></script>
+<script src="js/library.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

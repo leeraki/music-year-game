@@ -19,7 +19,7 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r32-cover';
+const RESOLVER_BUILD = 'r33-library';
 // 찾아 둔 곡을 버릴지 판단하는 기준. 곡을 고르는 규칙이 바뀔 때만 올린다.
 // 판번호에 묶었더니 요청 제한 대응처럼 매칭과 무관한 수정에도 230곡을 다시
 // 찾게 되어, 그러느라 제한을 또 소진했다.
@@ -446,7 +446,9 @@ class SpotifyTrackResolver {
   async _fillMissingTracks(songs) {
     const need = songs
       .map((s) => [s.id, (s.spotifyUri || this.map[s.id] || '').split(':').pop()])
-      .filter(([id, tid]) => tid && !this.cache[id]?.name);
+      // 정보가 없거나, 있더라도 지금 주소와 다른 곡의 것이면 다시 받는다
+      .filter(([id, tid]) => tid && (!this.cache[id]?.name
+        || (this.cache[id].uri && !this.cache[id].uri.endsWith(tid))));
     for (let i = 0; i < need.length; i += 50) {
       const chunk = need.slice(i, i + 50);
       let res;
@@ -459,6 +461,7 @@ class SpotifyTrackResolver {
         const t = items[j];
         if (!t) return;
         this.cache[id] = {
+          uri: t.uri,
           name: t.name,
           artists: (t.artists || []).map((a) => a.name).join(', '),
           album: t.album?.name || '',
@@ -491,6 +494,24 @@ class SpotifyTrackResolver {
       deck: { total: songs.length, have: mine, need: songs.length - mine },
       uris, tracks,
     };
+  }
+
+  /**
+   * 목록 화면에 보여 줄 Spotify 곡 정보. 주소가 바뀐 뒤의 옛 정보는 내놓지 않는다.
+   * @returns {{name, artists, album, year}|null}
+   */
+  trackInfo(song) {
+    const t = this.cache?.[song.id];
+    if (!t?.name) return null;
+    const uri = song.spotifyUri || this.map[song.id];
+    if (t.uri && uri && t.uri !== uri) return null;
+    return t;
+  }
+
+  /** 곡 정보가 빠진 곡을 50곡씩 한꺼번에 받아 둔다. 로그인 전이면 조용히 넘어간다. */
+  async fillTrackInfo(songs) {
+    await this._fillMissingTracks(songs);
+    this._save();
   }
 
   /** 저장해 둔 매칭이 지금 규칙으로도 받아들여지는가. */
@@ -848,6 +869,7 @@ class SpotifyTrackResolver {
     const best = scored[0].t;
     this.map[song.id] = best.uri;
     (this.cache ||= {})[song.id] = {
+      uri: best.uri,
       name: best.name,
       artists: best.artists.map((a) => a.name).join(', '),
       album: best.album?.name || '',

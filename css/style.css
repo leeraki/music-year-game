@@ -644,3 +644,163 @@ input[type="range"] {
   .reveal-characters .actor { font-size: 18px; }
   .reveal-ost-song { font-size: 17px; }
 }
+
+/* ---------- 곡 목록 ---------- */
+.topbar-actions { display: flex; gap: 4px; }
+.icon-btn { position: relative; }
+/* 쌓아 둔 요청 개수. 파일로 저장하지 않은 것이 있으면 눈에 띄게 한다 */
+.icon-btn[data-badge]::after {
+  content: attr(data-badge);
+  position: absolute; top: 1px; right: -2px;
+  min-width: 17px; height: 17px; padding: 0 4px;
+  border-radius: 99px;
+  background: var(--surface-2); color: var(--muted);
+  font-size: 10px; font-weight: 800; line-height: 17px; text-align: center;
+}
+.icon-btn.has-unsaved::after { background: var(--accent); color: #fff; }
+
+.library { z-index: 60; }
+.library .library-panel {
+  top: 0;
+  max-height: none;
+  padding: 0 0 calc(28px + env(safe-area-inset-bottom));
+  border-radius: 0;
+  border-top: 0;
+  user-select: text;
+}
+@media (min-width: 900px) {
+  .library .library-panel {
+    top: 24px; bottom: 24px;
+    width: min(860px, calc(100% - 48px));
+    margin: 0 auto;
+    border-radius: 22px;
+    border: 1px solid var(--line);
+    animation: fade .2s ease both;
+  }
+}
+
+.lib-head {
+  position: sticky; top: 0; z-index: 2;
+  display: flex; flex-direction: column; gap: 10px;
+  padding: calc(14px + env(safe-area-inset-top)) 16px 12px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+@media (min-width: 900px) { .lib-head { padding-top: 16px; border-radius: 22px 22px 0 0; } }
+.lib-titlebar { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.lib-titlebar .sheet-title { margin: 0; }
+.lib-head .field-note { margin: 0; }
+.lib-search { min-height: 44px; }
+.lib-search, .lib-add-form .text-input, .lib-note { font-family: inherit; }
+
+.lib-requests {
+  margin: 14px 16px 6px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
+.lib-req-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  font-size: 13px; font-weight: 700;
+}
+.lib-req-head .btn-sm { min-height: 36px; }
+.lib-req-head .btn:disabled { opacity: .4; cursor: not-allowed; box-shadow: none; }
+.lib-req-list { list-style: none; margin: 8px 0 0; padding: 0; max-height: 30vh; overflow-y: auto; }
+.lib-req-list li {
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 7px 0; border-top: 1px solid rgba(50, 44, 95, .5);
+  font-size: 13px;
+}
+.lib-req-body { flex: 1 1 auto; min-width: 0; word-break: keep-all; }
+.lib-req-sub { display: block; margin-top: 2px; color: var(--muted); font-size: 12px; }
+.lib-tag { flex: 0 0 auto; padding: 2px 8px; border-radius: 99px; font-size: 11px; font-weight: 800; }
+.lib-tag.add     { color: var(--ok);     background: rgba(53, 214, 164, .12); }
+.lib-tag.recheck { color: #ffbe3c;        background: rgba(255, 190, 60, .12); }
+.lib-tag.remove  { color: var(--danger); background: rgba(255, 92, 108, .12); }
+.lib-cancel {
+  flex: 0 0 auto; border: 0; background: transparent;
+  color: var(--muted); font: inherit; font-size: 12px;
+  text-decoration: underline; cursor: pointer;
+}
+
+.lib-add { margin-top: 10px; }
+.lib-add summary { padding: 4px 0; font-size: 13px; font-weight: 700; color: var(--accent); cursor: pointer; }
+.lib-add-form { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+.lib-field { display: flex; flex-direction: column; gap: 5px; font-size: 12px; color: var(--muted); }
+.lib-field.wide { grid-column: 1 / -1; }
+.lib-field .text-input { min-height: 42px; }
+.lib-add-actions { grid-column: 1 / -1; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.lib-add-actions .field-note { margin: 0; }
+
+.lib-list { list-style: none; margin: 0; padding: 4px 16px 0; }
+.lib-decade {
+  padding: 18px 4px 6px;
+  font-size: 12px; font-weight: 800; letter-spacing: .06em;
+  color: var(--accent);
+}
+.lib-empty { padding: 30px 0; text-align: center; color: var(--muted); font-size: 14px; }
+
+.lib-row {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 6px;
+  border-bottom: 1px solid rgba(50, 44, 95, .5);
+}
+.lib-play {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--text);
+  font: inherit; font-size: 14px;
+  cursor: pointer;
+}
+.lib-row.is-playing .lib-play {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border-color: transparent;
+  color: #fff;
+}
+.lib-row.is-loading .lib-play { opacity: .6; }
+.lib-line1 { font-size: 15px; line-height: 1.35; word-break: keep-all; }
+.lib-year { margin-right: 8px; color: var(--accent); font-weight: 800; font-variant-numeric: tabular-nums; }
+.lib-name { font-weight: 700; }
+.lib-type { margin-left: 8px; font-size: 11px; color: var(--muted); }
+.lib-sub { margin-top: 3px; font-size: 12px; line-height: 1.5; color: var(--muted); word-break: break-word; }
+.lib-src {
+  display: inline-block; margin-right: 6px; padding: 0 7px;
+  border-radius: 99px;
+  font-size: 10.5px; font-weight: 800; line-height: 17px;
+}
+.lib-src.spotify { color: #1ed760; border: 1px solid rgba(30, 215, 96, .45); }
+.lib-src.preview { color: #ffbe3c; border: 1px solid rgba(255, 190, 60, .45); }
+.lib-open { color: var(--accent-2); }
+.lib-note { margin-top: 8px; min-height: 38px; font-size: 13px; }
+.lib-note[hidden] { display: none; }
+.lib-actions { display: flex; gap: 6px; }
+.lib-mark {
+  padding: 7px 12px;
+  border-radius: 99px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  font: inherit; font-size: 12px; font-weight: 700;
+  cursor: pointer;
+}
+.lib-mark[data-kind="recheck"][aria-pressed="true"] {
+  background: rgba(255, 190, 60, .16); border-color: rgba(255, 190, 60, .6); color: #ffbe3c;
+}
+.lib-mark[data-kind="remove"][aria-pressed="true"] {
+  background: rgba(255, 92, 108, .16); border-color: rgba(255, 92, 108, .6); color: var(--danger);
+}
+.lib-row[data-state="recheck"] { background: rgba(255, 190, 60, .05); }
+.lib-row[data-state="remove"] .lib-main { opacity: .5; }
+.lib-row[data-state="remove"] .lib-name { text-decoration: line-through; }
+
+@media (max-width: 560px) {
+  .lib-row { grid-template-columns: 40px minmax(0, 1fr); }
+  .lib-actions { grid-column: 2; }
+  .lib-add-form { grid-template-columns: 1fr; }
+}
