@@ -19,11 +19,11 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r35-titlewords';
+const RESOLVER_BUILD = 'r37-length';
 // 찾아 둔 곡을 버릴지 판단하는 기준. 곡을 고르는 규칙이 바뀔 때만 올린다.
 // 판번호에 묶었더니 요청 제한 대응처럼 매칭과 무관한 수정에도 230곡을 다시
 // 찾게 되어, 그러느라 제한을 또 소진했다.
-const MATCH_RULES = 'm7-cover';
+const MATCH_RULES = 'm9-length';
 // 검색·조회 요청 사이의 최소 간격. 분당 60건 남짓으로, 개발 모드 한도에
 // 닿지 않는 속도다. 검사 한 번이 조금 느려지는 대신 앱이 잠기지 않는다.
 const REQUEST_GAP = 2000;
@@ -537,6 +537,12 @@ class SpotifyTrackResolver {
     for (const song of songs) {
       if (song.spotifyUri) { kept++; continue; }   // 파일에 박힌 것은 그대로 둔다
       if (!this.map[song.id]) continue;
+      if (SpotifyTrackResolver._blocked(song, this.map[song.id])) {
+        delete this.map[song.id];
+        delete this.cache[song.id];
+        dropped++;
+        continue;
+      }
       if (SpotifyTrackResolver._stillValid(this.cache[song.id], song)) { kept++; continue; }
       delete this.map[song.id];
       delete this.cache[song.id];
@@ -557,7 +563,7 @@ class SpotifyTrackResolver {
     const need = songs
       .map((s) => [s.id, (s.spotifyUri || this.map[s.id] || '').split(':').pop()])
       // 정보가 없거나, 있더라도 지금 주소와 다른 곡의 것이면 다시 받는다
-      .filter(([id, tid]) => tid && (!this.cache[id]?.name
+      .filter(([id, tid]) => tid && (!this.cache[id]?.name || !this.cache[id].ms
         || (this.cache[id].uri && !this.cache[id].uri.endsWith(tid))));
     for (let i = 0; i < need.length; i += 50) {
       const chunk = need.slice(i, i + 50);
@@ -572,6 +578,7 @@ class SpotifyTrackResolver {
         if (!t) return;
         this.cache[id] = {
           uri: t.uri,
+          ms: t.duration_ms,
           name: t.name,
           artists: (t.artists || []).map((a) => a.name).join(', '),
           album: t.album?.name || '',
@@ -647,8 +654,26 @@ class SpotifyTrackResolver {
       .test(blob);
   }
 
+  /**
+   * 원곡이 아니라고 확인해 데이터에 막아 둔 주소인가 (song.spotifyBlocked).
+   * 조용필 30주년 재편곡반처럼 가수·제목이 다 맞는 재녹음은 규칙으로 거를 수 없어,
+   * 막아 두지 않으면 검사할 때마다 같은 곡을 다시 찾아온다.
+   */
+  static _blocked(song, uri) {
+    return Boolean(uri && (song?.spotifyBlocked || []).includes(uri));
+  }
+
+  /** 원반(iTunes) 길이와의 차이(ms). 어느 한쪽을 모르면 null. */
+  static _lengthGap(song, ms) {
+    if (!song?.durationMs || !ms) return null;
+    return Math.abs(song.durationMs - ms);
+  }
+
   static _stillValid(t, song) {
     if (!t || !t.name) return false;      // 곡 정보를 안 남긴 옛 기록
+    if (t.uri && SpotifyTrackResolver._blocked(song, t.uri)) return false;
+    const gap = SpotifyTrackResolver._lengthGap(song, t.ms);
+    if (gap !== null && gap > 8000) return false;
     const track = {
       name: t.name,
       artists: [{ name: t.artists || '' }],
@@ -662,7 +687,7 @@ class SpotifyTrackResolver {
     if (SpotifyTrackResolver._isVariant(track, song)) return false;
     const artistOk = SpotifyTrackResolver._artistOk(song.artist, t.artists || '');
     if (song.work) return artistOk || SpotifyTrackResolver._onWorkAlbum(t.album, song.work);
-    return artistOk || m >= 1;
+    return artistOk;
   }
 
   _save() {
@@ -856,6 +881,7 @@ class SpotifyTrackResolver {
 
   static _score(track, song, rank = 0) {
     if (!SpotifyTrackResolver._title(song)) return -99;
+    if (SpotifyTrackResolver._blocked(song, track.uri)) return -99;
     const m = SpotifyTrackResolver._titleMatch(track.name, song);
 
     // 가수가 다르면 제목이 같아도 다른 곡이다. iTunes 쪽에서 '폼생폼사'가 동명이곡으로
@@ -879,13 +905,22 @@ class SpotifyTrackResolver {
       // OST 는 같은 제목의 곡이 널려 있다. 가수도 안 맞고 작품 음반도 아니면
       // 그냥 동명의 다른 곡이다 (이수 「Foolish Heart」 에 Sheena Easton 이 붙었다).
       if (song.work && !onWork) return -50;
-      if (!onWork) s -= 1.5;
+      // K-POP 도 마찬가지다. 세븐틴 「손오공」 은 Spotify 에 영문 제목(Super)으로
+      // 올라가 있어 제목이 안 맞았고, 제목만 같은 김수철 「손오공」 이 대신 붙었다.
+      // 로마자 표기는 대조표와 로마자 유사도가 이미 걸러 주므로 여기선 버린다.
+      if (!song.work) return -50;
     }
     if (onWork) s += 3;
 
     // 검색어에 가수 이름을 넣었으므로 Spotify 가 매긴 순위 자체가 신호다.
     // 이게 없으면 '젝스키스 폼생폼사' 검색에서 동명이곡이 이겨 버린다.
     s += Math.max(0, 1.2 - rank * 0.4);
+
+    // 가수·제목이 다 맞는 재녹음·실황은 이름으로는 가릴 수 없다(조용필 30주년 재편곡반,
+    // 이선희 「J에게」 2021 듀엣). 원반과 길이를 대 보면 드러난다 — 같은 녹음이면 3초 안쪽이다.
+    const gap = SpotifyTrackResolver._lengthGap(song, track.duration_ms);
+    if (gap !== null && gap > 8000) return -50;
+    if (gap !== null && gap <= 3000) s += 1.5;
 
     if (SpotifyTrackResolver._isInstrumental(track, song)) return -50;
     if (SpotifyTrackResolver._isCover(track, song)) return -50;
@@ -917,7 +952,9 @@ class SpotifyTrackResolver {
     if (song.spotifyUri) {
       return { uri: song.spotifyUri, track: this.cache?.[song.id] || null, cached: true };
     }
-    if (this.map[song.id]) return { uri: this.map[song.id], track: this.cache?.[song.id] || null, cached: true };
+    if (this.map[song.id] && !SpotifyTrackResolver._blocked(song, this.map[song.id])) {
+      return { uri: this.map[song.id], track: this.cache?.[song.id] || null, cached: true };
+    }
 
     const title = SpotifyTrackResolver._title(song);
     const label = `${song.artist} - ${title}`;
@@ -995,6 +1032,7 @@ class SpotifyTrackResolver {
     this.map[song.id] = best.uri;
     (this.cache ||= {})[song.id] = {
       uri: best.uri,
+      ms: best.duration_ms,
       name: best.name,
       artists: best.artists.map((a) => a.name).join(', '),
       album: best.album?.name || '',
