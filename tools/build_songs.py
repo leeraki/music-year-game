@@ -108,6 +108,120 @@ ARTIST_ALIASES = {
     "hearts2hearts": ["하츠투하츠"], "nmixx": ["엔믹스"], "qwer": ["큐더블유이알"],
     "악동뮤지션": ["akmu", "악뮤"], "아이오아이": ["ioi", "i.o.i", "아이오아이"],
     "엑소": ["exo"], "엔하이픈": ["enhypen"],
+    # 2026-09 추가 요청 곡의 가수
+    "황가람": ["hwang garam"],
+    "조째즈": ["jojazz"],
+    "로제": ["rosé"],
+    "이무진": ["lee mujin"],
+    "마크툽": ["maktub"],
+    "이클립스": ["eclipse"],
+    "올데이프로젝트": ["allday project"],
+    "보이넥스트도어": ["boynextdoor"],
+    "이영지": ["lee young ji"],
+    "성시경": ["sung si kyung"],
+    "멜로망스": ["melomance"],
+    "윤하": ["younha"],
+    "박재정": ["parc jae jung"],
+    "최유리": ["choi yu ree"],
+    "크러쉬": ["crush"],
+    "에일리": ["ailee"],
+    "프로미스나인": ["fromis_9"],
+    "라이즈": ["riize"],
+    "정국": ["jung kook"],
+    "하이크": ["h1-key"],
+    "비비지": ["viviz"],
+    "다이나믹 듀오 & 이영지": ["dynamic duo"],
+    "부석순": ["bss"],
+    "wsg워너비 (가야g)": ["wsg wannabe"],
+    "지수": ["jisoo"],
+    "전소미": ["jeon somi"],
+    "태연": ["taeyeon"],
+    "박재범": ["jay park"],
+    "빅나티": ["big naughty"],
+    "나연": ["nayeon"],
+    "최예나": ["yena"],
+    "스탠딩에그": ["standing egg"],
+    "창모": ["changmo"],
+    "노을": ["noel"],
+    "미란이 & 먼치맨": ["mirani"],
+    "양요섭 & 정은지": ["yang yoseop"],
+    "라붐": ["laboum"],
+    "적재": ["jukjae"],
+    "가호": ["gaho"],
+    "숀": ["shaun"],
+    "블루": ["bloo"],
+    "장범준": ["jang beom june"],
+    "백예린": ["yerin baek"],
+    "싹쓰리": ["ssak3"],
+    "박혜원": ["hynn"],
+    "하현우": ["ha hyun woo"],
+    "거미": ["gummy"],
+    "송하예": ["song ha ye"],
+    "제시": ["jessi"],
+    "환불원정대": ["refund sisters"],
+    "케이윌": ["k.will"],
+    "청하": ["chung ha"],
+    "바이브": ["vibe"],
+    "백지영": ["baek z young"],
+    "박효신": ["park hyo shin"],
+    "서태지": ["seo taiji"],
+    "소찬휘": ["so chan whee"],
+    "롤러코스터": ["rollercoaster"],
+    "컨츄리꼬꼬": ["country kko kko"],
+    "샤크라": ["chakra"],
+    "임재범": ["yim jae beom"],
+    "스페이스 에이": ["space a"],
+    "이적": ["lee juck"],
+    "왁스": ["wax"],
+    "디바": ["diva"],
+    "원타임": ["1tym"],
+    "yb": ["윤도현밴드"],
+    "김범수": ["kim bum soo"],
+    "김장훈": ["kim jang hoon"],
+    "김민종": ["kim min jong"],
+    "이브": ["eve"],
+    "플라이 투 더 스카이": ["fly to the sky"],
+    "샵": ["s#arp"],
+    "임창정": ["lim chang jung"],
+    "최진영": ["sky"],
+    "여행스케치": ["travel sketch"],
+    "클릭비": ["click-b"],
+    "허니패밀리": ["honey family"],
+    "듀크": ["duke"],
+    "이현도": ["lee hyun do"],
+    "유엔": ["un"],
+    "피플크루": ["people crew"],
+    "차태현": ["cha tae hyun"],
+    "자두": ["the jadu"],
+    "강타": ["kangta"],
+    "거북이": ["turtles"],
+    "윤미래": ["yoon mi rae"],
+    "양동근": ["ydg"],
+    "크라잉넛": ["crying nut"],
+    "지누션": ["jinusean"],
+    "엔알지": ["nrg"],
+    "애즈원": ["as one"],
+    "김동률": ["kim dong ryul"],
+    "엄정화": ["uhm jung hwa"],
+    "체리필터": ["cherry filter"],
+    "빅마마": ["big mama"],
+    "윤도현": ["yoon do hyun"],
+    "쥬얼리": ["jewelry"],
+    "박정현": ["lena park"],
+    "mc 스나이퍼": ["mc sniper"],
+    "조수미": ["sumi jo"],
+    "김종국": ["kim jong kook"],
+    "지드래곤": ["g-dragon"],
+    "쿨": ["cool"],
+    "하이키": ["h1-key", "하이크"],
+    "비오": ["be'o"],
+    "죠앤": ["joanne", "죠엔"],
+    "sky (최진영)": ["sky", "최진영", "스카이"],
+    "tj (장혁)": ["tj", "티제이", "장혁"],
+    "박진영 & 선미": ["j.y. park", "park jin young", "박진영", "sunmi", "선미"],
+    "이지훈 & 신혜성": ["이지훈", "lee ji hoon", "shin hye sung"],
+    "박경림": ["박고테 프로젝트", "park kyung lim"],
+    "박지윤": ["parkjiyoon", "park ji yoon"],
 }
 
 
@@ -255,17 +369,49 @@ def save_cache(cache):
         json.dump(cache, f, ensure_ascii=False)
 
 
-def _request(term):
-    q = urllib.parse.urlencode({
-        "term": term, "country": "kr", "media": "music",
-        "entity": "song", "limit": 12,
-    })
-    req = urllib.request.Request(
-        f"{SEARCH_URL}?{q}",
-        headers={"User-Agent": "Mozilla/5.0 (music-game-deck-builder)"},
-    )
+def _get(url):
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (music-game-deck-builder)"})
     with urllib.request.urlopen(req, timeout=25) as r:
         return json.loads(r.read().decode("utf-8")).get("results", [])
+
+
+def _search(term, country):
+    return _get("{}?{}".format(SEARCH_URL, urllib.parse.urlencode({
+        "term": term, "country": country, "media": "music", "entity": "song", "limit": 12,
+    })))
+
+
+# 2026-09 한국 스토어의 곡 검색이 통째로 빈 결과를 돌려준 적이 있다. 차단(403/429)이
+# 아니라 200 에 0건이라 알아채기 어렵고, 그대로 두면 빈 결과가 캐시에 쌓여 멀쩡한 곡을
+# '없음'으로 기억한다. 같은 때 미국 스토어 검색과 곡 조회(lookup)는 정상이었고, 곡 번호는
+# 스토어와 무관했다. 그래서 한국 스토어가 비어 있으면 미국 스토어에서 찾고 한국 스토어로
+# 다시 조회해 한글 표기를 받는다.
+_kr_search_down = None
+
+
+def _kr_down():
+    """한국 스토어 곡 검색이 비어 있는가. 확실히 있는 곡으로 한 번만 확인한다."""
+    global _kr_search_down
+    if _kr_search_down is None:
+        _kr_search_down = not _search("아이유 좋은 날", "kr")
+        if _kr_search_down:
+            print("      한국 스토어 곡 검색이 비어 있어 미국 스토어로 찾고 한국 스토어로 조회합니다",
+                  flush=True)
+    return _kr_search_down
+
+
+def _request(term):
+    if not _kr_down():
+        return _search(term, "kr")
+    found = _search(term, "us")
+    ids = [str(r["trackId"]) for r in found if r.get("trackId")]
+    if not ids:
+        return []
+    kr = {r["trackId"]: r for r in _get(
+        "https://itunes.apple.com/lookup?id={}&country=kr".format(",".join(ids)))
+        if r.get("wrapperType") == "track"}
+    # 한국 스토어에 없는 곡은 미국 스토어 정보라도 남긴다
+    return [kr.get(r["trackId"], r) for r in found]
 
 
 def wait_until_unblocked(probe_interval=PROBE_INTERVAL, max_wait=MAX_BLOCK_WAIT):

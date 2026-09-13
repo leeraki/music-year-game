@@ -57,7 +57,8 @@ def main(delay):
                 problems.append("[검색실패] {} {} — {}: {}".format(year, artist, title, e))
                 print("  {:3d}/{} [FAIL] {} — {}".format(i, len(todo), artist, title), flush=True)
                 continue
-            cache[term] = results
+            if results:        # 빈 결과를 남기면 검색이 잠시 비었던 것을 '없는 곡'으로 기억한다
+                cache[term] = results
             fetched += 1
             if fetched % 10 == 0:
                 bs.save_cache(cache)
