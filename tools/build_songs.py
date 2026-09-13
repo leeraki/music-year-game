@@ -56,7 +56,9 @@ COMPILATION_HINTS = [
 VARIANT_HINTS = [
     "live", "remix", "acoustic", "inst", "instrumental", "karaoke",
     "cover", "rearrange", "reissue", "ver.", "version", "edit", "on stage",
-    "라이브", "리믹스", "어쿠스틱", "재녹음", "커버", "반주", "mixed", "concert"]
+    "라이브", "리믹스", "어쿠스틱", "재녹음", "커버", "반주", "mixed", "concert",
+    # 'Techno Mix'·'Funky Disco Mix'·'Remixed' 가 remix 규칙을 빠져나가 믹스판이 원곡 자리에 들어간 적이 있다
+    "mix", "remixed"]
 
 # 표기가 갈리는 가수를 이어 주는 대조표. 여기 걸리면 가수가 일치하는 것으로 본다.
 ARTIST_ALIASES = {
