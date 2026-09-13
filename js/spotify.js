@@ -19,7 +19,7 @@ const SPOTIFY_TOKEN = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const SDK_SRC = 'https://sdk.scdn.co/spotify-player.js';
 // 검사 결과에 찍어 둔다. 고친 코드가 실제로 돌았는지 결과만 보고 알 수 있어야 한다.
-const RESOLVER_BUILD = 'r34-adds';
+const RESOLVER_BUILD = 'r35-titlewords';
 // 찾아 둔 곡을 버릴지 판단하는 기준. 곡을 고르는 규칙이 바뀔 때만 올린다.
 // 판번호에 묶었더니 요청 제한 대응처럼 매칭과 무관한 수정에도 230곡을 다시
 // 찾게 되어, 그러느라 제한을 또 소진했다.
@@ -110,7 +110,7 @@ const ARTIST_ALIASES = {
   '허밍어반스테레오': ['hus', 'humming urban stereo'],
   // 2026-09 추가 요청 곡의 가수. iTunes·Spotify 에 영문으로 올라가 있다.
   '황가람': ['hwang garam'],
-  '조째즈': ['jojazz'],
+  '조째즈': ['jojazz', 'zo zazz'],
   '로제': ['rosé'],
   '이무진': ['lee mujin'],
   '마크툽': ['maktub'],
@@ -127,7 +127,7 @@ const ARTIST_ALIASES = {
   '비비지': ['viviz'],
   '다이나믹 듀오 & 이영지': ['dynamic duo'],
   '부석순': ['bss'],
-  'WSG워너비 (가야G)': ['wsg wannabe'],
+  'wsg워너비 (가야g)': ['wsg wannabe', 'wsg wannbe', 'gaya-g'],
   '지수': ['jisoo'],
   '전소미': ['jeon somi'],
   '박재범': ['jay park'],
@@ -162,7 +162,7 @@ const ARTIST_ALIASES = {
   '롤러코스터': ['rollercoaster'],
   '컨츄리꼬꼬': ['country kko kko'],
   '샤크라': ['chakra'],
-  '코요태': ['koyote'],
+  '코요태': ['koyote', 'kyt'],
   '임재범': ['yim jae beom'],
   '베이비복스': ['baby v.o.x'],
   '스페이스 에이': ['space a'],
@@ -178,7 +178,7 @@ const ARTIST_ALIASES = {
   '샵': ['s#arp'],
   '임창정': ['lim chang jung'],
   '최진영': ['sky'],
-  '여행스케치': ['travel sketch'],
+  '여행스케치': ['travel sketch', 'tour sketch'],
   '클릭비': ['click-b'],
   '허니패밀리': ['honey family'],
   '듀크': ['duke'],
@@ -216,6 +216,8 @@ const ARTIST_ALIASES = {
   '이지훈 & 신혜성': ['이지훈', 'lee ji hoon', 'shin hye sung'],
   '박경림': ['박고테 프로젝트', 'park kyung lim'],
   '박지윤': ['parkjiyoon', 'park ji yoon'],
+  '캔': ['can'],
+  '틴틴파이브': ['teen teen five', 'tintin five'],
 };
 
 // ---------------------------------------------------------------- PKCE 유틸
@@ -624,8 +626,23 @@ class SpotifyTrackResolver {
 
   /** 저장해 둔 매칭이 지금 규칙으로도 받아들여지는가. */
   /** 헌정·커버 기획반은 다른 사람이 부른 것이라 원곡이 아니다. */
-  static _isCover(track) {
-    const blob = `${track.name || ''} ${track.album?.name || ''}`;
+  /**
+   * 판정에 쓸 문자열. 곡 제목에 든 낱말은 버전 표기가 아니므로 지운다 —
+   * 장범준 「노래방에서」가 노래방 반주로, 제목에 Live 가 든 곡이 라이브로 걸린다.
+   */
+  static _blob(track, song) {
+    let text = `${track.name || ''} ${track.album?.name || ''}`.toLowerCase();
+    if (song) {
+      for (const t of SpotifyTrackResolver._titleNames(song)) {
+        const low = String(t).toLowerCase().trim();
+        if (low) text = text.split(low).join(' ');
+      }
+    }
+    return text;
+  }
+
+  static _isCover(track, song) {
+    const blob = SpotifyTrackResolver._blob(track, song);
     return /(보컬전쟁|신의\s*목소리|헌정|tribute|커버|cover\s*project|originally\s+performed|노래방|karaoke|리메이크)/i
       .test(blob);
   }
@@ -639,10 +656,10 @@ class SpotifyTrackResolver {
     };
     const m = SpotifyTrackResolver._titleMatch(track.name, song);
     if (m <= 0) return false;
-    if (SpotifyTrackResolver._isInstrumental(track)) return false;
-    if (SpotifyTrackResolver._isCover(track)) return false;
+    if (SpotifyTrackResolver._isInstrumental(track, song)) return false;
+    if (SpotifyTrackResolver._isCover(track, song)) return false;
     // 라이브·리믹스가 붙어 있었다면 규칙이 바뀐 김에 원곡을 다시 찾아 볼 만하다
-    if (SpotifyTrackResolver._isVariant(track)) return false;
+    if (SpotifyTrackResolver._isVariant(track, song)) return false;
     const artistOk = SpotifyTrackResolver._artistOk(song.artist, t.artists || '');
     if (song.work) return artistOk || SpotifyTrackResolver._onWorkAlbum(t.album, song.work);
     return artistOk || m >= 1;
@@ -814,8 +831,8 @@ class SpotifyTrackResolver {
    * 연주곡인가. 가사가 없어 듣고 맞힐 수가 없으므로 아예 쓰지 않는다.
    * 라이브·리믹스와 달리 '차선책'조차 되지 못한다.
    */
-  static _isInstrumental(track) {
-    const blob = `${track.name} ${track.album?.name || ''}`;
+  static _isInstrumental(track, song) {
+    const blob = SpotifyTrackResolver._blob(track, song);
     // 드라마 OST 를 피아노·현악으로 다시 연주한 편집음반이 대량으로 올라와 있다.
     // 제목에 작품명이 그대로 들어 있어 검색에 잘 걸리는데, 가사가 없어 쓸 수 없다.
     return /(?<![a-z])(instrumental|inst|karaoke|mr\s*ver|backing\s*track|piano|cello|violin|orgel|music\s*box|new\s*age)(?![a-z])/i.test(blob)
@@ -828,10 +845,10 @@ class SpotifyTrackResolver {
    * 원곡과 소리가 다른 버전인가. 원곡이 있으면 그쪽이 이기고,
    * 없으면 차선으로 쓴다 — 라이브라도 알아들을 수는 있기 때문이다.
    */
-  static _isVariant(track) {
+  static _isVariant(track, song) {
     // 'Korean Version' 은 언어판 표기다. 한국 가수에게는 그쪽이 원반이라
     // 변형으로 보고 감점하면 정작 원곡을 밀어낸다.
-    const blob = `${track.name} ${track.album?.name || ''}`
+    const blob = SpotifyTrackResolver._blob(track, song)
       .replace(/(korean|japanese|chinese|english|mandarin)\s*(ver\.|version)/ig, ' ');
     return /(?<![a-z])(live|remix|remake|acoustic|cover|ver\.|version|edit|mixed|dj\s*mix)(?![a-z])/i.test(blob)
         || /(?<![가-힣])(라이브|리믹스|어쿠스틱|재녹음)(?![가-힣])/.test(blob);
@@ -870,9 +887,9 @@ class SpotifyTrackResolver {
     // 이게 없으면 '젝스키스 폼생폼사' 검색에서 동명이곡이 이겨 버린다.
     s += Math.max(0, 1.2 - rank * 0.4);
 
-    if (SpotifyTrackResolver._isInstrumental(track)) return -50;
-    if (SpotifyTrackResolver._isCover(track)) return -50;
-    if (SpotifyTrackResolver._isVariant(track)) s -= 4;
+    if (SpotifyTrackResolver._isInstrumental(track, song)) return -50;
+    if (SpotifyTrackResolver._isCover(track, song)) return -50;
+    if (SpotifyTrackResolver._isVariant(track, song)) s -= 4;
 
     // 연도는 K-POP 에서만 본다. OST 의 year 는 '작품의 방영 연도'라 곡 발매일과 무관하다.
     if (!song.work) {

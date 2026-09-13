@@ -87,7 +87,7 @@ ALIASES = {
     "클론": ["clon", "koolon"],
     "룰라": ["roo'ra", "roora"],
     "핑클": ["fin.k.l", "finkl"],
-    "코요태": ["koyote"],
+    "코요태": ["koyote", "kyt"],
     "터보": ["turbo"],
     "노이즈": ["noise"],
     "투투": ["two two"],
@@ -181,7 +181,7 @@ ALIASES = {
     "이승환": ["lee seung hwan"],
     # 2026-09 추가 요청 곡의 가수
     "황가람": ["hwang garam"],
-    "조째즈": ["jojazz"],
+    "조째즈": ["jojazz", "zo zazz"],
     "로제": ["rosé"],
     "이무진": ["lee mujin"],
     "마크툽": ["maktub"],
@@ -202,7 +202,7 @@ ALIASES = {
     "비비지": ["viviz"],
     "다이나믹 듀오 & 이영지": ["dynamic duo"],
     "부석순": ["bss"],
-    "wsg워너비 (가야g)": ["wsg wannabe"],
+    "wsg워너비 (가야g)": ["wsg wannabe", "wsg wannbe", "gaya-g"],
     "지수": ["jisoo"],
     "전소미": ["jeon somi"],
     "태연": ["taeyeon"],
@@ -253,7 +253,7 @@ ALIASES = {
     "샵": ["s#arp"],
     "임창정": ["lim chang jung"],
     "최진영": ["sky"],
-    "여행스케치": ["travel sketch"],
+    "여행스케치": ["travel sketch", "tour sketch"],
     "클릭비": ["click-b"],
     "허니패밀리": ["honey family"],
     "듀크": ["duke"],
@@ -287,6 +287,8 @@ ALIASES = {
     "이지훈 & 신혜성": ["이지훈", "lee ji hoon", "shin hye sung"],
     "박경림": ["박고테 프로젝트", "park kyung lim"],
     "박지윤": ["parkjiyoon", "park ji yoon"],
+    "캔": ["can"],
+    "틴틴파이브": ["teen teen five", "tintin five"],
 }
 
 
